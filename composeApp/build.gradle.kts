@@ -41,6 +41,9 @@ kotlin {
     }
     
     sourceSets {
+        all {
+            languageSettings.enableLanguageFeature("ExplicitBackingFields")
+        }
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
@@ -55,6 +58,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation(projects.shared)
+            implementation(libs.kotlin.reflect)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

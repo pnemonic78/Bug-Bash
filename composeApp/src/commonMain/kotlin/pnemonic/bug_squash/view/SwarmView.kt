@@ -1,0 +1,75 @@
+package pnemonic.bug_squash.view
+
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import org.jetbrains.compose.ui.tooling.preview.Preview
+import pnemonic.bug_squash.model.Ant
+import pnemonic.bug_squash.model.Bee
+import pnemonic.bug_squash.model.Bug
+import pnemonic.bug_squash.model.Butterfly
+import pnemonic.bug_squash.model.Caterpillar
+import pnemonic.bug_squash.model.Cockroach
+import pnemonic.bug_squash.model.Fly
+import pnemonic.bug_squash.model.Ladybug
+import pnemonic.bug_squash.model.Mosquito
+import pnemonic.bug_squash.model.Moth
+import pnemonic.bug_squash.model.Scorpion
+import pnemonic.bug_squash.model.Snail
+import pnemonic.bug_squash.model.Spider
+import pnemonic.bug_squash.model.Swarm
+import pnemonic.bug_squash.model.Termite
+import pnemonic.bug_squash.model.Wasp
+import pnemonic.bug_squash.model.Worm
+
+@Composable
+fun SwarmView(swarm: Swarm, onTap: BugCallback) {
+    SwarmView(swarm.bugs, onTap)
+}
+
+@Composable
+fun SwarmView(bugs: List<Bug>, onTap: BugCallback) {
+    for (bug in bugs) {
+        BugView(bug, onTap)
+    }
+}
+
+@Composable
+@Preview(showBackground = true, backgroundColor = 0xFF0000FF, widthDp = 500, heightDp = 700)
+private fun Preview() {
+    val bugs = listOf(
+        Ant(),
+        Bee(),
+        Butterfly(),
+        Caterpillar(),
+        Cockroach(),
+        Fly(),
+        Ladybug(),
+        Mosquito(),
+        Moth(),
+        Scorpion(),
+        Snail(),
+        Spider(),
+        Termite(),
+        Wasp(),
+        Worm()
+    )
+    val dt = 30.dp.toPx()
+    var t = 0f
+    for (bug in bugs) {
+        bug.moveTo(t, t)
+        t += dt
+    }
+    val onTap: BugCallback = {}
+
+    MaterialTheme {
+        Box(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            SwarmView(Swarm(bugs), onTap)
+        }
+    }
+}

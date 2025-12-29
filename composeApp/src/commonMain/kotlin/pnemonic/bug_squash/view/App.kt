@@ -1,0 +1,53 @@
+package pnemonic.bug_squash.view
+
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.collectAsState
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.viewmodel.compose.viewModel
+import org.jetbrains.compose.ui.tooling.preview.Preview
+import pnemonic.bug_squash.control.GameViewModel
+
+@Composable
+fun App() {
+    val lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current
+    val viewModel = viewModel { GameViewModel() }
+    val board = viewModel.board.collectAsState()
+
+    MaterialTheme {
+        BoardView(
+            board = board.value,
+            onSize = viewModel::onSize,
+            onTap = viewModel::onTap
+        )
+    }
+
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            when (event) {
+                Lifecycle.Event.ON_PAUSE -> viewModel.onPause()
+                Lifecycle.Event.ON_START -> viewModel.onStart()
+                Lifecycle.Event.ON_STOP -> viewModel.onStop()
+                else -> Unit
+            }
+        }
+
+        // Add the observer to the lifecycle
+        lifecycleOwner.lifecycle.addObserver(observer)
+
+        // When the effect leaves the Composition, remove the observer
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun AppAndroidPreview() {
+    App()
+}
