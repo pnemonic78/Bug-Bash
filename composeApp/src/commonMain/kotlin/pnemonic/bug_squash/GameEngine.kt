@@ -16,7 +16,9 @@ import pnemonic.bug_squash.model.Bug
 import pnemonic.bug_squash.model.Butterfly
 import pnemonic.bug_squash.model.Caterpillar
 import pnemonic.bug_squash.model.Cockroach
+import pnemonic.bug_squash.model.Difficulty.Companion.times
 import pnemonic.bug_squash.model.Fly
+import pnemonic.bug_squash.model.GameState
 import pnemonic.bug_squash.model.Ladybug
 import pnemonic.bug_squash.model.Mosquito
 import pnemonic.bug_squash.model.Moth
@@ -34,7 +36,8 @@ import kotlin.reflect.full.createInstance
 
 class GameEngine(private val coroutineScope: CoroutineScope) {
     private var ticker: Job? = null
-    private var isRunning = false
+    private var state: GameState = GameState.NOT_STARTED
+    private val isRunning get() = state === GameState.STARTED
 
     private val _boards = MutableStateFlow(Board())
     val boards: StateFlow<Board> get() = _boards
@@ -42,7 +45,7 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
     private val rand = Random.Default
 
     fun start() {
-        isRunning = true
+        state = GameState.STARTED
         ticker = coroutineScope.launch(Dispatchers.Default) {
             while (isActive) {
                 run()
@@ -52,21 +55,27 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
     }
 
     fun pause() {
-        isRunning = false
+        state = GameState.PAUSED
     }
 
     fun stop() {
-        isRunning = false
+        state = GameState.STOPPED
         ticker?.cancel()
         ticker = null
     }
 
     private suspend fun run() {
-        if (isRunning) {
-            var board = boards.value
-            board = move(board)
-            _boards.emit(board)
+        if (!isRunning) return
+        var board = boards.value
+        if ((board.width <= 0f) || (board.height <= 0f)) {
+            return
         }
+        // No more bugs -> level is done.
+        if (board.swarm.isEmpty()) {
+            board = nextLevel(board)
+        }
+        board = move(board)
+        _boards.emit(board)
     }
 
     private fun move(board: Board): Board {
@@ -92,10 +101,10 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
     }
 
     fun onSize(size: IntSize) {
+        if (!isRunning) return
         coroutineScope.launch {
             var board = boards.value
-            board = board.copy(width = size.width.toFloat(), height = size.height.toFloat())
-            board = generateBugs(board)
+            board = board.setSize(width = size.width.toFloat(), height = size.height.toFloat())
             _boards.emit(board)
         }
     }
@@ -130,35 +139,34 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         val height = board.height
         val bugs = mutableListOf<Bug>()
         val level = board.level
-        val size = BUGS_PER_LEVEL * level
+        val difficulty = board.difficulty
+        val size = BUGS_PER_LEVEL * level * difficulty
         val candidates = createCandidates(level)
 
-        for (i in 1..size) {
+        (1..size).forEach { _ ->
             val bug = createBug(candidates)
 
-            val side = rand.nextInt(0, 4)
+            val side = rand.nextInt(SIDE_TOP, SIDE_BOTTOM + 1)
             when (side) {
                 SIDE_TOP -> {
-                    bug.moveTo(rand.nextFloat() * width, 0f)
-                    bug.directionDegrees = 270f
+                    bug.moveTo(rand.nextFloat() * width, Float.MIN_VALUE)
+                    bug.setDestination(rand.nextFloat() * width, height)
                 }
 
                 SIDE_BOTTOM -> {
                     bug.moveTo(rand.nextFloat() * width, height)
-                    bug.directionDegrees = 90f
+                    bug.setDestination(rand.nextFloat() * width, Float.MIN_VALUE)
                 }
 
                 SIDE_LEFT -> {
-                    bug.moveTo(0f, rand.nextFloat() * height)
-                    bug.directionDegrees = 0f
+                    bug.moveTo(Float.MIN_VALUE, rand.nextFloat() * height)
+                    bug.setDestination(width, rand.nextFloat() * height)
                 }
 
                 SIDE_RIGHT -> {
                     bug.moveTo(width, rand.nextFloat() * height)
-                    bug.directionDegrees = 180f
+                    bug.setDestination(Float.MIN_VALUE, rand.nextFloat() * height)
                 }
-
-                else -> throw IllegalArgumentException("invalid side")
             }
 
             bugs.add(bug)
@@ -177,9 +185,21 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         return klass.createInstance()
     }
 
+    private fun nextLevel(board: Board): Board {
+        var board = board
+        val level = board.level + 1
+        if (level > MAX_LEVELS) {
+            state = GameState.FINISHED
+            return board
+        }
+        board = generateBugs(board)
+        return board.copy(level = level)
+    }
+
     companion object {
         private const val TICK = 50L
-        private const val BUGS_PER_LEVEL = 20
+        private const val BUGS_PER_LEVEL = 10
+        private const val MAX_LEVELS = 13
 
         private const val SIDE_TOP = 0
         private const val SIDE_RIGHT = 1
