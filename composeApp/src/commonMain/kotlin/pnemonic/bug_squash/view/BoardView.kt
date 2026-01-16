@@ -28,14 +28,20 @@ import pnemonic.bug_squash.model.Wasp
 import pnemonic.bug_squash.model.Worm
 
 @Composable
-fun BoardView(board: Board, onSize: OnSizeCallback, onTap: BugCallback) {
+fun BoardView(
+    board: Board,
+    onSize: OnSizeCallback,
+    onBugSize: BugCallback,
+    onTap: BugCallback,
+    onDead: BugCallback
+) {
     SceneView(
         modifier = Modifier
             .fillMaxSize()
             .onSizeChanged(onSize),
         scene = board.scene
     ) {
-        SwarmView(board.swarm, onTap)
+        SwarmView(board.swarm, onBugSize, onTap, onDead)
         Column {
             LivesView(board.lives)
             ScoreView(board.score)
@@ -72,9 +78,11 @@ private fun Preview() {
     }
     val board = Board(swarm = Swarm(bugs))
     val onSize: OnSizeCallback = {}
+    val onBugSize: BugCallback = {}
     val onTap: BugCallback = {}
+    val onDead: BugCallback = {}
 
     MaterialTheme {
-        BoardView(board, onSize, onTap)
+        BoardView(board, onSize, onBugSize, onTap, onDead)
     }
 }

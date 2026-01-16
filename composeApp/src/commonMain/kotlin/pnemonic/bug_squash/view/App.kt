@@ -22,7 +22,9 @@ fun App() {
         BoardView(
             board = board.value,
             onSize = viewModel::onSize,
-            onTap = viewModel::onTap
+            onBugSize = viewModel::onBugSize,
+            onTap = viewModel::onTap,
+            onDead = viewModel::onDead
         )
     }
 

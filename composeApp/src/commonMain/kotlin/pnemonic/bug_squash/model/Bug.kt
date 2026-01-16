@@ -11,10 +11,13 @@ import kotlin.math.PI
 import kotlin.math.atan2
 import kotlin.math.max
 
+private var bugId = 0
+
 abstract class Bug(
     val score: Int,
     var hits: Int,
 ) {
+    private val id = (bugId++)
     var left by mutableFloatStateOf(0f)
         private set
     var top by mutableFloatStateOf(0f)
@@ -36,7 +39,13 @@ abstract class Bug(
         private set
     var isSquashed by mutableStateOf(false)
         private set
+    var opacity by mutableStateOf(0f)
+        private set
     abstract val description: String
+
+    override fun toString(): String {
+        return "{$id, $description, $left, $top, $width, $height}"
+    }
 
     fun setSize(width: Float, height: Float) {
         this.width = width
@@ -54,6 +63,7 @@ abstract class Bug(
         if (destinationY == Float.MIN_VALUE) {
             destinationY = -height
         }
+        opacity = 1f
     }
 
     fun setSize(size: IntSize) {
@@ -90,6 +100,7 @@ abstract class Bug(
         hits = max(0, hits - 1)
         if (hits == 0) {
             isSquashed = true
+            opacity = 0f
             speed = 0f // dead bugs cannot move
         }
         this.hits = hits

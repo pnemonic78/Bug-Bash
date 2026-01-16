@@ -33,4 +33,12 @@ class GameViewModel : ViewModel() {
     fun onTap(bug: Bug) {
         engine.onTap(bug)
     }
+
+    fun onBugSize(bug: Bug) {
+        engine.onBugSize(bug)
+    }
+
+    fun onDead(bug: Bug) {
+        engine.onDead(bug)
+    }
 }

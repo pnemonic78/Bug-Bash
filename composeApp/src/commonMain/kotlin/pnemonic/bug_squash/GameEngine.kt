@@ -71,7 +71,7 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
             return
         }
         // No more bugs -> level is done.
-        if (board.swarm.isEmpty()) {
+        if (board.isLevelFinished()) {
             board = nextLevel(board)
         }
         board = move(board)
@@ -126,49 +126,52 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         bug.hit()
         if (bug.isSquashed) {
             score += bug.score
-            //TODO 1 Animate squish;
-            //TODO 2 remove the bug from swarm;
-            //TODO 3 add another bug.
         }
 
         return board.copy(score = score)
     }
 
-    private fun generateBugs(board: Board): Board {
+    fun onBugSize(bug: Bug) {
+        val board = boards.value
         val width = board.width
         val height = board.height
-        val bugs = mutableListOf<Bug>()
+        val bugWidth = bug.width
+        val bugHeight = bug.height
+
+        //TDO try to avoid overlap bugs with each other.
+        val side = rand.nextInt(SIDE_TOP, SIDE_BOTTOM + 1)
+        when (side) {
+            SIDE_TOP -> {
+                bug.moveTo(rand.nextFloat() * width, rand.nextFloat() * bugHeight)
+                bug.setDestination(rand.nextFloat() * width, height)
+            }
+
+            SIDE_BOTTOM -> {
+                bug.moveTo(rand.nextFloat() * width, height - 500f - (rand.nextFloat() * bugHeight))
+                bug.setDestination(rand.nextFloat() * width, -bugHeight)
+            }
+
+            SIDE_LEFT -> {
+                bug.moveTo(rand.nextFloat() * bugWidth, rand.nextFloat() * height)
+                bug.setDestination(width, rand.nextFloat() * height)
+            }
+
+            SIDE_RIGHT -> {
+                bug.moveTo(width - (rand.nextFloat() * bugWidth), rand.nextFloat() * height)
+                bug.setDestination(-bugWidth, rand.nextFloat() * height)
+            }
+        }
+    }
+
+    private fun generateBugs(board: Board): Board {
         val level = board.level
         val difficulty = board.difficulty
         val size = BUGS_PER_LEVEL * level * difficulty
         val candidates = createCandidates(level)
+        val bugs = mutableListOf<Bug>()
 
         (1..size).forEach { _ ->
             val bug = createBug(candidates)
-
-            val side = rand.nextInt(SIDE_TOP, SIDE_BOTTOM + 1)
-            when (side) {
-                SIDE_TOP -> {
-                    bug.moveTo(rand.nextFloat() * width, Float.MIN_VALUE)
-                    bug.setDestination(rand.nextFloat() * width, height)
-                }
-
-                SIDE_BOTTOM -> {
-                    bug.moveTo(rand.nextFloat() * width, height)
-                    bug.setDestination(rand.nextFloat() * width, Float.MIN_VALUE)
-                }
-
-                SIDE_LEFT -> {
-                    bug.moveTo(Float.MIN_VALUE, rand.nextFloat() * height)
-                    bug.setDestination(width, rand.nextFloat() * height)
-                }
-
-                SIDE_RIGHT -> {
-                    bug.moveTo(width, rand.nextFloat() * height)
-                    bug.setDestination(Float.MIN_VALUE, rand.nextFloat() * height)
-                }
-            }
-
             bugs.add(bug)
         }
 
@@ -188,18 +191,33 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
     private fun nextLevel(board: Board): Board {
         var board = board
         val level = board.level + 1
-        if (level > MAX_LEVELS) {
-            state = GameState.FINISHED
+        //if (level > MAX_LEVELS) {
+        //    state = GameState.FINISHED
+        //    return board
+        //}
+        board = generateBugs(board.copy(level = level))
+        return board
+    }
+
+    fun onDead(bug: Bug) {
+        coroutineScope.launch {
+            var board = boards.value
+            board = remove(board, bug)
+            _boards.emit(board)
+        }
+    }
+
+    private fun remove(board: Board, bug: Bug): Board {
+        if (!bug.isSquashed) {
             return board
         }
-        board = generateBugs(board)
-        return board.copy(level = level)
+        val swarm = board.swarm.remove(bug)
+        return board.copy(swarm = swarm)
     }
 
     companion object {
         private const val TICK = 50L
         private const val BUGS_PER_LEVEL = 10
-        private const val MAX_LEVELS = 13
 
         private const val SIDE_TOP = 0
         private const val SIDE_RIGHT = 1

@@ -26,14 +26,14 @@ import pnemonic.bug_squash.model.Wasp
 import pnemonic.bug_squash.model.Worm
 
 @Composable
-fun SwarmView(swarm: Swarm, onTap: BugCallback) {
-    SwarmView(swarm.bugs, onTap)
+fun SwarmView(swarm: Swarm, onSize: BugCallback, onTap: BugCallback, onDead: BugCallback) {
+    SwarmView(swarm.bugs, onSize, onTap, onDead)
 }
 
 @Composable
-fun SwarmView(bugs: List<Bug>, onTap: BugCallback) {
+fun SwarmView(bugs: List<Bug>, onSize: BugCallback, onTap: BugCallback, onDead: BugCallback) {
     for (bug in bugs) {
-        BugView(bug, onTap)
+        BugView(bug, onSize, onTap, onDead)
     }
 }
 
@@ -63,13 +63,15 @@ private fun Preview() {
         bug.moveTo(t, t)
         t += dt
     }
+    val onSize: BugCallback = {}
     val onTap: BugCallback = {}
+    val onDead: BugCallback = {}
 
     MaterialTheme {
         Box(
             modifier = Modifier.fillMaxSize()
         ) {
-            SwarmView(Swarm(bugs), onTap)
+            SwarmView(Swarm(bugs), onSize, onTap, onDead)
         }
     }
 }

@@ -11,4 +11,10 @@ data class Swarm(
     override fun iterator(): Iterator<Bug> {
         return bugs.iterator()
     }
+
+    fun remove(bug: Bug): Swarm {
+        val bugs = bugs.toMutableList()
+        bugs.remove(bug)
+        return copy(bugs = bugs)
+    }
 }
