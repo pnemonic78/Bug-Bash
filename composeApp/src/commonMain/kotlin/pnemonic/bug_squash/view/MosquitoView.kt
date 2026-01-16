@@ -35,7 +35,7 @@ fun MosquitoView(bug: Mosquito, onTap: BugCallback) {
                 onTap(bug)
             }
     ) {
-        Text(text = "\uD83E\uDD9F", fontSize = 30.sp)
+        Text(text = bug.description, fontSize = 30.sp)
         if (bug.isSquashed) {
             Box(modifier = Modifier.fillMaxSize().background(Color.Red.copy(alpha = 0.5f)))
         }

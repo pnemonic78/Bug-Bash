@@ -35,7 +35,7 @@ fun WormView(bug: Worm, onTap: BugCallback) {
                 onTap(bug)
             }
     ) {
-        Text(text = "\uD83E\uDEB1", fontSize = 40.sp)
+        Text(text = bug.description, fontSize = 40.sp)
         if (bug.isSquashed) {
             Box(modifier = Modifier.fillMaxSize().background(Color.Red.copy(alpha = 0.5f)))
         }

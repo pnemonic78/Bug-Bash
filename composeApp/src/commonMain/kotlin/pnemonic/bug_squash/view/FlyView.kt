@@ -35,7 +35,7 @@ fun FlyView(bug: Fly, onTap: BugCallback) {
                 onTap(bug)
             }
     ) {
-        Text(text = "\uD83E\uDEB0", fontSize = 30.sp)
+        Text(text = bug.description, fontSize = 30.sp)
         if (bug.isSquashed) {
             Box(modifier = Modifier.fillMaxSize().background(Color.Red.copy(alpha = 0.5f)))
         }

@@ -35,7 +35,7 @@ fun SnailView(bug: Snail, onTap: BugCallback) {
                 onTap(bug)
             }
     ) {
-        Text(text = "\uD83D\uDC0C", fontSize = 50.sp)
+        Text(text = bug.description, fontSize = 50.sp)
         if (bug.isSquashed) {
             Box(modifier = Modifier.fillMaxSize().background(Color.Red.copy(alpha = 0.5f)))
         }

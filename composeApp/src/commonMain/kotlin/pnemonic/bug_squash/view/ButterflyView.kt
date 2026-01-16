@@ -35,7 +35,7 @@ fun ButterflyView(bug: Butterfly, onTap: BugCallback) {
                 onTap(bug)
             }
     ) {
-        Text(text = "🦋", fontSize = 60.sp)
+        Text(text = bug.description, fontSize = 60.sp)
         if (bug.isSquashed) {
             Box(modifier = Modifier.fillMaxSize().background(Color.Red.copy(alpha = 0.5f)))
         }

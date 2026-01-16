@@ -35,7 +35,7 @@ fun ScorpionView(bug: Scorpion, onTap: BugCallback) {
                 onTap(bug)
             }
     ) {
-        Text(text = "\uD83E\uDD82", fontSize = 40.sp)
+        Text(text = bug.description, fontSize = 40.sp)
         if (bug.isSquashed) {
             Box(modifier = Modifier.fillMaxSize().background(Color.Red.copy(alpha = 0.5f)))
         }

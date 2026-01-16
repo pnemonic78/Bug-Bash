@@ -36,6 +36,7 @@ abstract class Bug(
         private set
     var isSquashed by mutableStateOf(false)
         private set
+    abstract val description: String
 
     fun setSize(width: Float, height: Float) {
         this.width = width

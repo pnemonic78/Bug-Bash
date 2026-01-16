@@ -35,7 +35,7 @@ fun MothView(bug: Moth, onTap: BugCallback) {
                 onTap(bug)
             }
     ) {
-        Text(text = "🦋", fontSize = 35.sp)
+        Text(text = bug.description, fontSize = 35.sp)
         if (bug.isSquashed) {
             Box(modifier = Modifier.fillMaxSize().background(Color.Red.copy(alpha = 0.5f)))
         }

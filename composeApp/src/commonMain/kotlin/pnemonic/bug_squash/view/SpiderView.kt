@@ -35,7 +35,7 @@ fun SpiderView(bug: Spider, onTap: BugCallback) {
                 onTap(bug)
             }
     ) {
-        Text(text = "\uD83D\uDD77\uFE0F", fontSize = 60.sp)
+        Text(text = bug.description, fontSize = 60.sp)
         if (bug.isSquashed) {
             Box(modifier = Modifier.fillMaxSize().background(Color.Red.copy(alpha = 0.5f)))
         }
