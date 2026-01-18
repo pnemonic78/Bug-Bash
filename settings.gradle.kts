@@ -1,4 +1,4 @@
-rootProject.name = "Bug-Squash"
+rootProject.name = "Bug-Bash"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {

@@ -1,3 +1,4 @@
 package pnemonic.bug_squash.model
 
-abstract class BugThatCrawls(score: Int, hits: Int) : Bug(score = score, hits = hits)
+abstract class BugThatCrawls(speed: Float, score: Int, hits: Int) :
+    Bug(speed = speed, score = score, hits = hits)

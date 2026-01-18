@@ -9,7 +9,7 @@ data class Board(
     val level: Int = 0,
     val difficulty: Difficulty = Difficulty.Easy,
     val score: Long = 0,
-    val lives: Int = 3,
+    val lives: Int = LIVES,
     val bonus: Bonus = Bonus.None,
     val swarm: Swarm = Swarm()
 ) {
@@ -20,4 +20,8 @@ data class Board(
     val rect: Rect = Rect(0f, 0f, width, height)
 
     fun isLevelFinished(): Boolean = swarm.isEmpty()
+
+    companion object {
+        const val LIVES = 10
+    }
 }

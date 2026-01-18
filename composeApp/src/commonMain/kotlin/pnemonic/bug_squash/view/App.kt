@@ -17,10 +17,12 @@ fun App() {
     val lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current
     val viewModel = viewModel { GameViewModel() }
     val board = viewModel.board.collectAsState()
+    val state = viewModel.state.collectAsState()
 
     MaterialTheme {
         BoardView(
             board = board.value,
+            state = state.value,
             onSize = viewModel::onSize,
             onBugSize = viewModel::onBugSize,
             onTap = viewModel::onTap,

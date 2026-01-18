@@ -102,8 +102,8 @@ fun GenericBug(
             }
     ) {
         Text(text = bug.description, fontSize = 50.sp)
-        //TODO Animate squish
         if (bug.isSquashed) {
+            //TODO Animate squish
             Box(modifier = Modifier.fillMaxSize().background(Color.Red.copy(alpha = 0.5f)))
         }
     }

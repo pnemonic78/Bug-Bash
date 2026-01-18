@@ -2,6 +2,7 @@ package pnemonic.bug_squash.view
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -11,11 +12,11 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 import pnemonic.bug_squash.model.Ant
 import pnemonic.bug_squash.model.Bee
 import pnemonic.bug_squash.model.Board
-import pnemonic.bug_squash.model.Bug
 import pnemonic.bug_squash.model.Butterfly
 import pnemonic.bug_squash.model.Caterpillar
 import pnemonic.bug_squash.model.Cockroach
 import pnemonic.bug_squash.model.Fly
+import pnemonic.bug_squash.model.GameState
 import pnemonic.bug_squash.model.Ladybug
 import pnemonic.bug_squash.model.Mosquito
 import pnemonic.bug_squash.model.Moth
@@ -30,6 +31,7 @@ import pnemonic.bug_squash.model.Worm
 @Composable
 fun BoardView(
     board: Board,
+    state: GameState,
     onSize: OnSizeCallback,
     onBugSize: BugCallback,
     onTap: BugCallback,
@@ -42,18 +44,23 @@ fun BoardView(
         scene = board.scene
     ) {
         SwarmView(board.swarm, onBugSize, onTap, onDead)
-        Column {
-            LivesView(board.lives)
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .safeContentPadding()
+        ) {
+            LivesView(board.lives, Board.LIVES)
             ScoreView(board.score)
             LevelView(board.level)
         }
+        StateView(state)
     }
 }
 
 @Composable
 @Preview(showBackground = true, backgroundColor = 0xFF0000FF, widthDp = 400, heightDp = 600)
 private fun Preview() {
-    val bugs = listOf<Bug>(
+    val bugs = listOf(
         Ant(),
         Bee(),
         Butterfly(),
@@ -70,10 +77,12 @@ private fun Preview() {
         Wasp(),
         Worm()
     )
-    val dt = 25.dp.toPx()
+    val dt = 30.dp.toPx()
+    val h = 700.dp.toPx()
     var t = 0f
     for (bug in bugs) {
-        bug.moveTo(t, 200 + t)
+        bug.moveTo(t, t)
+        bug.setDestination(t, h)
         t += dt
     }
     val board = Board(swarm = Swarm(bugs))
@@ -83,6 +92,6 @@ private fun Preview() {
     val onDead: BugCallback = {}
 
     MaterialTheme {
-        BoardView(board, onSize, onBugSize, onTap, onDead)
+        BoardView(board, GameState.STARTED, onSize, onBugSize, onTap, onDead)
     }
 }

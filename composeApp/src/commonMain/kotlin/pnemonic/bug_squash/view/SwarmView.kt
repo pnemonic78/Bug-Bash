@@ -58,9 +58,11 @@ private fun Preview() {
         Worm()
     )
     val dt = 30.dp.toPx()
+    val h = 700.dp.toPx()
     var t = 0f
     for (bug in bugs) {
         bug.moveTo(t, t)
+        bug.setDestination(t, h)
         t += dt
     }
     val onSize: BugCallback = {}

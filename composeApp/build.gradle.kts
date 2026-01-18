@@ -42,7 +42,7 @@ kotlin {
     
     sourceSets {
         all {
-            languageSettings.enableLanguageFeature("ExplicitBackingFields")
+            //TODO languageSettings.enableLanguageFeature("ExplicitBackingFields")
         }
         androidMain.dependencies {
             implementation(compose.preview)

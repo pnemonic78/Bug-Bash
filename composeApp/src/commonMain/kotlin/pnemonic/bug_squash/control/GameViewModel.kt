@@ -7,12 +7,14 @@ import kotlinx.coroutines.flow.StateFlow
 import pnemonic.bug_squash.GameEngine
 import pnemonic.bug_squash.model.Board
 import pnemonic.bug_squash.model.Bug
+import pnemonic.bug_squash.model.GameState
 
 class GameViewModel : ViewModel() {
 
     private val engine = GameEngine(viewModelScope)
 
     val board: StateFlow<Board> get() = engine.boards
+    val state: StateFlow<GameState> get() = engine.state
 
     fun onStart() {
         engine.start()

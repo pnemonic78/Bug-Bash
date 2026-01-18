@@ -29,24 +29,27 @@ import pnemonic.bug_squash.model.Swarm
 import pnemonic.bug_squash.model.Termite
 import pnemonic.bug_squash.model.Wasp
 import pnemonic.bug_squash.model.Worm
-import pnemonic.bug_squash.model.contains
+import kotlin.math.max
 import kotlin.random.Random
 import kotlin.reflect.KClass
 import kotlin.reflect.full.createInstance
 
 class GameEngine(private val coroutineScope: CoroutineScope) {
     private var ticker: Job? = null
-    private var state: GameState = GameState.NOT_STARTED
-    private val isRunning get() = state === GameState.STARTED
 
     private val _boards = MutableStateFlow(Board())
     val boards: StateFlow<Board> get() = _boards
 
+    private val _state = MutableStateFlow(GameState.NOT_STARTED)
+    val state: StateFlow<GameState> get() = _state
+    private val isRunning get() = state.value === GameState.STARTED
+
     private val rand = Random.Default
+    private val touched = mutableListOf<Bug>()
 
     fun start() {
-        state = GameState.STARTED
         ticker = coroutineScope.launch(Dispatchers.Default) {
+            _state.emit(GameState.STARTED)
             while (isActive) {
                 run()
                 delay(TICK)
@@ -55,11 +58,11 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
     }
 
     fun pause() {
-        state = GameState.PAUSED
+        _state.value = GameState.PAUSED
     }
 
     fun stop() {
-        state = GameState.STOPPED
+        _state.value = GameState.STOPPED
         ticker?.cancel()
         ticker = null
     }
@@ -70,33 +73,53 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         if ((board.width <= 0f) || (board.height <= 0f)) {
             return
         }
+        // Mo more lives -> game is done.
+        if (board.lives <= 0) {
+            println("No more lives")
+            _state.emit(GameState.FINISHED)
+            return
+        }
         // No more bugs -> level is done.
         if (board.isLevelFinished()) {
             board = nextLevel(board)
         }
         board = move(board)
+        board = touch(board)
         _boards.emit(board)
     }
 
     private fun move(board: Board): Board {
+        if (board.swarm.isEmpty()) return board
         if ((board.width <= 0) || (board.height <= 0)) return board
-        val rect = board.rect
-        val bugs = mutableListOf<Bug>()
-        var removed = false
+        var lives = board.lives
+        val bugs = board.swarm.bugs
+        val removed = mutableListOf<Bug>()
+        val squashed = mutableListOf<Bug>()
 
-        for (bug in board.swarm) {
-            //TODO bug.move()
-            if (rect.contains(bug)) {
-                bugs.add(bug)
-            } else {
-                removed = true
+        for (bug in bugs) {
+            if (bug.isBadMove()) {
+                continue
+            }
+            if (bug.thaw(TICK)) {
+                continue
+            }
+            bug.move()
+            if (bug.didEscape()) {
+                removed.add(bug)
+                lives--
+            }
+            if (bug.isSquashed) {
+                squashed.add(bug)
             }
         }
 
-        return if (removed) {
-            board.copy(swarm = Swarm(bugs))
-        } else {
+        return if (removed.isEmpty() && squashed.isEmpty()) {
             board
+        } else {
+            val bugs = bugs.toMutableList()
+            bugs.removeAll(removed)
+            bugs.removeAll(squashed)
+            board.copy(swarm = Swarm(bugs), lives = lives)
         }
     }
 
@@ -110,25 +133,37 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
     }
 
     fun onTap(bug: Bug) {
-        coroutineScope.launch {
-            var board = boards.value
-            board = touch(board, bug)
-            _boards.emit(board)
-        }
+        touched.add(bug)
+//        coroutineScope.launch {
+//            var board = boards.value
+//            board = touch(board, bug)
+//            _boards.emit(board)
+//        }
     }
 
-    private fun touch(board: Board, bug: Bug): Board {
-        if (bug.isSquashed) {
-            return board
-        }
+    private fun touch(board: Board): Board {
+        val bugs = touched
+        if (bugs.isEmpty()) return board
+
+        var lives = board.lives
         var score = board.score
 
-        bug.hit()
-        if (bug.isSquashed) {
-            score += bug.score
+        for (bug in bugs) {
+            if (bug.isSquashed) {
+                continue
+            }
+            bug.hit()
+            if (bug.isSquashed) {
+                score += bug.score
+                if (score < 0) {
+                    lives--
+                }
+                score = max(0, score)
+            }
         }
+        bugs.clear()
 
-        return board.copy(score = score)
+        return board.copy(score = score, lives = lives)
     }
 
     fun onBugSize(bug: Bug) {
@@ -138,64 +173,85 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         val bugWidth = bug.width
         val bugHeight = bug.height
 
-        //TDO try to avoid overlap bugs with each other.
-        val side = rand.nextInt(SIDE_TOP, SIDE_BOTTOM + 1)
+        //TODO try to avoid overlap bugs with each other.
+        val side = rand.nextInt(SIDE_MIN, SIDE_MAX)
+        var x1 = 0f
+        var y1 = 0f
+        var x2 = 0f
+        var y2 = 0f
         when (side) {
             SIDE_TOP -> {
-                bug.moveTo(rand.nextFloat() * width, rand.nextFloat() * bugHeight)
-                bug.setDestination(rand.nextFloat() * width, height)
+                x1 = rand.nextFloat() * width
+                y1 = -bugHeight * 1.1f
+                x2 = rand.nextFloat() * width
+                y2 = height + bugHeight
             }
 
             SIDE_BOTTOM -> {
-                bug.moveTo(rand.nextFloat() * width, height - 500f - (rand.nextFloat() * bugHeight))
-                bug.setDestination(rand.nextFloat() * width, -bugHeight)
+                x1 = rand.nextFloat() * width
+                y1 = height * 1.1f
+                x2 = rand.nextFloat() * width
+                y2 = -bugHeight
             }
 
             SIDE_LEFT -> {
-                bug.moveTo(rand.nextFloat() * bugWidth, rand.nextFloat() * height)
-                bug.setDestination(width, rand.nextFloat() * height)
+                x1 = -bugWidth * 1.1f
+                y1 = rand.nextFloat() * height
+                x2 = width + bugWidth
+                y2 = rand.nextFloat() * height
             }
 
             SIDE_RIGHT -> {
-                bug.moveTo(width - (rand.nextFloat() * bugWidth), rand.nextFloat() * height)
-                bug.setDestination(-bugWidth, rand.nextFloat() * height)
+                x1 = width * 1.1f
+                y1 = rand.nextFloat() * height
+                x2 = -bugWidth
+                y2 = rand.nextFloat() * height
             }
         }
+        x1 = 0f
+        y1 = rand.nextFloat() * height
+        x2 = width / 2
+        y2 = y1
+        bug.moveTo(x1, y1)
+        bug.setDestination(x2, y2)
     }
 
     private fun generateBugs(board: Board): Board {
         val level = board.level
         val difficulty = board.difficulty
         val size = BUGS_PER_LEVEL * level * difficulty
-        val candidates = createCandidates(level)
+        val candidates = createCandidates(level) as List<KClass<Bug>>
         val bugs = mutableListOf<Bug>()
+        var delay = 0L
 
         (1..size).forEach { _ ->
             val bug = createBug(candidates)
+            bug.freeze(delay)
             bugs.add(bug)
+            delay += DELAY_PER_BUG
         }
 
         return board.copy(swarm = Swarm(bugs))
     }
 
-    private fun createCandidates(level: Int): List<KClass<Bug>> {
+    private fun createCandidates(level: Int): List<KClass<out Bug>> {
         return levels[level] ?: level12
     }
 
     private fun createBug(candidates: List<KClass<Bug>>): Bug {
         val i = rand.nextInt(candidates.size)
-        val klass = candidates[i] as KClass<Bug>
+        val klass = candidates[i]
         return klass.createInstance()
     }
 
     private fun nextLevel(board: Board): Board {
         var board = board
         val level = board.level + 1
-        //if (level > MAX_LEVELS) {
-        //    state = GameState.FINISHED
-        //    return board
-        //}
-        board = generateBugs(board.copy(level = level))
+        var scene = board.scene
+        if (level % 3 == 0) {
+            scene = scene.next()
+        }
+        board = generateBugs(board.copy(level = level, scene = scene))
         return board
     }
 
@@ -217,33 +273,28 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
 
     companion object {
         private const val TICK = 50L
-        private const val BUGS_PER_LEVEL = 10
+        private const val BUGS_PER_LEVEL = 2
+        private const val DELAY_PER_BUG = TICK * 15
 
         private const val SIDE_TOP = 0
-        private const val SIDE_RIGHT = 1
-        private const val SIDE_LEFT = 2
-        private const val SIDE_BOTTOM = 3
+        private const val SIDE_LEFT = 1
+        private const val SIDE_BOTTOM = 2
+        private const val SIDE_RIGHT = 3
+        private const val SIDE_MIN = SIDE_TOP
+        private const val SIDE_MAX = SIDE_RIGHT + 1
 
-        private val level1 = listOf<KClass<Bug>>(Snail::class as KClass<Bug>)
-        private val level2 = level1 + listOf<KClass<Bug>>(Worm::class as KClass<Bug>)
-        private val level3 = level2 + listOf<KClass<Bug>>(Caterpillar::class as KClass<Bug>)
-        private val level4 = level3 + listOf<KClass<Bug>>(Ant::class as KClass<Bug>)
-        private val level5 = level4 + listOf<KClass<Bug>>(
-            Cockroach::class as KClass<Bug>,
-            Termite::class as KClass<Bug>
-        )
-        private val level6 = level5 + listOf<KClass<Bug>>(Spider::class as KClass<Bug>)
-        private val level7 = level6 + listOf<KClass<Bug>>(Scorpion::class as KClass<Bug>)
-        private val level8 = level7 + listOf<KClass<Bug>>(
-            Butterfly::class as KClass<Bug>,
-            Moth::class as KClass<Bug>
-        )
-        private val level9 = level8 + listOf<KClass<Bug>>(Mosquito::class as KClass<Bug>)
-        private val level10 = level9 + listOf<KClass<Bug>>(
-            Fly::class as KClass<Bug>, Ladybug::class as KClass<Bug>
-        )
-        private val level11 = level10 + listOf<KClass<Bug>>(Bee::class as KClass<Bug>)
-        private val level12 = level11 + listOf<KClass<Bug>>(Wasp::class as KClass<Bug>)
+        private val level1 = listOf(Snail::class)
+        private val level2 = level1 + listOf(Worm::class)
+        private val level3 = level2 + listOf(Caterpillar::class)
+        private val level4 = level3 + listOf(Ant::class)
+        private val level5 = level4 + listOf(Cockroach::class, Termite::class)
+        private val level6 = level5 + listOf(Spider::class)
+        private val level7 = level6 + listOf(Scorpion::class)
+        private val level8 = level7 + listOf(Butterfly::class, Moth::class)
+        private val level9 = level8 + listOf(Mosquito::class)
+        private val level10 = level9 + listOf(Fly::class, Ladybug::class)
+        private val level11 = level10 + listOf(Bee::class)
+        private val level12 = level11 + listOf(Wasp::class)
 
         private val levels = mapOf(
             1 to level1,
