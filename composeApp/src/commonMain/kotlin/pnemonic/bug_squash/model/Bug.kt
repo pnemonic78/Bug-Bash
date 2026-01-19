@@ -32,6 +32,7 @@ abstract class Bug(
         private set
     internal var destinationY: Float = Float.NaN
         private set
+    private var destinationAngle: Float = Float.NaN
     protected var velocity: Float = speed / 20
         private set
     var rotation by mutableStateOf(0f)
@@ -62,7 +63,7 @@ abstract class Bug(
     fun setDestination(x: Float, y: Float) {
         destinationX = x
         destinationY = y
-        calculateHeading()
+        destinationAngle = calculateHeading()
     }
 
     fun move(): Boolean {
@@ -78,11 +79,11 @@ abstract class Bug(
         calculateHeading()
     }
 
-    private fun calculateHeading() {
+    private fun calculateHeading(): Float {
         if (isBadMove()) {
             rotation = 0f
             rotationMovement = 0f
-            return
+            return 0f
         }
         val x1 = left
         val y1 = top
@@ -95,16 +96,21 @@ abstract class Bug(
         val angleVisual = (angleDegrees + 270f) % 360f
         rotation = angleVisual
         rotationMovement = angleDegrees / RADIANS_TO_DEGREES
+        return angleVisual
     }
 
     protected fun moveStraight(): Boolean {
-        val movement = velocity * width
         val angle = rotationMovement
-        val x = left + movement * cos(angle)
-        val y = top + movement * sin(angle)
-        val rotationBefore = rotation
-        moveTo(x, y)
-        return rotationBefore == rotation
+        val c = cos(angle)  //TODO cache this value
+        val s = sin(angle)  //TODO cache this value
+        val x1 = left
+        val y1 = top
+        val dx = velocity * width
+        val dy = 0f
+        val x2 = x1 + ((dx * c) - (dy * s))
+        val y2 = y1 + ((dx * s) + (dy * c))
+        moveTo(x2, y2)
+        return angle == rotationMovement
     }
 
     fun isBadMove(): Boolean {
@@ -129,21 +135,25 @@ abstract class Bug(
     }
 
     fun didEscape(): Boolean {
-        val angleVisual = rotation
+        val x = left
+        val y = top
+        val x3 = destinationX
+        val y3 = destinationY
+        val angle = destinationAngle
         // heading to Bottom-Left
-        if ((angleVisual >= 0f) && (angleVisual <= 90f)) {
-            return (right <= destinationX) || (top >= destinationY)
+        if (angle <= 90f) {
+            return (x - EPSILON_ESCAPE <= x3) && (y + EPSILON_ESCAPE >= y3)
         }
         // heading to Top-Left
-        if ((angleVisual > 90f) && (angleVisual <= 180f)) {
-            return (right <= destinationX) || (bottom <= destinationY)
+        if (angle <= 180f) {
+            return (x - EPSILON_ESCAPE <= x3) && (y - EPSILON_ESCAPE <= y3)
         }
         // heading to Top-Right
-        if ((angleVisual > 180f) && (angleVisual <= 270f)) {
-            return (left >=destinationX) || (bottom <= destinationY)
+        if (angle <= 270f) {
+            return (x + EPSILON_ESCAPE >= x3) && (y - EPSILON_ESCAPE <= y3)
         }
         // heading to Bottom-Right
-        return (left >= destinationX) || (top >= destinationY)
+        return (x + EPSILON_ESCAPE >= x3) && (y + EPSILON_ESCAPE >= y3)
     }
 
     // delay
@@ -156,6 +166,10 @@ abstract class Bug(
         val delay = max(0L, delay - steam)
         this.delay = delay
         return delay > 0L
+    }
+
+    companion object {
+        private const val EPSILON_ESCAPE = 5f
     }
 }
 
