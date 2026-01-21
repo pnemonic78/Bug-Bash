@@ -71,11 +71,11 @@ kotlin {
 }
 
 android {
-    namespace = "pnemonic.bug_squash"
+    namespace = "pnemonic.bug_bash"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "pnemonic.bug_squash"
+        applicationId = "pnemonic.bug_bash"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
@@ -103,11 +103,11 @@ dependencies {
 
 compose.desktop {
     application {
-        mainClass = "pnemonic.bug_squash.MainKt"
+        mainClass = "pnemonic.bug_bash.MainKt"
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "pnemonic.bug_squash"
+            packageName = "pnemonic.bug_bash"
             packageVersion = "1.0.0"
         }
     }

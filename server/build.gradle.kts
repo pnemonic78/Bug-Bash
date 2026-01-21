@@ -4,10 +4,10 @@ plugins {
     application
 }
 
-group = "pnemonic.bug_squash"
+group = "pnemonic.bug_bash"
 version = "1.0.0"
 application {
-    mainClass.set("pnemonic.bug_squash.ApplicationKt")
+    mainClass.set("pnemonic.bug_bash.ApplicationKt")
     
     val isDevelopment: Boolean = project.ext.has("development")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")

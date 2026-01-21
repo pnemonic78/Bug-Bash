@@ -38,7 +38,7 @@ kotlin {
 }
 
 android {
-    namespace = "pnemonic.bug_squash.shared"
+    namespace = "pnemonic.bug_bash.shared"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

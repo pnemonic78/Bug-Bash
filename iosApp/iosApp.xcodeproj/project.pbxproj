@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		F5FAFD6D1F3529EF49C6A10D /* BugSquash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BugSquash.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5FAFD6D1F3529EF49C6A10D /* BugBash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BugBash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -59,7 +59,7 @@
 		9E5EFCE93E664D41F10B8A79 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F5FAFD6D1F3529EF49C6A10D /* BugSquash.app */,
+				F5FAFD6D1F3529EF49C6A10D /* BugBash.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -87,7 +87,7 @@
 			packageProductDependencies = (
 			);
 			productName = iosApp;
-			productReference = F5FAFD6D1F3529EF49C6A10D /* BugSquash.app */;
+			productReference = F5FAFD6D1F3529EF49C6A10D /* BugBash.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
