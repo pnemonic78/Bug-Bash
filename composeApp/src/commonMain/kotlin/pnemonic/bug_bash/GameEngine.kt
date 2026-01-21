@@ -17,6 +17,7 @@ import kotlin.math.max
 import kotlin.random.Random
 
 class GameEngine(private val coroutineScope: CoroutineScope) {
+    private val platform: Platform = getPlatform()
     private var ticker: Job? = null
 
     private val _boards = MutableStateFlow(Board())
@@ -136,6 +137,7 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
                     lives--
                 }
                 score = max(0, score)
+                bash()
             }
         }
         bugs.clear()
@@ -234,6 +236,11 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         return board.copy(swarm = swarm)
     }
 
+    private fun bash() {
+        platform.haptic.vibrate(VIBRATE_BASH_DURATION, VIBRATE_BASH_AMPLITUDE)
+        //TODO play bash sound
+    }
+
     companion object {
         private const val TICK = 50L
         private const val DELAY_PER_BUG = TICK * 15
@@ -245,5 +252,8 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         private const val SIDE_RIGHT = 3
         private const val SIDE_MIN = SIDE_TOP
         private const val SIDE_MAX = SIDE_RIGHT + 1
+
+        private const val VIBRATE_BASH_DURATION = 50L
+        private const val VIBRATE_BASH_AMPLITUDE = 100
     }
 }

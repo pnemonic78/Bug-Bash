@@ -43,4 +43,63 @@ class GameViewModel : ViewModel() {
     fun onDead(bug: Bug) {
         engine.onDead(bug)
     }
+
+    suspend fun notifyFeedback(feedback: Feedback) {
+        when (feedback) {
+            is Feedback.None -> Unit
+            Feedback.Bash -> bash()
+            is Feedback.Sound -> playSound(feedback.soundType)
+            Feedback.Vibrate -> Unit
+        }
+        engine.feedbackDone()
+    }
+
+    private suspend fun bash() {
+        platform.haptic.vibrate(VIBRATE_BASH_DURATION, VIBRATE_BASH_AMPLITUDE)
+        playSound(SoundType.Bash)
+    }
+
+    private suspend fun playSound(soundType: SoundType) {
+        if (!isSoundEnabled) return
+        withContext(Dispatchers.Main) {
+            platform.sound.play(soundType)
+        }
+    }
+
+    private suspend fun pauseSound(soundType: SoundType) {
+        withContext(Dispatchers.Main) {
+            if (soundType.repeat) {
+                platform.sound.pause(soundType)
+            } else {
+                platform.sound.stop(soundType)
+            }
+        }
+    }
+
+    private suspend fun stopSound(soundType: SoundType) {
+        withContext(Dispatchers.Main) {
+            platform.sound.stop(soundType)
+        }
+    }
+
+    fun onSoundChange(checked: Boolean) {
+        isSoundEnabled = checked
+    }
+
+    fun onMusicChange(checked: Boolean) {
+        isMusicEnabled = checked
+        viewModelScope.launch {
+            val sound = board.value.scene.music.soundType
+            if (checked) {
+                playSound(sound)
+            } else {
+                stopSound(sound)
+            }
+        }
+    }
+
+    companion object {
+        private const val VIBRATE_BASH_DURATION = 50L
+        private const val VIBRATE_BASH_AMPLITUDE = 0.35f
+    }
 }
