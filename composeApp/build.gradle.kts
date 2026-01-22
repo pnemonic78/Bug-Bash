@@ -60,6 +60,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation(libs.kotlin.reflect)
             implementation(projects.shared)
+            implementation(projects.feedback)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

@@ -3,18 +3,34 @@ package pnemonic.bug_bash.control
 import androidx.compose.ui.unit.IntSize
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import pnemonic.bug_bash.Feedback
 import pnemonic.bug_bash.GameEngine
+import pnemonic.bug_bash.Platform
+import pnemonic.bug_bash.getPlatform
 import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.Bug
 import pnemonic.bug_bash.model.GameState
+import pnemonic.bug_bash.sound.SoundType
 
 class GameViewModel : ViewModel() {
 
     private val engine = GameEngine(viewModelScope)
+    private val platform: Platform = getPlatform()
 
     val board: StateFlow<Board> get() = engine.boards
     val state: StateFlow<GameState> get() = engine.state
+
+    init {
+        viewModelScope.launch {
+            engine.feedback.collect { feedback ->
+                notifyFeedback(feedback)
+            }
+        }
+    }
 
     fun onStart() {
         engine.start()
@@ -26,6 +42,11 @@ class GameViewModel : ViewModel() {
 
     fun onStop() {
         engine.stop()
+    }
+
+    fun onDestroy() {
+        platform.haptic.onDestroy()
+        platform.sound.onDestroy()
     }
 
     fun onSize(size: IntSize) {

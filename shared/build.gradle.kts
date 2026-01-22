@@ -30,7 +30,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            api(projects.haptic)
+            implementation(projects.feedback)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

@@ -17,7 +17,6 @@ import kotlin.math.max
 import kotlin.random.Random
 
 class GameEngine(private val coroutineScope: CoroutineScope) {
-    private val platform: Platform = getPlatform()
     private var ticker: Job? = null
 
     private val _boards = MutableStateFlow(Board())
@@ -29,6 +28,9 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
 
     private val rand = Random.Default
     private val touched = mutableListOf<Bug>()
+
+    private val _feedback = MutableStateFlow<Feedback>(Feedback.None)
+    val feedback: StateFlow<Feedback> get() = _feedback
 
     fun start() {
         ticker = coroutineScope.launch(Dispatchers.Default) {
@@ -119,7 +121,7 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         touched.add(bug)
     }
 
-    private fun touch(board: Board): Board {
+    private suspend fun touch(board: Board): Board {
         val bugs = touched
         if (bugs.isEmpty()) return board
 
@@ -236,9 +238,12 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         return board.copy(swarm = swarm)
     }
 
-    private fun bash() {
-        platform.haptic.vibrate(VIBRATE_BASH_DURATION, VIBRATE_BASH_AMPLITUDE)
-        //TODO play bash sound
+    private suspend fun bash() {
+        _feedback.emit(Feedback.Bash)
+    }
+
+    fun feedbackDone() {
+        _feedback.value = Feedback.None
     }
 
     companion object {
@@ -252,8 +257,5 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         private const val SIDE_RIGHT = 3
         private const val SIDE_MIN = SIDE_TOP
         private const val SIDE_MAX = SIDE_RIGHT + 1
-
-        private const val VIBRATE_BASH_DURATION = 50L
-        private const val VIBRATE_BASH_AMPLITUDE = 100
     }
 }

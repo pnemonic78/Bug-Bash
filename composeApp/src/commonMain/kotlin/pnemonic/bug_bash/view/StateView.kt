@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import bug_bash.composeapp.generated.resources.Res
-import bug_bash.composeapp.generated.resources.game_State_finished
+import bug_bash.composeapp.generated.resources.game_state_finished
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import pnemonic.bug_bash.model.GameState
@@ -19,7 +19,7 @@ fun StateView(state: GameState) {
         contentAlignment = Alignment.Center
     ) {
         if (state === GameState.FINISHED) {
-            Text(stringResource(Res.string.game_State_finished))
+            Text(stringResource(Res.string.game_state_finished))
         }
     }
 }

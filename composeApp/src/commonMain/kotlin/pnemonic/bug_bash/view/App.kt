@@ -15,7 +15,7 @@ import pnemonic.bug_bash.control.GameViewModel
 @Composable
 fun App() {
     val lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current
-    val viewModel = viewModel { GameViewModel() }
+    val viewModel = viewModel<GameViewModel>()
     val board = viewModel.board.collectAsState()
     val state = viewModel.state.collectAsState()
 
@@ -33,6 +33,7 @@ fun App() {
     DisposableEffect(lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->
             when (event) {
+                Lifecycle.Event.ON_DESTROY -> viewModel.onDestroy()
                 Lifecycle.Event.ON_PAUSE -> viewModel.onPause()
                 Lifecycle.Event.ON_START -> viewModel.onStart()
                 Lifecycle.Event.ON_STOP -> viewModel.onStop()
