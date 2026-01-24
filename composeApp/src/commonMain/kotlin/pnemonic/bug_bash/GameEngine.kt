@@ -112,6 +112,7 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         if (!isRunning) return
         coroutineScope.launch {
             var board = boards.value
+            //TODO set each bug's new destination relative to old destination
             board = board.setSize(width = size.width.toFloat(), height = size.height.toFloat())
             _boards.emit(board)
         }

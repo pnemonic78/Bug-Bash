@@ -1,14 +1,17 @@
 package pnemonic.bug_bash.view
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import pnemonic.BooleanCallback
 import pnemonic.bug_bash.model.Ant
 import pnemonic.bug_bash.model.Bee
 import pnemonic.bug_bash.model.Board
@@ -35,7 +38,9 @@ fun BoardView(
     onSize: OnSizeCallback,
     onBugSize: BugCallback,
     onTap: BugCallback,
-    onDead: BugCallback
+    onDead: BugCallback,
+    onSoundChange: BooleanCallback,
+    onMusicChange: BooleanCallback
 ) {
     SceneView(
         modifier = Modifier
@@ -49,7 +54,11 @@ fun BoardView(
                 .fillMaxSize()
                 .safeContentPadding()
         ) {
-            LivesView(board.lives, Board.LIVES)
+            Row {
+                LivesView(board.lives, Board.LIVES)
+                Spacer(modifier = Modifier.weight(1f))
+                SettingsPanel(onSoundChange = onSoundChange, onMusicChange = onMusicChange)
+            }
             ScoreView(board.score)
             LevelView(board.level)
         }
@@ -90,8 +99,19 @@ private fun Preview() {
     val onBugSize: BugCallback = {}
     val onTap: BugCallback = {}
     val onDead: BugCallback = {}
+    val onSoundChange: BooleanCallback = {}
+    val onMusicChange: BooleanCallback = {}
 
     MaterialTheme {
-        BoardView(board, GameState.STARTED, onSize, onBugSize, onTap, onDead)
+        BoardView(
+            board,
+            GameState.STARTED,
+            onSize,
+            onBugSize,
+            onTap,
+            onDead,
+            onSoundChange,
+            onMusicChange
+        )
     }
 }

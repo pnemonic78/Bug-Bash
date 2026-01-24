@@ -23,6 +23,10 @@ class GameViewModel : ViewModel() {
 
     val board: StateFlow<Board> get() = engine.boards
     val state: StateFlow<GameState> get() = engine.state
+    var isSoundEnabled = true
+        private set
+    var isMusicEnabled = true
+        private set
 
     init {
         viewModelScope.launch {

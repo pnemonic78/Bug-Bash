@@ -4,12 +4,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import pnemonic.bug_bash.control.GameViewModel
 
 @Composable
@@ -26,7 +26,9 @@ fun App() {
             onSize = viewModel::onSize,
             onBugSize = viewModel::onBugSize,
             onTap = viewModel::onTap,
-            onDead = viewModel::onDead
+            onDead = viewModel::onDead,
+            onSoundChange = viewModel::onSoundChange,
+            onMusicChange = viewModel::onMusicChange,
         )
     }
 

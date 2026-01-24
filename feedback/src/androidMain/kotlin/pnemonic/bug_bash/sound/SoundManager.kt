@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.annotation.MainThread
 import androidx.core.net.toUri
 import androidx.media3.common.MediaItem
+import androidx.media3.common.Player.REPEAT_MODE_ONE
 import androidx.media3.exoplayer.ExoPlayer
 import bug_bash.feedback.generated.resources.Res
 
@@ -12,17 +13,20 @@ actual object SoundManager {
 
     @MainThread
     fun initialize(context: Context): SoundManager {
-        sounds[SoundType.BASH] = createPlayer(context, SoundType.BASH.fileName)
+        sounds[SoundType.BASH] = createPlayer(context, SoundType.BASH)
         return this
     }
 
     @MainThread
-    private fun createPlayer(context: Context, name: String): ExoPlayer {
-        val path = Res.getUri("files/sounds/$name")
+    private fun createPlayer(context: Context, sound: SoundType): ExoPlayer {
+        val path = Res.getUri("files/sounds/${sound.fileName}")
         val uri = path.toUri()
         val mediaItem = MediaItem.fromUri(uri)
         val player = ExoPlayer.Builder(context).build()
         player.setMediaItem(mediaItem)
+        if (sound.repeat) {
+            player.repeatMode = REPEAT_MODE_ONE
+        }
         player.prepare()
         return player
     }
