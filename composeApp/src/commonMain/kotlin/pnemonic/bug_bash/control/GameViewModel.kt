@@ -38,6 +38,7 @@ class GameViewModel : ViewModel() {
 
     fun onStart() {
         engine.start()
+        platform.sound.onStart()
     }
 
     fun onPause() {
@@ -46,6 +47,7 @@ class GameViewModel : ViewModel() {
 
     fun onStop() {
         engine.stop()
+        platform.sound.onStop()
     }
 
     fun onDestroy() {
@@ -85,25 +87,20 @@ class GameViewModel : ViewModel() {
     }
 
     private suspend fun playSound(soundType: SoundType) {
-        if (!isSoundEnabled) return
-        withContext(Dispatchers.Main) {
-            platform.sound.play(soundType)
-        }
-    }
-
-    private suspend fun pauseSound(soundType: SoundType) {
-        withContext(Dispatchers.Main) {
-            if (soundType.repeat) {
-                platform.sound.pause(soundType)
-            } else {
-                platform.sound.stop(soundType)
+        if ((soundType.repeat && isMusicEnabled) || isSoundEnabled) {
+            withContext(Dispatchers.Main) {
+                platform.sound.play(soundType)
             }
         }
     }
 
     private suspend fun stopSound(soundType: SoundType) {
         withContext(Dispatchers.Main) {
-            platform.sound.stop(soundType)
+            if (soundType.repeat) {
+                platform.sound.pause(soundType)
+            } else {
+                platform.sound.stop(soundType)
+            }
         }
     }
 

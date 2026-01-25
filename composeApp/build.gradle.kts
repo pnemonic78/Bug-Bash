@@ -94,8 +94,8 @@ android {
 }
 
 dependencies {
-    debugImplementation(compose.ui)
-    debugImplementation(compose.uiTooling)
+    debugImplementation(libs.compose.ui)
+    debugImplementation(libs.compose.ui.tooling)
 }
 
 compose.desktop {

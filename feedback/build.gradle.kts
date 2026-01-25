@@ -50,9 +50,10 @@ kotlin {
     // See: https://kotlinlang.org/docs/multiplatform-hierarchy.html
     sourceSets {
         commonMain.dependencies {
-            implementation(compose.components.resources)
-            implementation(compose.runtime)
+            implementation(libs.compose.resources)
+            implementation(libs.compose.runtime)
             implementation(libs.kotlin.stdlib)
+            implementation(libs.androidx.annotation)
         }
 
         commonTest.dependencies {
@@ -66,6 +67,10 @@ kotlin {
         }
 
         iosMain.dependencies {
+        }
+
+        jvmMain.dependencies {
+            //implementation("androidx.annotation:annotation-jvm:1.9.1")
         }
     }
 

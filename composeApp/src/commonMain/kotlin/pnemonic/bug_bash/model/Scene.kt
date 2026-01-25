@@ -1,9 +1,14 @@
 package pnemonic.bug_bash.model
 
-enum class Scene {
-    Kitchen,
-    Table,
-    Garden;
+import pnemonic.bug_bash.Feedback
+import pnemonic.bug_bash.sound.SoundType
+
+enum class Scene(val music: Feedback.Sound) {
+    Kitchen(SoundType.Kitchen),
+    Table(SoundType.Table),
+    Garden(SoundType.Garden);
+
+    constructor(soundType: SoundType) : this(Feedback.Sound(soundType))
 
     operator fun plus(other: Int): Scene {
         val values = values()

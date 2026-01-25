@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.Bug
 import pnemonic.bug_bash.model.GameState
+import pnemonic.bug_bash.model.Scene
 import pnemonic.bug_bash.model.Swarm
 import kotlin.math.max
 import kotlin.random.Random
@@ -212,13 +213,14 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         return board.copy(swarm = swarm)
     }
 
-    private fun nextLevel(board: Board): Board {
+    private suspend fun nextLevel(board: Board): Board {
         var board = board
         val level = board.level + 1
         var scene = board.scene
         if (level % NEXT_SCENE == 0) {
             scene = scene.next()
         }
+        playMusic(scene)
         board = generateBugs(board.copy(level = level, scene = scene))
         return board
     }
@@ -245,6 +247,10 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
 
     fun feedbackDone() {
         _feedback.value = Feedback.None
+    }
+
+    private suspend fun playMusic(scene: Scene) {
+        _feedback.emit(scene.music)
     }
 
     companion object {

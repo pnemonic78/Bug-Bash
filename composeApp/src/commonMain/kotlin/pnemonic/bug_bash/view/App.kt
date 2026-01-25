@@ -15,7 +15,8 @@ import pnemonic.bug_bash.control.GameViewModel
 @Composable
 fun App() {
     val lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current
-    val viewModel = viewModel<GameViewModel>()
+    //FIXME for JVM val viewModel = viewModel<GameViewModel>()
+    val viewModel = viewModel { GameViewModel() }
     val board = viewModel.board.collectAsState()
     val state = viewModel.state.collectAsState()
 
