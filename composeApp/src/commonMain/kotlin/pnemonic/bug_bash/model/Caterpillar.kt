@@ -1,5 +1,7 @@
 package pnemonic.bug_bash.model
 
-class Caterpillar : BugThatSlithers(speed = 0.25f, score = 1, hits = 3) {
+import pnemonic.bug_bash.sound.SoundType
+
+class Caterpillar : BugThatSlithers(speed = 0.25f, score = 1, hits = 3, sound = SoundType.Pop) {
     override val description = "\uD83D\uDC1B"
 }

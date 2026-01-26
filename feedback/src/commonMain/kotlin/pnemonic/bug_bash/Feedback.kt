@@ -9,6 +9,6 @@ sealed class Feedback {
 
     data class Sound(val soundType: SoundType) : Feedback()
 
-    object Bash : Feedback()
+    data class Bash(val soundType: SoundType) : Feedback()
 }
 

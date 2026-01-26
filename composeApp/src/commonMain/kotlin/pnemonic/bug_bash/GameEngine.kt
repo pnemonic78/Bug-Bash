@@ -14,6 +14,7 @@ import pnemonic.bug_bash.model.Bug
 import pnemonic.bug_bash.model.GameState
 import pnemonic.bug_bash.model.Scene
 import pnemonic.bug_bash.model.Swarm
+import pnemonic.bug_bash.sound.SoundType
 import kotlin.math.max
 import kotlin.random.Random
 
@@ -141,7 +142,7 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
                     lives--
                 }
                 score = max(0, score)
-                bash()
+                bash(bug.sound)
             }
         }
         bugs.clear()
@@ -241,8 +242,8 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         return board.copy(swarm = swarm)
     }
 
-    private suspend fun bash() {
-        _feedback.emit(Feedback.Bash)
+    private suspend fun bash(sound: SoundType) {
+        _feedback.emit(Feedback.Bash(sound))
     }
 
     fun feedbackDone() {

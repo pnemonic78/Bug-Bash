@@ -8,6 +8,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.unit.IntSize
 import pnemonic.RADIANS_TO_DEGREES
+import pnemonic.bug_bash.sound.SoundType
 import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.max
@@ -16,7 +17,8 @@ import kotlin.math.sin
 abstract class Bug(
     val speed: Float,
     val score: Int,
-    var hits: Int
+    var hits: Int,
+    val sound: SoundType = SoundType.Pop
 ) {
     var left by mutableFloatStateOf(0f)
         private set

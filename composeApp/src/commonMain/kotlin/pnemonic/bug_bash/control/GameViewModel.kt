@@ -73,17 +73,17 @@ class GameViewModel : ViewModel() {
 
     suspend fun notifyFeedback(feedback: Feedback) {
         when (feedback) {
-            is Feedback.None -> Unit
-            Feedback.Bash -> bash()
-            is Feedback.Sound -> playSound(feedback.soundType)
+            Feedback.None -> Unit
             Feedback.Vibrate -> Unit
+            is Feedback.Bash -> bash(feedback.soundType)
+            is Feedback.Sound -> playSound(feedback.soundType)
         }
         engine.feedbackDone()
     }
 
-    private suspend fun bash() {
+    private suspend fun bash(soundType: SoundType = SoundType.Pop) {
         platform.haptic.vibrate(VIBRATE_BASH_DURATION, VIBRATE_BASH_AMPLITUDE)
-        playSound(SoundType.Bash)
+        playSound(soundType)
     }
 
     private suspend fun playSound(soundType: SoundType) {
