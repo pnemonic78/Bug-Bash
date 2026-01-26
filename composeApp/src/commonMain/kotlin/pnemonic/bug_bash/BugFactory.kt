@@ -21,7 +21,6 @@ import pnemonic.bug_bash.model.Wasp
 import pnemonic.bug_bash.model.Worm
 import kotlin.random.Random
 import kotlin.reflect.KClass
-import kotlin.reflect.full.createInstance
 
 object BugFactory {
 
@@ -60,7 +59,26 @@ object BugFactory {
     private fun createBug(candidates: List<KClass<Bug>>): Bug {
         val i = rand.nextInt(candidates.size)
         val klass = candidates[i]
-        return klass.createInstance()
+        // klass.createInstance() does not work in JS
+        return when (klass) {
+            Ant::class -> Ant()
+            Bee::class -> Bee()
+            Butterfly::class -> Butterfly()
+            Caterpillar::class -> Caterpillar()
+            Cockroach::class -> Cockroach()
+            Fly::class -> Fly()
+            Ladybug::class -> Ladybug()
+            Mosquito::class -> Mosquito()
+            Moth::class -> Moth()
+            Scorpion::class -> Scorpion()
+            Snail::class -> Snail()
+            Spider::class -> Spider()
+            Swarm::class -> Swarm()
+            Termite::class -> Termite()
+            Wasp::class -> Wasp()
+            Worm::class -> Worm()
+            else -> throw IllegalArgumentException()
+        } as Bug
     }
 
     private fun createCandidates(level: Int): List<KClass<out Bug>> {

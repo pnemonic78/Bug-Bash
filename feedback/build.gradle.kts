@@ -52,6 +52,7 @@ kotlin {
         commonMain.dependencies {
             implementation(libs.compose.resources)
             implementation(libs.compose.runtime)
+            implementation(libs.compose.ui)
             implementation(libs.kotlin.stdlib)
             implementation(libs.androidx.annotation)
         }
@@ -70,7 +71,10 @@ kotlin {
         }
 
         jvmMain.dependencies {
-            //implementation("androidx.annotation:annotation-jvm:1.9.1")
+        }
+
+        webMain.dependencies {
+            implementation(libs.kotlinx.browser)
         }
     }
 
