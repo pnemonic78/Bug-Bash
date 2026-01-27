@@ -16,15 +16,15 @@ composeHotReload = "1.0.0"
 composeIcons = "1.7.3"
 composeMaterial3 = "1.9.0"
 composeMultiplatform = "1.10.0"
-composeNavigation = "2.9.6"
+composeNavigation = "2.9.1"
 core = "1.7.0"
 junit = "4.13.2"
 kotlin = "2.3.0"
 kotlinStdlib = "2.3.0"
 kotlinx-coroutines = "1.10.2"
 kotlinx-browser = "0.5.0"
-ktor = "3.3.3"
-logback = "1.5.25"
+ktor = "3.4.0"
+logback = "1.5.26"
 runner = "1.7.0"
 startupRuntime = "1.2.0"
 
@@ -46,7 +46,7 @@ compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = 
 compose-foundation = { group = "org.jetbrains.compose.foundation", name = "foundation", version.ref = "composeMultiplatform" }
 compose-icons = { group = "org.jetbrains.compose.material", name = "material-icons-extended", version.ref = "composeIcons" }
 compose-material3 = { group = "org.jetbrains.compose.material3", name = "material3", version.ref = "composeMaterial3" }
-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "composeNavigation" }
+compose-navigation = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "composeNavigation" }
 compose-resources = { group = "org.jetbrains.compose.components", name = "components-resources", version.ref = "composeMultiplatform" }
 compose-runtime = { group = "org.jetbrains.compose.runtime", name = "runtime", version.ref = "composeMultiplatform" }
 compose-ui = { group = "org.jetbrains.compose.ui", name = "ui", version.ref = "composeMultiplatform" }
@@ -73,6 +73,7 @@ compose = [
     "compose-foundation",
     "compose-icons",
     "compose-material3",
+    "compose-navigation",
     "compose-resources",
     "compose-runtime",
     "compose-ui",

@@ -1,4 +1,4 @@
-package pnemonic.bug_bash.view
+package pnemonic.bug_bash.view.board
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandHorizontally
@@ -9,11 +9,12 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.VolumeOff
+import androidx.compose.material.icons.automirrored.filled.VolumeUp
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.MusicNote
 import androidx.compose.material.icons.filled.MusicOff
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.VolumeOff
-import androidx.compose.material.icons.filled.VolumeUp
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconToggleButton
@@ -26,9 +27,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.tooling.preview.Preview
 import pnemonic.BooleanCallback
+import pnemonic.VoidCallback
 
 @Composable
 fun SettingsPanel(
+    onHomeClick: VoidCallback,
     isSoundEnabled: Boolean = true,
     onSoundChange: BooleanCallback,
     isMusicEnabled: Boolean = true,
@@ -62,7 +65,7 @@ fun SettingsPanel(
                         onSoundChange(soundEnabled)
                     }
                 ) {
-                    val icon = if (soundEnabled) Icons.Default.VolumeUp else Icons.Default.VolumeOff
+                    val icon = if (soundEnabled) Icons.AutoMirrored.Filled.VolumeUp else Icons.AutoMirrored.Filled.VolumeOff
                     Icon(imageVector = icon, contentDescription = "Toggle Sound")
                 }
 
@@ -78,10 +81,11 @@ fun SettingsPanel(
                 }
             }
         }
-        IconButton(
-            onClick = { expanded = !expanded }
-        ) {
+        IconButton(onClick = { expanded = !expanded }) {
             Icon(imageVector = Icons.Default.Settings, contentDescription = "Settings")
+        }
+        IconButton(onClick = onHomeClick) {
+            Icon(imageVector = Icons.Default.Home, contentDescription = "Home")
         }
     }
 }
@@ -91,6 +95,7 @@ fun SettingsPanel(
 private fun Preview() {
     MaterialTheme {
         SettingsPanel(
+            onHomeClick = {},
             isSoundEnabled = true,
             onSoundChange = {},
             isMusicEnabled = false,

@@ -1,4 +1,4 @@
-package pnemonic.bug_bash.view
+package pnemonic.bug_bash.view.board
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,6 +24,7 @@ import pnemonic.bug_bash.model.Swarm
 import pnemonic.bug_bash.model.Termite
 import pnemonic.bug_bash.model.Wasp
 import pnemonic.bug_bash.model.Worm
+import pnemonic.bug_bash.view.toPx
 
 @Composable
 fun SwarmView(swarm: Swarm, onSize: BugCallback, onTap: BugCallback, onDead: BugCallback) {

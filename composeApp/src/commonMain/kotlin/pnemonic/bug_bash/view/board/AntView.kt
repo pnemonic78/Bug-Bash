@@ -1,4 +1,4 @@
-package pnemonic.bug_bash.view
+package pnemonic.bug_bash.view.board
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -7,29 +7,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import pnemonic.bug_bash.model.Caterpillar
+import pnemonic.bug_bash.model.Ant
 
-private val width = 35.dp
-private val height = 40.dp
+private val width = 40.dp
+private val height = 35.dp
 
 @Composable
-fun CaterpillarView(
-    bug: Caterpillar,
-    onSize: BugCallback,
-    onTap: BugCallback,
-    onDead: BugCallback
-) {
-    GenericBug(bug, width, height, Color.Green, onSize, onTap, onDead)
+fun AntView(bug: Ant, onSize: BugCallback, onTap: BugCallback, onDead: BugCallback) {
+    GenericBug(bug, width, height, Color.White, onSize, onTap, onDead)
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF0000FF)
 @Composable
 private fun Preview() {
-    val bug = Caterpillar()
+    val bug = Ant()
     val onSize: BugCallback = {}
     val onTap: BugCallback = {}
     val onDead: BugCallback = {}
     Box(modifier = Modifier.fillMaxSize()) {
-        CaterpillarView(bug, onSize, onTap, onDead)
+        AntView(bug, onSize, onTap, onDead)
     }
 }

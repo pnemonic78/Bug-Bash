@@ -9,3 +9,4 @@ fun <T> List<T>.copy(): List<T> {
 const val RADIANS_TO_DEGREES = (180.0 / PI).toFloat()
 
 typealias BooleanCallback = (Boolean) -> Unit
+typealias VoidCallback = () -> Unit

@@ -1,4 +1,4 @@
-package pnemonic.bug_bash.view
+package pnemonic.bug_bash.view.board
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -7,24 +7,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import pnemonic.bug_bash.model.Ladybug
+import pnemonic.bug_bash.model.Spider
 
-private val width = 40.dp
-private val height = 40.dp
+private val width = 80.dp
+private val height = 80.dp
 
 @Composable
-fun LadyBugView(bug: Ladybug, onSize: BugCallback, onTap: BugCallback, onDead: BugCallback) {
-    GenericBug(bug, width, height, Color.Red, onSize, onTap, onDead)
+fun SpiderView(bug: Spider, onSize: BugCallback, onTap: BugCallback, onDead: BugCallback) {
+    GenericBug(bug, width, height, Color.LightGray, onSize, onTap, onDead)
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF0000FF)
 @Composable
 private fun Preview() {
-    val bug = Ladybug()
+    val bug = Spider()
     val onSize: BugCallback = {}
     val onTap: BugCallback = {}
     val onDead: BugCallback = {}
     Box(modifier = Modifier.fillMaxSize()) {
-        LadyBugView(bug, onSize, onTap, onDead)
+        SpiderView(bug, onSize, onTap, onDead)
     }
 }

@@ -1,7 +1,6 @@
 package pnemonic.bug_bash.control
 
 import androidx.compose.ui.unit.IntSize
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.StateFlow
@@ -16,7 +15,7 @@ import pnemonic.bug_bash.model.Bug
 import pnemonic.bug_bash.model.GameState
 import pnemonic.bug_bash.sound.SoundType
 
-class GameViewModel : ViewModel() {
+class GameViewModel : LifecycleViewModel() {
 
     private val engine = GameEngine(viewModelScope)
     private val platform: Platform = getPlatform()
@@ -36,21 +35,21 @@ class GameViewModel : ViewModel() {
         }
     }
 
-    fun onStart() {
+    override fun onStart() {
         engine.start()
         platform.sound.onStart()
     }
 
-    fun onPause() {
+    override fun onPause() {
         engine.pause()
     }
 
-    fun onStop() {
+    override fun onStop() {
         engine.stop()
         platform.sound.onStop()
     }
 
-    fun onDestroy() {
+    override fun onDestroy() {
         platform.haptic.onDestroy()
         platform.sound.onDestroy()
     }
@@ -106,11 +105,13 @@ class GameViewModel : ViewModel() {
 
     fun onSoundChange(checked: Boolean) {
         isSoundEnabled = checked
+        platform.sound.play(SoundType.Switch)
     }
 
     fun onMusicChange(checked: Boolean) {
         isMusicEnabled = checked
         viewModelScope.launch {
+            platform.sound.play(SoundType.Switch)
             val sound = board.value.scene.music.soundType
             if (checked) {
                 playSound(sound)

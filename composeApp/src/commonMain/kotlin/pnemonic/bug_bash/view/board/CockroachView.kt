@@ -1,4 +1,4 @@
-package pnemonic.bug_bash.view
+package pnemonic.bug_bash.view.board
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -7,24 +7,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import pnemonic.bug_bash.model.Ant
+import pnemonic.bug_bash.model.Cockroach
 
-private val width = 40.dp
-private val height = 35.dp
+private val width = 65.dp
+private val height = 65.dp
 
 @Composable
-fun AntView(bug: Ant, onSize: BugCallback, onTap: BugCallback, onDead: BugCallback) {
-    GenericBug(bug, width, height, Color.White, onSize, onTap, onDead)
+fun CockroachView(bug: Cockroach, onSize: BugCallback, onTap: BugCallback, onDead: BugCallback) {
+    GenericBug(bug, width, height, Color(0xFF895129), onSize, onTap, onDead)
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF0000FF)
 @Composable
 private fun Preview() {
-    val bug = Ant()
+    val bug = Cockroach()
     val onSize: BugCallback = {}
     val onTap: BugCallback = {}
     val onDead: BugCallback = {}
     Box(modifier = Modifier.fillMaxSize()) {
-        AntView(bug, onSize, onTap, onDead)
+        CockroachView(bug, onSize, onTap, onDead)
     }
 }
