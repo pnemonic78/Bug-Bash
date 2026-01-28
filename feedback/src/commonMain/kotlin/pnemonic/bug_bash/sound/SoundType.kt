@@ -1,6 +1,7 @@
 package pnemonic.bug_bash.sound
 
 enum class SoundType(val fileName: String, val repeat: Boolean = false) {
+    Beach("PLYGND01.WAV", false),
     Blip("CRIP006.WAV", false),
     Clang("CLANG001.WAV\n", false),
     Drip("DRIP002.WAV", false),

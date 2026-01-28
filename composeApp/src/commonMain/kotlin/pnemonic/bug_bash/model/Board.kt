@@ -5,7 +5,7 @@ import androidx.compose.ui.geometry.Rect
 data class Board(
     val width: Float = 0f,
     val height: Float = 0f,
-    val scene: Scene = Scene.Kitchen,
+    val scene: Scene = Scene.Grass,
     val level: Int = 0,
     val difficulty: Difficulty = Difficulty.Easy,
     val score: Long = 0,

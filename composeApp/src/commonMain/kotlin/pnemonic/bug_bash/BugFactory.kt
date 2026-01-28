@@ -56,7 +56,7 @@ object BugFactory {
 
     private val rand = Random.Default
 
-    private fun createBug(candidates: List<KClass<Bug>>): Bug {
+    private fun createBug(candidates: List<KClass<out Bug>>): Bug {
         val i = rand.nextInt(candidates.size)
         val klass = candidates[i]
         // klass.createInstance() does not work in JS
@@ -87,7 +87,7 @@ object BugFactory {
 
     fun createSwarm(level: Int, difficulty: Difficulty): Swarm {
         val size = BUGS_PER_LEVEL * level * difficulty
-        val candidates = createCandidates(level) as List<KClass<Bug>>
+        val candidates = createCandidates(level)
         val bugs = mutableListOf<Bug>()
 
         (1..size).forEach { _ ->
