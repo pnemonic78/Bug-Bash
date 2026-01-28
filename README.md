@@ -23,3 +23,10 @@ Designed using Kotlin Compose Multiplatform.
 | Fun is Fun by Aylex            | https://freetouse.com/music | Royalty Free Music for Video (Safe)  |
 | Wooden Table by Lukrembo       | https://freetouse.com/music | Copyright Free Music (Free Download) |
 | A Beautiful Garden by Aventure | https://freetouse.com/music | Royalty Free Music for Videos (Safe) |
+
+### Images
+
+| Image | Source                  |
+|-------|-------------------------|
+| Grass | https://www.freepik.com |
+| Table | https://www.freepik.com |
