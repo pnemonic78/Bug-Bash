@@ -25,9 +25,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.tooling.preview.Preview
 import pnemonic.BooleanCallback
 import pnemonic.VoidCallback
+import pnemonic.bug_bash.view.toggle
 
 @Composable
 fun SettingsPanel(
@@ -37,6 +39,7 @@ fun SettingsPanel(
     isMusicEnabled: Boolean = true,
     onMusicChange: BooleanCallback
 ) {
+    val haptic = LocalHapticFeedback.current
     var expanded by remember { mutableStateOf(false) }
     var soundEnabled by remember { mutableStateOf(isSoundEnabled) }
     var musicEnabled by remember { mutableStateOf(isMusicEnabled) }
@@ -60,20 +63,23 @@ fun SettingsPanel(
             Row {
                 IconToggleButton(
                     checked = soundEnabled,
-                    onCheckedChange = {
-                        soundEnabled = !soundEnabled
-                        onSoundChange(soundEnabled)
+                    onCheckedChange = { checked ->
+                        haptic.toggle(checked)
+                        soundEnabled = checked
+                        onSoundChange(checked)
                     }
                 ) {
-                    val icon = if (soundEnabled) Icons.AutoMirrored.Filled.VolumeUp else Icons.AutoMirrored.Filled.VolumeOff
+                    val icon =
+                        if (soundEnabled) Icons.AutoMirrored.Filled.VolumeUp else Icons.AutoMirrored.Filled.VolumeOff
                     Icon(imageVector = icon, contentDescription = "Toggle Sound")
                 }
 
                 IconToggleButton(
                     checked = musicEnabled,
-                    onCheckedChange = {
-                        musicEnabled = !musicEnabled
-                        onMusicChange(musicEnabled)
+                    onCheckedChange = { checked ->
+                        haptic.toggle(checked)
+                        musicEnabled = checked
+                        onMusicChange(checked)
                     }
                 ) {
                     val icon = if (musicEnabled) Icons.Default.MusicNote else Icons.Default.MusicOff

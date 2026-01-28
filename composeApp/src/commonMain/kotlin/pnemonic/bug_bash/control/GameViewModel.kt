@@ -105,13 +105,11 @@ class GameViewModel : LifecycleViewModel() {
 
     fun onSoundChange(checked: Boolean) {
         isSoundEnabled = checked
-        platform.sound.play(SoundType.Switch)
     }
 
     fun onMusicChange(checked: Boolean) {
         isMusicEnabled = checked
         viewModelScope.launch {
-            platform.sound.play(SoundType.Switch)
             val sound = board.value.scene.music.soundType
             if (checked) {
                 playSound(sound)
