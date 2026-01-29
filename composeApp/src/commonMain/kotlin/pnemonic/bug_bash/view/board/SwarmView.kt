@@ -9,10 +9,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pnemonic.bug_bash.model.Ant
 import pnemonic.bug_bash.model.Bee
+import pnemonic.bug_bash.model.Beetle
 import pnemonic.bug_bash.model.Bug
 import pnemonic.bug_bash.model.Butterfly
 import pnemonic.bug_bash.model.Caterpillar
+import pnemonic.bug_bash.model.Centipede
 import pnemonic.bug_bash.model.Cockroach
+import pnemonic.bug_bash.model.Cricket
+import pnemonic.bug_bash.model.Dragonfly
 import pnemonic.bug_bash.model.Fly
 import pnemonic.bug_bash.model.Ladybug
 import pnemonic.bug_bash.model.Mosquito
@@ -39,14 +43,18 @@ fun SwarmView(bugs: List<Bug>, onSize: BugCallback, onTap: BugCallback, onDead: 
 }
 
 @Composable
-@Preview(showBackground = true, backgroundColor = 0xFF0000FF, widthDp = 500, heightDp = 700)
+@Preview(showBackground = true, backgroundColor = 0xFF0000FF, widthDp = 700, heightDp = 700)
 private fun Preview() {
     val bugs = listOf(
         Ant(),
         Bee(),
+        Beetle(),
         Butterfly(),
         Caterpillar(),
+        Centipede(),
         Cockroach(),
+        Cricket(),
+        Dragonfly(),
         Fly(),
         Ladybug(),
         Mosquito(),
@@ -58,13 +66,15 @@ private fun Preview() {
         Wasp(),
         Worm()
     )
-    val dt = 30.dp.toPx()
-    val h = 700.dp.toPx()
-    var t = 0f
+    val dx = 20.dp.toPx()
+    val dy = 40.dp.toPx()
+    var x = dx
+    var y = dy
     for (bug in bugs) {
-        bug.moveTo(t, t)
-        bug.setDestination(t, h)
-        t += dt
+        bug.moveTo(x, y)
+        bug.setDestination(x, 0f)
+        x += dx
+        y += dy
     }
     val onSize: BugCallback = {}
     val onTap: BugCallback = {}

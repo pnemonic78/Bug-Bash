@@ -4,17 +4,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import pnemonic.bug_bash.model.Cockroach
-
-private val width = 65.dp
-private val height = 65.dp
+import pnemonic.bug_bash.drawable.Cockroach as CockroachImage
 
 @Composable
 fun CockroachView(bug: Cockroach, onSize: BugCallback, onTap: BugCallback, onDead: BugCallback) {
-    GenericBug(bug, width, height, Color(0xFF895129), onSize, onTap, onDead)
+    ImageBug(bug, CockroachImage, 3f, onSize, onTap, onDead)
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF0000FF)

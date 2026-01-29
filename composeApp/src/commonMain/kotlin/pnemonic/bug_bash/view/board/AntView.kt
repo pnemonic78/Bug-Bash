@@ -4,17 +4,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import pnemonic.bug_bash.model.Ant
-
-private val width = 40.dp
-private val height = 35.dp
+import pnemonic.bug_bash.drawable.Ant as AntImage
 
 @Composable
 fun AntView(bug: Ant, onSize: BugCallback, onTap: BugCallback, onDead: BugCallback) {
-    GenericBug(bug, width, height, Color.White, onSize, onTap, onDead)
+    ImageBug(bug, AntImage, onSize, onTap, onDead)
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF0000FF)

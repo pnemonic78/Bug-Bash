@@ -130,13 +130,15 @@ private fun Preview() {
         Wasp(),
         Worm()
     )
-    val dt = 30.dp.toPx()
-    val h = 700.dp.toPx()
-    var t = 0f
+    val dx = 20.dp.toPx()
+    val dy = 40.dp.toPx()
+    var x = dx
+    var y = dy
     for (bug in bugs) {
-        bug.moveTo(t, t)
-        bug.setDestination(t, h)
-        t += dt
+        bug.moveTo(x, y)
+        bug.setDestination(x, 0f)
+        x += dx
+        y += dy
     }
     val board = Board(swarm = Swarm(bugs))
     val onSize: OnSizeCallback = {}

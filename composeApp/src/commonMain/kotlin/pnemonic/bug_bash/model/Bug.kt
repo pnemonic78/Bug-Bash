@@ -95,7 +95,7 @@ abstract class Bug(
         val dy = y2 - y1
         val theta = atan2(dy, dx)
         val angleDegrees = ((theta * RADIANS_TO_DEGREES) + 360f) % 360f
-        val angleVisual = (angleDegrees + 270f) % 360f
+        val angleVisual = (angleDegrees + 90f) % 360f
         rotation = angleVisual
         rotationMovement = angleDegrees / RADIANS_TO_DEGREES
         return angleVisual
@@ -142,20 +142,20 @@ abstract class Bug(
         val x3 = destinationX
         val y3 = destinationY
         val angle = destinationAngle
-        // heading to Bottom-Left
-        if (angle <= 90f) {
-            return (x - EPSILON_ESCAPE <= x3) && (y + EPSILON_ESCAPE >= y3)
-        }
-        // heading to Top-Left
-        if (angle <= 180f) {
-            return (x - EPSILON_ESCAPE <= x3) && (y - EPSILON_ESCAPE <= y3)
-        }
         // heading to Top-Right
-        if (angle <= 270f) {
+        if (angle <= 90f) {
             return (x + EPSILON_ESCAPE >= x3) && (y - EPSILON_ESCAPE <= y3)
         }
         // heading to Bottom-Right
-        return (x + EPSILON_ESCAPE >= x3) && (y + EPSILON_ESCAPE >= y3)
+        if (angle <= 180f) {
+            return (x + EPSILON_ESCAPE >= x3) && (y + EPSILON_ESCAPE >= y3)
+        }
+        // heading to Bottom-Left
+        if (angle <= 270f) {
+            return (x - EPSILON_ESCAPE <= x3) && (y + EPSILON_ESCAPE >= y3)
+        }
+        // heading to Top-Left
+        return (x - EPSILON_ESCAPE <= x3) && (y - EPSILON_ESCAPE <= y3)
     }
 
     // delay

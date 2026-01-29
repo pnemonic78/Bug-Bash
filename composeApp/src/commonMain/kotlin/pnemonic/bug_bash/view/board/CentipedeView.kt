@@ -4,32 +4,28 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import pnemonic.bug_bash.model.Caterpillar
-
-private val width = 35.dp
-private val height = 40.dp
+import pnemonic.bug_bash.model.Centipede
+import pnemonic.bug_bash.drawable.Centipede as CentipedeImage
 
 @Composable
-fun CaterpillarView(
-    bug: Caterpillar,
+fun CentipedeView(
+    bug: Centipede,
     onSize: BugCallback,
     onTap: BugCallback,
     onDead: BugCallback
 ) {
-    GenericBug(bug, width, height, Color.Green, onSize, onTap, onDead)
+    ImageBug(bug, CentipedeImage, 4f, onSize, onTap, onDead)
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF0000FF)
 @Composable
 private fun Preview() {
-    val bug = Caterpillar()
+    val bug = Centipede()
     val onSize: BugCallback = {}
     val onTap: BugCallback = {}
     val onDead: BugCallback = {}
     Box(modifier = Modifier.fillMaxSize()) {
-        CaterpillarView(bug, onSize, onTap, onDead)
+        CentipedeView(bug, onSize, onTap, onDead)
     }
 }

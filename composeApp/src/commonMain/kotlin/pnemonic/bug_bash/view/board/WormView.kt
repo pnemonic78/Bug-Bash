@@ -4,17 +4,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import pnemonic.bug_bash.drawable.Earthworm
 import pnemonic.bug_bash.model.Worm
-
-private val width = 55.dp
-private val height = 50.dp
 
 @Composable
 fun WormView(bug: Worm, onSize: BugCallback, onTap: BugCallback, onDead: BugCallback) {
-    GenericBug(bug, width, height, Color.White, onSize, onTap, onDead)
+    ImageBug(bug, Earthworm, 3f, onSize, onTap, onDead)
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF0000FF)

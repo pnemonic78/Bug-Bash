@@ -2,12 +2,16 @@ package pnemonic.bug_bash
 
 import pnemonic.bug_bash.model.Ant
 import pnemonic.bug_bash.model.Bee
+import pnemonic.bug_bash.model.Beetle
 import pnemonic.bug_bash.model.Bug
 import pnemonic.bug_bash.model.Butterfly
 import pnemonic.bug_bash.model.Caterpillar
+import pnemonic.bug_bash.model.Centipede
 import pnemonic.bug_bash.model.Cockroach
+import pnemonic.bug_bash.model.Cricket
 import pnemonic.bug_bash.model.Difficulty
 import pnemonic.bug_bash.model.Difficulty.Companion.times
+import pnemonic.bug_bash.model.Dragonfly
 import pnemonic.bug_bash.model.Fly
 import pnemonic.bug_bash.model.Ladybug
 import pnemonic.bug_bash.model.Mosquito
@@ -28,13 +32,13 @@ object BugFactory {
 
     private val level1 = listOf(Snail::class)
     private val level2 = level1 + listOf(Worm::class)
-    private val level3 = level2 + listOf(Caterpillar::class)
-    private val level4 = level3 + listOf(Ant::class)
-    private val level5 = level4 + listOf(Cockroach::class, Termite::class)
-    private val level6 = level5 + listOf(Spider::class)
+    private val level3 = level2 + listOf(Caterpillar::class, Centipede::class)
+    private val level4 = level3 + listOf(Ant::class, Termite::class)
+    private val level5 = level4 + listOf(Cockroach::class, Cricket::class)
+    private val level6 = level5 + listOf(Beetle::class, Spider::class)
     private val level7 = level6 + listOf(Scorpion::class)
     private val level8 = level7 + listOf(Butterfly::class, Moth::class)
-    private val level9 = level8 + listOf(Mosquito::class)
+    private val level9 = level8 + listOf(Dragonfly::class, Mosquito::class)
     private val level10 = level9 + listOf(Fly::class, Ladybug::class)
     private val level11 = level10 + listOf(Bee::class)
     private val level12 = level11 + listOf(Wasp::class)
@@ -63,8 +67,10 @@ object BugFactory {
         return when (klass) {
             Ant::class -> Ant()
             Bee::class -> Bee()
+            Beetle::class -> Beetle()
             Butterfly::class -> Butterfly()
             Caterpillar::class -> Caterpillar()
+            Centipede::class -> Centipede()
             Cockroach::class -> Cockroach()
             Fly::class -> Fly()
             Ladybug::class -> Ladybug()

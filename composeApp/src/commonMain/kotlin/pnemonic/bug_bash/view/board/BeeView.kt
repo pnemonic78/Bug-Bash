@@ -4,17 +4,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import pnemonic.bug_bash.model.Bee
-
-private val width = 60.dp
-private val height = 60.dp
+import pnemonic.bug_bash.drawable.Bee as BeeImage
 
 @Composable
 fun BeeView(bug: Bee, onSize: BugCallback, onTap: BugCallback, onDead: BugCallback) {
-    GenericBug(bug, width, height, Color.White, onSize, onTap, onDead)
+    ImageBug(bug, BeeImage, 2f, onSize, onTap, onDead)
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF0000FF)
