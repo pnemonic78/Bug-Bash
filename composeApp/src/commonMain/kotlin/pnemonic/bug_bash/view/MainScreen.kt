@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.keepScreenOn
 import androidx.navigation.compose.rememberNavController
 import pnemonic.bug_bash.view.navigation.NavigationGraph
 
@@ -11,7 +12,7 @@ import pnemonic.bug_bash.view.navigation.NavigationGraph
 fun MainScreen() {
     val navController = rememberNavController()
 
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = Modifier.fillMaxSize().keepScreenOn()) {
         NavigationGraph(navController = navController)
     }
 }
