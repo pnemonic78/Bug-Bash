@@ -21,13 +21,15 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
+import androidx.compose.ui.unit.toIntSize
 import org.jetbrains.compose.resources.imageResource
 import pnemonic.bug_bash.model.Scene
 import pnemonic.bug_bash.view.isZero
 import pnemonic.bug_bash.view.orientation
-import pnemonic.bug_bash.view.rotate
+import pnemonic.bug_bash.view.times
 import pnemonic.bug_bash.view.toDp
 import pnemonic.bug_bash.view.toOrientation
+import kotlin.math.max
 
 @Composable
 fun SceneView(
@@ -59,10 +61,13 @@ private fun SceneBackground(modifier: Modifier = Modifier, scene: Scene, size: I
             contentDescription = scene.name
         )
     } else {
+        val scaleX = size.width.toFloat() / image.height.toFloat()
+        val scaleY = size.height.toFloat() / image.width.toFloat()
+        val scale = max(scaleX, scaleY)
         val srcSize = IntSize(image.width, image.height)
-        val dstSize = srcSize.rotate()
-        val pivot = dstSize.width / 2f
-        val bitmap = ImageBitmap(dstSize.width, dstSize.height, ImageBitmapConfig.Rgb565)
+        val dstSize = (srcSize * scale).toIntSize()
+        val pivot = size.width / 2f
+        val bitmap = ImageBitmap(size.width, size.height, ImageBitmapConfig.Rgb565)
         Canvas(bitmap).apply {
             rotate(90f, pivot, pivot)
             drawImageRect(
@@ -70,7 +75,7 @@ private fun SceneBackground(modifier: Modifier = Modifier, scene: Scene, size: I
                 srcOffset = IntOffset.Zero,
                 srcSize = srcSize,
                 dstOffset = IntOffset.Zero,
-                dstSize = srcSize,
+                dstSize = dstSize,
                 paint = Paint()
             )
         }
@@ -88,7 +93,7 @@ private fun SceneBackground(modifier: Modifier = Modifier, scene: Scene, size: I
 private fun SceneKitchen_Landscape() {
     SceneView(
         modifier = Modifier.fillMaxSize(),
-        scene = Scene.Kitchen
+        scene = Scene.Garden
     ) {}
 }
 
@@ -97,6 +102,6 @@ private fun SceneKitchen_Landscape() {
 private fun SceneKitchen_Portrait() {
     SceneView(
         modifier = Modifier.fillMaxSize(),
-        scene = Scene.Kitchen
+        scene = Scene.Garden
     ) {}
 }

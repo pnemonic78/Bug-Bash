@@ -4,6 +4,7 @@ import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.hapticfeedback.HapticFeedback
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
@@ -32,9 +33,7 @@ fun Float.toDp(): Dp = with(LocalDensity.current) { this@toDp.toDp() }
 @Composable
 fun IntSize.toDp(): DpSize = with(LocalDensity.current) { this@toDp.toSize().toDpSize() }
 
-fun IntSize.toOffset(): Offset {
-    return Offset(width.toFloat(), height.toFloat())
-}
+fun IntSize.toOffset(): Offset = Offset(width.toFloat(), height.toFloat())
 
 val ImageBitmap.orientation: Orientation
     get() = if (height >= width) Orientation.Vertical else Orientation.Horizontal
@@ -43,13 +42,11 @@ fun IntSize.toOrientation(): Orientation {
     return if (height >= width) Orientation.Vertical else Orientation.Horizontal
 }
 
-fun IntSize.rotate(): IntSize {
-    return IntSize(width = height, height = width)
-}
+fun IntSize.rotate(): IntSize = IntSize(width = height, height = width)
 
-fun DpSize.rotate(): DpSize {
-    return DpSize(width = height, height = width)
-}
+operator fun IntSize.times(other: Float): Size = Size(width * other, height * other)
+
+fun DpSize.rotate(): DpSize = DpSize(width = height, height = width)
 
 fun IntSize.isZero(): Boolean = (width == 0) && (height == 0)
 

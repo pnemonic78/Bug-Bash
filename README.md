@@ -27,7 +27,7 @@ Designed using Kotlin Compose Multiplatform.
 ### Images
 
 * [daisies](https://www.freepik.com/free-photo/daisy-flowers-from-netherlands-holland_91127692.htm)
-* [grass](https://www.freepik.com/free-photo/grass-field-close_986570.htm)
+* [grass](https://www.freepik.com/free-photo/texture-day-fresh-summer-backgrounds_1006881.htm)
 * [marble](https://www.freepik.com/free-photo/plate-full-mixed-vegetables-marble-table_16697127.htm)
 * [sand](https://www.freepik.com/free-photo/flat-lay-blue-pebbles-sand_5033200.htm|)
 * [wood-cloth](https://www.freepik.com/free-photo/kitchen-cloth-wood-table_3531590.htm)
