@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="8.1999998mm"
+   height="8mm"
+   viewBox="0 0 8.1999998 8"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
+   sodipodi:docname="life-had.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="11.616723"
+     inkscape:cx="4.0458914"
+     inkscape:cy="10.545143"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <linearGradient
+       id="linearGradient6"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop7" />
+      <stop
+         style="stop-color:#ff0000;stop-opacity:1;"
+         offset="0.26715687"
+         id="stop1" />
+      <stop
+         style="stop-color:#880000;stop-opacity:1;"
+         offset="0.73080069"
+         id="stop2" />
+      <stop
+         style="stop-color:#440000;stop-opacity:1;"
+         offset="1"
+         id="stop8" />
+    </linearGradient>
+    <rect
+       x="30.301146"
+       y="22.037195"
+       width="260.31439"
+       height="260.31439"
+       id="rect1" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient6"
+       id="linearGradient1"
+       x1="149.32689"
+       y1="26.495665"
+       x2="171.58913"
+       y2="47.994041"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.26458333,0,0,0.26458333,-38.354514,-5.8543661)" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       d="m 5.8156588,0.40347809 c 0.3100599,0 0.6005962,0.0597151 0.8716116,0.17914514 0.2733119,0.11713342 0.5110215,0.27790457 0.7131341,0.48231397 0.2044091,0.2021126 0.3651805,0.4398246 0.4823142,0.7131357 0.1194303,0.2710146 0.1791467,0.5615512 0.1791467,0.8716103 0,0.300872 -0.056272,0.5879637 -0.1688121,0.8612748 C 7.7805128,3.7819726 7.6174448,4.024278 7.4038494,4.2378742 L 4.1,7.541725 0.79614789,4.2378742 C 0.58255241,4.024278 0.41948441,3.7819726 0.30694389,3.510958 0.19440337,3.2376469 0.13813444,2.9505552 0.13813444,2.6496832 c 0,-0.206706 0.0264054,-0.4053734 0.0792374,-0.5960023 C 0.2724925,1.8607552 0.34828504,1.6816101 0.44474947,1.5162452 0.54121126,1.3508804 0.65834495,1.1992961 0.79614789,1.0614921 0.93395082,0.92368808 1.0855359,0.80655466 1.2509032,0.71009181 c 0.1653645,-0.0964626 0.3433603,-0.17110657 0.53399,-0.22393143 0.1929262,-0.0551214 0.3927395,-0.0826823 0.5994453,-0.0826823 0.1791467,0 0.3456596,0.0183727 0.4995412,0.0551214 0.1561783,0.0344512 0.3031702,0.0849792 0.4409731,0.1515846 0.1400995,0.0666052 0.273312,0.14928744 0.399632,0.24804714 C 3.8531014,0.95469407 3.9782731,1.0649372 4.1,1.1889607 4.2217268,1.0649372 4.3457502,0.95469407 4.4720703,0.85823122 4.5983903,0.75947152 4.7316027,0.67678923 4.8717022,0.61018408 5.0118017,0.54357867 5.1587937,0.49305066 5.3126753,0.45859953 5.4688509,0.42185182 5.6365121,0.40347809 5.8156588,0.40347809 Z"
+       id="text1"
+       style="font-size:26.6667px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';text-align:center;text-anchor:middle;white-space:pre;opacity:0.2;fill:url(#linearGradient1);stroke:#ff0000;stroke-width:0.264583;stroke-opacity:0.266667"
+       aria-label="💚"
+       sodipodi:nodetypes="scccscccscsccsccscccccscs" />
+  </g>
+</svg>

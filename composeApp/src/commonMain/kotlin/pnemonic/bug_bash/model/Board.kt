@@ -18,6 +18,6 @@ data class Board(
     fun isLevelFinished(): Boolean = swarm.isEmpty()
 
     companion object {
-        const val LIVES = 10
+        const val LIVES = 5
     }
 }
