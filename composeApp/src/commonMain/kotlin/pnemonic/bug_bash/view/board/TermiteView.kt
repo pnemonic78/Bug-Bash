@@ -10,7 +10,7 @@ import pnemonic.bug_bash.drawable.Termite as TermiteImage
 
 @Composable
 fun TermiteView(bug: Termite, onSize: BugCallback, onTap: BugCallback, onDead: BugCallback) {
-    ImageBug(bug, TermiteImage, 2f, onSize, onTap, onDead)
+    ImageBug(bug, TermiteImage, 1.5f, onSize, onTap, onDead)
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF0000FF)
