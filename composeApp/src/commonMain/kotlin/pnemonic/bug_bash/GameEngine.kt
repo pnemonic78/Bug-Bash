@@ -255,7 +255,7 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
     }
 
     companion object {
-        private const val TICK = 50L
+        private const val TICK = 30L
         private const val DELAY_PER_BUG = TICK * 15
         private const val NEXT_SCENE = 3
 

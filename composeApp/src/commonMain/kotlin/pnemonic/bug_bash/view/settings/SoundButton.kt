@@ -15,6 +15,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.tooling.preview.Preview
 import pnemonic.BooleanCallback
+import pnemonic.bug_bash.view.theme.colorButton
 import pnemonic.bug_bash.view.toggle
 
 @Composable
@@ -35,7 +36,7 @@ fun SoundButton(
     ) {
         val icon =
             if (soundEnabled) Icons.AutoMirrored.Filled.VolumeUp else Icons.AutoMirrored.Filled.VolumeOff
-        Icon(imageVector = icon, contentDescription = "Toggle Sound")
+        Icon(imageVector = icon, contentDescription = "Toggle Sound", tint = colorButton)
     }
 }
 

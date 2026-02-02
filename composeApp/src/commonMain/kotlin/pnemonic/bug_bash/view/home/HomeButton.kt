@@ -8,11 +8,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import pnemonic.VoidCallback
+import pnemonic.bug_bash.view.theme.colorButton
 
 @Composable
 fun HomeButton(onClick: VoidCallback) {
     IconButton(onClick = onClick) {
-        Icon(imageVector = Icons.Default.Home, contentDescription = "Home")
+        Icon(imageVector = Icons.Default.Home, contentDescription = "Home", tint = colorButton)
     }
 }
 

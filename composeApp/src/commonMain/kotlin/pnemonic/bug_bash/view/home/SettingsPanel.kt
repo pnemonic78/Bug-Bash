@@ -1,0 +1,46 @@
+package pnemonic.bug_bash.view.home
+
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import pnemonic.BooleanCallback
+import pnemonic.VoidCallback
+import pnemonic.bug_bash.view.settings.HelpButton
+import pnemonic.bug_bash.view.settings.MusicButton
+import pnemonic.bug_bash.view.settings.SoundButton
+
+@Composable
+fun SettingsPanel(
+    isSoundEnabled: Boolean = true,
+    onSoundChange: BooleanCallback,
+    isMusicEnabled: Boolean = true,
+    onMusicChange: BooleanCallback,
+    onHelpClick: VoidCallback,
+) {
+    Row {
+        HelpButton(onHelpClick)
+        Spacer(modifier = Modifier.width(8.dp))
+        SoundButton(isSoundEnabled, onSoundChange)
+        Spacer(modifier = Modifier.width(8.dp))
+        MusicButton(isMusicEnabled, onMusicChange)
+    }
+}
+
+@Preview
+@Composable
+private fun Preview() {
+    MaterialTheme {
+        SettingsPanel(
+            isSoundEnabled = true,
+            onSoundChange = {},
+            isMusicEnabled = false,
+            onMusicChange = {},
+            onHelpClick = {},
+        )
+    }
+}

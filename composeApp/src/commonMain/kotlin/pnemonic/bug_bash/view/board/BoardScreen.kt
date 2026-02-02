@@ -57,7 +57,9 @@ fun BoardScreen(navController: NavController) {
         onTap = viewModel::onTap,
         onDead = viewModel::onDead,
         onHomeClick = { navController.navigateUp() },
+        isSoundEnabled = viewModel.isSoundEnabled,
         onSoundChange = viewModel::onSoundChange,
+        isMusicEnabled = viewModel.isMusicEnabled,
         onMusicChange = viewModel::onMusicChange,
     )
 
@@ -79,7 +81,9 @@ fun BoardView(
     onTap: BugCallback,
     onDead: BugCallback,
     onHomeClick: VoidCallback,
+    isSoundEnabled: Boolean = true,
     onSoundChange: BooleanCallback,
+    isMusicEnabled: Boolean = true,
     onMusicChange: BooleanCallback
 ) {
     SceneView(
@@ -99,7 +103,9 @@ fun BoardView(
                 Spacer(modifier = Modifier.weight(1f))
                 SettingsPanel(
                     onHomeClick = onHomeClick,
+                    isSoundEnabled = isSoundEnabled,
                     onSoundChange = onSoundChange,
+                    isMusicEnabled = isMusicEnabled,
                     onMusicChange = onMusicChange
                 )
             }
@@ -158,7 +164,9 @@ private fun Preview() {
             onTap,
             onDead,
             onHomeClick,
+            isSoundEnabled = true,
             onSoundChange,
+            isMusicEnabled = true,
             onMusicChange
         )
     }

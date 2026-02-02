@@ -1,5 +1,8 @@
 package pnemonic.bug_bash.control
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.unit.IntSize
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -22,9 +25,9 @@ class GameViewModel : LifecycleViewModel() {
 
     val board: StateFlow<Board> get() = engine.boards
     val state: StateFlow<GameState> get() = engine.state
-    var isSoundEnabled = true
+    var isSoundEnabled by mutableStateOf(true)
         private set
-    var isMusicEnabled = true
+    var isMusicEnabled by mutableStateOf(true)
         private set
 
     init {

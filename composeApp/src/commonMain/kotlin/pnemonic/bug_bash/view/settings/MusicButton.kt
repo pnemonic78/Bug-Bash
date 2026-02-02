@@ -15,6 +15,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.tooling.preview.Preview
 import pnemonic.BooleanCallback
+import pnemonic.bug_bash.view.theme.colorButton
 import pnemonic.bug_bash.view.toggle
 
 @Composable
@@ -34,7 +35,7 @@ fun MusicButton(
         }
     ) {
         val icon = if (musicEnabled) Icons.Default.MusicNote else Icons.Default.MusicOff
-        Icon(imageVector = icon, contentDescription = "Toggle Music")
+        Icon(imageVector = icon, contentDescription = "Toggle Music", tint = colorButton)
     }
 }
 
