@@ -58,7 +58,6 @@ kotlin {
             implementation(libs.bundles.compose)
             implementation(libs.kotlin.reflect)
             implementation(projects.shared)
-            implementation(projects.feedback)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

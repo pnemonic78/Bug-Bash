@@ -2,19 +2,19 @@ package pnemonic.bug_bash.control
 
 import androidx.navigation.NavHostController
 import pnemonic.bug_bash.view.navigation.Routes
+import pnemonic.bug_bash.view.settings.SettingsManager
 
 class HomeViewModel : LifecycleViewModel() {
-    var isSoundEnabled = true
-        private set
-    var isMusicEnabled = true
-        private set
+    private val settings = SettingsManager
+    val isMusicEnabled get() = settings.isMusicEnabled
+    val isSoundEnabled get() = settings.isSoundEnabled
 
-    fun onSoundChange(checked: Boolean) {
-        isSoundEnabled = checked
+    fun onMusicChange(enabled: Boolean) {
+        SettingsManager.isMusicEnabled = enabled
     }
 
-    fun onMusicChange(checked: Boolean) {
-        isMusicEnabled = checked
+    fun onSoundChange(enabled: Boolean) {
+        SettingsManager.isSoundEnabled = enabled
     }
 
     fun onPlayClick(navController: NavHostController) {

@@ -30,7 +30,8 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(projects.feedback)
+            api(projects.feedback)
+            api(libs.settings)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

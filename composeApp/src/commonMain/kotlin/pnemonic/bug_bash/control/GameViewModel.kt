@@ -1,8 +1,5 @@
 package pnemonic.bug_bash.control
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.unit.IntSize
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -17,18 +14,18 @@ import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.Bug
 import pnemonic.bug_bash.model.GameState
 import pnemonic.bug_bash.sound.SoundType
+import pnemonic.bug_bash.view.settings.SettingsManager
 
 class GameViewModel : LifecycleViewModel() {
 
     private val engine = GameEngine(viewModelScope)
     private val platform: Platform = getPlatform()
+    private val settings = SettingsManager
 
     val board: StateFlow<Board> get() = engine.boards
     val state: StateFlow<GameState> get() = engine.state
-    var isSoundEnabled by mutableStateOf(true)
-        private set
-    var isMusicEnabled by mutableStateOf(true)
-        private set
+    val isMusicEnabled get() = settings.isMusicEnabled
+    val isSoundEnabled get() = settings.isSoundEnabled
 
     init {
         viewModelScope.launch {
@@ -106,15 +103,15 @@ class GameViewModel : LifecycleViewModel() {
         }
     }
 
-    fun onSoundChange(checked: Boolean) {
-        isSoundEnabled = checked
+    fun onSoundChange(enabled: Boolean) {
+        SettingsManager.isSoundEnabled = enabled
     }
 
-    fun onMusicChange(checked: Boolean) {
-        isMusicEnabled = checked
+    fun onMusicChange(enabled: Boolean) {
+        SettingsManager.isMusicEnabled = enabled
         viewModelScope.launch {
             val sound = board.value.scene.music.soundType
-            if (checked) {
+            if (enabled) {
                 playSound(sound)
             } else {
                 stopSound(sound)
