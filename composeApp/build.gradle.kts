@@ -10,6 +10,10 @@ plugins {
     alias(libs.plugins.composeHotReload)
 }
 
+val versionMajor = project.properties["APP_VERSION_MAJOR"].toString().toInt()
+val versionMinor = project.properties["APP_VERSION_MINOR"].toString().toInt()
+val versionBuild = project.properties["APP_VERSION_BUILD"].toString().toInt()
+
 kotlin {
     androidTarget {
         compilerOptions {
@@ -74,17 +78,29 @@ android {
         applicationId = "pnemonic.bug_bash"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = (versionMajor * 100 + versionMinor) * 1000 + versionBuild
+        versionName = "${versionMajor}.${versionMinor}.${versionBuild}"
     }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    signingConfigs {
+        create("release") {
+            storeFile = file("release.keystore")
+            storePassword = project.properties["STORE_PASSWORD_RELEASE"] as String
+            keyAlias = "release"
+            keyPassword = project.properties["KEY_PASSWORD_RELEASE"] as String
+        }
+    }
     buildTypes {
-        getByName("release") {
+        debug {
+            applicationIdSuffix = ".debug"
+        }
+        release {
             isMinifyEnabled = false
+            signingConfig = signingConfigs["release"]
         }
     }
     compileOptions {
@@ -105,7 +121,7 @@ compose.desktop {
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "pnemonic.bug_bash"
-            packageVersion = "1.0.0"
+            packageVersion = "${versionMajor}.${versionMinor}.${versionBuild}"
 
             macOS {
                 bundleID = "pnemonic.bug-bash"
