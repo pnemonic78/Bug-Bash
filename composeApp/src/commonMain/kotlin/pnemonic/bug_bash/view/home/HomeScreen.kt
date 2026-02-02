@@ -1,10 +1,9 @@
 package pnemonic.bug_bash.view.home
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Alignment
@@ -15,9 +14,6 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import bug_bash.composeapp.generated.resources.Res
-import bug_bash.composeapp.generated.resources.start
-import org.jetbrains.compose.resources.stringResource
 import pnemonic.VoidCallback
 import pnemonic.bug_bash.control.HomeViewModel
 import pnemonic.bug_bash.view.navigation.Routes
@@ -30,8 +26,8 @@ fun HomeScreen(navController: NavHostController) {
     val onStartClick: VoidCallback = { navController.navigate(Routes.Board.route) }
 
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Button(onClick = onStartClick) {
-            Text(stringResource(Res.string.start))
+        Column {
+            StartButton(onClick = onStartClick)
         }
     }
 
