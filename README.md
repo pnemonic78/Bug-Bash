@@ -35,3 +35,4 @@ Designed using Kotlin Compose Multiplatform.
 * [wood-rustic](https://www.vecteezy.com/photo/38700939-rustic-dark-brown-wooden-background)
 * [trophy](https://www.freepik.com/free-vector/winner-beige_4805359.htm)
 * [level](https://www.freepik.com/free-vector/level-up-label-collection_37574797.htm)
+* [finger](https://www.freepik.com/free-vector/hand-gestures-touch-digital-devices-flat-colored-isolated-decorative-icons-collection_3792148.htm)

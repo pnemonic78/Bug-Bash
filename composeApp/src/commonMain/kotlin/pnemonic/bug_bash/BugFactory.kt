@@ -103,4 +103,26 @@ object BugFactory {
 
         return Swarm(bugs)
     }
+
+    val allBugs get() = listOf(
+        Ant(),
+        Bee(),
+        Beetle(),
+        Butterfly(),
+        Caterpillar(),
+        Centipede(),
+        Cockroach(),
+        Cricket(),
+        Dragonfly(),
+        Fly(),
+        Ladybug(),
+        Mosquito(),
+        Moth(),
+        Scorpion(),
+        Snail(),
+        Spider(),
+        Termite(),
+        Wasp(),
+        Worm()
+    )
 }

@@ -7,27 +7,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import pnemonic.bug_bash.model.Ant
-import pnemonic.bug_bash.model.Bee
-import pnemonic.bug_bash.model.Beetle
+import pnemonic.bug_bash.BugFactory
 import pnemonic.bug_bash.model.Bug
-import pnemonic.bug_bash.model.Butterfly
-import pnemonic.bug_bash.model.Caterpillar
-import pnemonic.bug_bash.model.Centipede
-import pnemonic.bug_bash.model.Cockroach
-import pnemonic.bug_bash.model.Cricket
-import pnemonic.bug_bash.model.Dragonfly
-import pnemonic.bug_bash.model.Fly
-import pnemonic.bug_bash.model.Ladybug
-import pnemonic.bug_bash.model.Mosquito
-import pnemonic.bug_bash.model.Moth
-import pnemonic.bug_bash.model.Scorpion
-import pnemonic.bug_bash.model.Snail
-import pnemonic.bug_bash.model.Spider
 import pnemonic.bug_bash.model.Swarm
-import pnemonic.bug_bash.model.Termite
-import pnemonic.bug_bash.model.Wasp
-import pnemonic.bug_bash.model.Worm
 import pnemonic.bug_bash.view.toPx
 
 @Composable
@@ -45,27 +27,7 @@ fun SwarmView(bugs: List<Bug>, onSize: BugCallback, onTap: BugCallback, onDead: 
 @Composable
 @Preview(showBackground = true, backgroundColor = 0xFF0000FF, widthDp = 700, heightDp = 700)
 private fun Preview() {
-    val bugs = listOf(
-        Ant(),
-        Bee(),
-        Beetle(),
-        Butterfly(),
-        Caterpillar(),
-        Centipede(),
-        Cockroach(),
-        Cricket(),
-        Dragonfly(),
-        Fly(),
-        Ladybug(),
-        Mosquito(),
-        Moth(),
-        Scorpion(),
-        Snail(),
-        Spider(),
-        Termite(),
-        Wasp(),
-        Worm()
-    )
+    val bugs = BugFactory.allBugs
     val dx = 20.dp.toPx()
     val dy = 40.dp.toPx()
     var x = dx

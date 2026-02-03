@@ -23,25 +23,11 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import pnemonic.BooleanCallback
 import pnemonic.VoidCallback
+import pnemonic.bug_bash.BugFactory
 import pnemonic.bug_bash.control.GameViewModel
-import pnemonic.bug_bash.model.Ant
-import pnemonic.bug_bash.model.Bee
 import pnemonic.bug_bash.model.Board
-import pnemonic.bug_bash.model.Butterfly
-import pnemonic.bug_bash.model.Caterpillar
-import pnemonic.bug_bash.model.Cockroach
-import pnemonic.bug_bash.model.Fly
 import pnemonic.bug_bash.model.GameState
-import pnemonic.bug_bash.model.Ladybug
-import pnemonic.bug_bash.model.Mosquito
-import pnemonic.bug_bash.model.Moth
-import pnemonic.bug_bash.model.Scorpion
-import pnemonic.bug_bash.model.Snail
-import pnemonic.bug_bash.model.Spider
 import pnemonic.bug_bash.model.Swarm
-import pnemonic.bug_bash.model.Termite
-import pnemonic.bug_bash.model.Wasp
-import pnemonic.bug_bash.model.Worm
 import pnemonic.bug_bash.view.OnSizeCallback
 import pnemonic.bug_bash.view.toPx
 
@@ -124,23 +110,7 @@ fun BoardView(
 @Composable
 @Preview(showBackground = true, backgroundColor = 0xFF0000FF, widthDp = 400, heightDp = 600)
 private fun Preview() {
-    val bugs = listOf(
-        Ant(),
-        Bee(),
-        Butterfly(),
-        Caterpillar(),
-        Cockroach(),
-        Fly(),
-        Ladybug(),
-        Mosquito(),
-        Moth(),
-        Scorpion(),
-        Snail(),
-        Spider(),
-        Termite(),
-        Wasp(),
-        Worm()
-    )
+    val bugs = BugFactory.allBugs
     val dx = 20.dp.toPx()
     val dy = 40.dp.toPx()
     var x = dx
