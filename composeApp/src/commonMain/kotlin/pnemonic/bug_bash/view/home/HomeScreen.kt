@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -45,7 +46,7 @@ fun HomeScreen(navController: NavHostController) {
             Title(modifier = Modifier.fillMaxWidth().padding(36.dp))
             Spacer(modifier = Modifier.weight(0.25f))
             StartButton(
-                modifier = Modifier.fillMaxWidth().padding(36.dp),
+                modifier = Modifier.padding(36.dp),
                 onClick = { viewModel.onPlayClick(navController) }
             )
             Spacer(modifier = Modifier.weight(0.25f))
@@ -70,7 +71,7 @@ fun HomeScreen(navController: NavHostController) {
 }
 
 @Composable
-@Preview
+@Preview(widthDp = 400, heightDp = 600)
 private fun Preview() {
     val navController = rememberNavController()
 

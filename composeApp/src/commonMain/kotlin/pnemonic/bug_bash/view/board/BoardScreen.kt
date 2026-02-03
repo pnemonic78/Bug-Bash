@@ -2,8 +2,10 @@ package pnemonic.bug_bash.view.board
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.material3.MaterialTheme
@@ -95,28 +97,25 @@ fun BoardView(
         scene = board.scene
     ) {
         SwarmView(board.swarm, onBugSize, onTap, onDead)
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .safeContentPadding()
-        ) {
-            Box(modifier = Modifier.fillMaxWidth()) {
+        Box(modifier = Modifier.fillMaxWidth().safeContentPadding()) {
+            Column(modifier = Modifier.align(Alignment.TopStart).padding(8.dp)) {
                 LivesView(
-                    modifier = Modifier.align(Alignment.TopStart),
                     lives = board.lives,
                     liveTotal = Board.LIVES
                 )
-                SettingsPanel(
-                    modifier = Modifier.align(Alignment.TopEnd).padding(8.dp),
-                    onHomeClick = onHomeClick,
-                    isSoundEnabled = isSoundEnabled,
-                    onSoundChange = onSoundChange,
-                    isMusicEnabled = isMusicEnabled,
-                    onMusicChange = onMusicChange
-                )
+                Spacer(modifier = Modifier.height(8.dp))
+                ScoreView(score = board.score)
+                Spacer(modifier = Modifier.height(8.dp))
+                LevelView(level = board.level)
             }
-            ScoreView(board.score)
-            LevelView(board.level)
+            SettingsPanel(
+                modifier = Modifier.align(Alignment.TopEnd).padding(8.dp),
+                onHomeClick = onHomeClick,
+                isSoundEnabled = isSoundEnabled,
+                onSoundChange = onSoundChange,
+                isMusicEnabled = isMusicEnabled,
+                onMusicChange = onMusicChange
+            )
         }
         StateView(state)
     }

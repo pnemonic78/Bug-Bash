@@ -32,9 +32,14 @@ kotlin {
         commonMain.dependencies {
             api(projects.feedback)
             api(libs.settings)
+            implementation(libs.compose.resources)
+            implementation(libs.compose.ui)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+        }
+        webMain.dependencies {
+            implementation(libs.kotlinx.browser)
         }
     }
 }

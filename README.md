@@ -33,3 +33,4 @@ Designed using Kotlin Compose Multiplatform.
 * [wood-cloth](https://www.freepik.com/free-photo/kitchen-cloth-wood-table_3531590.htm)
 * [wood-dark](https://www.vecteezy.com/photo/3297874-dark-old-wooden-table-texture-background-top-view)
 * [wood-rustic](https://www.vecteezy.com/photo/38700939-rustic-dark-brown-wooden-background)
+* [trophy](https://www.freepik.com/free-vector/winner-beige_4805359.htm)
