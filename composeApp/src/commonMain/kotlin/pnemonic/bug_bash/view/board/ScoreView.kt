@@ -21,8 +21,9 @@ import pnemonic.bug_bash.drawable.Trophy
 import pnemonic.bug_bash.getPlatform
 import pnemonic.bug_bash.view.theme.Gold
 
-private val colorScore = Gold
-private val sizeScore = 24.sp
+private val colorText = Gold
+private val sizeIcon = 30.dp
+private val sizeText = 20.sp
 private val shadow = Shadow(blurRadius = 2f, offset = Offset(2f, 2f))
 
 @Composable
@@ -31,13 +32,13 @@ fun ScoreView(modifier: Modifier = Modifier, score: Long) {
     val platform: Platform = getPlatform()
 
     val style = MaterialTheme.typography.bodyMedium.copy(
-        color = colorScore,
-        fontSize = sizeScore,
+        color = colorText,
+        fontSize = sizeText,
         shadow = shadow
     )
 
     Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
-        Image(imageVector = Trophy, contentDescription = "🏆", modifier = Modifier.size(32.dp))
+        Image(imageVector = Trophy, contentDescription = "🏆", modifier = Modifier.size(sizeIcon))
         Spacer(modifier = Modifier.width(4.dp))
         Text(text = platform.formatInteger(locale, score), style = style)
     }

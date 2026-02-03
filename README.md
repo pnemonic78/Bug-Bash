@@ -34,3 +34,4 @@ Designed using Kotlin Compose Multiplatform.
 * [wood-dark](https://www.vecteezy.com/photo/3297874-dark-old-wooden-table-texture-background-top-view)
 * [wood-rustic](https://www.vecteezy.com/photo/38700939-rustic-dark-brown-wooden-background)
 * [trophy](https://www.freepik.com/free-vector/winner-beige_4805359.htm)
+* [level](https://www.freepik.com/free-vector/level-up-label-collection_37574797.htm)

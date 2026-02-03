@@ -13,6 +13,8 @@ import androidx.compose.ui.unit.dp
 import pnemonic.bug_bash.drawable.LifeHad
 import pnemonic.bug_bash.drawable.LifeHas
 
+private val sizeIcon = 32.dp
+
 @Composable
 fun LivesView(modifier: Modifier = Modifier, lives: Int, liveTotal: Int) {
     Row(modifier = modifier) {
@@ -28,7 +30,7 @@ fun LivesView(modifier: Modifier = Modifier, lives: Int, liveTotal: Int) {
 @Composable
 private fun LifeAlive() {
     Image(
-        modifier = Modifier.size(32.dp).padding(start = 4.dp),
+        modifier = Modifier.size(sizeIcon).padding(start = 4.dp),
         imageVector = LifeHas,
         contentDescription = "💚",
         contentScale = ContentScale.Fit
@@ -38,7 +40,7 @@ private fun LifeAlive() {
 @Composable
 private fun LifeDead() {
     Image(
-        modifier = Modifier.size(32.dp).padding(start = 4.dp),
+        modifier = Modifier.size(sizeIcon).padding(start = 4.dp),
         imageVector = LifeHad,
         contentDescription = "🤍",
         contentScale = ContentScale.Fit
