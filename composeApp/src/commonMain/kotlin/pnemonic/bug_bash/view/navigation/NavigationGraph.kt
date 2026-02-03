@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import pnemonic.bug_bash.view.board.BoardScreen
+import pnemonic.bug_bash.view.help.HelpScreen
 import pnemonic.bug_bash.view.home.HomeScreen
 
 @Composable
@@ -15,6 +16,9 @@ fun NavigationGraph(navController: NavHostController) {
         }
         composable(Routes.Board.route) {
             BoardScreen(navController)
+        }
+        composable(Routes.Help.route) {
+            HelpScreen(navController)
         }
     }
 }

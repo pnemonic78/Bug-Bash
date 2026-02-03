@@ -12,31 +12,40 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.tooling.preview.Preview
 import pnemonic.BooleanCallback
 import pnemonic.bug_bash.view.theme.colorButton
+import pnemonic.bug_bash.view.theme.modifierButton
+import pnemonic.bug_bash.view.theme.modifierIcon
 import pnemonic.bug_bash.view.toggle
 
 @Composable
 fun SoundButton(
-    isSoundEnabled: Boolean = true,
-    onSoundChange: BooleanCallback
+    enabled: Boolean = true,
+    onChange: BooleanCallback
 ) {
     val haptic = LocalHapticFeedback.current
-    var soundEnabled by remember { mutableStateOf(isSoundEnabled) }
+    var enabledState by remember { mutableStateOf(enabled) }
 
     IconToggleButton(
-        checked = soundEnabled,
+        checked = enabledState,
         onCheckedChange = { checked ->
             haptic.toggle(checked)
-            soundEnabled = checked
-            onSoundChange(soundEnabled)
-        }
+            enabledState = checked
+            onChange(enabledState)
+        },
+        modifier = Modifier.modifierButton()
     ) {
         val icon =
-            if (soundEnabled) Icons.AutoMirrored.Filled.VolumeUp else Icons.AutoMirrored.Filled.VolumeOff
-        Icon(imageVector = icon, contentDescription = "Toggle Sound", tint = colorButton)
+            if (enabledState) Icons.AutoMirrored.Filled.VolumeUp else Icons.AutoMirrored.Filled.VolumeOff
+        Icon(
+            imageVector = icon,
+            contentDescription = "Toggle Sound",
+            tint = colorButton,
+            modifier = Modifier.modifierIcon()
+        )
     }
 }
 

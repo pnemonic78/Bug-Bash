@@ -12,30 +12,38 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.tooling.preview.Preview
 import pnemonic.BooleanCallback
 import pnemonic.bug_bash.view.theme.colorButton
+import pnemonic.bug_bash.view.theme.modifierButton
+import pnemonic.bug_bash.view.theme.modifierIcon
 import pnemonic.bug_bash.view.toggle
 
 @Composable
 fun MusicButton(
-    isMusicEnabled: Boolean = true,
-    onMusicChange: BooleanCallback
+    enabled: Boolean = true,
+    onChange: BooleanCallback
 ) {
     val haptic = LocalHapticFeedback.current
-    var musicEnabled by remember { mutableStateOf(isMusicEnabled) }
+    var enabledState by remember { mutableStateOf(enabled) }
 
     IconToggleButton(
-        checked = musicEnabled,
+        checked = enabledState,
         onCheckedChange = { checked ->
             haptic.toggle(checked)
-            musicEnabled = checked
-            onMusicChange(musicEnabled)
-        }
+            enabledState = checked
+            onChange(enabledState)
+        }, modifier = Modifier.modifierButton()
     ) {
-        val icon = if (musicEnabled) Icons.Default.MusicNote else Icons.Default.MusicOff
-        Icon(imageVector = icon, contentDescription = "Toggle Music", tint = colorButton)
+        val icon = if (enabledState) Icons.Default.MusicNote else Icons.Default.MusicOff
+        Icon(
+            imageVector = icon,
+            contentDescription = "Toggle Music",
+            tint = colorButton,
+            modifier = Modifier.modifierIcon()
+        )
     }
 }
 

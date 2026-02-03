@@ -1,14 +1,16 @@
 package pnemonic.bug_bash.view.board
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.tooling.preview.Preview
@@ -98,10 +100,14 @@ fun BoardView(
                 .fillMaxSize()
                 .safeContentPadding()
         ) {
-            Row {
-                LivesView(board.lives, Board.LIVES)
-                Spacer(modifier = Modifier.weight(1f))
+            Box(modifier = Modifier.fillMaxWidth()) {
+                LivesView(
+                    modifier = Modifier.align(Alignment.TopStart),
+                    lives = board.lives,
+                    liveTotal = Board.LIVES
+                )
                 SettingsPanel(
+                    modifier = Modifier.align(Alignment.TopEnd).padding(8.dp),
                     onHomeClick = onHomeClick,
                     isSoundEnabled = isSoundEnabled,
                     onSoundChange = onSoundChange,

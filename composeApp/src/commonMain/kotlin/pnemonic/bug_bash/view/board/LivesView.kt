@@ -14,8 +14,8 @@ import pnemonic.bug_bash.drawable.LifeHad
 import pnemonic.bug_bash.drawable.LifeHas
 
 @Composable
-fun LivesView(lives: Int, liveTotal: Int) {
-    Row {
+fun LivesView(modifier: Modifier = Modifier, lives: Int, liveTotal: Int) {
+    Row(modifier = modifier) {
         (1..lives).forEach { _ ->
             LifeAlive()
         }
@@ -49,6 +49,6 @@ private fun LifeDead() {
 @Preview(showBackground = true, backgroundColor = 0xFF008800)
 private fun Preview() {
     MaterialTheme {
-        LivesView(2, 4)
+        LivesView(lives = 2, liveTotal = 4)
     }
 }
