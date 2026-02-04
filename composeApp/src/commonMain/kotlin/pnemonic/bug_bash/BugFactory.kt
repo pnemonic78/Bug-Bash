@@ -72,6 +72,8 @@ object BugFactory {
             Caterpillar::class -> Caterpillar()
             Centipede::class -> Centipede()
             Cockroach::class -> Cockroach()
+            Cricket::class -> Cricket()
+            Dragonfly::class -> Dragonfly()
             Fly::class -> Fly()
             Ladybug::class -> Ladybug()
             Mosquito::class -> Mosquito()
@@ -83,7 +85,7 @@ object BugFactory {
             Termite::class -> Termite()
             Wasp::class -> Wasp()
             Worm::class -> Worm()
-            else -> throw IllegalArgumentException()
+            else -> throw IllegalArgumentException(klass.toString())
         } as Bug
     }
 

@@ -22,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -84,6 +85,8 @@ fun HelpCard(bug: Bug) {
 
 @Composable
 private fun BugCell(bug: Bug) {
+    val color = if (bug.score >= 0) Color.Black else Color.Red
+
     Row(modifier = Modifier.padding(8.dp)) {
         Box(
             modifier = Modifier.size(60.dp, 80.dp),
@@ -105,7 +108,7 @@ private fun BugCell(bug: Bug) {
                     contentDescription = "Touch"
                 )
                 Text("×")
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.width(4.dp))
                 Text("${bug.hits}", fontWeight = FontWeight.Medium, softWrap = false)
             }
             Spacer(modifier = Modifier.height(8.dp))
@@ -116,8 +119,13 @@ private fun BugCell(bug: Bug) {
                     contentDescription = "Touch"
                 )
                 Text("×")
-                Spacer(modifier = Modifier.height(4.dp))
-                Text("${bug.score}", fontWeight = FontWeight.Medium, softWrap = false)
+                Spacer(modifier = Modifier.width(4.dp))
+                Text(
+                    "${bug.score}",
+                    fontWeight = FontWeight.Medium,
+                    softWrap = false,
+                    color = color
+                )
             }
         }
     }
