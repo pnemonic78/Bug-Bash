@@ -1,7 +1,5 @@
 package pnemonic.bug_bash.view.home
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Icon
@@ -10,7 +8,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import pnemonic.VoidCallback
 import pnemonic.bug_bash.view.theme.colorButton
 import pnemonic.bug_bash.view.theme.modifierButton
@@ -32,8 +29,6 @@ fun HomeButton(onClick: VoidCallback) {
 @Preview(showBackground = true, backgroundColor = 0xFF0000FF)
 private fun Preview() {
     MaterialTheme {
-        Box(modifier = Modifier.size(100.dp)) {
-            HomeButton {}
-        }
+        HomeButton {}
     }
 }

@@ -33,6 +33,7 @@ import pnemonic.bug_bash.drawable.Trophy
 import pnemonic.bug_bash.model.Bug
 import pnemonic.bug_bash.view.board.BugView
 import pnemonic.bug_bash.view.home.HomeButton
+import pnemonic.bug_bash.view.settings.ActionPanel
 
 @Composable
 fun HelpScreen(navController: NavHostController) {
@@ -44,10 +45,12 @@ fun HelpScreen(navController: NavHostController) {
 @Composable
 fun HelpScreen(onHomeClick: VoidCallback) {
     Column(modifier = Modifier.fillMaxSize().safeContentPadding()) {
-        Row(modifier = Modifier.padding(8.dp)) {
-            Spacer(modifier = Modifier.weight(1f))
-            HomeButton(onClick = onHomeClick)
+        Box(modifier = Modifier.fillMaxWidth()) {
+            ActionPanel(modifier = Modifier.align(Alignment.TopEnd)) {
+                HomeButton(onClick = onHomeClick)
+            }
         }
+        Spacer(modifier = Modifier.height(8.dp))
         BugList()
     }
 }

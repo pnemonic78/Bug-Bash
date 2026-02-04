@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import pnemonic.BooleanCallback
 import pnemonic.VoidCallback
 import pnemonic.bug_bash.view.home.HomeButton
+import pnemonic.bug_bash.view.settings.ActionPanel
 import pnemonic.bug_bash.view.settings.MusicButton
 import pnemonic.bug_bash.view.settings.SettingsButton
 import pnemonic.bug_bash.view.settings.SoundButton
@@ -38,7 +39,7 @@ fun SettingsPanel(
 ) {
     var expanded by remember { mutableStateOf(false) }
 
-    Row(modifier = modifier) {
+    ActionPanel(modifier = modifier) {
         AnimatedVisibility(
             visible = expanded,
             // Combines sliding and expanding horizontally
