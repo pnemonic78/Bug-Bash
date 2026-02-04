@@ -87,10 +87,10 @@ android {
     }
     signingConfigs {
         create("release") {
-            storeFile = file("release.keystore")
-            storePassword = project.properties["STORE_PASSWORD_RELEASE"] as String
-            keyAlias = "release"
-            keyPassword = project.properties["KEY_PASSWORD_RELEASE"] as String
+            storeFile = file(project.properties["RELEASE_STORE_FILE"] as String)
+            storePassword = project.properties["RELEASE_STORE_PASSWORD"] as String
+            keyAlias = project.properties["RELEASE_KEY_ALIAS"] as String
+            keyPassword = project.properties["RELEASE_KEY_PASSWORD"] as String
         }
     }
     buildTypes {
