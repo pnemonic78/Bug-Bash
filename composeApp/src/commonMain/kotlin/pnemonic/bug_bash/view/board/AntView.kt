@@ -10,7 +10,7 @@ import pnemonic.bug_bash.drawable.Ant as AntImage
 
 @Composable
 fun AntView(bug: Ant, onSize: BugCallback, onTap: BugCallback, onDead: BugCallback) {
-    ImageBug(bug, AntImage, onSize, onTap, onDead)
+    ImageBug(bug, AntImage, 2f, onSize, onTap, onDead)
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF0000FF)

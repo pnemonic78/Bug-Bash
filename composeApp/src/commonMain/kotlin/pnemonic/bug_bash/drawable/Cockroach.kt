@@ -6,162 +6,328 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
 
-val Cockroach: ImageVector = ImageVector.Builder(
-    name = "Cockroach",
-    defaultWidth = 24.dp,
-    defaultHeight = 40.dp,
-    viewportWidth = 24f,
-    viewportHeight = 40f,
-    tintColor = Color(0xFF895129)
-).apply {
-    path(fill = SolidColor(Color.Black)) {
-        moveToRelative(16.651f, 23.836f)
-        curveToRelative(0f, -2.249f, -0.483f, -4.452f, -0.873f, -6.656f)
-        curveToRelative(-0.299f, -1.692f, -0.575f, -3.389f, -0.864f, -5.083f)
-        curveToRelative(-0.022f, -0.131f, -0.045f, -0.263f, -0.067f, -0.394f)
-        lineToRelative(-3.981f, 0f)
-        curveToRelative(-0.069f, 0f, -0.453f, 1.222f, -0.507f, 1.363f)
-        curveToRelative(-0.189f, 0.497f, -0.38f, 0.992f, -0.569f, 1.489f)
-        curveToRelative(-0.376f, 0.994f, -0.74f, 1.993f, -1.045f, 3.011f)
-        curveToRelative(-0.611f, 2.043f, -0.885f, 4.14f, -0.885f, 6.27f)
-        curveToRelative(0f, 5.814f, 1.968f, 10.526f, 4.395f, 10.526f)
-        curveToRelative(2.428f, 0f, 4.395f, -4.713f, 4.395f, -10.526f)
-        close()
+val Cockroach: ImageVector
+    get() {
+        if (_Cockroach != null) {
+            return _Cockroach!!
+        }
+        _Cockroach = ImageVector.Builder(
+            name = "Cockroach",
+            defaultWidth = 24.dp,
+            defaultHeight = 35.dp,
+            viewportWidth = 24f,
+            viewportHeight = 35f
+        ).apply {
+            path(fill = SolidColor(Color(0xFF8B5E3C))) {
+                moveToRelative(20.941f, 18.669f)
+                curveToRelative(-0.103f, 0.104f, -0.27f, 0.104f, -0.373f, -0f)
+                lineToRelative(-3.449f, -3.447f)
+                curveToRelative(-0.103f, -0.104f, -0.103f, -0.27f, 0f, -0.373f)
+                lineToRelative(0f, -0f)
+                curveToRelative(0.103f, -0.103f, 0.27f, -0.103f, 0.373f, -0f)
+                lineToRelative(3.448f, 3.448f)
+                curveToRelative(0.102f, 0.103f, 0.102f, 0.27f, -0f, 0.373f)
+                lineToRelative(0f, -0f)
+            }
+            path(fill = SolidColor(Color(0xFF8B5E3C))) {
+                moveToRelative(3.024f, 18.669f)
+                curveToRelative(0.103f, 0.104f, 0.269f, 0.104f, 0.373f, -0f)
+                lineToRelative(3.448f, -3.447f)
+                curveToRelative(0.103f, -0.104f, 0.103f, -0.27f, 0f, -0.373f)
+                lineToRelative(0f, -0f)
+                curveToRelative(-0.103f, -0.103f, -0.27f, -0.103f, -0.373f, -0f)
+                lineToRelative(-3.449f, 3.448f)
+                curveToRelative(-0.103f, 0.103f, -0.103f, 0.27f, 0.001f, 0.373f)
+                lineToRelative(0f, -0f)
+            }
+            path(fill = SolidColor(Color(0xFFA97C50))) {
+                moveToRelative(17.707f, 14.659f)
+                curveToRelative(0.203f, 0.203f, 0.203f, 0.532f, 0f, 0.736f)
+                lineToRelative(-1.087f, 1.086f)
+                curveToRelative(-0.203f, 0.203f, -0.533f, 0.203f, -0.736f, -0f)
+                lineToRelative(0f, -0f)
+                curveToRelative(-0.203f, -0.203f, -0.203f, -0.533f, 0f, -0.736f)
+                lineToRelative(1.087f, -1.086f)
+                curveToRelative(0.203f, -0.203f, 0.533f, -0.203f, 0.736f, -0f)
+                lineToRelative(0f, -0f)
+            }
+            path(fill = SolidColor(Color(0xFFA97C50))) {
+                moveToRelative(6.257f, 14.659f)
+                curveToRelative(-0.203f, 0.203f, -0.203f, 0.532f, 0f, 0.736f)
+                lineToRelative(1.087f, 1.086f)
+                curveToRelative(0.203f, 0.203f, 0.532f, 0.203f, 0.736f, -0f)
+                lineToRelative(0f, -0f)
+                curveToRelative(0.203f, -0.203f, 0.203f, -0.533f, 0f, -0.736f)
+                lineToRelative(-1.087f, -1.086f)
+                curveToRelative(-0.203f, -0.203f, -0.533f, -0.203f, -0.736f, -0f)
+                lineToRelative(0f, -0f)
+            }
+            path(fill = SolidColor(Color(0xFF8B5E3C))) {
+                moveToRelative(18.847f, 28.957f)
+                curveToRelative(-0.17f, -0f, -0.308f, -0.138f, -0.308f, -0.306f)
+                lineToRelative(0f, -6.529f)
+                curveToRelative(0f, -0.17f, 0.138f, -0.309f, 0.308f, -0.309f)
+                lineToRelative(0f, -0f)
+                curveToRelative(0.171f, -0f, 0.308f, 0.139f, 0.308f, 0.309f)
+                lineToRelative(0f, 6.529f)
+                curveToRelative(0f, 0.168f, -0.138f, 0.306f, -0.308f, 0.306f)
+                lineToRelative(0f, -0f)
+            }
+            path(fill = SolidColor(Color(0xFF8B5E3C))) {
+                moveToRelative(5.118f, 28.957f)
+                curveToRelative(-0.17f, -0f, -0.308f, -0.138f, -0.308f, -0.306f)
+                lineToRelative(0f, -6.529f)
+                curveToRelative(0f, -0.17f, 0.138f, -0.309f, 0.308f, -0.309f)
+                lineToRelative(0f, -0f)
+                curveToRelative(0.171f, -0f, 0.309f, 0.139f, 0.309f, 0.309f)
+                lineToRelative(0f, 6.529f)
+                curveToRelative(0f, 0.168f, -0.138f, 0.306f, -0.309f, 0.306f)
+                lineToRelative(0f, -0f)
+            }
+            path(fill = SolidColor(Color(0xFFA97C50))) {
+                moveToRelative(19.155f, 22.122f)
+                curveToRelative(0f, 0.341f, -0.276f, 0.616f, -0.616f, 0.616f)
+                lineToRelative(-1.821f, -0f)
+                curveToRelative(-0.341f, -0f, -0.617f, -0.276f, -0.617f, -0.616f)
+                lineToRelative(0f, -0f)
+                curveToRelative(0f, -0.341f, 0.276f, -0.616f, 0.617f, -0.616f)
+                lineToRelative(1.821f, -0f)
+                curveToRelative(0.34f, -0f, 0.616f, 0.275f, 0.616f, 0.616f)
+                lineToRelative(0f, -0f)
+            }
+            path(fill = SolidColor(Color(0xFFA97C50))) {
+                moveToRelative(7.864f, 22.122f)
+                curveToRelative(0f, 0.341f, -0.276f, 0.616f, -0.617f, 0.616f)
+                lineToRelative(-1.82f, -0f)
+                curveToRelative(-0.34f, -0f, -0.617f, -0.276f, -0.617f, -0.616f)
+                lineToRelative(0f, -0f)
+                curveToRelative(0f, -0.341f, 0.276f, -0.616f, 0.617f, -0.616f)
+                lineToRelative(1.82f, -0f)
+                curveToRelative(0.341f, -0f, 0.617f, 0.275f, 0.617f, 0.616f)
+                lineToRelative(0f, -0f)
+            }
+            path(fill = SolidColor(Color(0xFF8B5E3C))) {
+                moveToRelative(1.528f, 32.219f)
+                curveToRelative(0.103f, 0.103f, 0.269f, 0.103f, 0.373f, -0f)
+                lineToRelative(3.448f, -3.448f)
+                curveToRelative(0.103f, -0.103f, 0.103f, -0.27f, 0f, -0.372f)
+                lineToRelative(0f, -0f)
+                curveToRelative(-0.103f, -0.104f, -0.27f, -0.104f, -0.373f, -0.002f)
+                lineToRelative(-3.448f, 3.449f)
+                curveToRelative(-0.103f, 0.103f, -0.103f, 0.27f, 0f, 0.373f)
+                lineToRelative(0f, -0f)
+            }
+            path(fill = SolidColor(Color(0xFF8B5E3C))) {
+                moveToRelative(22.437f, 32.22f)
+                curveToRelative(-0.103f, 0.102f, -0.269f, 0.102f, -0.373f, -0f)
+                lineToRelative(-3.448f, -3.449f)
+                curveToRelative(-0.103f, -0.102f, -0.103f, -0.269f, 0f, -0.372f)
+                lineToRelative(0f, -0f)
+                curveToRelative(0.103f, -0.102f, 0.27f, -0.102f, 0.373f, -0f)
+                lineToRelative(3.448f, 3.449f)
+                curveToRelative(0.103f, 0.103f, 0.103f, 0.269f, -0f, 0.373f)
+                lineToRelative(0f, -0f)
+            }
+            path(fill = SolidColor(Color(0xFF8B5E3C))) {
+                moveToRelative(23.965f, 18.508f)
+                curveToRelative(0f, 0.088f, -0.071f, 0.158f, -0.159f, 0.158f)
+                lineToRelative(-2.942f, -0f)
+                curveToRelative(-0.088f, -0f, -0.159f, -0.07f, -0.159f, -0.158f)
+                lineToRelative(0f, -0f)
+                curveToRelative(0f, -0.089f, 0.071f, -0.159f, 0.159f, -0.159f)
+                lineToRelative(2.942f, -0f)
+                curveToRelative(0.088f, -0f, 0.159f, 0.07f, 0.159f, 0.159f)
+                lineToRelative(0f, -0f)
+            }
+            path(fill = SolidColor(Color(0xFF8B5E3C))) {
+                moveToRelative(3.26f, 18.508f)
+                curveToRelative(0f, 0.088f, -0.071f, 0.158f, -0.159f, 0.158f)
+                lineTo(0.159f, 18.666f)
+                curveToRelative(-0.088f, -0f, -0.159f, -0.07f, -0.159f, -0.158f)
+                lineToRelative(0f, -0f)
+                curveToRelative(0f, -0.089f, 0.071f, -0.159f, 0.159f, -0.159f)
+                lineToRelative(2.942f, -0f)
+                curveToRelative(0.088f, -0f, 0.159f, 0.07f, 0.159f, 0.159f)
+                lineToRelative(0f, -0f)
+            }
+            path(fill = SolidColor(Color(0xFF8B5E3C))) {
+                moveToRelative(2.736f, 7.684f)
+                curveToRelative(0f, -0.087f, 0.072f, -0.158f, 0.159f, -0.158f)
+                lineToRelative(2.942f, -0f)
+                curveToRelative(0.088f, -0f, 0.159f, 0.071f, 0.159f, 0.158f)
+                lineToRelative(0f, -0f)
+                curveToRelative(0f, 0.089f, -0.071f, 0.161f, -0.159f, 0.161f)
+                lineToRelative(-2.942f, -0.002f)
+                curveToRelative(-0.088f, 0.002f, -0.159f, -0.07f, -0.159f, -0.159f)
+                lineToRelative(0f, -0f)
+            }
+            path(fill = SolidColor(Color(0xFF8B5E3C))) {
+                moveToRelative(17.968f, 7.684f)
+                curveToRelative(0f, -0.087f, 0.071f, -0.158f, 0.159f, -0.158f)
+                lineToRelative(2.942f, -0f)
+                curveToRelative(0.087f, -0f, 0.159f, 0.071f, 0.159f, 0.158f)
+                lineToRelative(0f, -0f)
+                curveToRelative(0f, 0.089f, -0.072f, 0.161f, -0.159f, 0.161f)
+                lineToRelative(-2.942f, -0.002f)
+                curveToRelative(-0.088f, 0.002f, -0.159f, -0.07f, -0.159f, -0.159f)
+                lineToRelative(0f, -0f)
+            }
+            path(fill = SolidColor(Color(0xFFA97C50))) {
+                moveToRelative(5.761f, 7.604f)
+                curveToRelative(0.103f, -0.103f, 0.27f, -0.103f, 0.373f, -0f)
+                lineToRelative(3.448f, 3.447f)
+                curveToRelative(0.103f, 0.104f, 0.103f, 0.27f, 0f, 0.373f)
+                lineToRelative(0f, -0f)
+                curveToRelative(-0.103f, 0.104f, -0.27f, 0.104f, -0.373f, -0f)
+                lineToRelative(-3.448f, -3.448f)
+                curveToRelative(-0.102f, -0.103f, -0.102f, -0.27f, 0f, -0.372f)
+                lineToRelative(0f, -0f)
+            }
+            path(fill = SolidColor(Color(0xFFA97C50))) {
+                moveToRelative(18.204f, 7.604f)
+                curveToRelative(-0.103f, -0.103f, -0.269f, -0.103f, -0.372f, -0f)
+                lineToRelative(-3.448f, 3.447f)
+                curveToRelative(-0.103f, 0.104f, -0.103f, 0.27f, 0f, 0.373f)
+                lineToRelative(0f, -0f)
+                curveToRelative(0.103f, 0.104f, 0.27f, 0.104f, 0.373f, -0f)
+                lineToRelative(3.449f, -3.448f)
+                curveToRelative(0.103f, -0.103f, 0.103f, -0.27f, -0.001f, -0.372f)
+                lineToRelative(0f, -0f)
+            }
+            path(fill = SolidColor(Color(0xFF8B5E3C))) {
+                moveToRelative(10.598f, 10.171f)
+                curveToRelative(-0.138f, -0f, -0.248f, -0.112f, -0.248f, -0.248f)
+                curveToRelative(0f, -5.197f, -4.228f, -9.425f, -9.425f, -9.425f)
+                curveToRelative(-0.137f, -0f, -0.249f, -0.111f, -0.249f, -0.249f)
+                curveToRelative(0f, -0.138f, 0.111f, -0.249f, 0.249f, -0.249f)
+                curveToRelative(5.471f, -0f, 9.922f, 4.451f, 9.922f, 9.922f)
+                curveToRelative(0f, 0.137f, -0.111f, 0.248f, -0.249f, 0.248f)
+            }
+            path(fill = SolidColor(Color(0xFF8B5E3C))) {
+                moveToRelative(13.367f, 10.171f)
+                curveToRelative(-0.138f, -0f, -0.249f, -0.112f, -0.249f, -0.248f)
+                curveToRelative(0f, -5.472f, 4.451f, -9.922f, 9.922f, -9.922f)
+                curveToRelative(0.137f, -0f, 0.249f, 0.111f, 0.249f, 0.249f)
+                curveToRelative(0f, 0.138f, -0.112f, 0.249f, -0.249f, 0.249f)
+                curveToRelative(-5.197f, -0f, -9.424f, 4.228f, -9.424f, 9.425f)
+                curveToRelative(0f, 0.137f, -0.111f, 0.248f, -0.249f, 0.248f)
+            }
+            path(fill = SolidColor(Color(0xFFA97C50))) {
+                moveToRelative(14.988f, 33.069f)
+                curveToRelative(0.828f, -2.563f, 1.834f, -6.53f, 1.834f, -10.353f)
+                curveToRelative(0f, -3.293f, -0.378f, -6.327f, -1.012f, -8.744f)
+                curveToRelative(-0.885f, -3.372f, -2.27f, -4.547f, -3.827f, -4.547f)
+                curveToRelative(-1.589f, -0f, -3f, 1.267f, -3.882f, 4.759f)
+                curveToRelative(-0.602f, 2.38f, -0.957f, 5.334f, -0.957f, 8.532f)
+                curveToRelative(0f, 3.823f, 1.006f, 7.789f, 1.834f, 10.353f)
+                curveToRelative(0.422f, 1.307f, 1.573f, 1.796f, 2.946f, 1.796f)
+                lineToRelative(0.118f, -0f)
+                curveToRelative(1.374f, -0f, 2.524f, -0.489f, 2.946f, -1.796f)
+            }
+            path(fill = SolidColor(Color(0xFFC67F3E))) {
+                moveToRelative(14.764f, 31.309f)
+                curveToRelative(0.766f, -2.372f, 1.697f, -6.044f, 1.697f, -9.582f)
+                curveToRelative(0f, -3.048f, -0.349f, -5.856f, -0.937f, -8.093f)
+                curveToRelative(-0.819f, -3.121f, -2.101f, -4.208f, -3.542f, -4.208f)
+                curveToRelative(-1.471f, -0f, -2.777f, 1.172f, -3.593f, 4.405f)
+                curveToRelative(-0.557f, 2.203f, -0.886f, 4.937f, -0.886f, 7.897f)
+                curveToRelative(0f, 3.538f, 0.931f, 7.21f, 1.697f, 9.582f)
+                curveToRelative(0.391f, 1.21f, 1.456f, 1.663f, 2.727f, 1.663f)
+                lineToRelative(0.109f, -0f)
+                curveToRelative(1.272f, -0f, 2.336f, -0.453f, 2.727f, -1.663f)
+            }
+            path(fill = SolidColor(Color(0xFF8B5E3C))) {
+                moveToRelative(11.983f, 9.425f)
+                lineToRelative(-0f, -0f)
+                lineToRelative(0f, 25.44f)
+                lineToRelative(0.059f, -0f)
+                curveToRelative(1.374f, -0f, 2.524f, -0.489f, 2.946f, -1.796f)
+                curveToRelative(0.828f, -2.563f, 1.834f, -6.53f, 1.834f, -10.353f)
+                curveToRelative(0f, -3.293f, -0.378f, -6.327f, -1.012f, -8.744f)
+                curveToRelative(-0.885f, -3.372f, -2.27f, -4.547f, -3.827f, -4.547f)
+            }
+            path(fill = SolidColor(Color(0xFFB26A2F))) {
+                moveToRelative(11.982f, 32.972f)
+                lineToRelative(0.055f, -0f)
+                curveToRelative(1.272f, -0f, 2.336f, -0.453f, 2.727f, -1.663f)
+                curveToRelative(0.766f, -2.372f, 1.697f, -6.044f, 1.697f, -9.582f)
+                curveToRelative(0f, -3.048f, -0.349f, -5.856f, -0.937f, -8.093f)
+                curveToRelative(-0.768f, -2.926f, -1.943f, -4.065f, -3.274f, -4.196f)
+                curveToRelative(-0.089f, -0.008f, -0.178f, -0.013f, -0.268f, -0.013f)
+                curveToRelative(-0f, -0f, -0f, -0f, -0f, -0f)
+                lineToRelative(-0f, 23.547f)
+            }
+            path(fill = SolidColor(Color(0xFF513118))) {
+                moveToRelative(8.101f, 14.184f)
+                curveToRelative(-0.06f, 0.236f, -0.115f, 0.482f, -0.17f, 0.729f)
+                curveToRelative(1.205f, 0.656f, 2.582f, 1.036f, 4.052f, 1.036f)
+                curveToRelative(1.47f, -0f, 2.848f, -0.381f, 4.054f, -1.038f)
+                curveToRelative(-0.071f, -0.323f, -0.147f, -0.636f, -0.227f, -0.94f)
+                curveToRelative(-0.885f, -3.372f, -2.27f, -4.547f, -3.827f, -4.547f)
+                curveToRelative(-0.099f, -0f, -0.198f, 0.005f, -0.296f, 0.015f)
+                curveToRelative(-1.468f, 0.152f, -2.759f, 1.47f, -3.586f, 4.745f)
+            }
+            path(fill = SolidColor(Color(0xFF8B5E3C))) {
+                moveToRelative(11.983f, 15.569f)
+                curveToRelative(1.441f, -0f, 2.79f, -0.386f, 3.959f, -1.052f)
+                curveToRelative(-0.043f, -0.183f, -0.085f, -0.369f, -0.132f, -0.545f)
+                curveToRelative(-0.885f, -3.372f, -2.27f, -4.547f, -3.827f, -4.547f)
+                curveToRelative(-1.589f, -0f, -3f, 1.267f, -3.882f, 4.759f)
+                curveToRelative(-0.027f, 0.108f, -0.051f, 0.222f, -0.077f, 0.333f)
+                curveToRelative(1.168f, 0.666f, 2.518f, 1.052f, 3.959f, 1.052f)
+            }
+            path(fill = SolidColor(Color(0xFF754C29))) {
+                moveToRelative(11.983f, 9.425f)
+                lineToRelative(-0f, -0f)
+                lineToRelative(0f, 6.144f)
+                lineToRelative(0f, -0f)
+                curveToRelative(1.441f, -0f, 2.79f, -0.386f, 3.959f, -1.052f)
+                curveToRelative(-0.043f, -0.183f, -0.085f, -0.369f, -0.132f, -0.545f)
+                curveToRelative(-0.885f, -3.372f, -2.27f, -4.547f, -3.827f, -4.547f)
+            }
+            path(fill = SolidColor(Color(0xFF8B5E3C))) {
+                moveToRelative(8.946f, 32.972f)
+                curveToRelative(0.01f, 0.032f, 0.02f, 0.066f, 0.031f, 0.097f)
+                curveToRelative(0.422f, 1.307f, 1.573f, 1.796f, 2.946f, 1.796f)
+                lineToRelative(0.118f, -0f)
+                curveToRelative(1.374f, -0f, 2.524f, -0.489f, 2.946f, -1.796f)
+                curveToRelative(0.011f, -0.031f, 0.02f, -0.065f, 0.031f, -0.097f)
+                lineTo(8.946f, 32.972f)
+            }
+            path(fill = SolidColor(Color(0xFF754C29))) {
+                moveToRelative(11.982f, 32.972f)
+                lineToRelative(0f, 1.893f)
+                lineToRelative(0.059f, -0f)
+                curveToRelative(1.374f, -0f, 2.524f, -0.489f, 2.946f, -1.796f)
+                curveToRelative(0.011f, -0.031f, 0.02f, -0.065f, 0.031f, -0.097f)
+                lineTo(11.982f, 32.972f)
+            }
+            path(fill = SolidColor(Color(0xFF754C29))) {
+                moveToRelative(10.919f, 14.579f)
+                curveToRelative(0f, 0.291f, -0.235f, 0.526f, -0.526f, 0.526f)
+                lineToRelative(0f, -0f)
+                curveToRelative(-0.29f, -0f, -0.526f, -0.235f, -0.526f, -0.526f)
+                lineToRelative(0f, -3.579f)
+                curveToRelative(0f, -0.29f, 0.236f, -0.526f, 0.526f, -0.526f)
+                lineToRelative(0f, -0f)
+                curveToRelative(0.291f, -0f, 0.526f, 0.236f, 0.526f, 0.526f)
+                lineTo(10.919f, 14.579f)
+            }
+            path(fill = SolidColor(Color(0xFF513118))) {
+                moveToRelative(14.098f, 14.579f)
+                curveToRelative(0f, 0.291f, -0.236f, 0.526f, -0.526f, 0.526f)
+                lineToRelative(0f, -0f)
+                curveToRelative(-0.29f, -0f, -0.526f, -0.235f, -0.526f, -0.526f)
+                lineToRelative(0f, -3.579f)
+                curveToRelative(0f, -0.29f, 0.236f, -0.526f, 0.526f, -0.526f)
+                lineToRelative(0f, -0f)
+                curveToRelative(0.291f, -0f, 0.526f, 0.236f, 0.526f, 0.526f)
+                lineTo(14.098f, 14.579f)
+            }
+        }.build()
+
+        return _Cockroach!!
     }
-    path(fill = SolidColor(Color.Black)) {
-        moveToRelative(21.265f, 39.28f)
-        lineToRelative(-2.37f, -2.278f)
-        curveToRelative(-0.239f, -0.23f, -0.502f, -0.457f, -0.756f, -0.676f)
-        curveToRelative(-0.303f, -0.261f, -0.616f, -0.532f, -0.896f, -0.813f)
-        curveToRelative(-0.51f, -0.512f, -0.444f, -1.256f, -0.391f, -1.853f)
-        curveToRelative(0.008f, -0.092f, 0.016f, -0.183f, 0.022f, -0.27f)
-        curveToRelative(0.08f, -1.2f, 0.147f, -2.374f, 0.199f, -3.489f)
-        curveToRelative(0.006f, -0.119f, 0.022f, -0.255f, 0.04f, -0.399f)
-        curveToRelative(0.051f, -0.412f, 0.115f, -0.926f, -0.127f, -1.073f)
-        curveToRelative(-0.172f, -0.104f, -0.44f, -0.161f, -0.699f, -0.216f)
-        curveToRelative(-0.137f, -0.029f, -0.269f, -0.057f, -0.386f, -0.092f)
-        lineToRelative(0.133f, -0.456f)
-        curveToRelative(0.106f, 0.031f, 0.227f, 0.056f, 0.352f, 0.083f)
-        curveToRelative(0.298f, 0.063f, 0.606f, 0.129f, 0.847f, 0.275f)
-        curveToRelative(0.504f, 0.306f, 0.42f, 0.989f, 0.352f, 1.537f)
-        curveToRelative(-0.016f, 0.131f, -0.032f, 0.255f, -0.037f, 0.363f)
-        curveToRelative(-0.053f, 1.118f, -0.12f, 2.294f, -0.2f, 3.498f)
-        curveToRelative(-0.006f, 0.09f, -0.014f, 0.184f, -0.023f, 0.28f)
-        curveToRelative(-0.049f, 0.551f, -0.1f, 1.12f, 0.255f, 1.476f)
-        curveToRelative(0.268f, 0.269f, 0.574f, 0.533f, 0.87f, 0.788f)
-        curveToRelative(0.259f, 0.223f, 0.526f, 0.454f, 0.775f, 0.693f)
-        lineToRelative(2.371f, 2.278f)
-        close()
-    }
-    path(fill = SolidColor(Color.Black)) {
-        moveToRelative(3.39f, 39.487f)
-        lineToRelative(-0.329f, -0.342f)
-        lineToRelative(2.37f, -2.278f)
-        curveToRelative(0.249f, -0.239f, 0.516f, -0.47f, 0.775f, -0.693f)
-        curveToRelative(0.296f, -0.256f, 0.602f, -0.52f, 0.869f, -0.788f)
-        curveToRelative(0.354f, -0.355f, 0.303f, -0.925f, 0.254f, -1.475f)
-        curveToRelative(-0.009f, -0.096f, -0.017f, -0.19f, -0.023f, -0.28f)
-        curveToRelative(-0.08f, -1.21f, -0.148f, -2.387f, -0.2f, -3.498f)
-        curveToRelative(-0.005f, -0.108f, -0.021f, -0.232f, -0.037f, -0.363f)
-        curveToRelative(-0.068f, -0.548f, -0.152f, -1.231f, 0.352f, -1.537f)
-        curveToRelative(0.241f, -0.146f, 0.549f, -0.212f, 0.847f, -0.275f)
-        curveToRelative(0.125f, -0.026f, 0.246f, -0.052f, 0.352f, -0.083f)
-        lineToRelative(0.133f, 0.456f)
-        curveToRelative(-0.117f, 0.034f, -0.249f, 0.062f, -0.386f, 0.092f)
-        curveToRelative(-0.259f, 0.055f, -0.528f, 0.112f, -0.699f, 0.216f)
-        curveToRelative(-0.242f, 0.147f, -0.178f, 0.66f, -0.127f, 1.073f)
-        curveToRelative(0.018f, 0.144f, 0.034f, 0.28f, 0.04f, 0.399f)
-        curveToRelative(0.052f, 1.108f, 0.119f, 2.282f, 0.199f, 3.489f)
-        curveToRelative(0.006f, 0.087f, 0.014f, 0.178f, 0.022f, 0.27f)
-        curveToRelative(0.053f, 0.597f, 0.119f, 1.34f, -0.391f, 1.853f)
-        curveToRelative(-0.28f, 0.281f, -0.593f, 0.551f, -0.896f, 0.812f)
-        curveToRelative(-0.254f, 0.219f, -0.517f, 0.446f, -0.756f, 0.676f)
-        close()
-    }
-    path(fill = SolidColor(Color.Black)) {
-        moveToRelative(22.528f, 26.287f)
-        curveToRelative(-0.242f, -0.124f, -0.499f, -0.241f, -0.748f, -0.355f)
-        curveToRelative(-0.345f, -0.157f, -0.702f, -0.32f, -1.034f, -0.507f)
-        curveToRelative(-0.663f, -0.373f, -1.038f, -1.06f, -1.395f, -1.792f)
-        lineToRelative(-1.603f, -3.283f)
-        curveToRelative(-0.139f, -0.284f, -0.283f, -0.579f, -0.501f, -0.788f)
-        curveToRelative(-0.251f, -0.241f, -0.672f, -0.28f, -1.08f, -0.317f)
-        curveToRelative(-0.153f, -0.014f, -0.312f, -0.029f, -0.461f, -0.055f)
-        lineToRelative(0.081f, -0.468f)
-        curveToRelative(0.13f, 0.022f, 0.273f, 0.036f, 0.424f, 0.05f)
-        curveToRelative(0.466f, 0.043f, 0.994f, 0.092f, 1.365f, 0.448f)
-        curveToRelative(0.279f, 0.267f, 0.449f, 0.615f, 0.598f, 0.922f)
-        lineToRelative(1.603f, 3.283f)
-        curveToRelative(0.323f, 0.661f, 0.658f, 1.281f, 1.201f, 1.586f)
-        curveToRelative(0.315f, 0.177f, 0.663f, 0.336f, 0.999f, 0.489f)
-        curveToRelative(0.253f, 0.116f, 0.516f, 0.235f, 0.767f, 0.364f)
-        close()
-    }
-    path(fill = SolidColor(Color.Black)) {
-        moveToRelative(0.373f, 26.969f)
-        lineToRelative(-0.373f, -0.294f)
-        lineToRelative(0.972f, -1.233f)
-        curveToRelative(1.736f, -2.203f, 3.532f, -4.48f, 5.286f, -6.729f)
-        curveToRelative(0.175f, -0.225f, 0.374f, -0.479f, 0.661f, -0.641f)
-        curveToRelative(0.476f, -0.268f, 1.102f, -0.223f, 1.654f, -0.184f)
-        curveToRelative(0.184f, 0.013f, 0.357f, 0.025f, 0.512f, 0.025f)
-        curveToRelative(0f, 0f, 0f, 0f, 0.001f, 0f)
-        lineToRelative(0f, 0.475f)
-        curveToRelative(-0f, 0f, -0f, 0f, -0.001f, 0f)
-        curveToRelative(-0.172f, 0f, -0.353f, -0.013f, -0.546f, -0.027f)
-        curveToRelative(-0.486f, -0.035f, -1.036f, -0.074f, -1.388f, 0.124f)
-        curveToRelative(-0.204f, 0.115f, -0.364f, 0.32f, -0.519f, 0.519f)
-        curveToRelative(-1.755f, 2.249f, -3.551f, 4.528f, -5.287f, 6.73f)
-        close()
-    }
-    path(fill = SolidColor(Color.Black)) {
-        moveToRelative(15.374f, 14.673f)
-        lineToRelative(-0.128f, -0.457f)
-        curveToRelative(0.088f, -0.025f, 0.184f, -0.048f, 0.283f, -0.072f)
-        curveToRelative(0.332f, -0.079f, 0.707f, -0.17f, 0.901f, -0.363f)
-        curveToRelative(0.126f, -0.126f, 0.201f, -0.317f, 0.273f, -0.502f)
-        curveToRelative(0.65f, -1.666f, 1.323f, -3.355f, 1.975f, -4.988f)
-        lineToRelative(0.293f, -0.735f)
-        lineToRelative(0.441f, 0.176f)
-        lineToRelative(-0.293f, 0.735f)
-        curveToRelative(-0.651f, 1.632f, -1.324f, 3.32f, -1.974f, 4.985f)
-        curveToRelative(-0.081f, 0.209f, -0.183f, 0.469f, -0.38f, 0.666f)
-        curveToRelative(-0.288f, 0.287f, -0.733f, 0.394f, -1.126f, 0.488f)
-        curveToRelative(-0.093f, 0.022f, -0.183f, 0.044f, -0.266f, 0.067f)
-        close()
-    }
-    path(fill = SolidColor(Color.Black)) {
-        moveToRelative(10.162f, 14.673f)
-        curveToRelative(-0.083f, -0.023f, -0.173f, -0.045f, -0.266f, -0.067f)
-        curveToRelative(-0.393f, -0.094f, -0.837f, -0.201f, -1.126f, -0.488f)
-        curveToRelative(-0.197f, -0.197f, -0.299f, -0.457f, -0.38f, -0.666f)
-        curveToRelative(-0.647f, -1.659f, -1.318f, -3.34f, -1.966f, -4.966f)
-        lineToRelative(-0.3f, -0.754f)
-        lineToRelative(0.441f, -0.176f)
-        lineToRelative(0.3f, 0.753f)
-        curveToRelative(0.649f, 1.627f, 1.32f, 3.309f, 1.967f, 4.97f)
-        curveToRelative(0.072f, 0.185f, 0.147f, 0.376f, 0.273f, 0.502f)
-        curveToRelative(0.194f, 0.193f, 0.57f, 0.283f, 0.901f, 0.363f)
-        curveToRelative(0.099f, 0.024f, 0.195f, 0.047f, 0.283f, 0.071f)
-        close()
-    }
-    path(fill = SolidColor(Color.Black)) {
-        moveToRelative(14.626f, 12.165f)
-        lineToRelative(-0.426f, -0.173f)
-        curveToRelative(1.009f, -2.489f, 2.053f, -5.062f, 3.797f, -7.201f)
-        curveToRelative(1.609f, -1.974f, 3.738f, -3.463f, 5.616f, -4.777f)
-        lineToRelative(0.264f, 0.377f)
-        curveToRelative(-1.854f, 1.297f, -3.955f, 2.766f, -5.524f, 4.69f)
-        curveToRelative(-1.7f, 2.085f, -2.731f, 4.626f, -3.727f, 7.083f)
-        close()
-    }
-    path(fill = SolidColor(Color.Black)) {
-        moveToRelative(11.845f, 12.695f)
-        curveToRelative(-0.813f, -2.808f, -1.821f, -5.115f, -3.082f, -7.052f)
-        curveToRelative(-1.494f, -2.297f, -3.397f, -4.108f, -5.502f, -5.238f)
-        lineToRelative(0.217f, -0.405f)
-        curveToRelative(2.173f, 1.166f, 4.134f, 3.031f, 5.67f, 5.392f)
-        curveToRelative(1.286f, 1.976f, 2.312f, 4.323f, 3.138f, 7.175f)
-        close()
-    }
-}.build()
+
+@Suppress("ObjectPropertyName")
+private var _Cockroach: ImageVector? = null

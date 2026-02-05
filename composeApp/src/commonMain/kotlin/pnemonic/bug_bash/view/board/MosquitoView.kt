@@ -10,7 +10,7 @@ import pnemonic.bug_bash.drawable.Mosquito as MosquitoImage
 
 @Composable
 fun MosquitoView(bug: Mosquito, onSize: BugCallback, onTap: BugCallback, onDead: BugCallback) {
-    ImageBug(bug, MosquitoImage, onSize, onTap, onDead)
+    ImageBug(bug, MosquitoImage, 2f, onSize, onTap, onDead)
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF0000FF)

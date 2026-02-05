@@ -25,7 +25,7 @@ fun SwarmView(bugs: List<Bug>, onSize: BugCallback, onTap: BugCallback, onDead: 
 }
 
 @Composable
-@Preview(showBackground = true, backgroundColor = 0xFF0000FF, widthDp = 700, heightDp = 700)
+@Preview(showBackground = true, backgroundColor = 0xFF0000FF, widthDp = 700, heightDp = 900)
 private fun Preview() {
     val bugs = BugFactory.allBugs
     val dx = 20.dp.toPx()
@@ -43,9 +43,7 @@ private fun Preview() {
     val onDead: BugCallback = {}
 
     MaterialTheme {
-        Box(
-            modifier = Modifier.fillMaxSize()
-        ) {
+        Box(modifier = Modifier.fillMaxSize()) {
             SwarmView(Swarm(bugs), onSize, onTap, onDead)
         }
     }

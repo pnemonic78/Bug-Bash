@@ -36,3 +36,4 @@ Designed using Kotlin Compose Multiplatform.
 * [trophy](https://www.freepik.com/free-vector/winner-beige_4805359.htm)
 * [level](https://www.freepik.com/free-vector/level-up-label-collection_37574797.htm)
 * [finger](https://www.freepik.com/free-vector/hand-gestures-touch-digital-devices-flat-colored-isolated-decorative-icons-collection_3792148.htm)
+* [bugs](https://www.freepik.com/free-vector/insect-icon-flat_3949163.htm)
