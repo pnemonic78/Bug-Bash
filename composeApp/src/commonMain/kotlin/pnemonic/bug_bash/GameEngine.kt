@@ -5,8 +5,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import pnemonic.bug_bash.model.Board
@@ -22,21 +25,22 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
     private var ticker: Job? = null
 
     private val _boards = MutableStateFlow(Board())
-    val boards: StateFlow<Board> get() = _boards
+    val boards: StateFlow<Board> = _boards
 
     private val _state = MutableStateFlow(GameState.NOT_STARTED)
-    val state: StateFlow<GameState> get() = _state
+    val state: StateFlow<GameState> = _state
     private val isRunning get() = state.value === GameState.STARTED
 
     private val rand = Random.Default
     private val touched = mutableListOf<Bug>()
 
-    private val _feedback = MutableStateFlow<Feedback>(Feedback.None)
-    val feedback: StateFlow<Feedback> get() = _feedback
+    private val _feedback = MutableSharedFlow<Feedback>(extraBufferCapacity = 10)
+    val feedback: Flow<Feedback> = _feedback
 
     fun start() {
         ticker = coroutineScope.launch(Dispatchers.Default) {
             _state.emit(GameState.STARTED)
+            playSound(SoundType.GameStart)
             while (isActive) {
                 run()
                 delay(TICK)
@@ -62,8 +66,7 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         }
         // Mo more lives -> game is done.
         if (board.lives <= 0) {
-            println("No more lives")
-            _state.emit(GameState.FINISHED)
+            finished()
             return
         }
         // No more bugs -> level is done.
@@ -112,12 +115,12 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
 
     fun onSize(size: IntSize) {
         if (!isRunning) return
-        coroutineScope.launch {
-            var board = boards.value
-            //TODO set each bug's new destination relative to old destination
-            board = board.setSize(width = size.width.toFloat(), height = size.height.toFloat())
-            _boards.emit(board)
+        //coroutineScope.launch {
+        //TODO set each bug's new destination relative to old destination
+        _boards.update { board ->
+            board.setSize(width = size.width.toFloat(), height = size.height.toFloat())
         }
+        //}
     }
 
     fun onTap(bug: Bug) {
@@ -221,9 +224,18 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         if (level % NEXT_SCENE == 0) {
             scene = scene.next()
         }
+        if (level > 1) {
+            playSound(SoundType.Level)
+        }
         playMusic(scene)
         board = generateBugs(board.copy(level = level, scene = scene))
         return board
+    }
+
+    private suspend fun finished() {
+        println("No more lives")
+        _state.emit(GameState.FINISHED)
+        playSound(SoundType.GameFinish)
     }
 
     fun onDead(bug: Bug) {
@@ -246,12 +258,16 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         _feedback.emit(Feedback.Bash(sound))
     }
 
-    fun feedbackDone() {
-        _feedback.value = Feedback.None
+    suspend fun feedbackDone() {
+        _feedback.emit(Feedback.None)
     }
 
     private suspend fun playMusic(scene: Scene) {
         _feedback.emit(scene.music)
+    }
+
+    private suspend fun playSound(sound: SoundType) {
+        _feedback.emit(Feedback.Sound(sound))
     }
 
     companion object {

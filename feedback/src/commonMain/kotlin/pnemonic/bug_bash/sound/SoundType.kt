@@ -8,9 +8,12 @@ enum class SoundType(val fileName: String, val repeat: Boolean = false) {
     Clang("CLANG001.WAV", false),
     Drip("DRIP002.WAV", false),
     Drop("DROPBOOK.WAV", false),
+    GameFinish("GLASS04.WAV", false),
+    GameStart("GONG16.WAV", false),
     Kiss("KISS001.WAV", false),
     Kitchen("kitchen.wav", true),
     Laser("LASER02.WAV", false),
+    Level("BOING001.WAV", false),
     Pop("POP002.WAV", false),
     SlimeSplash("Slime Splash.wav", false), // heavy
     SpitSplat("Spit_Splat.wav", false), // splat

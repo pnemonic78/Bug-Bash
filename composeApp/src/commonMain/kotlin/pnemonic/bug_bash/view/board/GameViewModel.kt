@@ -1,5 +1,6 @@
 package pnemonic.bug_bash.view.board
 
+import androidx.annotation.FloatRange
 import androidx.compose.ui.unit.IntSize
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -24,8 +25,8 @@ class GameViewModel : LifecycleViewModel() {
     private val platform: Platform = getPlatform()
     private val settings = SettingsManager
 
-    val board: StateFlow<Board> get() = engine.boards
-    val state: StateFlow<GameState> get() = engine.state
+    val board: StateFlow<Board> = engine.boards
+    val state: StateFlow<GameState> = engine.state
     val isMusicEnabled get() = settings.isMusicEnabled
     val isSoundEnabled get() = settings.isSoundEnabled
 
@@ -74,17 +75,17 @@ class GameViewModel : LifecycleViewModel() {
 
     suspend fun notifyFeedback(feedback: Feedback) {
         when (feedback) {
-            Feedback.None -> Unit
-            Feedback.Vibrate -> Unit
-            is Feedback.Bash -> bash(feedback.soundType)
+            Feedback.None -> return
+            is Feedback.Vibrate -> vibrate(feedback.duration, feedback.amplitude)
+            is Feedback.Bash -> bash(feedback)
             is Feedback.Sound -> playSound(feedback.soundType)
         }
         engine.feedbackDone()
     }
 
-    private suspend fun bash(soundType: SoundType = SoundType.Pop) {
-        platform.haptic.vibrate(VIBRATE_BASH_DURATION, VIBRATE_BASH_AMPLITUDE)
-        playSound(soundType)
+    private suspend fun bash(feedback: Feedback.Bash) {
+        vibrate(VIBRATE_BASH_DURATION, VIBRATE_BASH_AMPLITUDE)
+        playSound(feedback.soundType)
     }
 
     private suspend fun playSound(soundType: SoundType) {
@@ -103,6 +104,13 @@ class GameViewModel : LifecycleViewModel() {
                 platform.sound.stop(soundType)
             }
         }
+    }
+
+    private fun vibrate(
+        duration: Long = 300,
+        @FloatRange(from = 0.0, to = 1.0) amplitude: Float = 1f
+    ) {
+        platform.haptic.vibrate(duration, amplitude)
     }
 
     fun onSoundChange(enabled: Boolean) {
