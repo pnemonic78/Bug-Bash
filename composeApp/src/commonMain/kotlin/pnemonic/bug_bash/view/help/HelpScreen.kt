@@ -20,31 +20,38 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import pnemonic.VoidCallback
-import pnemonic.bug_bash.BugFactory
 import pnemonic.bug_bash.drawable.Touch
 import pnemonic.bug_bash.drawable.Trophy
 import pnemonic.bug_bash.model.Bug
+import pnemonic.bug_bash.view.board.BugCallback
 import pnemonic.bug_bash.view.board.BugView
 import pnemonic.bug_bash.view.home.HomeButton
 import pnemonic.bug_bash.view.settings.ActionPanel
 
 @Composable
 fun HelpScreen(navController: NavHostController) {
-    val onHomeClick: VoidCallback = { navController.navigateUp() }
+    //FIXME for JVM val viewModel = viewModel<HelpViewModel>()
+    val viewModel = viewModel { HelpViewModel() }
 
-    HelpScreen(onHomeClick = onHomeClick)
+    val onHomeClick: VoidCallback = { navController.navigateUp() }
+    val catalog = viewModel.catalog.collectAsState()
+
+    HelpScreen(onHomeClick = onHomeClick, bugs = catalog.value, onBugClick = viewModel::onBugClick)
 }
 
 @Composable
-fun HelpScreen(onHomeClick: VoidCallback) {
+fun HelpScreen(onHomeClick: VoidCallback, bugs: List<Bug>, onBugClick: BugCallback) {
     Column(modifier = Modifier.fillMaxSize().safeContentPadding()) {
         Box(modifier = Modifier.fillMaxWidth()) {
             ActionPanel(modifier = Modifier.align(Alignment.TopEnd)) {
@@ -52,18 +59,12 @@ fun HelpScreen(onHomeClick: VoidCallback) {
             }
         }
         Spacer(modifier = Modifier.height(8.dp))
-        BugList()
+        BugList(bugs, onBugClick)
     }
 }
 
 @Composable
-private fun BugList() {
-    val bugs = BugFactory.allBugs.sortedWith { b1, b2 ->
-        val c = b1.hits - b2.hits
-        if (c != 0) return@sortedWith c
-        b1.score - b2.score
-    }
-
+private fun BugList(bugs: List<Bug>, onClick: BugCallback) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2), // Defines a grid with 2 columns
         modifier = Modifier.fillMaxWidth(),
@@ -71,20 +72,20 @@ private fun BugList() {
         verticalArrangement = Arrangement.spacedBy(8.dp) // Spacing between rows
     ) {
         items(bugs) { bug ->
-            HelpCard(bug = bug)
+            HelpCard(bug = bug, onClick)
         }
     }
 }
 
 @Composable
-fun HelpCard(bug: Bug) {
+fun HelpCard(bug: Bug, onClick: BugCallback) {
     Card {
-        BugCell(bug)
+        BugCell(bug, onClick)
     }
 }
 
 @Composable
-private fun BugCell(bug: Bug) {
+private fun BugCell(bug: Bug, onClick: BugCallback) {
     val color = if (bug.score >= 0) Color.Black else Color.Red
 
     Row(modifier = Modifier.padding(8.dp)) {
@@ -95,7 +96,7 @@ private fun BugCell(bug: Bug) {
             BugView(
                 bug = bug,
                 onSize = {},
-                onTap = {},
+                onTap = onClick,
                 onDead = {}
             )
         }
@@ -134,7 +135,9 @@ private fun BugCell(bug: Bug) {
 @Composable
 @Preview
 private fun Preview() {
+    val nav = rememberNavController()
+
     MaterialTheme {
-        HelpScreen {}
+        HelpScreen(nav)
     }
 }

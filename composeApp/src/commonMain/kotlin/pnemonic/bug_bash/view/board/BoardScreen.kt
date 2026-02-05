@@ -24,8 +24,8 @@ import androidx.navigation.NavController
 import pnemonic.BooleanCallback
 import pnemonic.VoidCallback
 import pnemonic.bug_bash.BugFactory
-import pnemonic.bug_bash.control.GameViewModel
 import pnemonic.bug_bash.model.Board
+import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.model.GameState
 import pnemonic.bug_bash.model.Swarm
 import pnemonic.bug_bash.view.OnSizeCallback

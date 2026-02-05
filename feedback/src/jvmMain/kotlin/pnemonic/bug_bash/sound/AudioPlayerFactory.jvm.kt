@@ -11,7 +11,9 @@ import kotlin.math.log10
 
 actual object AudioPlayerFactory {
     actual fun create(soundType: SoundType): AudioPlayer? {
-        val path = Res.getUri("files/sounds/${soundType.fileName}")
+        val name = soundType.fileName
+        if (name.isEmpty()) return null
+        val path = Res.getUri("files/sounds/$name")
         val url = URI(path).toURL()
         val stream = BufferedInputStream(url.openStream())
         return try {

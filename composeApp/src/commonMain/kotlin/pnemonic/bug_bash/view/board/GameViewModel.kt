@@ -1,4 +1,4 @@
-package pnemonic.bug_bash.control
+package pnemonic.bug_bash.view.board
 
 import androidx.compose.ui.unit.IntSize
 import androidx.lifecycle.viewModelScope
@@ -9,8 +9,10 @@ import kotlinx.coroutines.withContext
 import pnemonic.bug_bash.Feedback
 import pnemonic.bug_bash.GameEngine
 import pnemonic.bug_bash.Platform
+import pnemonic.bug_bash.control.LifecycleViewModel
 import pnemonic.bug_bash.getPlatform
 import pnemonic.bug_bash.model.Board
+import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.model.Bug
 import pnemonic.bug_bash.model.GameState
 import pnemonic.bug_bash.sound.SoundType
@@ -117,6 +119,11 @@ class GameViewModel : LifecycleViewModel() {
                 stopSound(sound)
             }
         }
+    }
+
+    fun onBonusClick(bonus: Bonus) {
+        TODO("remove the bonus from the list")
+        TODO("apply the bonus to the board")
     }
 
     companion object {

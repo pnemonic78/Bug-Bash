@@ -19,7 +19,9 @@ actual object AudioPlayerFactory {
 
     @MainThread
     actual fun create(soundType: SoundType): AudioPlayer? {
-        val path = Res.getUri("files/sounds/${soundType.fileName}")
+        val name = soundType.fileName
+        if (name.isEmpty()) return null
+        val path = Res.getUri("files/sounds/$name")
         val uri = path.toUri()
         val mediaItem = MediaItem.fromUri(uri)
         val player = ExoPlayer.Builder(context).build()

@@ -1,14 +1,23 @@
 package pnemonic.bug_bash.sound
 
 enum class SoundType(val fileName: String, val repeat: Boolean = false) {
+    None("", false),
     Beach("PLYGND01.WAV", false),
     Blip("CRIP006.WAV", false),
-    Clang("CLANG001.WAV\n", false),
+    Chips("Eat Chips.wav", false),
+    Clang("CLANG001.WAV", false),
     Drip("DRIP002.WAV", false),
     Drop("DROPBOOK.WAV", false),
+    Kiss("KISS001.WAV", false),
     Kitchen("kitchen.wav", true),
+    Laser("LASER02.WAV", false),
     Pop("POP002.WAV", false),
+    SlimeSplash("Slime Splash.wav", false), // heavy
+    SpitSplat("Spit_Splat.wav", false), // splat
     Spray("SPRAY002.WAV", false),
+    Squirt("Blood Squirt.wav", false), // chop
+    Squish1("Squish Fart.wav", false), // fart
+    Squeeze("Squishy 2.wav", false), // squeeze
     Swish("SWISH01.WAV", false),
     Switch("LIGHTSW.WAV", false),
     Table("table.wav", true),
