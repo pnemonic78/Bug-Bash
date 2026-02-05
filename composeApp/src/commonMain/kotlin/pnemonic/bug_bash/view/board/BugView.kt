@@ -3,7 +3,6 @@ package pnemonic.bug_bash.view.board
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,7 +10,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
@@ -135,7 +133,6 @@ fun ImageBug(
         )
         if (bug.isSquashed) {
             //TODO Animate squish
-            Box(modifier = Modifier.fillMaxSize().background(Color.Red.copy(alpha = 0.5f)))
         }
     }
 }

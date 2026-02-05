@@ -43,6 +43,8 @@ abstract class Bug(
         private set
     var isSquashed by mutableStateOf(false)
         private set
+    var damage by mutableStateOf(0)
+        private set
     var opacity by mutableStateOf(0f)
         private set
     private var delay: Long = 0L
@@ -127,13 +129,17 @@ abstract class Bug(
     }
 
     fun hit() {
+        damage++
         var hits = this.hits
         hits = max(0, hits - 1)
+        this.hits = hits
+
         if (hits == 0) {
             isSquashed = true
             opacity = 0f
+        } else {
+            opacity = max(1f - (damage * 0.2f), 0.15f)
         }
-        this.hits = hits
     }
 
     fun didEscape(): Boolean {
