@@ -4,13 +4,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.Dp
 
-fun Modifier.modifierButton(): Modifier = this.size(sizeButton)
+fun Modifier.modifierButton(size: Dp = sizeButton): Modifier = this.size(size)
     .padding(paddingButton)
 
-fun Modifier.modifierIcon(): Modifier = this.size(sizeButton)
+fun Modifier.modifierIcon(size: Dp = sizeButton): Modifier = this.size(size)
 
-fun Modifier.buttonPanel(): Modifier =
-    this.background(color = colorButtonBackground, shape = shapeButtonPanel)
-        .padding(paddingButtonPanel)
+fun Modifier.panel(): Modifier =
+    this.background(color = colorButtonBackground, shape = shapePanel)
+        .padding(paddingPanel)

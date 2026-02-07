@@ -15,15 +15,18 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import pnemonic.BooleanCallback
 import pnemonic.bug_bash.view.theme.colorButton
 import pnemonic.bug_bash.view.theme.modifierButton
 import pnemonic.bug_bash.view.theme.modifierIcon
+import pnemonic.bug_bash.view.theme.sizeButton
 import pnemonic.bug_bash.view.toggle
 
 @Composable
 fun SoundButton(
     enabled: Boolean = true,
+    size: Dp = sizeButton,
     onChange: BooleanCallback
 ) {
     val haptic = LocalHapticFeedback.current
@@ -36,7 +39,7 @@ fun SoundButton(
             enabledState = checked
             onChange(enabledState)
         },
-        modifier = Modifier.modifierButton()
+        modifier = Modifier.modifierButton(size = size)
     ) {
         val icon =
             if (enabledState) Icons.AutoMirrored.Filled.VolumeUp else Icons.AutoMirrored.Filled.VolumeOff
@@ -44,7 +47,7 @@ fun SoundButton(
             imageVector = icon,
             contentDescription = "Toggle Sound",
             tint = colorButton,
-            modifier = Modifier.modifierIcon()
+            modifier = Modifier.modifierIcon(size = size)
         )
     }
 }
@@ -54,8 +57,8 @@ fun SoundButton(
 private fun Preview() {
     MaterialTheme {
         Column {
-            SoundButton(true) {}
-            SoundButton(false) {}
+            SoundButton(enabled = true) {}
+            SoundButton(enabled = false) {}
         }
     }
 }

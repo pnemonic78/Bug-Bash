@@ -10,8 +10,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -20,27 +18,21 @@ import pnemonic.bug_bash.Platform
 import pnemonic.bug_bash.drawable.Trophy
 import pnemonic.bug_bash.getPlatform
 import pnemonic.bug_bash.view.theme.Gold
+import pnemonic.bug_bash.view.theme.panel
 
 private val colorText = Gold
 private val sizeIcon = 30.dp
 private val sizeText = 20.sp
-private val shadow = Shadow(blurRadius = 2f, offset = Offset(2f, 2f))
 
 @Composable
 fun ScoreView(modifier: Modifier = Modifier, score: Long) {
     val locale = Locale.current
     val platform: Platform = getPlatform()
 
-    val style = MaterialTheme.typography.bodyMedium.copy(
-        color = colorText,
-        fontSize = sizeText,
-        shadow = shadow
-    )
-
-    Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
+    Row(modifier = modifier.panel(), verticalAlignment = Alignment.CenterVertically) {
         Image(imageVector = Trophy, contentDescription = "🏆", modifier = Modifier.size(sizeIcon))
         Spacer(modifier = Modifier.width(4.dp))
-        Text(text = platform.formatInteger(locale, score), style = style)
+        Text(text = platform.formatInteger(locale, score), fontSize = sizeText, color = colorText)
     }
 }
 

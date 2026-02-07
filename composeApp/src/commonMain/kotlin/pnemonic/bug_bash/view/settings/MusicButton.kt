@@ -15,15 +15,18 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import pnemonic.BooleanCallback
 import pnemonic.bug_bash.view.theme.colorButton
 import pnemonic.bug_bash.view.theme.modifierButton
 import pnemonic.bug_bash.view.theme.modifierIcon
+import pnemonic.bug_bash.view.theme.sizeButton
 import pnemonic.bug_bash.view.toggle
 
 @Composable
 fun MusicButton(
     enabled: Boolean = true,
+    size: Dp = sizeButton,
     onChange: BooleanCallback
 ) {
     val haptic = LocalHapticFeedback.current
@@ -35,14 +38,14 @@ fun MusicButton(
             haptic.toggle(checked)
             enabledState = checked
             onChange(enabledState)
-        }, modifier = Modifier.modifierButton()
+        }, modifier = Modifier.modifierButton(size = size)
     ) {
         val icon = if (enabledState) Icons.Default.MusicNote else Icons.Default.MusicOff
         Icon(
             imageVector = icon,
             contentDescription = "Toggle Music",
             tint = colorButton,
-            modifier = Modifier.modifierIcon()
+            modifier = Modifier.modifierIcon(size = size)
         )
     }
 }

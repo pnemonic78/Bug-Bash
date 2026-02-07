@@ -24,8 +24,8 @@ import pnemonic.BooleanCallback
 import pnemonic.VoidCallback
 import pnemonic.bug_bash.view.home.HomeButton
 import pnemonic.bug_bash.view.settings.ActionPanel
+import pnemonic.bug_bash.view.settings.MenuButton
 import pnemonic.bug_bash.view.settings.MusicButton
-import pnemonic.bug_bash.view.settings.SettingsButton
 import pnemonic.bug_bash.view.settings.SoundButton
 
 @Composable
@@ -56,14 +56,15 @@ fun SettingsPanel(
             ) + fadeOut()
         ) {
             Row {
-                SoundButton(isSoundEnabled, onSoundChange)
+                SoundButton(isSoundEnabled, onChange = onSoundChange)
                 Spacer(modifier = Modifier.width(8.dp))
-                MusicButton(isMusicEnabled, onMusicChange)
+                MusicButton(isMusicEnabled, onChange = onMusicChange)
+                Spacer(modifier = Modifier.width(8.dp))
+                HomeButton(onClick = onHomeClick)
+                Spacer(modifier = Modifier.width(8.dp))
             }
         }
-        SettingsButton(onClick = { expanded = !expanded })
-        Spacer(modifier = Modifier.width(8.dp))
-        HomeButton(onClick = onHomeClick)
+        MenuButton(onClick = { expanded = !expanded })
     }
 }
 

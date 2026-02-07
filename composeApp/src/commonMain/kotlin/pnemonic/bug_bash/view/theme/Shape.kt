@@ -4,4 +4,4 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 
 val shapeButton = CircleShape
-val shapeButtonPanel = RoundedCornerShape(50)
+val shapePanel = RoundedCornerShape(50)

@@ -13,6 +13,7 @@ import pnemonic.bug_bash.view.settings.ActionPanel
 import pnemonic.bug_bash.view.settings.HelpButton
 import pnemonic.bug_bash.view.settings.MusicButton
 import pnemonic.bug_bash.view.settings.SoundButton
+import pnemonic.bug_bash.view.theme.sizeHomeButton
 
 @Composable
 fun SettingsPanel(
@@ -23,11 +24,11 @@ fun SettingsPanel(
     onHelpClick: VoidCallback,
 ) {
     ActionPanel {
-        HelpButton(onHelpClick)
+        HelpButton(size = sizeHomeButton, onHelpClick)
         Spacer(modifier = Modifier.width(8.dp))
-        SoundButton(isSoundEnabled, onSoundChange)
+        SoundButton(isSoundEnabled, size = sizeHomeButton, onSoundChange)
         Spacer(modifier = Modifier.width(8.dp))
-        MusicButton(isMusicEnabled, onMusicChange)
+        MusicButton(isMusicEnabled, size = sizeHomeButton, onMusicChange)
     }
 }
 

@@ -1,7 +1,7 @@
-package pnemonic.bug_bash.view.home
+package pnemonic.bug_bash.view.settings
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -16,11 +16,11 @@ import pnemonic.bug_bash.view.theme.modifierIcon
 import pnemonic.bug_bash.view.theme.sizeButton
 
 @Composable
-fun HomeButton(size: Dp = sizeButton, onClick: VoidCallback) {
+fun MenuButton(size: Dp = sizeButton, onClick: VoidCallback) {
     IconButton(onClick = onClick, modifier = Modifier.modifierButton(size = size)) {
         Icon(
-            imageVector = Icons.Default.Home,
-            contentDescription = "Home",
+            imageVector = Icons.Default.Menu,
+            contentDescription = "Menu",
             tint = colorButton,
             modifier = Modifier.modifierIcon(size = size)
         )
@@ -28,9 +28,9 @@ fun HomeButton(size: Dp = sizeButton, onClick: VoidCallback) {
 }
 
 @Composable
-@Preview(showBackground = true, backgroundColor = 0xFF0000FF)
+@Preview
 private fun Preview() {
     MaterialTheme {
-        HomeButton {}
+        MenuButton {}
     }
 }

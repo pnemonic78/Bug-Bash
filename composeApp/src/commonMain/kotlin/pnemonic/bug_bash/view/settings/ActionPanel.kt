@@ -4,11 +4,11 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import pnemonic.bug_bash.view.theme.buttonPanel
+import pnemonic.bug_bash.view.theme.panel
 
 @Composable
 fun ActionPanel(modifier: Modifier = Modifier, content: @Composable RowScope.() -> Unit) {
-    Row(modifier = modifier.buttonPanel()) {
+    Row(modifier = modifier.panel()) {
         content()
     }
 }
