@@ -28,6 +28,6 @@ class HelpViewModel : LifecycleViewModel() {
     }
 
     fun onBugClick(bug: Bug) {
-        platform.sound.play(bug.sound)
+        platform.sound.play(bug.soundBash)
     }
 }

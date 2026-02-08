@@ -7,8 +7,8 @@ actual class AudioPlayer(actual val soundType: SoundType, private val player: Au
     actual fun prepare() {
         if (soundType.repeat) {
             player.loop = true
-            player.volume = 0.15
         }
+        player.volume = soundType.volume.toDouble()
         player.load()
     }
 

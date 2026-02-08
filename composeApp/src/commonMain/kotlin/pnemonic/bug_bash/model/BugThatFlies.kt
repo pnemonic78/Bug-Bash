@@ -4,8 +4,13 @@ import pnemonic.bug_bash.sound.SoundType
 import kotlin.math.cos
 import kotlin.math.sin
 
-abstract class BugThatFlies(speed: Float, score: Int, hits: Int, sound: SoundType) :
-    Bug(speed = speed, score = score, hits = hits, sound = sound) {
+abstract class BugThatFlies(
+    speed: Float,
+    score: Int,
+    hits: Int,
+    noise: SoundType = SoundType.None,
+    soundBash: SoundType
+) : Bug(speed = speed, score = score, hits = hits, noise = noise, soundBash = soundBash) {
     override fun moveNext(): Boolean = moveZigZag()
 
     private var angleZigZag = 0f

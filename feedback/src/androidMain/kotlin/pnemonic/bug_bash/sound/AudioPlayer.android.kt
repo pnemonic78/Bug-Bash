@@ -11,8 +11,8 @@ actual class AudioPlayer(actual val soundType: SoundType, private val player: Ex
     actual fun prepare() {
         if (soundType.repeat) {
             player.repeatMode = REPEAT_MODE_ONE
-            player.volume = 0.15f
         }
+        player.volume = soundType.volume
         player.prepare()
     }
 

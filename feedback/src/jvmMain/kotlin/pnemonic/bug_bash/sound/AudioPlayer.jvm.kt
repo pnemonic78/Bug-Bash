@@ -9,8 +9,8 @@ actual class AudioPlayer(actual val soundType: SoundType, val player: Clip) {
     actual fun prepare() {
         if (soundType.repeat) {
             player.loop(Clip.LOOP_CONTINUOUSLY)
-            player.setVolume(0.15f)
         }
+        player.setVolume(soundType.volume)
         player.microsecondPosition = 0L
     }
 

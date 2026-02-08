@@ -18,7 +18,8 @@ abstract class Bug(
     val speed: Float,
     val score: Int,
     var hits: Int,
-    val sound: SoundType = SoundType.Pop
+    val noise: SoundType = SoundType.None,
+    val soundBash: SoundType = SoundType.Squirt,
 ) {
     var left by mutableFloatStateOf(0f)
         private set
@@ -51,7 +52,7 @@ abstract class Bug(
     abstract val description: String
 
     override fun toString(): String {
-        return "{$description, $left, $top, $width, $height, $rotation, $delay}"
+        return "${this::class.simpleName}{$description, $left, $top, $width, $height, $rotation, $delay}"
     }
 
     fun setSize(width: Float, height: Float) {

@@ -145,7 +145,7 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
                     lives--
                 }
                 score = max(0, score)
-                bash(bug.sound)
+                bash(bug.soundBash)
             }
         }
         bugs.clear()
@@ -224,25 +224,23 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         if (level % NEXT_SCENE == 0) {
             scene = scene.next()
         }
+        board = generateBugs(board.copy(level = level, scene = scene))
         if (level > 1) {
             playSound(SoundType.Level)
         }
-        playMusic(scene)
-        board = generateBugs(board.copy(level = level, scene = scene))
+        playSounds(board)
         return board
     }
 
     private suspend fun finished() {
         println("No more lives")
-        _state.emit(GameState.FINISHED)
+        _state.update { GameState.FINISHED }
         playSound(SoundType.GameFinish)
     }
 
     fun onDead(bug: Bug) {
         coroutineScope.launch {
-            var board = boards.value
-            board = remove(board, bug)
-            _boards.emit(board)
+            _boards.update { remove(it, bug) }
         }
     }
 
@@ -262,11 +260,19 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         _feedback.emit(Feedback.None)
     }
 
+    private suspend fun playSounds(board: Board) {
+        playMusic(board.scene)
+        for (bug in board.swarm) {
+            playSound(bug.noise)
+        }
+    }
+
     private suspend fun playMusic(scene: Scene) {
         _feedback.emit(scene.music)
     }
 
     private suspend fun playSound(sound: SoundType) {
+        if (sound === SoundType.None) return
         _feedback.emit(Feedback.Sound(sound))
     }
 
