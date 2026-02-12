@@ -18,6 +18,7 @@ import pnemonic.bug_bash.model.GameState
 import pnemonic.bug_bash.model.Scene
 import pnemonic.bug_bash.model.Swarm
 import pnemonic.bug_bash.sound.SoundType
+import pnemonic.removeAll
 import kotlin.math.max
 import kotlin.random.Random
 
@@ -33,13 +34,14 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
 
     private val rand = Random.Default
     private val touched = mutableListOf<Bug>()
+    private val squashed = mutableListOf<Bug>()
 
     private val _feedback = MutableSharedFlow<Feedback>(extraBufferCapacity = 10)
     val feedback: Flow<Feedback> = _feedback
 
     fun start() {
         ticker = coroutineScope.launch(Dispatchers.Default) {
-            _state.emit(GameState.STARTED)
+            _state.update { GameState.STARTED }
             playSound(SoundType.GameStart)
             while (isActive) {
                 run()
@@ -75,6 +77,7 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         }
         board = move(board)
         board = touch(board)
+        board = bonus(board)
         _boards.emit(board)
     }
 
@@ -84,7 +87,6 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         var lives = board.lives
         val bugs = board.swarm.bugs
         val removed = mutableListOf<Bug>()
-        val squashed = mutableListOf<Bug>()
 
         for (bug in bugs) {
             if (bug.isBadMove()) {
@@ -98,17 +100,12 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
                 removed.add(bug)
                 lives--
             }
-            if (bug.isSquashed) {
-                squashed.add(bug)
-            }
         }
 
-        return if (removed.isEmpty() && squashed.isEmpty()) {
+        return if (removed.isEmpty()) {
             board
         } else {
-            val bugs = bugs.toMutableList()
-            bugs.removeAll(removed)
-            bugs.removeAll(squashed)
+            val bugs = bugs.removeAll(removed)
             board.copy(swarm = Swarm(bugs), lives = lives)
         }
     }
@@ -128,29 +125,37 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
     }
 
     private suspend fun touch(board: Board): Board {
-        val bugs = touched
-        if (bugs.isEmpty()) return board
+        if (touched.isEmpty() && squashed.isEmpty()) return board
 
+        var swarm = board.swarm
         var lives = board.lives
         var score = board.score
 
-        for (bug in bugs) {
-            if (bug.isSquashed) {
-                continue
-            }
-            bug.hit()
-            if (bug.isSquashed) {
-                score += bug.score
-                if (score < 0) {
-                    lives--
+        if (!touched.isEmpty()) {
+            for (bug in touched) {
+                if (bug.isSquashed) {
+                    continue
                 }
-                score = max(0, score)
-                bash(bug.soundBash)
+                bug.hit()
+                if (bug.isSquashed) {
+                    score += bug.score
+                    if (score < 0) {
+                        lives--
+                    }
+                    score = max(0, score)
+                    bash(bug)
+                }
             }
+            touched.clear()
         }
-        bugs.clear()
 
-        return board.copy(score = score, lives = lives)
+        if (!squashed.isEmpty()) {
+            val bugs = swarm.bugs.removeAll(squashed)
+            swarm = Swarm(bugs)
+            squashed.clear()
+        }
+
+        return board.copy(swarm = swarm, score = score, lives = lives)
     }
 
     fun onBugSize(bug: Bug) {
@@ -238,22 +243,12 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         playSound(SoundType.GameFinish)
     }
 
-    fun onDead(bug: Bug) {
+    private suspend fun bash(bug: Bug) {
+        _feedback.emit(Feedback.Bash(bug.soundBash))
         coroutineScope.launch {
-            _boards.update { remove(it, bug) }
+            delay(DELAY_DEAD_REMOVE)
+            squashed.add(bug)
         }
-    }
-
-    private fun remove(board: Board, bug: Bug): Board {
-        if (!bug.isSquashed) {
-            return board
-        }
-        val swarm = board.swarm.remove(bug)
-        return board.copy(swarm = swarm)
-    }
-
-    private suspend fun bash(sound: SoundType) {
-        _feedback.emit(Feedback.Bash(sound))
     }
 
     suspend fun feedbackDone() {
@@ -276,10 +271,26 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         _feedback.emit(Feedback.Sound(sound))
     }
 
+    // Apply any bonuses
+    private suspend fun bonus(board: Board): Board {
+        var bonus = false
+        val score = board.score
+
+        val lives = board.lives
+        if (lives < Board.MAX_LIVES) {
+            //if (score % Bonus.Life.score)
+        }
+
+        return board
+    }
+
     companion object {
         private const val TICK = 30L
         private const val DELAY_PER_BUG = TICK * 15
         private const val NEXT_SCENE = 3
+
+        // Time to show the score after bug squashed.
+        private const val DELAY_DEAD_REMOVE = 1000L
 
         private const val SIDE_TOP = 0
         private const val SIDE_LEFT = 1

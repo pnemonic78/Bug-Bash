@@ -1,12 +1,14 @@
 package pnemonic.bug_bash.model
 
-enum class Bonus(val hits: Int) {
-    None(0),
-    Flower(1),
-    Insecticide(2),
-    Life(0),
-    Shoe(5),
-    RainbowSprinkles(-1),
-    Swatter(5),
-    Zapper(4)
+import pnemonic.bug_bash.sound.SoundType
+
+enum class Bonus(val score: Int, val hits: Int, val sound: SoundType) {
+    None(score = 0, hits = 0, sound = SoundType.None),
+    Flower(score = 100, hits = 1, sound = SoundType.Pop),
+    Insecticide(score = 1000, hits = 2, sound = SoundType.Spray),
+    Life(score = 20, hits = 0, sound = SoundType.Kiss),
+    RainbowSprinkles(score = 100, hits = -1, sound = SoundType.Chips),
+    Shoe(score = 100, hits = 5, sound = SoundType.Drop),
+    Swatter(score = 100, hits = 5, sound = SoundType.Swish),
+    Zapper(score = 100, hits = 4, sound = SoundType.Laser)
 }

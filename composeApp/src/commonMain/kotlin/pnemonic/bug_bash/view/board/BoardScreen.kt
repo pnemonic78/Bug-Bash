@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeContentPadding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -45,12 +45,12 @@ fun BoardScreen(navController: NavController) {
         onSize = viewModel::onSize,
         onBugSize = viewModel::onBugSize,
         onTap = viewModel::onTap,
-        onDead = viewModel::onDead,
         onHomeClick = { navController.navigateUp() },
         isSoundEnabled = viewModel.isSoundEnabled,
         onSoundChange = viewModel::onSoundChange,
         isMusicEnabled = viewModel.isMusicEnabled,
         onMusicChange = viewModel::onMusicChange,
+        onBonusClick = viewModel::onBonusClick
     )
 
     DisposableEffect(lifecycleOwner) {
@@ -69,12 +69,12 @@ fun BoardView(
     onSize: OnSizeCallback,
     onBugSize: BugCallback,
     onTap: BugCallback,
-    onDead: BugCallback,
     onHomeClick: VoidCallback,
     isSoundEnabled: Boolean = true,
     onSoundChange: BooleanCallback,
     isMusicEnabled: Boolean = true,
-    onMusicChange: BooleanCallback
+    onMusicChange: BooleanCallback,
+    onBonusClick: BonusCallback
 ) {
     SceneView(
         modifier = Modifier
@@ -82,17 +82,16 @@ fun BoardView(
             .onSizeChanged(onSize),
         scene = board.scene
     ) {
-        SwarmView(board.swarm, onBugSize, onTap, onDead)
-        Box(modifier = Modifier.fillMaxWidth().safeContentPadding()) {
+        SwarmView(board, onBugSize, onTap)
+        Box(modifier = Modifier.fillMaxWidth().systemBarsPadding()) {
             Column(modifier = Modifier.align(Alignment.TopStart).padding(8.dp)) {
-                LivesView(
-                    lives = board.lives,
-                    liveTotal = Board.LIVES
-                )
+                LivesView(lives = board.lives)
                 Spacer(modifier = Modifier.height(8.dp))
                 ScoreView(score = board.score)
                 Spacer(modifier = Modifier.height(8.dp))
                 LevelView(level = board.level)
+                Spacer(modifier = Modifier.height(8.dp))
+                BonusesView(bonuses = board.bonuses, onClick = onBonusClick)
             }
             SettingsPanel(
                 modifier = Modifier.align(Alignment.TopEnd).padding(8.dp),
@@ -121,14 +120,15 @@ private fun Preview() {
         x += dx
         y += dy
     }
-    val board = Board(swarm = Swarm(bugs))
+    val board = Board(swarm = Swarm(bugs), bonuses = Bonus.entries)
     val onSize: OnSizeCallback = {}
     val onBugSize: BugCallback = {}
     val onTap: BugCallback = {}
-    val onDead: BugCallback = {}
+
     val onHomeClick: VoidCallback = {}
     val onSoundChange: BooleanCallback = {}
     val onMusicChange: BooleanCallback = {}
+    val onBonusClick: BonusCallback = {}
 
     MaterialTheme {
         BoardView(
@@ -137,12 +137,12 @@ private fun Preview() {
             onSize,
             onBugSize,
             onTap,
-            onDead,
             onHomeClick,
             isSoundEnabled = true,
             onSoundChange,
             isMusicEnabled = true,
-            onMusicChange
+            onMusicChange,
+            onBonusClick
         )
     }
 }

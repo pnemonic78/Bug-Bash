@@ -10,8 +10,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -23,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -52,7 +53,7 @@ fun HelpScreen(navController: NavHostController) {
 
 @Composable
 fun HelpScreen(onHomeClick: VoidCallback, bugs: List<Bug>, onBugClick: BugCallback) {
-    Column(modifier = Modifier.fillMaxSize().safeContentPadding()) {
+    Column(modifier = Modifier.fillMaxSize().systemBarsPadding()) {
         Box(modifier = Modifier.fillMaxWidth()) {
             ActionPanel(modifier = Modifier.align(Alignment.TopEnd)) {
                 HomeButton(onClick = onHomeClick)
@@ -95,9 +96,9 @@ private fun BugCell(bug: Bug, onClick: BugCallback) {
         ) {
             BugView(
                 bug = bug,
+                boardSize = Size.Zero,
                 onSize = {},
-                onTap = onClick,
-                onDead = {}
+                onTap = onClick
             )
         }
         Spacer(modifier = Modifier.width(4.dp))

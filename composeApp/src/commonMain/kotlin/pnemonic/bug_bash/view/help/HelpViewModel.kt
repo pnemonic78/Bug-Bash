@@ -3,6 +3,7 @@ package pnemonic.bug_bash.view.help
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import pnemonic.bug_bash.BugFactory
 import pnemonic.bug_bash.Platform
@@ -23,7 +24,7 @@ class HelpViewModel : LifecycleViewModel() {
                 if (c != 0) return@sortedWith c
                 b1.score - b2.score
             }
-            _catalog.emit(bugs)
+            _catalog.update { bugs }
         }
     }
 

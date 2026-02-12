@@ -69,10 +69,6 @@ class GameViewModel : LifecycleViewModel() {
         engine.onBugSize(bug)
     }
 
-    fun onDead(bug: Bug) {
-        engine.onDead(bug)
-    }
-
     suspend fun notifyFeedback(feedback: Feedback) {
         when (feedback) {
             Feedback.None -> return

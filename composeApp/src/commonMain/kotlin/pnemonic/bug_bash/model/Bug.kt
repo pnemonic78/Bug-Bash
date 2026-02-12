@@ -46,13 +46,13 @@ abstract class Bug(
         private set
     var damage by mutableStateOf(0)
         private set
-    var opacity by mutableStateOf(0f)
+    var opacity by mutableStateOf(1f)
         private set
     private var delay: Long = 0L
     abstract val description: String
 
     override fun toString(): String {
-        return "${this::class.simpleName}{$description, $left, $top, $width, $height, $rotation, $delay}"
+        return "${this::class.simpleName}@${hashCode()}($description, l:$left, t:$top, w:$width, h:$height, r:$rotation, d:$delay, h:$hits, o:$opacity)"
     }
 
     fun setSize(width: Float, height: Float) {
@@ -123,10 +123,6 @@ abstract class Bug(
                 || destinationY.isNaN()
                 || (width <= 0)
                 || (height <= 0)
-    }
-
-    fun isHit(offset: Offset): Boolean {
-        return (left <= offset.x) && (offset.x < right) && (top <= offset.y) && (offset.y < bottom)
     }
 
     fun hit() {

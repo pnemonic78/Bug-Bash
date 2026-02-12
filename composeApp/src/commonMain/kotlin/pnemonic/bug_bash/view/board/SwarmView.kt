@@ -5,22 +5,39 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pnemonic.bug_bash.BugFactory
+import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.Bug
 import pnemonic.bug_bash.model.Swarm
 import pnemonic.bug_bash.view.toPx
 
 @Composable
-fun SwarmView(swarm: Swarm, onSize: BugCallback, onTap: BugCallback, onDead: BugCallback) {
-    SwarmView(swarm.bugs, onSize, onTap, onDead)
+fun SwarmView(board: Board, onSize: BugCallback, onTap: BugCallback) {
+    SwarmView(board.swarm, board.size, onSize, onTap)
 }
 
 @Composable
-fun SwarmView(bugs: List<Bug>, onSize: BugCallback, onTap: BugCallback, onDead: BugCallback) {
+fun SwarmView(
+    swarm: Swarm,
+    boardSize: Size,
+    onSize: BugCallback,
+    onTap: BugCallback
+) {
+    SwarmView(swarm.bugs, boardSize, onSize, onTap)
+}
+
+@Composable
+fun SwarmView(
+    bugs: List<Bug>,
+    boardSize: Size,
+    onSize: BugCallback,
+    onTap: BugCallback
+) {
     for (bug in bugs) {
-        BugView(bug, onSize, onTap, onDead)
+        BugView(bug, boardSize, onSize, onTap)
     }
 }
 
@@ -40,11 +57,10 @@ private fun Preview() {
     }
     val onSize: BugCallback = {}
     val onTap: BugCallback = {}
-    val onDead: BugCallback = {}
 
     MaterialTheme {
         Box(modifier = Modifier.fillMaxSize()) {
-            SwarmView(Swarm(bugs), onSize, onTap, onDead)
+            SwarmView(Swarm(bugs), Size.Zero, onSize, onTap)
         }
     }
 }
