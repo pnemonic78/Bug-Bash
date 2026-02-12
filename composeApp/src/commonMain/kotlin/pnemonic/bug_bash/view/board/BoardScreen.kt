@@ -110,6 +110,7 @@ fun BoardView(
 @Preview(showBackground = true, backgroundColor = 0xFF0000FF, widthDp = 400, heightDp = 600)
 private fun Preview() {
     val bugs = BugFactory.allBugs
+    val bonuses = listOf(Bonus.None, Bonus.Flower(), Bonus.Life(), Bonus.Shoe())
     val dx = 20.dp.toPx()
     val dy = 40.dp.toPx()
     var x = dx
@@ -120,7 +121,7 @@ private fun Preview() {
         x += dx
         y += dy
     }
-    val board = Board(swarm = Swarm(bugs), bonuses = Bonus.entries)
+    val board = Board(swarm = Swarm(bugs), bonuses = bonuses)
     val onSize: OnSizeCallback = {}
     val onBugSize: BugCallback = {}
     val onTap: BugCallback = {}

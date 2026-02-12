@@ -46,13 +46,13 @@ fun SettingsPanel(
             enter = slideInHorizontally(
                 initialOffsetX = { fullWidth -> fullWidth } // Start from the right
             ) + expandHorizontally(
-                expandFrom = Alignment.End // Expand from the start (left)
+                expandFrom = Alignment.End // Expand from the end
             ) + fadeIn(),
             // Defines how it disappears
             exit = slideOutHorizontally(
                 targetOffsetX = { fullWidth -> fullWidth } // Exit to the right
             ) + shrinkHorizontally(
-                shrinkTowards = Alignment.End // Shrink towards the start (left)
+                shrinkTowards = Alignment.End // Shrink towards the end
             ) + fadeOut()
         ) {
             Row {

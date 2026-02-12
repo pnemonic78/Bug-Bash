@@ -30,7 +30,6 @@ fun ScoreView(modifier: Modifier = Modifier, score: Long) {
     val platform: Platform = getPlatform()
 
     Row(modifier = modifier.panel(), verticalAlignment = Alignment.CenterVertically) {
-        Spacer(modifier = Modifier.width(4.dp))
         Image(imageVector = Trophy, contentDescription = "🏆", modifier = Modifier.size(sizeIcon))
         Spacer(modifier = Modifier.width(4.dp))
         Text(text = platform.formatInteger(locale, score), fontSize = sizeText, color = colorText)
