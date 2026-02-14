@@ -17,13 +17,14 @@ import pnemonic.bug_bash.view.theme.sizeHomeButton
 
 @Composable
 fun SettingsPanel(
+    modifier: Modifier = Modifier,
     isSoundEnabled: Boolean = true,
     onSoundChange: BooleanCallback,
     isMusicEnabled: Boolean = true,
     onMusicChange: BooleanCallback,
     onHelpClick: VoidCallback,
 ) {
-    ActionPanel {
+    ActionPanel(modifier = modifier) {
         HelpButton(size = sizeHomeButton, onHelpClick)
         Spacer(modifier = Modifier.width(8.dp))
         SoundButton(isSoundEnabled, size = sizeHomeButton, onSoundChange)
