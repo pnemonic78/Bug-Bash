@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Shtypni insektet</string>
+    <string name="play">Luaj</string>
+    <string name="game_state_finished">Loja mbaroi!</string>
+</resources>

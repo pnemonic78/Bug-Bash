@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Сквиш курт-кумурскалары</string>
+    <string name="play">Ойноо</string>
+    <string name="game_state_finished">Оюн бүттү!</string>
+</resources>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Moulin à pesticides</string>
+    <string name="play">Jouer</string>
+    <string name="game_state_finished">Fin de partie!</string>
+</resources>

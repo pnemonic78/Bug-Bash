@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Krossa insekter</string>
+    <string name="play">Spela</string>
+    <string name="game_state_finished">Spel över!</string>
+</resources>

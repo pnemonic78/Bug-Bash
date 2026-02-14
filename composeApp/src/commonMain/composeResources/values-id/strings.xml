@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Serangga yang Diremas</string>
+    <string name="play">Mainkan</string>
+    <string name="game_state_finished">Permainan berakhir!</string>
+</resources>

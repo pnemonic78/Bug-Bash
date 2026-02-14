@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Питчүүдийн тулаан</string>
+    <string name="play">Тоглох</string>
+    <string name="game_state_finished">Тоглолт дууслаа!</string>
+</resources>

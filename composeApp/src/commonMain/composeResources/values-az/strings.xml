@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Səhvlər Bash</string>
+    <string name="play">Oyna</string>
+    <string name="game_state_finished">Oyun Bitdi!</string>
+</resources>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Pletinsecten</string>
+    <string name="play">Spelen</string>
+    <string name="game_state_finished">Spel voorbij!</string>
+</resources>

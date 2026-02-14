@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Смачкај бубачки</string>
+    <string name="play">Играј</string>
+    <string name="game_state_finished">Играта заврши!</string>
+</resources>

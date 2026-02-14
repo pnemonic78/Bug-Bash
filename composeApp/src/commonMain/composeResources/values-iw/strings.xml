@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">לחבוט מזיקים</string>
+    <string name="play">שחק</string>
+    <string name="game_state_finished">המשחק נגמר!</string>
+</resources>

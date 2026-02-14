@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Згњечи грешке</string>
+    <string name="play">Играј</string>
+    <string name="game_state_finished">Игра је готова!</string>
+</resources>

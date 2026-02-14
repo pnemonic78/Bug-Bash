@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">క్రష్ బగ్‌లు</string>
+    <string name="play">ప్లే</string>
+    <string name="game_state_finished">గేమ్ ముగిసింది!</string>
+</resources>

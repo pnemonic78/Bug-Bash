@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Hataları Ez</string>
+    <string name="play">Oyna</string>
+    <string name="game_state_finished">Oyun Bitti!</string>
+</resources>

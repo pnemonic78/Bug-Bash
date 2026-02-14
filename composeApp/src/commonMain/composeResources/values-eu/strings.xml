@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Intsektu birrintzaileak</string>
+    <string name="play">Jolastu</string>
+    <string name="game_state_finished">Jokoa Amaitu Da!</string>
+</resources>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">بگز کو کچلنا</string>
+    <string name = "play"> چلائیں</string>
+    <string name="game_state_finished">گیم ختم!</string>
+</resources>

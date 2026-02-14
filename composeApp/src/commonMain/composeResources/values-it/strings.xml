@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Insetti schiaccianti</string>
+    <string name="play">Gioca</string>
+    <string name="game_state_finished">Fine della partita!</string>
+</resources>

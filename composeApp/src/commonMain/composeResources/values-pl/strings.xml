@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Zgniataj Robaki</string>
+    <string name="play">Graj</string>
+    <string name="game_state_finished">Koniec gry!</string>
+</resources>

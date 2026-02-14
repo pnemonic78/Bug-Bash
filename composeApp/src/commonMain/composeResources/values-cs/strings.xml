@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Chyby v Bash</string>
+    <string name="play">Hrát</string>
+    <string name="game_state_finished">Konec hry!</string>
+</resources>

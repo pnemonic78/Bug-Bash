@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">बग्स दाबा</string>
+    <string name="play">खेळा</string>
+    <string name="game_state_finished">गेम संपला!</string>
+</resources>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Раздавить жуков</string>
+    <string name="play">Играть</string>
+    <string name="game_state_finished">Игра окончена!</string>
+</resources>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">நொறுக்கு பிழைகள்</string>
+    <string name="play">விளையாடு</string>
+    <string name="game_state_finished">விளையாட்டு முடிந்தது!</string>
+</resources>

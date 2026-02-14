@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">해충 박멸</string>
+    <string name="play">플레이</string>
+    <string name="game_state_finished">게임 종료!</string>
+</resources>

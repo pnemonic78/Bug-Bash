@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Pest mlin</string>
+    <string name="play">Igraj</string>
+    <string name="game_state_finished">Game gotova!</string>
+</resources>

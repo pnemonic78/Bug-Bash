@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">スクイッシュバグ</string>
+    <string name="play">プレイ</string>
+    <string name="game_state_finished">ゲームオーバー！</string>
+</resources>

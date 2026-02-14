@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Kaujas kaitēkļi</string>
+    <string name="play">Spēlēt</string>
+    <string name="game_state_finished">Spēle beigusies!</string>
+</resources>

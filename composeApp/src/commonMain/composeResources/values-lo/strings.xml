@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">ຕໍ່ສູ້ກັບສັດຕູພືດ</string>
+    <string name="play">ຫຼິ້ນ</string>
+    <string name="game_state_finished">ເກມຈົບແລ້ວ!</string>
+</resources>

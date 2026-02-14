@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Insektkamp</string>
+    <string name="play">Spil</string>
+    <string name="game_state_finished">Spil slut!</string>
+</resources>

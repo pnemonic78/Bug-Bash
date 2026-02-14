@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Kuponda Hitilafu</string>
+    <string name="play">Cheza</string>
+    <string name="game_state_finished">Mchezo Umekwisha!</string>
+</resources>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Đập tan lũ bọ</string>
+    <string name="play">Chơi</string>
+    <string name="game_state_finished">Trò chơi kết thúc!</string>
+</resources>

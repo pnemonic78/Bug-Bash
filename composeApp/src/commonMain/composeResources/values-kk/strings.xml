@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Зиянкестермен шайқас</string>
+    <string name="play">Ойнату</string>
+    <string name="game_state_finished">Ойын аяқталды!</string>
+</resources>

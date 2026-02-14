@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">বাগ ব্যাশ</string>
+    <string name="play">খেলা</string>
+    <string name="game_state_finished">খেলা শেষ!</string>
+</resources>

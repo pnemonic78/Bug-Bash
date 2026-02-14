@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Pitsake putukad</string>
+    <string name="play">Mängi</string>
+    <string name="game_state_finished">Mäng läbi!</string>
+</resources>

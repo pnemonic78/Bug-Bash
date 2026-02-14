@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">กำจัดบั๊ก</string>
+    <string name="play">เล่น</string>
+    <string name="game_state_finished">จบเกม!</string>
+</resources>

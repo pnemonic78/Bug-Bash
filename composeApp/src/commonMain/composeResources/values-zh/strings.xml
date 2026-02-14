@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">消灭虫子</string>
+    <string name="play">开始游戏</string>
+    <string name="game_state_finished">游戏结束！</string>
+</resources>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Σκουός έντομα</string>
+    <string name="play">Παιχνίδι</string>
+    <string name="game_state_finished">Το παιχνίδι τελείωσε!</string>
+</resources>

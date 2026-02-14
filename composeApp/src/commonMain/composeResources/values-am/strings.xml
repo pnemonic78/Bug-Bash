@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">የሳንካ ባሽ</string>
+    <string name="play">ይጫወቱ</string>
+    <string name="game_state_finished">ጨዋታው አብቅቷል!</string>
+</resources>

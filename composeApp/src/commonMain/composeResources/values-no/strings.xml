@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Klem insekter</string>
+    <string name="play">Spill</string>
+    <string name="game_state_finished">Spill over!</string>
+</resources>

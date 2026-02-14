@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">دستگاه های خرد کننده آفات</string>
+    <string name="play">بازی</string>
+    <string name="game_state_finished">بازی تمام شد!</string>
+</resources>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Zdrobi hrošče</string>
+    <string name="play">Igraj</string>
+    <string name="game_state_finished">Konec igre!</string>
+</resources>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Жучок Баш</string>
+    <string name="play">Гуляць</string>
+    <string name="game_state_finished">Гульня скончана!</string>
+</resources>

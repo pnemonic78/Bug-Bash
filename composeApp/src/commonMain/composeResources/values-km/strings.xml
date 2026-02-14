@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">ប្រយុទ្ធជាមួយសត្វល្អិត</string>
+    <string name="play">លេង</string>
+    <string name="game_state_finished">ហ្គេមចប់ហើយ!</string>
+</resources>

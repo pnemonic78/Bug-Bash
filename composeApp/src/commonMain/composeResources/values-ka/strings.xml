@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">ბრძოლა მავნებლებთან</string>
+    <string name="play">თამაში</string>
+    <string name="game_state_finished">თამაში დასრულდა!</string>
+</resources>

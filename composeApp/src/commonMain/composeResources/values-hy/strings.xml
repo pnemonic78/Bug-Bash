@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Խավարասերների ջրաղաց</string>
+    <string name="play">Խաղալ</string>
+    <string name="game_state_finished">Խաղն ավարտվեց!</string>
+</resources>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Suspausti vabzdžius</string>
+    <string name="play">Žaisti</string>
+    <string name="game_state_finished">Žaidimas baigtas!</string>
+</resources>

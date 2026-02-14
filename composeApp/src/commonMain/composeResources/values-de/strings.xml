@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Insekten-Quetschen</string>
+    <string name="play">Spielen</string>
+    <string name="game_state_finished">Spiel vorbei!</string>
+</resources>

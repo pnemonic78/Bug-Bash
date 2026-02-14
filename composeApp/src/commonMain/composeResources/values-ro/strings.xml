@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Zdrobirea insectelor</string>
+    <string name="play">Joacă</string>
+    <string name="game_state_finished">Joc încheiat!</string>
+</resources>

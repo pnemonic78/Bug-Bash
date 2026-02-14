@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">سحق الحشرات</string>
+    <string name="play">العب</string>
+    <string name="game_state_finished">انتهت اللعبة!</string>
+</resources>

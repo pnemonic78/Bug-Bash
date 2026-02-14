@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Баш Буболечка</string>
+    <string name="play">Играй</string>
+    <string name="game_state_finished">Играта свърши!</string>
+</resources>

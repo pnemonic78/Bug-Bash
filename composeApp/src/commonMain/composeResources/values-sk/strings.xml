@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Zničte chyby</string>
+    <string name="play">Hrať</string>
+    <string name="game_state_finished">Koniec hry!</string>
+</resources>

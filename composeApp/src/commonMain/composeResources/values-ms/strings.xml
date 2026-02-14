@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">Pepijat Squish</string>
+    <string name="play">Main</string>
+    <string name="game_state_finished">Permainan Tamat!</string>
+</resources>

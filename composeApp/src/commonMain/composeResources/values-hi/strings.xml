@@ -1,0 +1,5 @@
+<resources>
+    <string name="title">बग बैश</string>
+    <string name="play">खेलें</string>
+    <string name="game_state_finished">गेम खत्म!</string>
+</resources>
