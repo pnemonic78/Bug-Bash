@@ -67,10 +67,12 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
             return
         }
         // Mo more lives -> game is done.
-        if (board.lives <= 0) {
+        val livesBefore = board.lives
+        if (livesBefore <= 0) {
             finished()
             return
         }
+
         // No more bugs -> level is done.
         if (board.isLevelFinished()) {
             board = nextLevel(board)
@@ -78,6 +80,12 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         board = move(board)
         board = touch(board)
         board = bonus(board)
+
+        val livesAfter = board.lives
+        if (livesAfter < livesBefore) {
+            playSound(SoundType.Clang)
+        }
+
         _boards.emit(board)
     }
 
