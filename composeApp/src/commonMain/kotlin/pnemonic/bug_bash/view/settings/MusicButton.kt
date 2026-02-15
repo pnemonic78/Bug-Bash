@@ -43,7 +43,7 @@ fun MusicButton(
         val icon = if (enabledState) Icons.Default.MusicNote else Icons.Default.MusicOff
         Icon(
             imageVector = icon,
-            contentDescription = "Toggle Music",
+            contentDescription = "🎵",
             tint = colorButton,
             modifier = Modifier.modifierIcon(size = size)
         )

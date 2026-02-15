@@ -1,5 +1,6 @@
 package pnemonic.bug_bash.view.home
 
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -10,6 +11,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color.Companion.Yellow
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -18,8 +20,10 @@ import androidx.compose.ui.unit.sp
 import bug_bash.composeapp.generated.resources.Res
 import bug_bash.composeapp.generated.resources.title
 import org.jetbrains.compose.resources.stringResource
-import pnemonic.bug_bash.view.theme.colorPrimary
-import pnemonic.bug_bash.view.theme.colorSecondary
+import pnemonic.bug_bash.view.theme.Brown
+import pnemonic.bug_bash.view.theme.DarkRed
+import pnemonic.bug_bash.view.theme.Gold
+import pnemonic.bug_bash.view.theme.LightBrown
 
 private val sizeTitle = 70.sp
 
@@ -31,24 +35,24 @@ fun Title(modifier: Modifier = Modifier) {
 
 @Composable
 fun Title(modifier: Modifier = Modifier, title: String) {
-    var heightPx by remember { mutableFloatStateOf(100f) }
+    var heightPx by remember { mutableFloatStateOf(0f) }
 
-    val style = MaterialTheme.typography.titleLarge.copy(
+    val style = LocalTextStyle.current.copy(
+        lineHeight = sizeTitle,
         brush = Brush.verticalGradient(
-            colors = listOf(colorSecondary, colorPrimary),
-            endY = heightPx * 0.7f
+            colors = listOf(Yellow, Gold, LightBrown, Brown, DarkRed),
+            endY = heightPx
         ),
-        fontWeight = FontWeight.Bold,
-        fontSize = sizeTitle,
-        shadow = Shadow(blurRadius = 5f, offset = Offset(5f, 5f)),
-        lineHeight = sizeTitle
+        shadow = Shadow(blurRadius = 5f, offset = Offset.Zero),
     )
 
     Text(
-        text = title,
-        style = style,
         modifier = modifier,
+        text = title,
+        fontSize = sizeTitle,
+        fontWeight = FontWeight.Bold,
         textAlign = TextAlign.Center,
+        style = style,
         onTextLayout = { tlr ->
             heightPx = tlr.size.height.toFloat()
         }
@@ -56,7 +60,7 @@ fun Title(modifier: Modifier = Modifier, title: String) {
 }
 
 @Composable
-@Preview(showBackground = true, backgroundColor = 0xFF0000FF, widthDp = 300)
+@Preview(showBackground = true, backgroundColor = 0xFF0000FF, widthDp = 400)
 private fun Preview() {
     MaterialTheme {
         Title()
@@ -68,5 +72,13 @@ private fun Preview() {
 private fun Preview2() {
     MaterialTheme {
         Title(title = "Bug Bash 123")
+    }
+}
+
+@Composable
+@Preview(showBackground = true, backgroundColor = 0xFF0000FF, widthDp = 350, locale = "af")
+private fun Preview3() {
+    MaterialTheme {
+        Title()
     }
 }

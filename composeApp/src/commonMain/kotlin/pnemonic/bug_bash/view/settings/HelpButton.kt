@@ -31,7 +31,7 @@ fun HelpButton(size: Dp = sizeButton, onClick: VoidCallback) {
     ) {
         Icon(
             imageVector = Icons.AutoMirrored.Filled.Help,
-            contentDescription = "Help",
+            contentDescription = "?",
             tint = colorButton,
             modifier = Modifier.modifierIcon(size = size)
         )

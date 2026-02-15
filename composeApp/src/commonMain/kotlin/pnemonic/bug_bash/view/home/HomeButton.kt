@@ -20,7 +20,7 @@ fun HomeButton(size: Dp = sizeButton, onClick: VoidCallback) {
     IconButton(onClick = onClick, modifier = Modifier.modifierButton(size = size)) {
         Icon(
             imageVector = Icons.Default.Home,
-            contentDescription = "Home",
+            contentDescription = "🏠",
             tint = colorButton,
             modifier = Modifier.modifierIcon(size = size)
         )

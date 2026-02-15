@@ -4,7 +4,7 @@ import pnemonic.bug_bash.sound.SoundType
 
 class Cricket : BugThatCrawls(
     speed = 0.5f,
-    score = 5,
+    score = 10,
     hits = 2,
     noise = SoundType.Locust,
     soundBash = SoundType.SpitSplat

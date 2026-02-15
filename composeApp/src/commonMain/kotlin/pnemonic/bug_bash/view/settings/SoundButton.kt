@@ -45,7 +45,7 @@ fun SoundButton(
             if (enabledState) Icons.AutoMirrored.Filled.VolumeUp else Icons.AutoMirrored.Filled.VolumeOff
         Icon(
             imageVector = icon,
-            contentDescription = "Toggle Sound",
+            contentDescription = "🔉",
             tint = colorButton,
             modifier = Modifier.modifierIcon(size = size)
         )

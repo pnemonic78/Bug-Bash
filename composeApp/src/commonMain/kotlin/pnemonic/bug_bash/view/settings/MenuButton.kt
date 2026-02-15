@@ -20,7 +20,7 @@ fun MenuButton(size: Dp = sizeButton, onClick: VoidCallback) {
     IconButton(onClick = onClick, modifier = Modifier.modifierButton(size = size)) {
         Icon(
             imageVector = Icons.Default.Menu,
-            contentDescription = "Menu",
+            contentDescription = "☰",
             tint = colorButton,
             modifier = Modifier.modifierIcon(size = size)
         )

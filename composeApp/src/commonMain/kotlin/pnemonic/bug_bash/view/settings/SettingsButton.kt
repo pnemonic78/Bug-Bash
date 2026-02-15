@@ -20,7 +20,7 @@ fun SettingsButton(size: Dp = sizeButton, onClick: VoidCallback) {
     IconButton(onClick = onClick, modifier = Modifier.modifierButton(size = size)) {
         Icon(
             imageVector = Icons.Default.Settings,
-            contentDescription = "Settings",
+            contentDescription = "\uD83D\uDEE0\uFE0F",
             tint = colorButton,
             modifier = Modifier.modifierIcon(size = size)
         )
