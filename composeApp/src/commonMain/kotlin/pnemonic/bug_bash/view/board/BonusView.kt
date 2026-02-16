@@ -14,13 +14,12 @@ import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,17 +27,29 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import pnemonic.bug_bash.drawable.Cupcake
+import pnemonic.bug_bash.drawable.Flower
+import pnemonic.bug_bash.drawable.GluePaper
+import pnemonic.bug_bash.drawable.Insecticide
+import pnemonic.bug_bash.drawable.LifeHas
+import pnemonic.bug_bash.drawable.Shoe
+import pnemonic.bug_bash.drawable.Swatter
+import pnemonic.bug_bash.drawable.Trophy
+import pnemonic.bug_bash.drawable.Zapper
 import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.view.theme.panel
 import pnemonic.bug_bash.drawable.Bonus as BonusImage
 
 private val sizeIcon = 30.dp
-private val sizeBonus = 32.dp
-private val sizeBonusText = sizeBonus * 0.75f
+private val sizeBonus = 48.dp
+private val colorProgressBar = Color(0xFFBFC654)
+private val colorProgressTrack = Color(0xFF005703)
+private val spacing = 8.dp
 
 typealias BonusCallback = (Bonus) -> Unit
 
@@ -76,7 +87,7 @@ fun BonusesView(modifier: Modifier = Modifier, bonuses: List<Bonus>, onClick: Bo
                 )
             ) {
                 for (bonus in bonuses) {
-                    Spacer(modifier = Modifier.width(8.dp))
+                    Spacer(modifier = Modifier.width(spacing))
                     BonusView(bonus, onClick)
                 }
             }
@@ -84,35 +95,35 @@ fun BonusesView(modifier: Modifier = Modifier, bonuses: List<Bonus>, onClick: Bo
     }
 }
 
-private val colorProgressBar = Color(0xFFBFC654)
-private val colorProgressTrack = Color(0xFF005703)
-
 @Composable
 fun BonusView(bonus: Bonus, onBonusClick: BonusCallback) {
     val progress = bonus.progress
     if (progress <= 0) return
     val total = bonus.score
-    val onClick = { onBonusClick(bonus) }
 
     Box(
         modifier = Modifier
             .size(sizeBonus)
-            .clickable { if (progress >= total) onClick() },
+            .clickable {
+                if (progress >= total) onBonusClick(bonus)
+            },
         contentAlignment = Alignment.Center
     ) {
         when (bonus) {
             Bonus.None -> return
+            is Bonus.Cupcake -> BonusCupcake()
             is Bonus.Flower -> BonusFlower()
+            is Bonus.GluePaper -> BonusGluePaper()
             is Bonus.Insecticide -> BonusInsecticide()
             is Bonus.Life -> BonusLife()
-            is Bonus.RainbowSprinkles -> BonusRainbowSprinkles()
+            is Bonus.Score -> BonusScore()
             is Bonus.Shoe -> BonusShoe()
             is Bonus.Swatter -> BonusSwatter()
             is Bonus.Zapper -> BonusZapper()
         }
         if (progress < total) {
-            LinearProgressIndicator(
-                modifier = Modifier.fillMaxWidth(),
+            CircularProgressIndicator(
+                modifier = Modifier.fillMaxSize().alpha(0.7f),
                 progress = { progress.toFloat() / total.toFloat() },
                 color = colorProgressBar,
                 trackColor = colorProgressTrack,
@@ -123,54 +134,108 @@ fun BonusView(bonus: Bonus, onBonusClick: BonusCallback) {
 
 @Composable
 private fun BonusFlower() {
-    val size = with(LocalDensity.current) { sizeBonusText.toSp() }
-    Text(text = "🌼", fontSize = size)
+    Image(
+        modifier = Modifier.size(sizeBonus),
+        imageVector = Flower,
+        contentDescription = "🌼",
+        contentScale = ContentScale.Fit
+    )
+}
+
+@Composable
+private fun BonusGluePaper() {
+    Image(
+        modifier = Modifier.size(sizeBonus),
+        imageVector = GluePaper,
+        contentDescription = "📜",
+        contentScale = ContentScale.Fit
+    )
 }
 
 @Composable
 private fun BonusInsecticide() {
-    val size = with(LocalDensity.current) { sizeBonusText.toSp() }
-    Text(text = "☠", fontSize = size)
+    Image(
+        modifier = Modifier.size(sizeBonus),
+        imageVector = Insecticide,
+        contentDescription = "☠",
+        contentScale = ContentScale.Fit
+    )
 }
 
 @Composable
 private fun BonusLife() {
-    val size = with(LocalDensity.current) { sizeBonusText.toSp() }
-    Text(text = "💝", fontSize = size)
+    Image(
+        modifier = Modifier.size(sizeBonus),
+        imageVector = LifeHas,
+        contentDescription = "💝",
+        contentScale = ContentScale.Fit
+    )
 }
 
 @Composable
-private fun BonusRainbowSprinkles() {
-    val size = with(LocalDensity.current) { sizeBonusText.toSp() }
-    Text(text = "🌈", fontSize = size)
+private fun BonusCupcake() {
+    Image(
+        modifier = Modifier.size(sizeBonus),
+        imageVector = Cupcake,
+        contentDescription = "🧁",
+        contentScale = ContentScale.Fit
+    )
+}
+
+@Composable
+private fun BonusScore() {
+    Image(
+        modifier = Modifier.size(sizeBonus),
+        imageVector = Trophy,
+        contentDescription = "🏆",
+        contentScale = ContentScale.Fit
+    )
 }
 
 @Composable
 private fun BonusShoe() {
-    val size = with(LocalDensity.current) { sizeBonusText.toSp() }
-    Text(text = "👞", fontSize = size)
+    Image(
+        modifier = Modifier.size(sizeBonus),
+        imageVector = Shoe,
+        contentDescription = "👞",
+        contentScale = ContentScale.Fit
+    )
 }
 
 @Composable
 private fun BonusSwatter() {
-    val size = with(LocalDensity.current) { sizeBonusText.toSp() }
-    Text(text = "🏸", fontSize = size)
+    Image(
+        modifier = Modifier.size(sizeBonus),
+        imageVector = Swatter,
+        contentDescription = "🏸",
+        contentScale = ContentScale.Fit
+    )
 }
 
 @Composable
 private fun BonusZapper() {
-    val size = with(LocalDensity.current) { sizeBonusText.toSp() }
-    Text(text = "⚡", fontSize = size)
+    Image(
+        modifier = Modifier.size(sizeBonus),
+        imageVector = Zapper,
+        contentDescription = "⚡",
+        contentScale = ContentScale.Fit
+    )
 }
 
 @Composable
-@Preview
+@Preview(widthDp = 600)
 private fun Preview() {
     val items = listOf(
         Bonus.None,
-        Bonus.Flower(progress = 10),
+        Bonus.Cupcake(progress = 10),
+        Bonus.Flower(progress = 20),
+        Bonus.GluePaper(progress = 30),
+        Bonus.Insecticide(progress = 40),
         Bonus.Life(progress = 50),
-        Bonus.Shoe(progress = 200)
+        Bonus.Score(progress = 60),
+        Bonus.Shoe(progress = 70),
+        Bonus.Swatter(progress =80),
+        Bonus.Zapper(progress = 90),
     )
 
     MaterialTheme {

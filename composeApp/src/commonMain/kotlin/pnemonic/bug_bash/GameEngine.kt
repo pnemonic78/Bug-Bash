@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import pnemonic.bug_bash.model.Board
+import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.model.Bug
 import pnemonic.bug_bash.model.GameState
 import pnemonic.bug_bash.model.Scene
@@ -35,6 +36,7 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
     private val rand = Random.Default
     private val touched = mutableListOf<Bug>()
     private val squashed = mutableListOf<Bug>()
+    private val bonusEngine = BonusEngine()
 
     private val _feedback = MutableSharedFlow<Feedback>(extraBufferCapacity = 10)
     val feedback: Flow<Feedback> = _feedback
@@ -280,16 +282,12 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
     }
 
     // Apply any bonuses
-    private suspend fun bonus(board: Board): Board {
-        var bonus = false
-        val score = board.score
+    private fun bonus(board: Board): Board {
+        return bonusEngine.apply(board)
+    }
 
-        val lives = board.lives
-        if (lives < Board.MAX_LIVES) {
-            //if (score % Bonus.Life.score)
-        }
-
-        return board
+    fun onBonusClick(bonus: Bonus) {
+        bonusEngine.onClick(bonus)
     }
 
     companion object {

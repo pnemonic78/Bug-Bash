@@ -126,8 +126,7 @@ class GameViewModel : LifecycleViewModel() {
     }
 
     fun onBonusClick(bonus: Bonus) {
-        TODO("remove the bonus from the list")
-        TODO("apply the bonus to the board")
+        engine.onBonusClick(bonus)
     }
 
     companion object {

@@ -110,7 +110,7 @@ fun BoardView(
 @Preview(showBackground = true, backgroundColor = 0xFF0000FF, widthDp = 400, heightDp = 600)
 private fun Preview() {
     val bugs = BugFactory.allBugs
-    val bonuses = listOf(Bonus.None, Bonus.Flower(), Bonus.Life(), Bonus.Shoe())
+    val bonuses = listOf(Bonus.None, Bonus.Flower(1), Bonus.Life(2), Bonus.Score(3), Bonus.Shoe(4))
     val dx = 20.dp.toPx()
     val dy = 40.dp.toPx()
     var x = dx
