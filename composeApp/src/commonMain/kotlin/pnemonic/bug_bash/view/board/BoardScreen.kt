@@ -27,7 +27,7 @@ import pnemonic.bug_bash.BugFactory
 import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.model.GameState
-import pnemonic.bug_bash.model.Swarm
+import pnemonic.bug_bash.model.bug.Swarm
 import pnemonic.bug_bash.view.OnSizeCallback
 import pnemonic.bug_bash.view.toPx
 
@@ -44,7 +44,7 @@ fun BoardScreen(navController: NavController) {
         state = state.value,
         onSize = viewModel::onSize,
         onBugSize = viewModel::onBugSize,
-        onTap = viewModel::onTap,
+        onBugTap = viewModel::onTap,
         onHomeClick = { navController.navigateUp() },
         isPaused = viewModel.isPaused,
         onPauseChange = viewModel::onPauseChange,
@@ -52,7 +52,9 @@ fun BoardScreen(navController: NavController) {
         onSoundChange = viewModel::onSoundChange,
         isMusicEnabled = viewModel.isMusicEnabled,
         onMusicChange = viewModel::onMusicChange,
-        onBonusClick = viewModel::onBonusClick
+        onBonusClick = viewModel::onBonusClick,
+        onToolSize = viewModel::onToolSize,
+        onToolTap = viewModel::onToolTap,
     )
 
     DisposableEffect(lifecycleOwner) {
@@ -70,7 +72,7 @@ fun BoardView(
     state: GameState,
     onSize: OnSizeCallback,
     onBugSize: BugCallback,
-    onTap: BugCallback,
+    onBugTap: BugCallback,
     onHomeClick: VoidCallback,
     isPaused: Boolean = false,
     onPauseChange: BooleanCallback,
@@ -78,7 +80,9 @@ fun BoardView(
     onSoundChange: BooleanCallback,
     isMusicEnabled: Boolean = true,
     onMusicChange: BooleanCallback,
-    onBonusClick: BonusCallback
+    onBonusClick: BonusCallback,
+    onToolSize: ToolCallback,
+    onToolTap: ToolCallback,
 ) {
     SceneView(
         modifier = Modifier
@@ -86,7 +90,8 @@ fun BoardView(
             .onSizeChanged(onSize),
         scene = board.scene
     ) {
-        SwarmView(board, onBugSize, onTap)
+        SwarmView(board, onBugSize, onBugTap)
+        ToolsView(board, onToolSize, onToolTap)
         Box(modifier = Modifier.fillMaxWidth().systemBarsPadding()) {
             Column(modifier = Modifier.align(Alignment.TopStart).padding(8.dp)) {
                 LivesView(lives = board.lives)
@@ -128,17 +133,14 @@ private fun Preview() {
         y += dy
     }
     val board = Board(swarm = Swarm(bugs), bonuses = bonuses)
-    val onSize: OnSizeCallback = {}
-    val onBugSize: BugCallback = {}
-    val onTap: BugCallback = {}
 
     MaterialTheme {
         BoardView(
             board,
             GameState.STARTED,
-            onSize,
-            onBugSize,
-            onTap,
+            onSize = {},
+            onBugSize = {},
+            onBugTap = {},
             onHomeClick = {},
             isPaused = false,
             onPauseChange = {},
@@ -147,6 +149,8 @@ private fun Preview() {
             isMusicEnabled = true,
             onMusicChange = {},
             onBonusClick = {},
+            onToolSize = {},
+            onToolTap = {},
         )
     }
 }

@@ -1,8 +1,8 @@
 package pnemonic.bug_bash
 
 import androidx.compose.ui.geometry.Rect
-import pnemonic.bug_bash.model.Ant
-import pnemonic.bug_bash.model.contains
+import pnemonic.bug_bash.model.bug.Ant
+import pnemonic.bug_bash.model.bug.contains
 import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue

@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
 import pnemonic.bug_bash.drawable.Earthworm
-import pnemonic.bug_bash.model.Worm
+import pnemonic.bug_bash.model.bug.Worm
 
 @Composable
 fun WormView(

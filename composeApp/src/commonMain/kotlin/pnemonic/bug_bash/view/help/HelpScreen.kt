@@ -34,7 +34,7 @@ import androidx.navigation.compose.rememberNavController
 import pnemonic.VoidCallback
 import pnemonic.bug_bash.drawable.Touch
 import pnemonic.bug_bash.drawable.Trophy
-import pnemonic.bug_bash.model.Bug
+import pnemonic.bug_bash.model.bug.Bug
 import pnemonic.bug_bash.view.board.BugCallback
 import pnemonic.bug_bash.view.board.BugView
 import pnemonic.bug_bash.view.home.HomeButton

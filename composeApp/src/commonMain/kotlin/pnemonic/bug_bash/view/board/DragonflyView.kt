@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
-import pnemonic.bug_bash.model.Dragonfly
+import pnemonic.bug_bash.model.bug.Dragonfly
 import pnemonic.bug_bash.drawable.Dragonfly as DragonflyImage
 
 @Composable

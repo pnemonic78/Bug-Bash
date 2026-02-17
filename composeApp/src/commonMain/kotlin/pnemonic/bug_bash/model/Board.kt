@@ -1,6 +1,8 @@
 package pnemonic.bug_bash.model
 
 import androidx.compose.ui.geometry.Size
+import pnemonic.bug_bash.model.bug.Swarm
+import pnemonic.bug_bash.model.tool.Tool
 
 data class Board(
     val size: Size = Size.Zero,
@@ -10,7 +12,9 @@ data class Board(
     val score: Long = 0,
     val lives: Int = LIVES,
     val bonuses: List<Bonus> = emptyList(),
-    val swarm: Swarm = Swarm()
+    val swarm: Swarm = Swarm(),
+    // only 1 active tool allowed - so not a list of tools.
+    val tool: Tool? = null,
 ) {
     val width: Float get() = size.width
     val height: Float get() = size.height

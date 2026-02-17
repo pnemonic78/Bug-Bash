@@ -44,7 +44,7 @@ fun Title(modifier: Modifier = Modifier, title: String) {
             colors = listOf(White, Yellow, Gold, LightBrown, Brown, DarkRed),
             endY = heightPx
         ),
-        shadow = Shadow(blurRadius = 5f, offset = Offset.Zero),
+        shadow = Shadow(blurRadius = 5f),
     )
 
     Text(

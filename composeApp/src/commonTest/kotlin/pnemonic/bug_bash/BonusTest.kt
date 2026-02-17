@@ -102,7 +102,7 @@ class BonusTest {
         board = engine.apply(board)
         assertEquals(bonus.score, bonus.progress)
         bonus = board.bonuses.lastOrNull()
-        assertTrue(bonus is Bonus.Insecticide)
+        assertTrue(bonus is Bonus.Spray)
 
         board = board.copy(score = board.score + bonus.score)
         board = engine.apply(board)

@@ -14,8 +14,9 @@ import pnemonic.bug_bash.control.LifecycleViewModel
 import pnemonic.bug_bash.getPlatform
 import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.Bonus
-import pnemonic.bug_bash.model.Bug
 import pnemonic.bug_bash.model.GameState
+import pnemonic.bug_bash.model.bug.Bug
+import pnemonic.bug_bash.model.tool.Tool
 import pnemonic.bug_bash.sound.SoundType
 import pnemonic.bug_bash.view.settings.SettingsManager
 
@@ -136,6 +137,14 @@ class GameViewModel : LifecycleViewModel() {
         } else {
             engine.resume()
         }
+    }
+
+    fun onToolSize(tool: Tool) {
+
+    }
+
+    fun onToolTap(tool: Tool) {
+
     }
 
     companion object {

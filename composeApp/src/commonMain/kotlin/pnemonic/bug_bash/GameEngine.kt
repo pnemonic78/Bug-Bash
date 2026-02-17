@@ -14,10 +14,10 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.Bonus
-import pnemonic.bug_bash.model.Bug
+import pnemonic.bug_bash.model.bug.Bug
 import pnemonic.bug_bash.model.GameState
 import pnemonic.bug_bash.model.Scene
-import pnemonic.bug_bash.model.Swarm
+import pnemonic.bug_bash.model.bug.Swarm
 import pnemonic.bug_bash.sound.SoundType
 import pnemonic.removeAll
 import kotlin.math.max

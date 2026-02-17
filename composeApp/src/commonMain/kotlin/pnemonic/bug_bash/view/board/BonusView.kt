@@ -111,15 +111,15 @@ fun BonusView(bonus: Bonus, onBonusClick: BonusCallback) {
     ) {
         when (bonus) {
             Bonus.None -> return
-            is Bonus.Cupcake -> BonusCupcake()
-            is Bonus.Flower -> BonusFlower()
-            is Bonus.GluePaper -> BonusGluePaper()
-            is Bonus.Insecticide -> BonusInsecticide()
-            is Bonus.Life -> BonusLife()
-            is Bonus.Score -> BonusScore()
-            is Bonus.Shoe -> BonusShoe()
-            is Bonus.Swatter -> BonusSwatter()
-            is Bonus.Zapper -> BonusZapper()
+            is Bonus.Cupcake -> BonusCupcake(bonus)
+            is Bonus.Flower -> BonusFlower(bonus)
+            is Bonus.GluePaper -> BonusGluePaper(bonus)
+            is Bonus.Life -> BonusLife(bonus)
+            is Bonus.Score -> BonusScore(bonus)
+            is Bonus.Shoe -> BonusShoe(bonus)
+            is Bonus.Spray -> BonusSpray(bonus)
+            is Bonus.Swatter -> BonusSwatter(bonus)
+            is Bonus.Zapper -> BonusZapper(bonus)
         }
         if (progress < total) {
             CircularProgressIndicator(
@@ -133,91 +133,91 @@ fun BonusView(bonus: Bonus, onBonusClick: BonusCallback) {
 }
 
 @Composable
-private fun BonusFlower() {
-    Image(
-        modifier = Modifier.size(sizeBonus),
-        imageVector = Flower,
-        contentDescription = "🌼",
-        contentScale = ContentScale.Fit
-    )
-}
-
-@Composable
-private fun BonusGluePaper() {
-    Image(
-        modifier = Modifier.size(sizeBonus),
-        imageVector = GluePaper,
-        contentDescription = "📜",
-        contentScale = ContentScale.Fit
-    )
-}
-
-@Composable
-private fun BonusInsecticide() {
-    Image(
-        modifier = Modifier.size(sizeBonus),
-        imageVector = Insecticide,
-        contentDescription = "☠",
-        contentScale = ContentScale.Fit
-    )
-}
-
-@Composable
-private fun BonusLife() {
-    Image(
-        modifier = Modifier.size(sizeBonus),
-        imageVector = LifeHas,
-        contentDescription = "💝",
-        contentScale = ContentScale.Fit
-    )
-}
-
-@Composable
-private fun BonusCupcake() {
+private fun BonusCupcake(bonus: Bonus.Cupcake) {
     Image(
         modifier = Modifier.size(sizeBonus),
         imageVector = Cupcake,
-        contentDescription = "🧁",
+        contentDescription = bonus.description,
         contentScale = ContentScale.Fit
     )
 }
 
 @Composable
-private fun BonusScore() {
+private fun BonusFlower(bonus: Bonus.Flower) {
+    Image(
+        modifier = Modifier.size(sizeBonus),
+        imageVector = Flower,
+        contentDescription = bonus.description,
+        contentScale = ContentScale.Fit
+    )
+}
+
+@Composable
+private fun BonusGluePaper(bonus: Bonus.GluePaper) {
+    Image(
+        modifier = Modifier.size(sizeBonus),
+        imageVector = GluePaper,
+        contentDescription = bonus.description,
+        contentScale = ContentScale.Fit
+    )
+}
+
+@Composable
+private fun BonusSpray(bonus: Bonus.Spray) {
+    Image(
+        modifier = Modifier.size(sizeBonus),
+        imageVector = Insecticide,
+        contentDescription = bonus.description,
+        contentScale = ContentScale.Fit
+    )
+}
+
+@Composable
+private fun BonusLife(bonus: Bonus.Life) {
+    Image(
+        modifier = Modifier.size(sizeBonus),
+        imageVector = LifeHas,
+        contentDescription = bonus.description,
+        contentScale = ContentScale.Fit
+    )
+}
+
+@Composable
+private fun BonusScore(bonus: Bonus.Score) {
     Image(
         modifier = Modifier.size(sizeBonus),
         imageVector = Trophy,
-        contentDescription = "🏆",
+        contentDescription = bonus.description,
         contentScale = ContentScale.Fit
     )
 }
 
 @Composable
-private fun BonusShoe() {
+private fun BonusShoe(bonus: Bonus.Shoe) {
     Image(
         modifier = Modifier.size(sizeBonus),
         imageVector = Shoe,
-        contentDescription = "👞",
+        contentDescription = bonus.description,
         contentScale = ContentScale.Fit
     )
 }
 
 @Composable
-private fun BonusSwatter() {
+private fun BonusSwatter(bonus: Bonus.Swatter) {
     Image(
         modifier = Modifier.size(sizeBonus),
         imageVector = Swatter,
-        contentDescription = "🏸",
+        contentDescription = bonus.description,
         contentScale = ContentScale.Fit
     )
 }
 
 @Composable
-private fun BonusZapper() {
+private fun BonusZapper(bonus: Bonus.Zapper) {
     Image(
         modifier = Modifier.size(sizeBonus),
         imageVector = Zapper,
-        contentDescription = "⚡",
+        contentDescription = bonus.description,
         contentScale = ContentScale.Fit
     )
 }
@@ -230,11 +230,11 @@ private fun Preview() {
         Bonus.Cupcake(progress = 10),
         Bonus.Flower(progress = 20),
         Bonus.GluePaper(progress = 30),
-        Bonus.Insecticide(progress = 40),
+        Bonus.Spray(progress = 40),
         Bonus.Life(progress = 50),
         Bonus.Score(progress = 60),
         Bonus.Shoe(progress = 70),
-        Bonus.Swatter(progress =80),
+        Bonus.Swatter(progress = 80),
         Bonus.Zapper(progress = 90),
     )
 

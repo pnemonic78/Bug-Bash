@@ -9,7 +9,7 @@ import pnemonic.bug_bash.BugFactory
 import pnemonic.bug_bash.Platform
 import pnemonic.bug_bash.control.LifecycleViewModel
 import pnemonic.bug_bash.getPlatform
-import pnemonic.bug_bash.model.Bug
+import pnemonic.bug_bash.model.bug.Bug
 
 class HelpViewModel : LifecycleViewModel() {
     private val _catalog = MutableStateFlow<List<Bug>>(emptyList())

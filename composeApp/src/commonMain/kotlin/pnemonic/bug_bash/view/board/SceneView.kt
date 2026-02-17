@@ -29,6 +29,7 @@ import pnemonic.bug_bash.view.orientation
 import pnemonic.bug_bash.view.times
 import pnemonic.bug_bash.view.toDp
 import pnemonic.bug_bash.view.toOrientation
+import pnemonic.half
 import kotlin.math.max
 
 @Composable
@@ -66,7 +67,7 @@ private fun SceneBackground(modifier: Modifier = Modifier, scene: Scene, size: I
         val scale = max(scaleX, scaleY)
         val srcSize = IntSize(image.width, image.height)
         val dstSize = (srcSize * scale).toIntSize()
-        val pivot = size.width / 2f
+        val pivot = size.width.half.toFloat()
         val bitmap = ImageBitmap(size.width, size.height, ImageBitmapConfig.Rgb565)
         Canvas(bitmap).apply {
             rotate(90f, pivot, pivot)

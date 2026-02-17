@@ -3,6 +3,7 @@ package pnemonic.bug_bash
 import pnemonic.add
 import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.Bonus
+import pnemonic.bug_bash.model.tool.GluePaper
 import pnemonic.remove
 import kotlin.math.max
 import kotlin.math.min
@@ -13,7 +14,7 @@ class BonusEngine {
     private var bonusNext: Bonus? = null
 
     fun onClick(bonus: Bonus) {
-        if (bonus.isActive) {
+        if (bonus.isActive && touched.isEmpty()) {
             touched.add(bonus)
         }
     }
@@ -22,12 +23,15 @@ class BonusEngine {
     fun apply(board: Board): Board {
         var board = board
         // Apply bonuses to the board that were clicked by player.
-        for (bonus in touched) {
-            // remove the bonus from the list
-            // apply the bonus to the board
-            board = apply(board, bonus)
+        val bonusActive = board.tool
+        if (bonusActive == null) {
+            val bonusTouched = touched.removeFirstOrNull()
+            if (bonusTouched != null) {
+                // remove the bonus from the list
+                // apply the bonus to the board
+                board = apply(board, bonusTouched)
+            }
         }
-        touched.clear()
 
         // Add potential bonus.
         val scoreBefore = boardScore
@@ -49,7 +53,7 @@ class BonusEngine {
         val progressDelta = min(scoreDelta, max(0, bonus.score - bonus.progress))
         bonus.progress += progressDelta
         val progressNext = scoreDelta - progressDelta
-        if (bonus.progress >= bonus.score) {
+        if (bonus.isActive) {
             bonus = bonuses.firstOrNull { b -> b.progress < b.score } ?: next(bonuses, bonus)
             if (bonus != null) {
                 bonus.progress += progressNext
@@ -69,10 +73,17 @@ class BonusEngine {
     private fun apply(board: Board, bonus: Bonus): Board {
         return when (bonus) {
             Bonus.None -> board
+            is Bonus.GluePaper -> apply(board, bonus)
             is Bonus.Life -> apply(board, bonus)
             is Bonus.Score -> apply(board, bonus)
             else -> board
         }
+    }
+
+    private fun apply(board: Board, bonus: Bonus.GluePaper): Board {
+        val tool = GluePaper(bonus)
+        val bonuses = board.bonuses.remove(bonus)
+        return board.copy(bonuses = bonuses, tool = tool)
     }
 
     private fun apply(board: Board, bonus: Bonus.Life): Board {
@@ -132,16 +143,10 @@ class BonusEngine {
                 Bonus.Shoe()
             }
 
-            is Bonus.Insecticide -> {
-                val first = bonuses.firstOrNull { it is Bonus.Score }
-                if (first != null) return null
-                Bonus.Score()
-            }
-
             is Bonus.Life -> {
-                val first = bonuses.firstOrNull { it is Bonus.Insecticide }
+                val first = bonuses.firstOrNull { it is Bonus.Spray }
                 if (first != null) return null
-                Bonus.Insecticide()
+                Bonus.Spray()
             }
 
             is Bonus.Score -> {
@@ -154,6 +159,12 @@ class BonusEngine {
                 val first = bonuses.firstOrNull { it is Bonus.Cupcake }
                 if (first != null) return null
                 Bonus.Cupcake()
+            }
+
+            is Bonus.Spray -> {
+                val first = bonuses.firstOrNull { it is Bonus.Score }
+                if (first != null) return null
+                Bonus.Score()
             }
 
             is Bonus.Swatter -> {

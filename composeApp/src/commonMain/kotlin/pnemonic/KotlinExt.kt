@@ -34,3 +34,7 @@ fun <T> List<T>.add(item: T): List<T> {
     list.add(item)
     return list
 }
+
+val Int.half: Int get() = this / 2
+
+val Float.half: Float get() = this * 0.5f
