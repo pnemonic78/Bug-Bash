@@ -16,7 +16,8 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
+import pnemonic.BooleanCallback
+import pnemonic.VoidCallback
 import pnemonic.bug_bash.model.Scene
 import pnemonic.bug_bash.view.board.SceneView
 
@@ -26,29 +27,14 @@ fun HomeScreen(navController: NavHostController) {
     //FIXME for JVM val viewModel = viewModel<HomeViewModel>()
     val viewModel = viewModel { HomeViewModel() }
 
-    SceneView(
-        modifier = Modifier.fillMaxSize(),
-        scene = Scene.Beach,
-    ) {
-        Box(modifier = Modifier.fillMaxSize().background(color = Color.Black.copy(alpha = 0.5f)))
-        Title(
-            modifier = Modifier.align(BiasAlignment(0f, -0.5f))
-                .padding(24.dp)
-        )
-        StartButton(
-            modifier = Modifier.align(BiasAlignment(0f, 0f))
-                .padding(24.dp),
-            onClick = { viewModel.onPlayClick(navController) }
-        )
-        SettingsPanel(
-            modifier = Modifier.align(BiasAlignment(0f, 0.5f)),
-            isSoundEnabled = viewModel.isSoundEnabled,
-            onSoundChange = viewModel::onSoundChange,
-            isMusicEnabled = viewModel.isMusicEnabled,
-            onMusicChange = viewModel::onMusicChange,
-            onHelpClick = { viewModel.onHelpClick(navController) }
-        )
-    }
+    HomeScreen(
+        onPlayClick = { viewModel.onPlayClick(navController) },
+        isSoundEnabled = viewModel.isSoundEnabled,
+        onSoundChange = viewModel::onSoundChange,
+        isMusicEnabled = viewModel.isMusicEnabled,
+        onMusicChange = viewModel::onMusicChange,
+        onHelpClick = { viewModel.onHelpClick(navController) }
+    )
 
     DisposableEffect(lifecycleOwner) {
         viewModel.observe(lifecycleOwner)
@@ -59,12 +45,51 @@ fun HomeScreen(navController: NavHostController) {
     }
 }
 
+private val colorMask = Color(0xAA452716)
+
+@Composable
+private fun HomeScreen(
+    onPlayClick: VoidCallback,
+    isSoundEnabled: Boolean = true,
+    onSoundChange: BooleanCallback,
+    isMusicEnabled: Boolean = true,
+    onMusicChange: BooleanCallback,
+    onHelpClick: VoidCallback,
+) {
+    SceneView(
+        modifier = Modifier.fillMaxSize(),
+        scene = Scene.Grass,
+    ) {
+        Box(modifier = Modifier.fillMaxSize().background(color = colorMask))
+        Title(
+            modifier = Modifier.align(BiasAlignment(0f, -0.5f))
+                .padding(24.dp)
+        )
+        StartButton(
+            modifier = Modifier.align(BiasAlignment(0f, 0f))
+                .padding(24.dp),
+            onClick = onPlayClick
+        )
+        SettingsPanel(
+            modifier = Modifier.align(BiasAlignment(0f, 0.5f)),
+            isSoundEnabled = isSoundEnabled,
+            onSoundChange = onSoundChange,
+            isMusicEnabled = isMusicEnabled,
+            onMusicChange = onMusicChange,
+            onHelpClick = onHelpClick
+        )
+    }
+}
+
 @Composable
 @Preview(widthDp = 400, heightDp = 600)
 private fun Preview() {
-    val navController = rememberNavController()
-
     MaterialTheme {
-        HomeScreen(navController)
+        HomeScreen(
+            onPlayClick = {},
+            onSoundChange = {},
+            onMusicChange = {},
+            onHelpClick = {},
+        )
     }
 }

@@ -16,7 +16,7 @@ fun CentipedeView(
     onSize: BugCallback,
     onTap: BugCallback
 ) {
-    ImageBug(bug, boardSize, CentipedeImage, 2f, onSize, onTap)
+    ImageBug(bug, boardSize, CentipedeImage, 7f, onSize, onTap)
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF0000FF)

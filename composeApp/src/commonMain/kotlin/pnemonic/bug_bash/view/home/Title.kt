@@ -11,6 +11,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.graphics.Color.Companion.Yellow
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.text.font.FontWeight
@@ -35,12 +36,12 @@ fun Title(modifier: Modifier = Modifier) {
 
 @Composable
 fun Title(modifier: Modifier = Modifier, title: String) {
-    var heightPx by remember { mutableFloatStateOf(0f) }
+    var heightPx by remember { mutableFloatStateOf(200f) }
 
     val style = LocalTextStyle.current.copy(
         lineHeight = sizeTitle,
         brush = Brush.verticalGradient(
-            colors = listOf(Yellow, Gold, LightBrown, Brown, DarkRed),
+            colors = listOf(White, Yellow, Gold, LightBrown, Brown, DarkRed),
             endY = heightPx
         ),
         shadow = Shadow(blurRadius = 5f, offset = Offset.Zero),
