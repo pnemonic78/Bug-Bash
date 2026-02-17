@@ -15,7 +15,7 @@ import kotlin.math.sin
 
 abstract class Bug(
     val speed: Float,
-    val score: Int,
+    val score: Long,
     var hits: Int,
     val noise: SoundType = SoundType.None,
     val soundBash: SoundType = SoundType.Squirt,

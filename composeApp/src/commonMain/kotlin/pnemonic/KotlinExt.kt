@@ -28,3 +28,9 @@ fun <T> List<T>.addAll(items: Collection<T>): List<T> {
     list.addAll(items)
     return list
 }
+
+fun <T> List<T>.add(item: T): List<T> {
+    val list = toMutableList()
+    list.add(item)
+    return list
+}

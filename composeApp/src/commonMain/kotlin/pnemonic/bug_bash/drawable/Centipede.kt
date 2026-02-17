@@ -11,6 +11,9 @@ val Centipede: ImageVector
         if (_Centipede != null) {
             return _Centipede!!
         }
+        val color0 = Color(0xDDFBCC02)
+        val color2 = Color(0xEE402727)
+        val color4 = Color(0xDD80300F)
         _Centipede = ImageVector.Builder(
             name = "Centipede",
             defaultWidth = 7.99.dp,
@@ -18,7 +21,7 @@ val Centipede: ImageVector
             viewportWidth = 7.99f,
             viewportHeight = 29.283f
         ).apply {
-            path(fill = SolidColor(Color(0xFFFBCC02))) {
+            path(fill = SolidColor(color0)) {
                 moveToRelative(2.646f, 7.417f)
                 curveToRelative(0f, 0f, -0.232f, -0.495f, -0.974f, -0.656f)
                 curveToRelative(-0.742f, -0.161f, -1.672f, -0.189f, -1.672f, -0.189f)
@@ -28,7 +31,7 @@ val Centipede: ImageVector
                 lineToRelative(0f, -0.407f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFFBCC02))) {
+            path(fill = SolidColor(color0)) {
                 moveToRelative(5.218f, 7.417f)
                 curveToRelative(0f, 0f, 0.232f, -0.495f, 0.974f, -0.656f)
                 curveToRelative(0.742f, -0.161f, 1.672f, -0.189f, 1.672f, -0.189f)
@@ -38,7 +41,7 @@ val Centipede: ImageVector
                 lineToRelative(0f, -0.407f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFFBCC02))) {
+            path(fill = SolidColor(color0)) {
                 moveToRelative(2.646f, 9.681f)
                 curveToRelative(0f, 0f, -0.232f, -0.495f, -0.974f, -0.656f)
                 curveToRelative(-0.742f, -0.161f, -1.672f, -0.189f, -1.672f, -0.189f)
@@ -48,7 +51,7 @@ val Centipede: ImageVector
                 lineToRelative(0f, -0.407f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFFBCC02))) {
+            path(fill = SolidColor(color0)) {
                 moveToRelative(5.314f, 9.4f)
                 curveToRelative(0f, 0f, 0.465f, -0.287f, 1.174f, -0.014f)
                 curveToRelative(0.709f, 0.273f, 1.501f, 0.759f, 1.501f, 0.759f)
@@ -57,7 +60,7 @@ val Centipede: ImageVector
                 curveToRelative(-0.427f, -0.016f, -0.692f, 0.032f, -0.692f, 0.032f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFFBCC02))) {
+            path(fill = SolidColor(color0)) {
                 moveToRelative(5.344f, 12.025f)
                 curveToRelative(0f, 0f, 0.232f, -0.495f, 0.974f, -0.656f)
                 curveToRelative(0.742f, -0.161f, 1.672f, -0.189f, 1.672f, -0.189f)
@@ -67,7 +70,7 @@ val Centipede: ImageVector
                 lineToRelative(0f, -0.407f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFFBCC02))) {
+            path(fill = SolidColor(color0)) {
                 moveToRelative(2.676f, 11.744f)
                 curveToRelative(0f, 0f, -0.465f, -0.287f, -1.174f, -0.014f)
                 curveToRelative(-0.709f, 0.273f, -1.501f, 0.759f, -1.501f, 0.759f)
@@ -76,7 +79,7 @@ val Centipede: ImageVector
                 curveToRelative(0.427f, -0.016f, 0.692f, 0.032f, 0.692f, 0.032f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFFBCC02))) {
+            path(fill = SolidColor(color0)) {
                 moveToRelative(2.646f, 14.128f)
                 curveToRelative(0f, 0f, -0.232f, -0.495f, -0.974f, -0.656f)
                 curveToRelative(-0.742f, -0.161f, -1.672f, -0.189f, -1.672f, -0.189f)
@@ -86,7 +89,7 @@ val Centipede: ImageVector
                 lineToRelative(0f, -0.407f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFFBCC02))) {
+            path(fill = SolidColor(color0)) {
                 moveToRelative(5.314f, 13.847f)
                 curveToRelative(0f, 0f, 0.465f, -0.287f, 1.174f, -0.014f)
                 curveToRelative(0.709f, 0.273f, 1.501f, 0.759f, 1.501f, 0.759f)
@@ -95,7 +98,7 @@ val Centipede: ImageVector
                 curveToRelative(-0.427f, -0.016f, -0.692f, 0.032f, -0.692f, 0.032f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFFBCC02))) {
+            path(fill = SolidColor(color0)) {
                 moveToRelative(5.344f, 16.109f)
                 curveToRelative(0f, 0f, 0.232f, -0.495f, 0.974f, -0.656f)
                 curveToRelative(0.742f, -0.161f, 1.672f, -0.189f, 1.672f, -0.189f)
@@ -105,7 +108,7 @@ val Centipede: ImageVector
                 lineToRelative(0f, -0.407f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFFBCC02))) {
+            path(fill = SolidColor(color0)) {
                 moveToRelative(2.676f, 15.828f)
                 curveToRelative(0f, 0f, -0.465f, -0.287f, -1.174f, -0.014f)
                 curveToRelative(-0.709f, 0.273f, -1.501f, 0.759f, -1.501f, 0.759f)
@@ -114,7 +117,7 @@ val Centipede: ImageVector
                 curveToRelative(0.427f, -0.016f, 0.692f, 0.032f, 0.692f, 0.032f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFFBCC02))) {
+            path(fill = SolidColor(color0)) {
                 moveToRelative(2.646f, 18.309f)
                 curveToRelative(0f, 0f, -0.232f, -0.495f, -0.974f, -0.656f)
                 curveToRelative(-0.742f, -0.161f, -1.672f, -0.189f, -1.672f, -0.189f)
@@ -124,7 +127,7 @@ val Centipede: ImageVector
                 lineToRelative(0f, -0.407f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFFBCC02))) {
+            path(fill = SolidColor(color0)) {
                 moveToRelative(5.314f, 18.028f)
                 curveToRelative(0f, 0f, 0.465f, -0.287f, 1.174f, -0.014f)
                 curveToRelative(0.709f, 0.273f, 1.501f, 0.759f, 1.501f, 0.759f)
@@ -133,7 +136,7 @@ val Centipede: ImageVector
                 curveToRelative(-0.427f, -0.016f, -0.692f, 0.032f, -0.692f, 0.032f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFFBCC02))) {
+            path(fill = SolidColor(color0)) {
                 moveToRelative(5.344f, 20.289f)
                 curveToRelative(0f, 0f, 0.232f, -0.495f, 0.974f, -0.656f)
                 curveToRelative(0.742f, -0.161f, 1.672f, -0.189f, 1.672f, -0.189f)
@@ -143,7 +146,7 @@ val Centipede: ImageVector
                 lineToRelative(0f, -0.407f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFFBCC02))) {
+            path(fill = SolidColor(color0)) {
                 moveToRelative(2.676f, 20.008f)
                 curveToRelative(0f, 0f, -0.465f, -0.287f, -1.174f, -0.014f)
                 curveToRelative(-0.709f, 0.273f, -1.501f, 0.759f, -1.501f, 0.759f)
@@ -152,7 +155,7 @@ val Centipede: ImageVector
                 curveToRelative(0.427f, -0.016f, 0.692f, 0.032f, 0.692f, 0.032f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFFBCC02))) {
+            path(fill = SolidColor(color0)) {
                 moveToRelative(2.646f, 21.951f)
                 curveToRelative(0f, 0f, -0.232f, -0.495f, -0.974f, -0.656f)
                 curveToRelative(-0.742f, -0.161f, -1.672f, -0.189f, -1.672f, -0.189f)
@@ -162,7 +165,7 @@ val Centipede: ImageVector
                 lineToRelative(0f, -0.407f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFFBCC02))) {
+            path(fill = SolidColor(color0)) {
                 moveToRelative(5.314f, 21.67f)
                 curveToRelative(0f, 0f, 0.465f, -0.287f, 1.174f, -0.014f)
                 curveToRelative(0.709f, 0.273f, 1.501f, 0.759f, 1.501f, 0.759f)
@@ -171,7 +174,7 @@ val Centipede: ImageVector
                 curveToRelative(-0.427f, -0.016f, -0.692f, 0.032f, -0.692f, 0.032f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFFBCC02))) {
+            path(fill = SolidColor(color0)) {
                 moveToRelative(5.344f, 23.931f)
                 curveToRelative(0f, 0f, 0.232f, -0.495f, 0.974f, -0.656f)
                 curveToRelative(0.742f, -0.161f, 1.672f, -0.189f, 1.672f, -0.189f)
@@ -181,7 +184,7 @@ val Centipede: ImageVector
                 lineToRelative(0f, -0.407f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFFBCC02))) {
+            path(fill = SolidColor(color0)) {
                 moveToRelative(2.676f, 23.65f)
                 curveToRelative(0f, 0f, -0.465f, -0.287f, -1.174f, -0.014f)
                 curveToRelative(-0.709f, 0.273f, -1.501f, 0.759f, -1.501f, 0.759f)
@@ -206,7 +209,7 @@ val Centipede: ImageVector
                 curveToRelative(-0.699f, -0.489f, -0.753f, -1.024f, -0.753f, -1.024f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFF23812))) {
+            path(fill = SolidColor(color4)) {
                 moveToRelative(3.455f, 5.288f)
                 curveToRelative(0f, 0f, -0.774f, -0.682f, -1.447f, -1.807f)
                 curveToRelative(-0.284f, -0.476f, -0.3f, -1.171f, -0.323f, -1.815f)
@@ -216,7 +219,7 @@ val Centipede: ImageVector
                 curveToRelative(0.365f, 0.735f, 1.225f, 1.527f, 1.225f, 1.527f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFF23812))) {
+            path(fill = SolidColor(color4)) {
                 moveToRelative(4.408f, 5.288f)
                 curveToRelative(0f, 0f, 0.774f, -0.682f, 1.447f, -1.807f)
                 curveToRelative(0.284f, -0.476f, 0.3f, -1.171f, 0.323f, -1.815f)
@@ -226,7 +229,7 @@ val Centipede: ImageVector
                 curveToRelative(-0.365f, 0.735f, -1.225f, 1.527f, -1.225f, 1.527f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFC41200))) {
+            path(fill = SolidColor(color2)) {
                 moveToRelative(4.692f, 25.193f)
                 lineToRelative(-0.78f, 0.094f)
                 lineToRelative(-0.738f, -0.094f)
@@ -236,7 +239,7 @@ val Centipede: ImageVector
                 curveToRelative(0.022f, -0.605f, -0.305f, -1.002f, -0.305f, -1.002f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFC41200))) {
+            path(fill = SolidColor(color2)) {
                 moveToRelative(5.081f, 22.96f)
                 lineToRelative(-1.149f, 0.139f)
                 lineToRelative(-1.087f, -0.139f)
@@ -246,14 +249,14 @@ val Centipede: ImageVector
                 curveToRelative(0.033f, -0.891f, -0.449f, -1.475f, -0.449f, -1.475f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFF23812))) {
+            path(fill = SolidColor(color4)) {
                 moveToRelative(3.198f, 23.441f)
                 curveToRelative(0f, 0f, -0.503f, 0.967f, 0.026f, 1.44f)
                 curveToRelative(0.493f, 0.441f, 1.162f, 0.357f, 1.508f, 0f)
                 curveToRelative(0.529f, -0.545f, -0.053f, -1.44f, -0.053f, -1.44f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFC41200))) {
+            path(fill = SolidColor(color2)) {
                 moveToRelative(5.081f, 20.936f)
                 lineToRelative(-1.149f, 0.139f)
                 lineToRelative(-1.087f, -0.139f)
@@ -263,14 +266,14 @@ val Centipede: ImageVector
                 curveToRelative(0.033f, -0.891f, -0.449f, -1.475f, -0.449f, -1.475f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFF23812))) {
+            path(fill = SolidColor(color4)) {
                 moveToRelative(3.198f, 21.417f)
                 curveToRelative(0f, 0f, -0.503f, 0.967f, 0.026f, 1.44f)
                 curveToRelative(0.493f, 0.441f, 1.162f, 0.357f, 1.508f, 0f)
                 curveToRelative(0.529f, -0.545f, -0.053f, -1.44f, -0.053f, -1.44f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFC41200))) {
+            path(fill = SolidColor(color2)) {
                 moveToRelative(5.081f, 18.97f)
                 lineToRelative(-1.149f, 0.139f)
                 lineToRelative(-1.087f, -0.139f)
@@ -280,14 +283,14 @@ val Centipede: ImageVector
                 curveToRelative(0.033f, -0.891f, -0.449f, -1.475f, -0.449f, -1.475f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFF23812))) {
+            path(fill = SolidColor(color4)) {
                 moveToRelative(3.198f, 19.366f)
                 curveToRelative(0f, 0f, -0.503f, 0.967f, 0.026f, 1.44f)
                 curveToRelative(0.493f, 0.441f, 1.162f, 0.357f, 1.508f, 0f)
                 curveToRelative(0.529f, -0.545f, -0.053f, -1.44f, -0.053f, -1.44f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFC41200))) {
+            path(fill = SolidColor(color2)) {
                 moveToRelative(5.081f, 16.756f)
                 lineToRelative(-1.149f, 0.139f)
                 lineToRelative(-1.087f, -0.139f)
@@ -297,14 +300,14 @@ val Centipede: ImageVector
                 curveToRelative(0.033f, -0.891f, -0.449f, -1.475f, -0.449f, -1.475f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFF23812))) {
+            path(fill = SolidColor(color4)) {
                 moveToRelative(3.198f, 17.237f)
                 curveToRelative(0f, 0f, -0.503f, 0.967f, 0.026f, 1.44f)
                 curveToRelative(0.493f, 0.441f, 1.162f, 0.357f, 1.508f, 0f)
                 curveToRelative(0.529f, -0.545f, -0.053f, -1.44f, -0.053f, -1.44f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFC41200))) {
+            path(fill = SolidColor(color2)) {
                 moveToRelative(5.081f, 14.731f)
                 lineToRelative(-1.149f, 0.139f)
                 lineToRelative(-1.087f, -0.139f)
@@ -314,14 +317,14 @@ val Centipede: ImageVector
                 curveToRelative(0.033f, -0.891f, -0.449f, -1.475f, -0.449f, -1.475f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFF23812))) {
+            path(fill = SolidColor(color4)) {
                 moveToRelative(3.198f, 15.212f)
                 curveToRelative(0f, 0f, -0.503f, 0.967f, 0.026f, 1.44f)
                 curveToRelative(0.493f, 0.441f, 1.162f, 0.357f, 1.508f, 0f)
                 curveToRelative(0.529f, -0.545f, -0.053f, -1.44f, -0.053f, -1.44f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFC41200))) {
+            path(fill = SolidColor(color2)) {
                 moveToRelative(5.081f, 12.766f)
                 lineToRelative(-1.149f, 0.139f)
                 lineToRelative(-1.087f, -0.139f)
@@ -331,14 +334,14 @@ val Centipede: ImageVector
                 curveToRelative(0.033f, -0.891f, -0.449f, -1.475f, -0.449f, -1.475f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFF23812))) {
+            path(fill = SolidColor(color4)) {
                 moveToRelative(3.198f, 13.235f)
                 curveToRelative(0f, 0f, -0.503f, 0.967f, 0.026f, 1.44f)
                 curveToRelative(0.493f, 0.441f, 1.162f, 0.357f, 1.508f, 0f)
                 curveToRelative(0.529f, -0.545f, -0.053f, -1.44f, -0.053f, -1.44f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFC41200))) {
+            path(fill = SolidColor(color2)) {
                 moveToRelative(5.081f, 10.75f)
                 lineToRelative(-1.149f, 0.139f)
                 lineToRelative(-1.087f, -0.139f)
@@ -348,14 +351,14 @@ val Centipede: ImageVector
                 curveToRelative(0.033f, -0.89f, -0.449f, -1.475f, -0.449f, -1.475f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFF23812))) {
+            path(fill = SolidColor(color4)) {
                 moveToRelative(3.198f, 11.231f)
                 curveToRelative(0f, 0f, -0.503f, 0.967f, 0.026f, 1.44f)
                 curveToRelative(0.493f, 0.441f, 1.162f, 0.357f, 1.508f, 0f)
                 curveToRelative(0.529f, -0.545f, -0.053f, -1.44f, -0.053f, -1.44f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFC41200))) {
+            path(fill = SolidColor(color2)) {
                 moveToRelative(5.081f, 8.726f)
                 lineToRelative(-1.149f, 0.139f)
                 lineToRelative(-1.087f, -0.139f)
@@ -365,14 +368,14 @@ val Centipede: ImageVector
                 curveToRelative(0.033f, -0.891f, -0.449f, -1.475f, -0.449f, -1.475f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFF23812))) {
+            path(fill = SolidColor(color4)) {
                 moveToRelative(3.198f, 9.188f)
                 curveToRelative(0f, 0f, -0.503f, 0.967f, 0.026f, 1.44f)
                 curveToRelative(0.493f, 0.441f, 1.162f, 0.357f, 1.508f, 0f)
                 curveToRelative(0.529f, -0.545f, -0.053f, -1.44f, -0.053f, -1.44f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFC41200))) {
+            path(fill = SolidColor(color2)) {
                 moveToRelative(5.081f, 6.761f)
                 lineToRelative(-1.149f, 0.139f)
                 lineToRelative(-1.087f, -0.139f)
@@ -382,14 +385,14 @@ val Centipede: ImageVector
                 curveToRelative(0.033f, -0.891f, -0.449f, -1.475f, -0.449f, -1.475f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFF23812))) {
+            path(fill = SolidColor(color4)) {
                 moveToRelative(3.127f, 6.761f)
                 curveToRelative(0f, 0f, -0.592f, 1.066f, 0f, 1.811f)
                 curveToRelative(0.438f, 0.552f, 1.507f, 0.298f, 1.803f, -0.141f)
                 curveToRelative(0.423f, -0.626f, -0.225f, -1.67f, -0.225f, -1.67f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFC41200))) {
+            path(fill = SolidColor(color2)) {
                 moveToRelative(5.16f, 6.278f)
                 curveToRelative(-0.224f, -0.473f, -0.646f, -1.413f, -1.059f, -1.562f)
                 curveToRelative(0.138f, 0.375f, 0.38f, 0.837f, 0.497f, 1.271f)
@@ -401,7 +404,7 @@ val Centipede: ImageVector
                 curveToRelative(0.737f, -0.064f, 1.289f, -0.804f, 1.046f, -1.318f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFF23812))) {
+            path(fill = SolidColor(color4)) {
                 moveToRelative(3.619f, 6.86f)
                 curveToRelative(0.855f, 0.006f, 1.166f, -0.171f, 0.977f, -0.872f)
                 curveToRelative(-0.117f, -0.435f, -0.359f, -0.896f, -0.497f, -1.271f)

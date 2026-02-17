@@ -4,7 +4,7 @@ import pnemonic.bug_bash.sound.SoundType
 
 abstract class BugThatSlithers(
     speed: Float,
-    score: Int,
+    score: Long,
     hits: Int,
     noise: SoundType = SoundType.None,
     soundBash: SoundType

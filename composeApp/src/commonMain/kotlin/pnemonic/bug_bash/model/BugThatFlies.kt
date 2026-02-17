@@ -6,7 +6,7 @@ import kotlin.math.sin
 
 abstract class BugThatFlies(
     speed: Float,
-    score: Int,
+    score: Long,
     hits: Int,
     noise: SoundType = SoundType.None,
     soundBash: SoundType

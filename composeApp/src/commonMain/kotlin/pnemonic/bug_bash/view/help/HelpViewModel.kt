@@ -20,9 +20,9 @@ class HelpViewModel : LifecycleViewModel() {
     init {
         viewModelScope.launch {
             val bugs = BugFactory.allBugs.sortedWith { b1, b2 ->
-                val c = b1.hits - b2.hits
+                val c = b1.hits.compareTo(b2.hits)
                 if (c != 0) return@sortedWith c
-                b1.score - b2.score
+                b1.score.compareTo(b2.score)
             }
             _catalog.update { bugs }
         }
