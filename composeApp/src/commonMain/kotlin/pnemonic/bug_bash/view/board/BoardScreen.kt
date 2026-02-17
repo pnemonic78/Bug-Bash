@@ -46,6 +46,8 @@ fun BoardScreen(navController: NavController) {
         onBugSize = viewModel::onBugSize,
         onTap = viewModel::onTap,
         onHomeClick = { navController.navigateUp() },
+        isPaused = viewModel.isPaused,
+        onPauseChange = viewModel::onPauseChange,
         isSoundEnabled = viewModel.isSoundEnabled,
         onSoundChange = viewModel::onSoundChange,
         isMusicEnabled = viewModel.isMusicEnabled,
@@ -70,6 +72,8 @@ fun BoardView(
     onBugSize: BugCallback,
     onTap: BugCallback,
     onHomeClick: VoidCallback,
+    isPaused: Boolean = false,
+    onPauseChange: BooleanCallback,
     isSoundEnabled: Boolean = true,
     onSoundChange: BooleanCallback,
     isMusicEnabled: Boolean = true,
@@ -96,6 +100,8 @@ fun BoardView(
             SettingsPanel(
                 modifier = Modifier.align(Alignment.TopEnd).padding(8.dp),
                 onHomeClick = onHomeClick,
+                isPaused = isPaused,
+                onPauseChange = onPauseChange,
                 isSoundEnabled = isSoundEnabled,
                 onSoundChange = onSoundChange,
                 isMusicEnabled = isMusicEnabled,
@@ -126,11 +132,6 @@ private fun Preview() {
     val onBugSize: BugCallback = {}
     val onTap: BugCallback = {}
 
-    val onHomeClick: VoidCallback = {}
-    val onSoundChange: BooleanCallback = {}
-    val onMusicChange: BooleanCallback = {}
-    val onBonusClick: BonusCallback = {}
-
     MaterialTheme {
         BoardView(
             board,
@@ -138,12 +139,14 @@ private fun Preview() {
             onSize,
             onBugSize,
             onTap,
-            onHomeClick,
+            onHomeClick = {},
+            isPaused = false,
+            onPauseChange = {},
             isSoundEnabled = true,
-            onSoundChange,
+            onSoundChange = {},
             isMusicEnabled = true,
-            onMusicChange,
-            onBonusClick
+            onMusicChange = {},
+            onBonusClick = {},
         )
     }
 }

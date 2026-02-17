@@ -1,6 +1,5 @@
 package pnemonic.bug_bash.view.settings
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.VolumeOff
 import androidx.compose.material.icons.automirrored.filled.VolumeUp
@@ -54,11 +53,16 @@ fun SoundButton(
 
 @Composable
 @Preview
-private fun Preview() {
+private fun Preview0() {
     MaterialTheme {
-        Column {
-            SoundButton(enabled = true) {}
-            SoundButton(enabled = false) {}
-        }
+        SoundButton(enabled = false) {}
+    }
+}
+
+@Composable
+@Preview
+private fun Preview1() {
+    MaterialTheme {
+        SoundButton(enabled = true) {}
     }
 }

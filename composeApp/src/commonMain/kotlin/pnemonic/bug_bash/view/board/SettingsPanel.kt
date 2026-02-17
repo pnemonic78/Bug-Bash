@@ -26,12 +26,17 @@ import pnemonic.bug_bash.view.home.HomeButton
 import pnemonic.bug_bash.view.settings.ActionPanel
 import pnemonic.bug_bash.view.settings.MenuButton
 import pnemonic.bug_bash.view.settings.MusicButton
+import pnemonic.bug_bash.view.settings.PauseButton
 import pnemonic.bug_bash.view.settings.SoundButton
+
+private val spacing = 8.dp
 
 @Composable
 fun SettingsPanel(
     modifier: Modifier = Modifier,
     onHomeClick: VoidCallback,
+    isPaused: Boolean = false,
+    onPauseChange: BooleanCallback,
     isSoundEnabled: Boolean = true,
     onSoundChange: BooleanCallback,
     isMusicEnabled: Boolean = true,
@@ -40,6 +45,8 @@ fun SettingsPanel(
     var expanded by remember { mutableStateOf(false) }
 
     ActionPanel(modifier = modifier) {
+        PauseButton(isPaused, onChange = onPauseChange)
+        Spacer(modifier = Modifier.width(spacing))
         AnimatedVisibility(
             visible = expanded,
             // Combines sliding and expanding horizontally
@@ -57,11 +64,11 @@ fun SettingsPanel(
         ) {
             Row {
                 SoundButton(isSoundEnabled, onChange = onSoundChange)
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(spacing))
                 MusicButton(isMusicEnabled, onChange = onMusicChange)
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(spacing))
                 HomeButton(onClick = onHomeClick)
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(spacing))
             }
         }
         MenuButton(onClick = { expanded = !expanded })
@@ -74,6 +81,8 @@ private fun Preview() {
     MaterialTheme {
         SettingsPanel(
             onHomeClick = {},
+            isPaused = false,
+            onPauseChange = {},
             isSoundEnabled = true,
             onSoundChange = {},
             isMusicEnabled = false,

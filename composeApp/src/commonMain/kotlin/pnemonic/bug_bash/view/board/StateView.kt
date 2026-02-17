@@ -9,7 +9,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.text.font.FontWeight
@@ -40,21 +39,22 @@ private fun Preview() {
 }
 
 private val sizeText = 60.sp
-private val shadow = Shadow(blurRadius = 2f, offset = Offset(2f, 2f))
-private val colorGameOver = Color(0xCCCC0088)
+private val colorText = Color(0xCCCC0088)
+private val colorShadow = Color.Magenta
+private val colorPanel = Color.Black.copy(alpha = 0.25f)
 
 @Composable
 private fun GameOver() {
     val style = MaterialTheme.typography.bodyLarge.copy(
-        color = colorGameOver,
+        color = colorText,
         fontSize = sizeText,
         fontWeight = FontWeight.Bold,
-        shadow = shadow
+        shadow = Shadow(color = colorShadow, blurRadius = 4f)
     )
 
     Text(
         modifier = Modifier.background(
-            color = Color.Black.copy(alpha = 0.25f),
+            color = colorPanel,
             shape = MaterialTheme.shapes.medium
         ).padding(8.dp),
         text = stringResource(Res.string.game_state_finished),

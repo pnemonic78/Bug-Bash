@@ -31,7 +31,8 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
 
     private val _state = MutableStateFlow(GameState.NOT_STARTED)
     val state: StateFlow<GameState> = _state
-    private val isRunning get() = state.value === GameState.STARTED
+    val isRunning get() = (state.value === GameState.STARTED) || (state.value === GameState.RESUMED)
+    val isPaused get() = state.value === GameState.PAUSED
 
     private val rand = Random.Default
     private val touched = mutableListOf<Bug>()
@@ -53,7 +54,13 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
     }
 
     fun pause() {
-        _state.value = GameState.PAUSED
+        _state.update { GameState.PAUSED }
+        //TODO sounds = platform.sound.pauseAll()
+    }
+
+    fun resume() {
+        _state.update { GameState.RESUMED }
+        //TODO platform.sound.resumeAll(sounds)
     }
 
     fun stop() {
@@ -88,7 +95,7 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
             playSound(SoundType.Clang)
         }
 
-        _boards.emit(board)
+        _boards.update { board }
     }
 
     private fun move(board: Board): Board {
@@ -122,16 +129,16 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
 
     fun onSize(size: IntSize) {
         if (!isRunning) return
-        //coroutineScope.launch {
         //TODO set each bug's new destination relative to old destination
         _boards.update { board ->
             board.setSize(width = size.width.toFloat(), height = size.height.toFloat())
         }
-        //}
     }
 
     fun onTap(bug: Bug) {
-        touched.add(bug)
+        if (isRunning) {
+            touched.add(bug)
+        }
     }
 
     private suspend fun touch(board: Board): Board {
@@ -287,7 +294,9 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
     }
 
     fun onBonusClick(bonus: Bonus) {
-        bonusEngine.onClick(bonus)
+        if (isRunning) {
+            bonusEngine.onClick(bonus)
+        }
     }
 
     companion object {

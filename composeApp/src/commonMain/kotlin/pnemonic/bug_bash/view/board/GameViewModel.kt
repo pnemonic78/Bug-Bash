@@ -27,6 +27,7 @@ class GameViewModel : LifecycleViewModel() {
 
     val board: StateFlow<Board> = engine.boards
     val state: StateFlow<GameState> = engine.state
+    val isPaused get() = engine.isPaused
     val isMusicEnabled get() = settings.isMusicEnabled
     val isSoundEnabled get() = settings.isSoundEnabled
 
@@ -127,6 +128,14 @@ class GameViewModel : LifecycleViewModel() {
 
     fun onBonusClick(bonus: Bonus) {
         engine.onBonusClick(bonus)
+    }
+
+    fun onPauseChange(paused: Boolean) {
+        if (paused) {
+            engine.pause()
+        } else {
+            engine.resume()
+        }
     }
 
     companion object {

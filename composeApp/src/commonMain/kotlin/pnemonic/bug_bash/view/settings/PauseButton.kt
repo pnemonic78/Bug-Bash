@@ -1,8 +1,8 @@
 package pnemonic.bug_bash.view.settings
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.MusicNote
-import androidx.compose.material.icons.filled.MusicOff
+import androidx.compose.material.icons.filled.Pause
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.MaterialTheme
@@ -23,26 +23,28 @@ import pnemonic.bug_bash.view.theme.sizeButton
 import pnemonic.bug_bash.view.toggle
 
 @Composable
-fun MusicButton(
-    enabled: Boolean = true,
+fun PauseButton(
+    paused: Boolean = false,
     size: Dp = sizeButton,
     onChange: BooleanCallback
 ) {
     val haptic = LocalHapticFeedback.current
-    var enabledState by remember { mutableStateOf(enabled) }
+    var pausedState by remember { mutableStateOf(paused) }
 
     IconToggleButton(
-        checked = enabledState,
+        checked = pausedState,
         onCheckedChange = { checked ->
             haptic.toggle(checked)
-            enabledState = checked
-            onChange(enabledState)
-        }, modifier = Modifier.modifierButton(size = size)
+            pausedState = checked
+            onChange(pausedState)
+        },
+        modifier = Modifier.modifierButton(size = size)
     ) {
-        val icon = if (enabledState) Icons.Default.MusicNote else Icons.Default.MusicOff
+        val icon =
+            if (pausedState) Icons.Default.PlayArrow else Icons.Default.Pause
         Icon(
             imageVector = icon,
-            contentDescription = "🎵",
+            contentDescription = "⏯",
             tint = colorButton,
             modifier = Modifier.modifierIcon(size = size)
         )
@@ -53,7 +55,7 @@ fun MusicButton(
 @Preview
 private fun Preview0() {
     MaterialTheme {
-        MusicButton(false) {}
+        PauseButton(paused = false) {}
     }
 }
 
@@ -61,6 +63,6 @@ private fun Preview0() {
 @Preview
 private fun Preview1() {
     MaterialTheme {
-        MusicButton(true) {}
+        PauseButton(paused = true) {}
     }
 }
