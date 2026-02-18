@@ -9,8 +9,7 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.scrollable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -57,6 +56,10 @@ typealias BonusCallback = (Bonus) -> Unit
 fun BonusesView(modifier: Modifier = Modifier, bonuses: List<Bonus>, onClick: BonusCallback) {
     if (bonuses.isEmpty()) return
     var expanded by remember { mutableStateOf(true) }
+    val onBonusClick: BonusCallback = {
+        onClick(it)
+        expanded = false
+    }
 
     Row(modifier = modifier.panel(), verticalAlignment = Alignment.CenterVertically) {
         Image(
@@ -81,14 +84,12 @@ fun BonusesView(modifier: Modifier = Modifier, bonuses: List<Bonus>, onClick: Bo
             ) + fadeOut()
         ) {
             Row(
-                modifier = Modifier.scrollable(
-                    state = rememberScrollState(),
-                    orientation = Orientation.Horizontal
-                )
+                modifier = Modifier.horizontalScroll(rememberScrollState()),
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 for (bonus in bonuses) {
                     Spacer(modifier = Modifier.width(spacing))
-                    BonusView(bonus, onClick)
+                    BonusView(bonus, onBonusClick)
                 }
             }
         }
@@ -104,9 +105,7 @@ fun BonusView(bonus: Bonus, onBonusClick: BonusCallback) {
     Box(
         modifier = Modifier
             .size(sizeBonus)
-            .clickable {
-                if (progress >= total) onBonusClick(bonus)
-            },
+            .clickable { onBonusClick(bonus) },
         contentAlignment = Alignment.Center
     ) {
         when (bonus) {
