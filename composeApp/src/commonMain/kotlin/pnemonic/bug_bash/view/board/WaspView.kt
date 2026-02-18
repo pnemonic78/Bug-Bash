@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
 import pnemonic.bug_bash.model.bug.Wasp
+import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.drawable.Wasp as WaspImage
 
 @Composable
@@ -19,7 +20,7 @@ fun WaspView(
     ImageBug(bug, boardSize, WaspImage, 3f, onSize, onTap)
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFF0000FF)
+@Preview(showBackground = true, backgroundColor = previewColor)
 @Composable
 private fun Preview() {
     val bug = Wasp()

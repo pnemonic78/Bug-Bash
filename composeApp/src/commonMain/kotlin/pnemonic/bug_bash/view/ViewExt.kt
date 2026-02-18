@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.hapticfeedback.HapticFeedback
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
@@ -54,3 +55,7 @@ fun HapticFeedback.toggleOn() = performHapticFeedback(HapticFeedbackType.ToggleO
 fun HapticFeedback.toggleOff() = performHapticFeedback(HapticFeedbackType.ToggleOff)
 fun HapticFeedback.toggle(checked: Boolean) = if (checked) toggleOn() else toggleOff()
 fun HapticFeedback.click() = performHapticFeedback(HapticFeedbackType.ContextClick)
+
+internal const val previewWidthDp = 300
+internal const val previewHeightDp = 500
+internal const val previewColor = 0xFF0000FF

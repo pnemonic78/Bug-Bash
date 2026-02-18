@@ -2,7 +2,6 @@ package pnemonic.bug_bash.view.board
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxSize
@@ -33,23 +32,40 @@ import pnemonic.bug_bash.model.tool.Spray
 import pnemonic.bug_bash.model.tool.Swatter
 import pnemonic.bug_bash.model.tool.Tool
 import pnemonic.bug_bash.model.tool.Zapper
+import pnemonic.bug_bash.view.previewColor
+import pnemonic.bug_bash.view.previewHeightDp
+import pnemonic.bug_bash.view.previewWidthDp
 import pnemonic.bug_bash.view.toPx
 import kotlin.math.roundToInt
 
 typealias ToolCallback = (Tool) -> Unit
 
 @Composable
-fun ToolView(tool: Tool, onToolSize: ToolCallback, onToolTap: ToolCallback, boardSize: Size) {
+fun ToolAbove(
+    tool: Tool,
+    onToolUse: ToolCallback,
+    boardSize: Size
+) {
     when (tool) {
-        is Cupcake -> CupcakeView(tool, onToolSize, onToolTap, boardSize)
-        is Flower -> FlowerView(tool, onToolSize, onToolTap, boardSize)
-        is ExtraLife -> LifeView(tool, onToolSize, onToolTap, boardSize)
-        is GluePaper -> GluePaperView(tool, onToolSize, onToolTap, boardSize)
-        is Score -> ScoreView(tool, onToolSize, onToolTap, boardSize)
-        is Shoe -> ShoeView(tool, onToolSize, onToolTap, boardSize)
-        is Spray -> SprayView(tool, onToolSize, onToolTap, boardSize)
-        is Swatter -> SwatterView(tool, onToolSize, onToolTap, boardSize)
-        is Zapper -> ZapperView(tool, onToolSize, onToolTap, boardSize)
+        is ExtraLife -> LifeView(tool, onToolUse, boardSize)
+        is Score -> ScoreView(tool, onToolUse, boardSize)
+        is Shoe -> ShoeView(tool, onToolUse, boardSize)
+        is Spray -> SprayView(tool, onToolUse, boardSize)
+        is Swatter -> SwatterView(tool, onToolUse, boardSize)
+        is Zapper -> ZapperView(tool, onToolUse, boardSize)
+    }
+}
+
+@Composable
+fun ToolBelow(
+    tool: Tool,
+    onToolUse: ToolCallback,
+    boardSize: Size
+) {
+    when (tool) {
+        is Cupcake -> CupcakeView(tool, onToolUse, boardSize)
+        is Flower -> FlowerView(tool, onToolUse, boardSize)
+        is GluePaper -> GluePaperView(tool, onToolUse, boardSize)
     }
 }
 
@@ -60,8 +76,6 @@ fun ImageTool(
     scale: Float,
     opacity: Float = 1f,
     tint: Color? = null,
-    onSize: ToolCallback,
-    onTap: ToolCallback,
     boardSize: Size,
     modifier: Modifier = Modifier,
     overlay: @Composable BoxScope.() -> Unit = {}
@@ -78,15 +92,13 @@ fun ImageTool(
                 val oldHeight = tool.height.roundToInt()
                 if ((oldWidth != size.width) || (oldHeight != size.height)) {
                     tool.setSize(size.toSize(), boardSize)
-                    onSize(tool)
                 }
             }
             .graphicsLayer {
                 translationX = tool.left
                 translationY = tool.top
                 alpha = animatedOpacity
-            }
-            .clickable { onTap(tool) },
+            },
         contentAlignment = Alignment.Center,
     ) {
         Image(
@@ -106,8 +118,6 @@ fun ImageTool(
     tool: Tool,
     image: ImageVector,
     scale: Float,
-    onSize: ToolCallback,
-    onTap: ToolCallback,
     boardSize: Size,
     modifier: Modifier = Modifier,
     overlay: @Composable BoxScope.() -> Unit = {}
@@ -117,23 +127,30 @@ fun ImageTool(
     scale = scale,
     opacity = 1f,
     tint = null,
-    onSize = onSize,
-    onTap = onTap,
     boardSize = boardSize,
     modifier = modifier,
     overlay = overlay
 )
 
 @Composable
-@Preview(showBackground = true, backgroundColor = 0xFF0000FF, widthDp = 300, heightDp = 500)
+@Preview(
+    showBackground = true,
+    backgroundColor = previewColor,
+    widthDp = previewWidthDp,
+    heightDp = previewHeightDp
+)
 private fun Preview() {
-    val tool = ExtraLife(Bonus.Life())
-    val width = 300.dp.toPx()
-    val height = 500.dp.toPx()
+    val boardSize = Size(previewWidthDp.dp.toPx(), previewHeightDp.dp.toPx())
+    val toolBelow = GluePaper(Bonus.GluePaper())
+    val toolAbove = ExtraLife(Bonus.Life())
+
+    toolBelow.show()
+    toolAbove.show()
 
     MaterialTheme {
         Box(modifier = Modifier.fillMaxSize()) {
-            ToolView(tool, onToolSize = {}, onToolTap = {}, Size(width, height))
+            ToolBelow(toolBelow, onToolUse = {}, boardSize)
+            ToolAbove(toolAbove, onToolUse = {}, boardSize)
         }
     }
 }

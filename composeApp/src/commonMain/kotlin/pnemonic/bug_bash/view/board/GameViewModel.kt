@@ -1,6 +1,7 @@
 package pnemonic.bug_bash.view.board
 
 import androidx.annotation.FloatRange
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.unit.IntSize
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -63,8 +64,12 @@ class GameViewModel : LifecycleViewModel() {
         engine.onSize(size)
     }
 
-    fun onTap(bug: Bug) {
-        engine.onTap(bug)
+    fun onTap(offset: Offset) {
+        engine.touch(offset)
+    }
+
+    fun onBugTap(bug: Bug) {
+        engine.touch(bug)
     }
 
     fun onBugSize(bug: Bug) {
@@ -139,12 +144,8 @@ class GameViewModel : LifecycleViewModel() {
         }
     }
 
-    fun onToolSize(tool: Tool) {
-
-    }
-
-    fun onToolTap(tool: Tool) {
-
+    fun onToolUse(tool: Tool) {
+        engine.onToolUse(tool)
     }
 
     companion object {

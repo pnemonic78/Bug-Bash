@@ -19,6 +19,7 @@ import bug_bash.composeapp.generated.resources.Res
 import bug_bash.composeapp.generated.resources.game_state_finished
 import org.jetbrains.compose.resources.stringResource
 import pnemonic.bug_bash.model.GameState
+import pnemonic.bug_bash.view.previewColor
 
 @Composable
 fun StateView(state: GameState) {
@@ -33,7 +34,7 @@ fun StateView(state: GameState) {
 }
 
 @Composable
-@Preview(showBackground = true, backgroundColor = 0xFF0000FF)
+@Preview(showBackground = true, backgroundColor = previewColor)
 private fun Preview() {
     StateView(GameState.FINISHED)
 }

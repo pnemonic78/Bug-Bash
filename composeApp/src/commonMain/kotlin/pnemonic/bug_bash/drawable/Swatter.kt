@@ -25,7 +25,7 @@ val Swatter: ImageVector
                 lineToRelative(0f, 225.72f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFF8BBA6C))) {
+            path(fill = SolidColor(Color(0xFF8BDC6C))) {
                 moveToRelative(-0f, 16.77f)
                 lineToRelative(0f, 83.54f)
                 curveToRelative(0f, 9.25f, 7.5f, 16.75f, 12.3f, 16.75f)
@@ -963,7 +963,7 @@ val Swatter: ImageVector
                 curveToRelative(0f, 1.89f, 1.53f, 3.42f, 3.42f, 3.42f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFF8BBA6C))) {
+            path(fill = SolidColor(Color(0xFF8BDC6C))) {
                 moveToRelative(24.04f, 381.79f)
                 curveToRelative(0f, -0f, 0.5f, 8.01f, 5.33f, 11.54f)
                 curveToRelative(2.71f, 1.98f, 12.49f, 1.67f, 16.04f, -0f)

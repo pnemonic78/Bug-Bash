@@ -1,5 +1,6 @@
 package pnemonic.bug_bash.view.board
 
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -14,6 +15,7 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -29,6 +31,8 @@ import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.model.GameState
 import pnemonic.bug_bash.model.bug.Swarm
 import pnemonic.bug_bash.view.OnSizeCallback
+import pnemonic.bug_bash.view.OnTapCallback
+import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.toPx
 
 @Composable
@@ -43,8 +47,9 @@ fun BoardScreen(navController: NavController) {
         board = board.value,
         state = state.value,
         onSize = viewModel::onSize,
+        onTap = viewModel::onTap,
         onBugSize = viewModel::onBugSize,
-        onBugTap = viewModel::onTap,
+        onBugTap = viewModel::onBugTap,
         onHomeClick = { navController.navigateUp() },
         isPaused = viewModel.isPaused,
         onPauseChange = viewModel::onPauseChange,
@@ -53,8 +58,7 @@ fun BoardScreen(navController: NavController) {
         isMusicEnabled = viewModel.isMusicEnabled,
         onMusicChange = viewModel::onMusicChange,
         onBonusClick = viewModel::onBonusClick,
-        onToolSize = viewModel::onToolSize,
-        onToolTap = viewModel::onToolTap,
+        onToolUse = viewModel::onToolUse,
     )
 
     DisposableEffect(lifecycleOwner) {
@@ -71,6 +75,7 @@ fun BoardView(
     board: Board,
     state: GameState,
     onSize: OnSizeCallback,
+    onTap: OnTapCallback,
     onBugSize: BugCallback,
     onBugTap: BugCallback,
     onHomeClick: VoidCallback,
@@ -81,17 +86,21 @@ fun BoardView(
     isMusicEnabled: Boolean = true,
     onMusicChange: BooleanCallback,
     onBonusClick: BonusCallback,
-    onToolSize: ToolCallback,
-    onToolTap: ToolCallback,
+    onToolUse: ToolCallback,
 ) {
     SceneView(
         modifier = Modifier
             .fillMaxSize()
-            .onSizeChanged(onSize),
+            .onSizeChanged(onSize)
+            .pointerInput(board) {
+                detectTapGestures(onTap = onTap)
+            },
         scene = board.scene
     ) {
+        ToolsBelow(board, onToolUse)
         SwarmView(board, onBugSize, onBugTap)
-        ToolsView(board, onToolSize, onToolTap)
+        ToolsAbove(board, onToolUse)
+        BugScores(board)
         Box(modifier = Modifier.fillMaxWidth().systemBarsPadding()) {
             Column(modifier = Modifier.align(Alignment.TopStart).padding(8.dp)) {
                 LivesView(lives = board.lives)
@@ -118,7 +127,7 @@ fun BoardView(
 }
 
 @Composable
-@Preview(showBackground = true, backgroundColor = 0xFF0000FF, widthDp = 400, heightDp = 600)
+@Preview(showBackground = true, backgroundColor = previewColor, widthDp = 400, heightDp = 600)
 private fun Preview() {
     val bugs = BugFactory.allBugs
     val bonuses = listOf(Bonus.None, Bonus.Flower(1), Bonus.Life(2), Bonus.Score(3), Bonus.Shoe(4))
@@ -139,6 +148,7 @@ private fun Preview() {
             board,
             GameState.STARTED,
             onSize = {},
+            onTap = {},
             onBugSize = {},
             onBugTap = {},
             onHomeClick = {},
@@ -149,8 +159,7 @@ private fun Preview() {
             isMusicEnabled = true,
             onMusicChange = {},
             onBonusClick = {},
-            onToolSize = {},
-            onToolTap = {},
+            onToolUse = {},
         )
     }
 }

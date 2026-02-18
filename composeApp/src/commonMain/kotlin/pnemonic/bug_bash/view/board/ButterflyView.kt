@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
 import pnemonic.bug_bash.model.bug.Butterfly
+import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.drawable.Butterfly as ButterflyImage
 
 @Composable
@@ -19,7 +20,7 @@ fun ButterflyView(
     ImageBug(bug, boardSize, ButterflyImage, 2f, onSize, onTap)
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFF0000FF)
+@Preview(showBackground = true, backgroundColor = previewColor)
 @Composable
 private fun Preview() {
     val bug = Butterfly()

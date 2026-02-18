@@ -1,5 +1,6 @@
 package pnemonic.bug_bash
 
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.unit.IntSize
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -14,16 +15,19 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.Bonus
-import pnemonic.bug_bash.model.bug.Bug
 import pnemonic.bug_bash.model.GameState
 import pnemonic.bug_bash.model.Scene
+import pnemonic.bug_bash.model.bug.Bug
 import pnemonic.bug_bash.model.bug.Swarm
+import pnemonic.bug_bash.model.tool.Tool
 import pnemonic.bug_bash.sound.SoundType
+import pnemonic.copy
+import pnemonic.half
 import pnemonic.removeAll
 import kotlin.math.max
 import kotlin.random.Random
 
-class GameEngine(private val coroutineScope: CoroutineScope) {
+class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallback {
     private var ticker: Job? = null
 
     private val _boards = MutableStateFlow(Board())
@@ -35,9 +39,10 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
     val isPaused get() = state.value === GameState.PAUSED
 
     private val rand = Random.Default
-    private val touched = mutableListOf<Bug>()
+    private val touches = mutableListOf<Offset>()
+    private val touchedBugs = mutableListOf<Bug>()
     private val squashed = mutableListOf<Bug>()
-    private val bonusEngine = BonusEngine()
+    private val bonusEngine = BonusEngine(this, coroutineScope)
 
     private val _feedback = MutableSharedFlow<Feedback>(extraBufferCapacity = 10)
     val feedback: Flow<Feedback> = _feedback
@@ -100,7 +105,8 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
 
     private fun move(board: Board): Board {
         if (board.swarm.isEmpty()) return board
-        if ((board.width <= 0) || (board.height <= 0)) return board
+        val boardSize = board.size
+        if ((boardSize.width <= 0) || (boardSize.height <= 0)) return board
         var lives = board.lives
         val bugs = board.swarm.bugs
         val removed = mutableListOf<Bug>()
@@ -113,7 +119,7 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
                 continue
             }
             bug.move()
-            if (bug.didEscape()) {
+            if (bug.didEscape(boardSize)) {
                 removed.add(bug)
                 lives--
             }
@@ -135,21 +141,54 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         }
     }
 
-    fun onTap(bug: Bug) {
+    override fun touch(bug: Bug) {
         if (isRunning) {
-            touched.add(bug)
+            touchedBugs.add(bug)
+        }
+    }
+
+    fun touch(offset: Offset) {
+        if (isRunning) {
+            touches.add(offset)
         }
     }
 
     private suspend fun touch(board: Board): Board {
-        if (touched.isEmpty() && squashed.isEmpty()) return board
+        if (touches.isEmpty() && touchedBugs.isEmpty() && squashed.isEmpty()) {
+            return board
+        }
+
+        // Convert bug touches to tool touches.
+        val tool = board.tool
+        if (tool != null && !tool.isVisible && touchedBugs.isNotEmpty()) {
+            val bugs = touchedBugs.copy()
+            touchedBugs.clear()
+
+            for (bug in bugs) {
+                bonusEngine.onTap(
+                    board,
+                    Offset(bug.left + bug.width.half, bug.top + bug.height.half)
+                )
+            }
+        }
+
+        if (touches.isNotEmpty()) {
+            val offsets = touches.copy()
+            touches.clear()
+            for (offset in offsets) {
+                bonusEngine.onTap(board, offset)
+            }
+        }
 
         var swarm = board.swarm
         var lives = board.lives
         var score = board.score
 
-        if (!touched.isEmpty()) {
-            for (bug in touched) {
+        if (touchedBugs.isNotEmpty()) {
+            val bugs = touchedBugs.copy()
+            touchedBugs.clear()
+
+            for (bug in bugs) {
                 if (bug.isSquashed) {
                     continue
                 }
@@ -163,10 +202,9 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
                     bash(bug)
                 }
             }
-            touched.clear()
         }
 
-        if (!squashed.isEmpty()) {
+        if (squashed.isNotEmpty()) {
             val bugs = swarm.bugs.removeAll(squashed)
             swarm = Swarm(bugs)
             squashed.clear()
@@ -246,7 +284,7 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         if (level % NEXT_SCENE == 0) {
             scene = scene.next()
         }
-        board = generateBugs(board.copy(level = level, scene = scene))
+        board = generateBugs(board.copy(level = level, scene = scene, tool = null))
         if (level > 1) {
             playSound(SoundType.Level)
         }
@@ -260,16 +298,20 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
         playSound(SoundType.GameFinish)
     }
 
-    private suspend fun bash(bug: Bug) {
-        _feedback.emit(Feedback.Bash(bug.soundBash))
+    override suspend fun bash(bug: Bug) {
+        notifyFeedback(Feedback.Bash(bug.soundBash))
         coroutineScope.launch {
             delay(DELAY_DEAD_REMOVE)
             squashed.add(bug)
         }
     }
 
+    override suspend fun notifyFeedback(feedback: Feedback) {
+        _feedback.emit(feedback)
+    }
+
     suspend fun feedbackDone() {
-        _feedback.emit(Feedback.None)
+        notifyFeedback(Feedback.None)
     }
 
     private suspend fun playSounds(board: Board) {
@@ -280,22 +322,28 @@ class GameEngine(private val coroutineScope: CoroutineScope) {
     }
 
     private suspend fun playMusic(scene: Scene) {
-        _feedback.emit(scene.music)
+        notifyFeedback(scene.music)
     }
 
     private suspend fun playSound(sound: SoundType) {
         if (sound === SoundType.None) return
-        _feedback.emit(Feedback.Sound(sound))
+        notifyFeedback(Feedback.Sound(sound))
     }
 
     // Apply any bonuses
-    private fun bonus(board: Board): Board {
-        return bonusEngine.apply(board)
+    private suspend fun bonus(board: Board): Board {
+        return bonusEngine.process(board)
     }
 
     fun onBonusClick(bonus: Bonus) {
         if (isRunning) {
             bonusEngine.onClick(bonus)
+        }
+    }
+
+    fun onToolUse(tool: Tool) {
+        if (isRunning) {
+            bonusEngine.onUse(tool)
         }
     }
 

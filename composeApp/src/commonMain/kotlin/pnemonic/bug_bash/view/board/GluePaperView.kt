@@ -3,24 +3,45 @@ package pnemonic.bug_bash.view.board
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.delay
 import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.model.tool.GluePaper
+import pnemonic.bug_bash.view.previewColor
+import pnemonic.bug_bash.view.previewHeightDp
+import pnemonic.bug_bash.view.previewWidthDp
+import pnemonic.bug_bash.view.toPx
 import pnemonic.bug_bash.drawable.GluePaper as GluePaperImage
 
 @Composable
-fun GluePaperView(tool: GluePaper, onSize: ToolCallback, onTap: ToolCallback, boardSize: Size) {
-    ImageTool(tool, GluePaperImage, 10f, onSize, onTap, boardSize)
+fun GluePaperView(tool: GluePaper, onUse: ToolCallback, boardSize: Size) {
+    ImageTool(tool, GluePaperImage, 20f, boardSize)
+
+    if (tool.isVisible) {
+        LaunchedEffect(tool) {
+            delay(10_000)
+            onUse(tool)
+        }
+    }
 }
 
 @Composable
-@Preview(showBackground = true, backgroundColor = 0xFF0000FF, widthDp = 300, heightDp = 500)
+@Preview(
+    showBackground = true,
+    backgroundColor = previewColor,
+    widthDp = previewWidthDp,
+    heightDp = previewHeightDp
+)
 private fun Preview() {
+    val boardSize = Size(previewWidthDp.dp.toPx(), previewHeightDp.dp.toPx())
     val tool = GluePaper(Bonus.GluePaper())
+    tool.show()
 
     Box(modifier = Modifier.fillMaxSize()) {
-        GluePaperView(tool, onSize = {}, onTap = {}, Size.Zero)
+        GluePaperView(tool, onUse = {}, boardSize)
     }
 }

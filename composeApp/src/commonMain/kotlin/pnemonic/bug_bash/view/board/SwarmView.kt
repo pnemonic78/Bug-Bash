@@ -12,6 +12,7 @@ import pnemonic.bug_bash.BugFactory
 import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.bug.Bug
 import pnemonic.bug_bash.model.bug.Swarm
+import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.toPx
 
 @Composable
@@ -42,7 +43,7 @@ fun SwarmView(
 }
 
 @Composable
-@Preview(showBackground = true, backgroundColor = 0xFF0000FF, widthDp = 700, heightDp = 900)
+@Preview(showBackground = true, backgroundColor = previewColor, widthDp = 700, heightDp = 900)
 private fun Preview() {
     val bugs = BugFactory.allBugs
     val dx = 20.dp.toPx()

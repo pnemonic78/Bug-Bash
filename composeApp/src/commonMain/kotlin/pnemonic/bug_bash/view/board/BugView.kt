@@ -111,7 +111,5 @@ fun ImageBug(
             //TODO Animate squish
         }
     }
-    if (bug.isSquashed) {
-        Score(bug, boardSize)
-    }
+    BugScore(bug, boardSize)
 }

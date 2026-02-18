@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import pnemonic.VoidCallback
+import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.theme.colorButton
 import pnemonic.bug_bash.view.theme.modifierButton
 import pnemonic.bug_bash.view.theme.modifierIcon
@@ -28,7 +29,7 @@ fun HomeButton(size: Dp = sizeButton, onClick: VoidCallback) {
 }
 
 @Composable
-@Preview(showBackground = true, backgroundColor = 0xFF0000FF)
+@Preview(showBackground = true, backgroundColor = previewColor)
 private fun Preview() {
     MaterialTheme {
         HomeButton {}

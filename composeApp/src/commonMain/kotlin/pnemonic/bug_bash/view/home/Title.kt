@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import bug_bash.composeapp.generated.resources.Res
 import bug_bash.composeapp.generated.resources.title
 import org.jetbrains.compose.resources.stringResource
+import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.theme.Brown
 import pnemonic.bug_bash.view.theme.DarkRed
 import pnemonic.bug_bash.view.theme.Gold
@@ -61,7 +62,7 @@ fun Title(modifier: Modifier = Modifier, title: String) {
 }
 
 @Composable
-@Preview(showBackground = true, backgroundColor = 0xFF0000FF, widthDp = 400)
+@Preview(showBackground = true, backgroundColor = previewColor, widthDp = 400)
 private fun Preview() {
     MaterialTheme {
         Title()
@@ -69,7 +70,7 @@ private fun Preview() {
 }
 
 @Composable
-@Preview(showBackground = true, backgroundColor = 0xFF0000FF, widthDp = 300)
+@Preview(showBackground = true, backgroundColor = previewColor, widthDp = 300)
 private fun Preview2() {
     MaterialTheme {
         Title(title = "Bug Bash 123")
@@ -77,7 +78,7 @@ private fun Preview2() {
 }
 
 @Composable
-@Preview(showBackground = true, backgroundColor = 0xFF0000FF, widthDp = 350, locale = "af")
+@Preview(showBackground = true, backgroundColor = previewColor, widthDp = 350, locale = "af")
 private fun Preview3() {
     MaterialTheme {
         Title()

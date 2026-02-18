@@ -26,6 +26,9 @@ import org.jetbrains.compose.resources.imageResource
 import pnemonic.bug_bash.model.Scene
 import pnemonic.bug_bash.view.isZero
 import pnemonic.bug_bash.view.orientation
+import pnemonic.bug_bash.view.previewColor
+import pnemonic.bug_bash.view.previewHeightDp
+import pnemonic.bug_bash.view.previewWidthDp
 import pnemonic.bug_bash.view.times
 import pnemonic.bug_bash.view.toDp
 import pnemonic.bug_bash.view.toOrientation
@@ -90,7 +93,7 @@ private fun SceneBackground(modifier: Modifier = Modifier, scene: Scene, size: I
 }
 
 @Composable
-@Preview(widthDp = 500, heightDp = 300, backgroundColor = 0xFF00FF00)
+@Preview(widthDp = previewHeightDp, heightDp = previewWidthDp, backgroundColor = 0xFF00FF00)
 private fun SceneKitchen_Landscape() {
     SceneView(
         modifier = Modifier.fillMaxSize(),
@@ -99,7 +102,7 @@ private fun SceneKitchen_Landscape() {
 }
 
 @Composable
-@Preview(widthDp = 300, heightDp = 500, backgroundColor = 0xFF0000FF)
+@Preview(widthDp = previewWidthDp, heightDp = previewHeightDp, backgroundColor = previewColor)
 private fun SceneKitchen_Portrait() {
     SceneView(
         modifier = Modifier.fillMaxSize(),

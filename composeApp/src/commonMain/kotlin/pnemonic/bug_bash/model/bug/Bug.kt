@@ -2,9 +2,12 @@ package pnemonic.bug_bash.model.bug
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.unit.IntSize
 import pnemonic.RADIANS_TO_DEGREES
 import pnemonic.bug_bash.sound.SoundType
@@ -37,15 +40,15 @@ abstract class Bug(
     private var destinationAngle: Float = Float.NaN
     protected var velocity: Float = speed / 20
         private set
-    var rotation by mutableStateOf(0f)
+    var rotation by mutableFloatStateOf(0f)
         private set
     protected var rotationMovement = 0f
         private set
     var isSquashed by mutableStateOf(false)
         private set
-    var damage by mutableStateOf(0)
+    var damage by mutableIntStateOf(0)
         private set
-    var opacity by mutableStateOf(1f)
+    var opacity by mutableFloatStateOf(1f)
         private set
     private var delay: Long = 0L
     abstract val description: String
@@ -124,6 +127,14 @@ abstract class Bug(
                 || (height <= 0)
     }
 
+    fun isHit(offset: Offset): Boolean {
+        return (left <= offset.x) && (offset.x < right) && (top <= offset.y) && (offset.y < bottom)
+    }
+
+    fun isHit(rect: Rect): Boolean {
+        return rect.contains(this)
+    }
+
     fun hit() {
         damage++
         var hits = this.hits
@@ -138,26 +149,28 @@ abstract class Bug(
         }
     }
 
-    fun didEscape(): Boolean {
-        val x = left
-        val y = top
-        val x3 = destinationX
-        val y3 = destinationY
+    fun didEscape(boardSize: Size): Boolean {
+        val x1 = left
+        val y1 = top
+        val x2 = x1 + width
+        val y2 = y1 + height
+        val x3 = boardSize.width
+        val y3 = boardSize.height
         val angle = destinationAngle
         // heading to Top-Right
         if (angle <= 90f) {
-            return (x + EPSILON_ESCAPE >= x3) && (y - EPSILON_ESCAPE <= y3)
+            return (x1 + EPSILON_ESCAPE >= x3) || (y2 - EPSILON_ESCAPE < 0f)
         }
         // heading to Bottom-Right
         if (angle <= 180f) {
-            return (x + EPSILON_ESCAPE >= x3) && (y + EPSILON_ESCAPE >= y3)
+            return (x1 + EPSILON_ESCAPE >= x3) || (y1 + EPSILON_ESCAPE >= y3)
         }
         // heading to Bottom-Left
         if (angle <= 270f) {
-            return (x - EPSILON_ESCAPE <= x3) && (y + EPSILON_ESCAPE >= y3)
+            return (x2 - EPSILON_ESCAPE < 0f) || (y1 + EPSILON_ESCAPE >= y3)
         }
         // heading to Top-Left
-        return (x - EPSILON_ESCAPE <= x3) && (y - EPSILON_ESCAPE <= y3)
+        return (x2 - EPSILON_ESCAPE < 0f) || (y2 - EPSILON_ESCAPE < 0f)
     }
 
     // delay
@@ -178,5 +191,5 @@ abstract class Bug(
 }
 
 fun Rect.contains(bug: Bug): Boolean {
-    return (left <= bug.right) && (bug.left < right) && (bug.top < bottom) && (bug.bottom >= top)
+    return (left <= bug.right) && (bug.left <= right) && (bug.top <= bottom) && (bug.bottom >= top)
 }

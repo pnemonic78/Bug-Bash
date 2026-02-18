@@ -39,7 +39,7 @@ sealed class Bonus(
     // Freezes bugs when touching the paper.
     class GluePaper(progress: Long = 0) : Bonus(
         score = 200,
-        hits = 2,
+        hits = 50,
         description = "📜",
         sound = SoundType.Chips,
         progress = progress
@@ -66,7 +66,7 @@ sealed class Bonus(
     // Bash bugs with a shoe.
     class Shoe(progress: Long = 0) : Bonus(
         score = 250,
-        hits = 5,
+        hits = 100,
         description = "👞",
         sound = SoundType.Drop,
         progress = progress
@@ -75,7 +75,7 @@ sealed class Bonus(
     // Bash bugs with insecticide spray.
     class Spray(progress: Long = 0) : Bonus(
         score = 200,
-        hits = 2,
+        hits = 70,
         description = "☠",
         sound = SoundType.Spray,
         progress = progress
@@ -84,7 +84,7 @@ sealed class Bonus(
     // Bash bugs with a fly swatter.
     class Swatter(progress: Long = 0) : Bonus(
         score = 350,
-        hits = 5,
+        hits = 100,
         description = "🏸",
         sound = SoundType.Swish,
         progress = progress
@@ -93,7 +93,7 @@ sealed class Bonus(
     // Bash bugs with a zapper.
     class Zapper(progress: Long = 0) : Bonus(
         score = 400,
-        hits = 4,
+        hits = 50,
         description = "⚡",
         sound = SoundType.Laser,
         progress = progress

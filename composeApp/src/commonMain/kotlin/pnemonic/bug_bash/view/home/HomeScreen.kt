@@ -20,6 +20,8 @@ import pnemonic.BooleanCallback
 import pnemonic.VoidCallback
 import pnemonic.bug_bash.model.Scene
 import pnemonic.bug_bash.view.board.SceneView
+import pnemonic.bug_bash.view.previewHeightDp
+import pnemonic.bug_bash.view.previewWidthDp
 
 @Composable
 fun HomeScreen(navController: NavHostController) {
@@ -82,7 +84,7 @@ private fun HomeScreen(
 }
 
 @Composable
-@Preview(widthDp = 400, heightDp = 600)
+@Preview(widthDp = previewWidthDp, heightDp = previewHeightDp)
 private fun Preview() {
     MaterialTheme {
         HomeScreen(

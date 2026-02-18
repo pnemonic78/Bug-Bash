@@ -32,6 +32,7 @@ import bug_bash.composeapp.generated.resources.play
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 import pnemonic.VoidCallback
+import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.theme.Gold
 
 private val colorContainer = Gold
@@ -81,7 +82,7 @@ fun StartButton(modifier: Modifier = Modifier, onClick: VoidCallback) {
 }
 
 @Composable
-@Preview(showBackground = true, backgroundColor = 0xFF0000FF)
+@Preview(showBackground = true, backgroundColor = previewColor)
 private fun Preview() {
     MaterialTheme {
         StartButton(modifier = Modifier.padding(20.dp)) {}
