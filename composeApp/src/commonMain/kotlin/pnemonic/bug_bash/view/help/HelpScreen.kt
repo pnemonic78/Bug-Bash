@@ -34,7 +34,10 @@ import androidx.navigation.compose.rememberNavController
 import pnemonic.VoidCallback
 import pnemonic.bug_bash.drawable.Touch
 import pnemonic.bug_bash.drawable.Trophy
+import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.model.bug.Bug
+import pnemonic.bug_bash.view.board.BonusCallback
+import pnemonic.bug_bash.view.board.BonusView
 import pnemonic.bug_bash.view.board.BugCallback
 import pnemonic.bug_bash.view.board.BugView
 import pnemonic.bug_bash.view.home.HomeButton
@@ -47,12 +50,25 @@ fun HelpScreen(navController: NavHostController) {
 
     val onHomeClick: VoidCallback = { navController.navigateUp() }
     val catalog = viewModel.catalog.collectAsState()
+    val bonuses = viewModel.bonuses.collectAsState()
 
-    HelpScreen(onHomeClick = onHomeClick, bugs = catalog.value, onBugClick = viewModel::onBugClick)
+    HelpScreen(
+        onHomeClick = onHomeClick,
+        bugs = catalog.value,
+        onBugClick = viewModel::onBugClick,
+        bonuses = bonuses.value,
+        onBonusClick = viewModel::onBonusClick,
+    )
 }
 
 @Composable
-fun HelpScreen(onHomeClick: VoidCallback, bugs: List<Bug>, onBugClick: BugCallback) {
+fun HelpScreen(
+    onHomeClick: VoidCallback,
+    bugs: List<Bug>,
+    onBugClick: BugCallback,
+    bonuses: List<Bonus>,
+    onBonusClick: BonusCallback,
+) {
     Column(modifier = Modifier.fillMaxSize().systemBarsPadding()) {
         Box(modifier = Modifier.fillMaxWidth()) {
             ActionPanel(modifier = Modifier.align(Alignment.TopEnd)) {
@@ -60,12 +76,17 @@ fun HelpScreen(onHomeClick: VoidCallback, bugs: List<Bug>, onBugClick: BugCallba
             }
         }
         Spacer(modifier = Modifier.height(8.dp))
-        BugList(bugs, onBugClick)
+        BugList(bugs, onBugClick, bonuses, onBonusClick)
     }
 }
 
 @Composable
-private fun BugList(bugs: List<Bug>, onClick: BugCallback) {
+private fun BugList(
+    bugs: List<Bug>,
+    onBugClick: BugCallback,
+    bonuses: List<Bonus>,
+    onBonusClick: BonusCallback
+) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2), // Defines a grid with 2 columns
         modifier = Modifier.fillMaxWidth(),
@@ -73,7 +94,10 @@ private fun BugList(bugs: List<Bug>, onClick: BugCallback) {
         verticalArrangement = Arrangement.spacedBy(8.dp) // Spacing between rows
     ) {
         items(bugs) { bug ->
-            HelpCard(bug = bug, onClick)
+            HelpCard(bug = bug, onBugClick)
+        }
+        items(bonuses) { bonus ->
+            HelpCard(bonus = bonus, onBonusClick)
         }
     }
 }
@@ -86,12 +110,24 @@ fun HelpCard(bug: Bug, onClick: BugCallback) {
 }
 
 @Composable
+fun HelpCard(bonus: Bonus, onClick: BonusCallback) {
+    Card {
+        BonusCell(bonus, onClick)
+    }
+}
+
+private val sizeBugWidth = 60.dp
+private val sizeBugHeight = 80.dp
+private val colorGood = Color.Black
+private val colorBad = Color.Red
+
+@Composable
 private fun BugCell(bug: Bug, onClick: BugCallback) {
-    val color = if (bug.score >= 0) Color.Black else Color.Red
+    val color = if (bug.score >= 0) colorGood else colorBad
 
     Row(modifier = Modifier.padding(8.dp)) {
         Box(
-            modifier = Modifier.size(60.dp, 80.dp),
+            modifier = Modifier.size(sizeBugWidth, sizeBugHeight),
             contentAlignment = Alignment.CenterStart
         ) {
             BugView(
@@ -118,7 +154,7 @@ private fun BugCell(bug: Bug, onClick: BugCallback) {
                 Image(
                     modifier = Modifier.size(40.dp),
                     imageVector = Trophy,
-                    contentDescription = "Touch"
+                    contentDescription = "Score"
                 )
                 Text("×")
                 Spacer(modifier = Modifier.width(4.dp))
@@ -134,7 +170,50 @@ private fun BugCell(bug: Bug, onClick: BugCallback) {
 }
 
 @Composable
-@Preview
+private fun BonusCell(bonus: Bonus, onClick: BonusCallback) {
+    val color = if (bonus.hits >= 0) colorGood else colorBad
+
+    Row(modifier = Modifier.padding(8.dp)) {
+        Box(
+            modifier = Modifier.size(sizeBugWidth, sizeBugHeight),
+            contentAlignment = Alignment.CenterStart
+        ) {
+            BonusView(bonus, sizeBugHeight, onClick)
+        }
+        Spacer(modifier = Modifier.width(4.dp))
+        Column(modifier = Modifier.weight(1f)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Image(
+                    modifier = Modifier.size(40.dp),
+                    imageVector = Touch,
+                    contentDescription = "Touch"
+                )
+                Text("×")
+                Spacer(modifier = Modifier.width(4.dp))
+                Text("${bonus.score}", fontWeight = FontWeight.Medium, softWrap = false)
+            }
+            Spacer(modifier = Modifier.height(8.dp))
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Image(
+                    modifier = Modifier.size(40.dp),
+                    imageVector = Trophy,
+                    contentDescription = "Score"
+                )
+                Text("×")
+                Spacer(modifier = Modifier.width(4.dp))
+                Text(
+                    "${bonus.hits}",
+                    fontWeight = FontWeight.Medium,
+                    softWrap = false,
+                    color = color
+                )
+            }
+        }
+    }
+}
+
+@Composable
+@Preview(widthDp = 400, heightDp = 1600)
 private fun Preview() {
     val nav = rememberNavController()
 

@@ -30,6 +30,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import pnemonic.bug_bash.drawable.Cupcake
 import pnemonic.bug_bash.drawable.Flower
@@ -72,13 +73,13 @@ fun BonusesView(modifier: Modifier = Modifier, bonuses: List<Bonus>, onClick: Bo
             visible = expanded,
             // Combines sliding and expanding horizontally
             enter = slideInHorizontally(
-                initialOffsetX = { fullWidth -> 0 } // Start from the left
+                initialOffsetX = { _ -> 0 } // Start from the left
             ) + expandHorizontally(
                 expandFrom = Alignment.Start // Expand from the start (left)
             ) + fadeIn(),
             // Defines how it disappears
             exit = slideOutHorizontally(
-                targetOffsetX = { fullWidth -> 0 } // Exit to the left
+                targetOffsetX = { _ -> 0 } // Exit to the left
             ) + shrinkHorizontally(
                 shrinkTowards = Alignment.Start // Shrink towards the start (left)
             ) + fadeOut()
@@ -88,6 +89,7 @@ fun BonusesView(modifier: Modifier = Modifier, bonuses: List<Bonus>, onClick: Bo
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 for (bonus in bonuses) {
+                    if (bonus.score <= 0) continue
                     Spacer(modifier = Modifier.width(spacing))
                     BonusView(bonus, onBonusClick)
                 }
@@ -97,15 +99,19 @@ fun BonusesView(modifier: Modifier = Modifier, bonuses: List<Bonus>, onClick: Bo
 }
 
 @Composable
-fun BonusView(bonus: Bonus, onBonusClick: BonusCallback) {
+fun BonusView(bonus: Bonus, onClick: BonusCallback) {
+    BonusView(bonus, sizeBonus, onClick)
+}
+
+@Composable
+fun BonusView(bonus: Bonus, size: Dp, onClick: BonusCallback) {
     val progress = bonus.progress
-    if (progress <= 0) return
     val total = bonus.score
 
     Box(
         modifier = Modifier
-            .size(sizeBonus)
-            .clickable { onBonusClick(bonus) },
+            .size(size)
+            .clickable { onClick(bonus) },
         contentAlignment = Alignment.Center
     ) {
         when (bonus) {
@@ -222,7 +228,7 @@ private fun BonusZapper(bonus: Bonus.Zapper) {
 }
 
 @Composable
-@Preview(widthDp = 600)
+@Preview(widthDp = 700)
 private fun Preview() {
     val items = listOf(
         Bonus.None,

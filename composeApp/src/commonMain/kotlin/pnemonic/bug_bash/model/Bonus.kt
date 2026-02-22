@@ -6,7 +6,9 @@ import androidx.compose.runtime.setValue
 import pnemonic.bug_bash.sound.SoundType
 
 sealed class Bonus(
+    // Score required to activate the bonus.
     val score: Long,
+    //How many hits does the bonus provide?
     val hits: Long,
     val description: String,
     val sound: SoundType,
@@ -21,7 +23,7 @@ sealed class Bonus(
     // Attract bugs to the cupcake.
     class Cupcake(progress: Long = 0) : Bonus(
         score = 200,
-        hits = -1,
+        hits = 1,
         description = "🧁",
         sound = SoundType.Chips,
         progress = progress

@@ -23,7 +23,6 @@ import pnemonic.bug_bash.model.tool.Tool
 import pnemonic.bug_bash.model.tool.Zapper
 import pnemonic.bug_bash.sound.SoundType
 import pnemonic.half
-import pnemonic.remove
 import kotlin.math.max
 import kotlin.math.min
 
@@ -31,15 +30,20 @@ class BonusEngine(
     private val callback: EngineCallback,
     private val coroutineScope: CoroutineScope
 ) {
-    private val selected = mutableListOf<Bonus>()
+    private val activated = mutableListOf<Bonus>()
     private val used = mutableListOf<Tool>()
     private var boardScore = 0L
-    private var bonusNext: Bonus? = null
+    private var selected: Bonus? = null
     private var jobHide: Job? = null
 
     fun onClick(bonus: Bonus) {
-        if (bonus.isActive && selected.isEmpty()) {
-            selected.add(bonus)
+        if (bonus.isActive) {
+            if (activated.isEmpty()) {
+                activated.add(bonus)
+            }
+            selected = null
+        } else {
+            selected = bonus
         }
     }
 
@@ -53,7 +57,7 @@ class BonusEngine(
     private suspend fun processTools(board: Board): Board {
         val toolActive = board.tool
         if (toolActive == null) {
-            val bonusTouched = selected.removeFirstOrNull()
+            val bonusTouched = activated.removeFirstOrNull()
             if (bonusTouched != null) {
                 // remove the bonus from the list
                 // add the bonus to the board
@@ -79,27 +83,46 @@ class BonusEngine(
         if (scoreDelta == 0L) return board
         boardScore = score
 
-        var bonuses = board.bonuses
         var modified = false
-        var bonus = bonusNext
-        if (bonus == null) {
-            bonus = bonuses.firstOrNull { b -> b.progress < b.score }
-                ?: next(bonuses, bonus) ?: return board
-            bonusNext = bonus
-            bonuses = bonuses.add(bonus)
+        var bonuses = board.bonuses
+        if (bonuses.isEmpty()) {
+            bonuses = listOf(
+                Bonus.Cupcake(),
+                Bonus.Flower(),
+                Bonus.GluePaper(),
+                Bonus.Life(),
+                Bonus.Score(),
+                Bonus.Shoe(),
+                Bonus.Spray(),
+                Bonus.Swatter(),
+                Bonus.Zapper(),
+            )
             modified = true
         }
+        var bonus = selected
+        if (bonus == null) {
+            bonus = bonuses.firstOrNull { b -> b.progress < b.score }
+            if (bonus == null) {
+                bonus = next(bonuses, bonus) ?: return board
+                bonuses = bonuses.add(bonus)
+                modified = true
+            }
+            selected = bonus
+        }
+
         val progressDelta = min(scoreDelta, max(0, bonus.score - bonus.progress))
         bonus.progress += progressDelta
         val progressNext = scoreDelta - progressDelta
         if (bonus.isActive) {
-            bonus = bonuses.firstOrNull { b -> b.progress < b.score } ?: next(bonuses, bonus)
-            if (bonus != null) {
-                bonus.progress += progressNext
-                bonusNext = bonus
+            // Start progressing the next candidate bonus.
+            bonus = bonuses.firstOrNull { b -> b.progress < b.score }
+            if (bonus == null) {
+                bonus = next(bonuses, bonus) ?: return board
                 bonuses = bonuses.add(bonus)
                 modified = true
+                bonus.progress += progressNext
             }
+            selected = bonus
         }
 
         return if (modified) {
@@ -142,62 +165,62 @@ class BonusEngine(
     }
 
     private fun add(board: Board, bonus: Bonus.Cupcake): Board {
+        bonus.progress = 0  // Re-use the bonus.
         val tool = Cupcake(bonus)
-        val bonuses = board.bonuses.remove(bonus)
-        return board.copy(bonuses = bonuses, tool = tool)
+        return board.copy(tool = tool)
     }
 
     private fun add(board: Board, bonus: Bonus.Flower): Board {
+        bonus.progress = 0  // Re-use the bonus.
         val tool = Flower(bonus)
-        val bonuses = board.bonuses.remove(bonus)
-        return board.copy(bonuses = bonuses, tool = tool)
+        return board.copy(tool = tool)
     }
 
     private fun add(board: Board, bonus: Bonus.GluePaper): Board {
+        bonus.progress = 0  // Re-use the bonus.
         val tool = GluePaper(bonus)
-        val bonuses = board.bonuses.remove(bonus)
-        return board.copy(bonuses = bonuses, tool = tool)
+        return board.copy(tool = tool)
     }
 
     private suspend fun add(board: Board, bonus: Bonus.Life): Board {
         val lives = board.lives + bonus.hits.toInt()
         if (lives >= Board.MAX_LIVES) return board
 
+        bonus.progress = 0  // Re-use the bonus.
         val tool = ExtraLife(bonus)
         playSound(tool.sound)
-        val bonuses = board.bonuses.remove(bonus)
-        return board.copy(bonuses = bonuses, tool = tool)
+        return board.copy(tool = tool)
     }
 
     private suspend fun add(board: Board, bonus: Bonus.Score): Board {
+        bonus.progress = 0  // Re-use the bonus.
         val tool = Score(bonus)
         playSound(tool.sound)
-        val bonuses = board.bonuses.remove(bonus)
-        return board.copy(bonuses = bonuses, tool = tool)
+        return board.copy(tool = tool)
     }
 
     private fun add(board: Board, bonus: Bonus.Shoe): Board {
+        bonus.progress = 0  // Re-use the bonus.
         val tool = Shoe(bonus)
-        val bonuses = board.bonuses.remove(bonus)
-        return board.copy(bonuses = bonuses, tool = tool)
+        return board.copy(tool = tool)
     }
 
     private fun add(board: Board, bonus: Bonus.Spray): Board {
+        bonus.progress = 0  // Re-use the bonus.
         val tool = Spray(bonus)
-        val bonuses = board.bonuses.remove(bonus)
-        return board.copy(bonuses = bonuses, tool = tool)
+        return board.copy(tool = tool)
     }
 
     private fun add(board: Board, bonus: Bonus.Swatter): Board {
+        bonus.progress = 0  // Re-use the bonus.
         val tool = Swatter(bonus)
-        val bonuses = board.bonuses.remove(bonus)
-        return board.copy(bonuses = bonuses, tool = tool)
+        return board.copy(tool = tool)
     }
 
     private fun add(board: Board, bonus: Bonus.Zapper): Board {
+        bonus.progress = 0  // Re-use the bonus.
         val tool = Zapper(bonus)
-        val bonuses = board.bonuses.remove(bonus)
-        return board.copy(bonuses = bonuses, tool = tool)
+        return board.copy(tool = tool)
     }
 
     private fun apply(board: Board, tool: ExtraLife): Board {
