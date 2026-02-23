@@ -143,9 +143,9 @@ abstract class Bug(
 
         if (hits == 0) {
             isSquashed = true
-            opacity = 0f
+            opacity = 0.75f
         } else {
-            opacity = max(1f - (damage * 0.2f), 0.15f)
+            opacity = max(1f - (damage * 0.1f), 0.2f)
         }
     }
 

@@ -80,6 +80,8 @@ fun ImageBug(
 ) {
     val width = image.defaultWidth * scale
     val height = image.defaultHeight * scale
+    val sx by animateFloatAsState(targetValue = if (bug.isSquashed) 1.25f else 1f)
+    val sy by animateFloatAsState(targetValue = if (bug.isSquashed) 1.15f else 1f)
     val animatedOpacity by animateFloatAsState(targetValue = bug.opacity)
 
     Box(
@@ -97,6 +99,8 @@ fun ImageBug(
                 translationX = bug.left
                 translationY = bug.top
                 rotationZ = bug.rotation
+                scaleX = sx
+                scaleY = sy
                 alpha = animatedOpacity
             }
             .clickable { onTap(bug) }
@@ -107,9 +111,6 @@ fun ImageBug(
             contentDescription = bug.description,
             contentScale = ContentScale.Fit
         )
-        if (bug.isSquashed) {
-            //TODO Animate squish
-        }
     }
     BugScore(bug, boardSize)
 }

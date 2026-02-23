@@ -1,13 +1,17 @@
 package pnemonic.bug_bash.view.board
 
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import pnemonic.bug_bash.model.bug.Cockroach
 import pnemonic.bug_bash.view.previewColor
+import pnemonic.bug_bash.view.previewHeightDp
+import pnemonic.bug_bash.view.previewWidthDp
+import pnemonic.bug_bash.view.toPx
 import pnemonic.bug_bash.drawable.Cockroach as CockroachImage
 
 @Composable
@@ -20,14 +24,23 @@ fun CockroachView(
     ImageBug(bug, boardSize, CockroachImage, 3f, onSize, onTap)
 }
 
-@Preview(showBackground = true, backgroundColor = previewColor)
+@Preview(
+    showBackground = true,
+    backgroundColor = previewColor,
+    widthDp = previewWidthDp,
+    heightDp = previewHeightDp
+)
 @Composable
 private fun Preview() {
+    val boardSize = Size(previewWidthDp.dp.toPx(), previewHeightDp.dp.toPx())
     val bug = Cockroach()
     val onSize: BugCallback = {}
     val onTap: BugCallback = {}
+    val squashed = Cockroach()
+    squashed.hits = 0
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        CockroachView(bug, Size.Zero, onSize, onTap)
+    Column(modifier = Modifier.fillMaxSize()) {
+        CockroachView(bug, boardSize, onSize, onTap)
+        CockroachView(squashed, boardSize, onSize, onTap)
     }
 }
