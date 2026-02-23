@@ -12,7 +12,9 @@ object SoundManager {
             sounds[sound] = player
         }
         player.play()
-        playing[sound] = true
+        if (sound.repeat) {
+            playing[sound] = true
+        }
     }
 
     fun pause(sound: SoundType) {
