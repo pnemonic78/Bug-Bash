@@ -6,13 +6,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
+import pnemonic.bug_bash.drawable.fly
 import pnemonic.bug_bash.model.bug.Fly
 import pnemonic.bug_bash.view.previewColor
-import pnemonic.bug_bash.drawable.Fly as FlyImage
 
 @Composable
 fun FlyView(bug: Fly, boardSize: Size, onSize: BugCallback, onTap: BugCallback) {
-    ImageBug(bug, boardSize, FlyImage, 1.5f, onSize, onTap)
+    ImageBug(bug, boardSize, fly(bug), 1.5f, onSize, onTap)
 }
 
 @Preview(showBackground = true, backgroundColor = previewColor)

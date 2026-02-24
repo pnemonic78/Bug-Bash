@@ -7,17 +7,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import pnemonic.bug_bash.drawable.insecticide
 import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.model.tool.Spray
 import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.previewHeightDp
 import pnemonic.bug_bash.view.previewWidthDp
 import pnemonic.bug_bash.view.toPx
-import pnemonic.bug_bash.drawable.Insecticide as SprayImage
 
 @Composable
 fun SprayView(tool: Spray, onUse: ToolCallback, boardSize: Size) {
-    ImageTool(tool, SprayImage, 10f, boardSize)
+    ImageTool(tool, insecticide(tool.bonus), 10f, boardSize)
 }
 
 @Composable
@@ -29,7 +29,7 @@ fun SprayView(tool: Spray, onUse: ToolCallback, boardSize: Size) {
 )
 private fun Preview() {
     val boardSize = Size(previewWidthDp.dp.toPx(), previewHeightDp.dp.toPx())
-    val tool = Spray(Bonus.Spray())
+    val tool = Spray(Bonus.Spray(Long.MAX_VALUE))
     tool.show()
 
     Box(modifier = Modifier.fillMaxSize()) {

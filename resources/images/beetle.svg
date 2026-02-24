@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="21.6mm"
+   width="30mm"
    height="34.700001mm"
-   viewBox="0 0 21.6 34.700001"
+   viewBox="0 0 29.999999 34.700001"
    version="1.1"
    id="svg1"
    sodipodi:docname="beetle.svg"
@@ -25,19 +25,20 @@
      inkscape:document-units="mm"
      inkscape:zoom="4.8559639"
      inkscape:cx="50.453423"
-     inkscape:cy="60.647073"
+     inkscape:cy="60.647074"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g306" />
+     inkscape:current-layer="svg1"
+     showgrid="false" />
   <defs
      id="defs1" />
   <g
      id="g306"
      inkscape:label="beetle"
-     transform="matrix(0.26458893,0,0,0.26458893,-110.42707,-92.636537)">
+     transform="matrix(0.26458893,0,0,0.26458893,-106.20607,-92.636537)">
     <path
        id="path230"
        d="m 3557.72,789.859 c 0,-25.91 -54.63,-46.89 -122.03,-46.89 -67.39,0 -122.03,20.98 -122.03,46.89 0,25.903 54.64,46.891 122.03,46.891 67.4,0 122.03,-20.988 122.03,-46.891"

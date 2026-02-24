@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="15.5mm"
+   width="32mm"
    height="24.799999mm"
-   viewBox="0 0 15.5 24.799999"
+   viewBox="0 0 32 24.799999"
    version="1.1"
    id="svg1"
    inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
@@ -24,14 +24,15 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="5.8083612"
-     inkscape:cx="51.821846"
+     inkscape:cx="61.204871"
      inkscape:cy="66.025508"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g475" />
+     inkscape:current-layer="layer1"
+     showgrid="false" />
   <defs
      id="defs1" />
   <g
@@ -40,7 +41,7 @@
      id="layer1">
     <g
        id="g478"
-       transform="matrix(0.36071744,0,0,0.36071744,-93.926842,-46.034606)">
+       transform="matrix(0.36071744,0,0,0.36071744,-85.661898,-46.034606)">
       <g
          id="g459">
         <path
@@ -130,7 +131,7 @@
             <g
                id="g471">
               <path
-                 style="fill:#c5d5d6;fill-opacity:0.80000001"
+                 style="fill:#c5d5d6;fill-opacity:0.8"
                  d="m 283.657,156.424 c 2.523,-0.534 9.261,5.875 13.254,15.526 4.109,9.939 6.05,21.688 3.491,22.353 -3.533,0.918 -15.448,-6.539 -16.177,-12.16 -1.607,-12.404 -3.146,-24.114 -0.991,-25.542 z"
                  id="path471" />
             </g>
@@ -153,7 +154,7 @@
         <g
            id="g476">
           <path
-             style="fill:#c5d5d6;fill-opacity:0.80000001"
+             style="fill:#c5d5d6;fill-opacity:0.8"
              d="m 280.008,156.424 c -2.524,-0.534 -9.262,5.875 -13.253,15.526 -4.11,9.939 -6.051,21.688 -3.492,22.353 3.533,0.918 15.448,-6.539 16.176,-12.16 1.607,-12.404 3.146,-24.114 0.991,-25.542 z"
              id="path476" />
         </g>

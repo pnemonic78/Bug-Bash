@@ -35,12 +35,12 @@ import androidx.compose.ui.unit.dp
 import pnemonic.bug_bash.drawable.Cupcake
 import pnemonic.bug_bash.drawable.Flower
 import pnemonic.bug_bash.drawable.GluePaper
-import pnemonic.bug_bash.drawable.Insecticide
 import pnemonic.bug_bash.drawable.LifeHas
 import pnemonic.bug_bash.drawable.Shoe
 import pnemonic.bug_bash.drawable.Swatter
 import pnemonic.bug_bash.drawable.Trophy
 import pnemonic.bug_bash.drawable.Zapper
+import pnemonic.bug_bash.drawable.insecticide
 import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.view.theme.panel
 import pnemonic.bug_bash.drawable.Bonus as BonusImage
@@ -171,7 +171,7 @@ private fun BonusGluePaper(bonus: Bonus.GluePaper) {
 private fun BonusSpray(bonus: Bonus.Spray) {
     Image(
         modifier = Modifier.size(sizeBonus),
-        imageVector = Insecticide,
+        imageVector = insecticide(false),
         contentDescription = bonus.description,
         contentScale = ContentScale.Fit
     )

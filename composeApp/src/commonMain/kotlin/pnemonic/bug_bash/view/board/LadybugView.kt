@@ -6,9 +6,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
+import pnemonic.bug_bash.drawable.ladybug
 import pnemonic.bug_bash.model.bug.Ladybug
 import pnemonic.bug_bash.view.previewColor
-import pnemonic.bug_bash.drawable.Ladybug as LadybugImage
 
 @Composable
 fun LadybugView(
@@ -17,7 +17,7 @@ fun LadybugView(
     onSize: BugCallback,
     onTap: BugCallback
 ) {
-    ImageBug(bug, boardSize, LadybugImage, 1.5f, onSize, onTap)
+    ImageBug(bug, boardSize, ladybug(bug), 1.5f, onSize, onTap)
 }
 
 @Preview(showBackground = true, backgroundColor = previewColor)

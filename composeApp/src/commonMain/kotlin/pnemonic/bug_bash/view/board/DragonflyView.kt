@@ -6,9 +6,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
+import pnemonic.bug_bash.drawable.dragonfly
 import pnemonic.bug_bash.model.bug.Dragonfly
 import pnemonic.bug_bash.view.previewColor
-import pnemonic.bug_bash.drawable.Dragonfly as DragonflyImage
 
 @Composable
 fun DragonflyView(
@@ -17,7 +17,7 @@ fun DragonflyView(
     onSize: BugCallback,
     onTap: BugCallback
 ) {
-    ImageBug(bug, boardSize, DragonflyImage, 2f, onSize, onTap)
+    ImageBug(bug, boardSize, dragonfly(bug), 2f, onSize, onTap)
 }
 
 @Preview(showBackground = true, backgroundColor = previewColor)

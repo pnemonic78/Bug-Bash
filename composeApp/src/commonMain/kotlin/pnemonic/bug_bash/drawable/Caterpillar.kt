@@ -1,23 +1,140 @@
 package pnemonic.bug_bash.drawable
 
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.StartOffset
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.vector.group
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
+import pnemonic.bug_bash.model.bug.Caterpillar
+import pnemonic.stateOf
 
-val Caterpillar: ImageVector
-    get() {
-        if (_Caterpillar != null) {
-            return _Caterpillar!!
-        }
-        _Caterpillar = ImageVector.Builder(
-            name = "Caterpillar",
-            defaultWidth = 23.5.dp,
-            defaultHeight = 60.dp,
-            viewportWidth = 23.5f,
-            viewportHeight = 60f
-        ).apply {
+private const val durationCrawl = 1000
+private const val offsetCrawl = 200
+
+@Composable
+fun caterpillar(bug: Caterpillar): ImageVector = caterpillar(bug.isSquashed)
+
+@Composable
+fun caterpillar(squashed: Boolean = false): ImageVector {
+    val crawl1: State<Float>
+    val crawl2: State<Float>
+    val crawl3: State<Float>
+    val crawl4: State<Float>
+    val crawl5: State<Float>
+    val crawl6: State<Float>
+    val crawl7: State<Float>
+    val crawl8: State<Float>
+    val crawl9: State<Float>
+    val crawl10: State<Float>
+
+    if (squashed) {
+        crawl1 = stateOf(0f)
+        crawl2 = crawl1
+        crawl3 = crawl1
+        crawl4 = crawl1
+        crawl5 = crawl1
+        crawl6 = crawl1
+        crawl7 = crawl1
+        crawl8 = crawl1
+        crawl9 = crawl1
+        crawl10 = stateOf(1f)
+    } else {
+        val transition = rememberInfiniteTransition()
+        crawl1 = transition.animateFloat(
+            initialValue = 0f,
+            targetValue = -2f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(
+                    durationMillis = durationCrawl,
+                    easing = LinearEasing
+                ),
+                repeatMode = RepeatMode.Restart,
+                initialStartOffset = StartOffset(offsetCrawl * 4)
+            )
+        )
+        crawl2 = transition.animateFloat(
+            initialValue = 0f,
+            targetValue = -2f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(
+                    durationMillis = durationCrawl,
+                    easing = LinearEasing
+                ),
+                repeatMode = RepeatMode.Restart,
+                initialStartOffset = StartOffset(offsetCrawl * 3)
+            )
+        )
+        crawl3 = transition.animateFloat(
+            initialValue = 0f,
+            targetValue = -2f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(
+                    durationMillis = durationCrawl,
+                    easing = LinearEasing
+                ),
+                repeatMode = RepeatMode.Restart,
+                initialStartOffset = StartOffset(offsetCrawl * 2)
+            )
+        )
+        crawl4 = transition.animateFloat(
+            initialValue = 0f,
+            targetValue = -2f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(
+                    durationMillis = durationCrawl,
+                    easing = LinearEasing
+                ),
+                repeatMode = RepeatMode.Restart,
+                initialStartOffset = StartOffset(offsetCrawl * 1)
+            )
+        )
+        crawl5 = transition.animateFloat(
+            initialValue = 0f,
+            targetValue = -2f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(
+                    durationMillis = durationCrawl,
+                    easing = LinearEasing
+                ),
+                repeatMode = RepeatMode.Restart,
+                initialStartOffset = StartOffset(offsetCrawl * 0)
+            )
+        )
+        crawl6 = crawl1
+        crawl7 = crawl2
+        crawl8 = crawl3
+        crawl9 = crawl4
+        crawl10 = transition.animateFloat(
+            initialValue = 1f,
+            targetValue = 0.95f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(
+                    durationMillis = durationCrawl,
+                    easing = LinearEasing
+                ),
+                repeatMode = RepeatMode.Restart
+            )
+        )
+    }
+
+    return ImageVector.Builder(
+        name = "Caterpillar",
+        defaultWidth = 23.5.dp,
+        defaultHeight = 60.dp,
+        viewportWidth = 23.5f,
+        viewportHeight = 60f
+    ).apply {
+        group(name = "leg-r1", translationY = crawl1.value) {
             path(fill = SolidColor(Color(0xFF352826))) {
                 moveTo(16.753f, 6.104f)
                 lineToRelative(-0.276f, 0.361f)
@@ -57,6 +174,8 @@ val Caterpillar: ImageVector
                 lineToRelative(-1.424f, 0.226f)
                 close()
             }
+        }
+        group(name = "leg-r2", translationY = crawl2.value) {
             path(fill = SolidColor(Color(0xFF352826))) {
                 moveTo(16.89f, 13.157f)
                 lineToRelative(0.138f, -0.452f)
@@ -92,6 +211,8 @@ val Caterpillar: ImageVector
                 lineToRelative(-2.159f, -1.401f)
                 close()
             }
+        }
+        group(name = "leg-r3", translationY = crawl3.value) {
             path(fill = SolidColor(Color(0xFF352826))) {
                 moveTo(17.717f, 19.26f)
                 lineToRelative(-0.736f, 0.181f)
@@ -130,6 +251,8 @@ val Caterpillar: ImageVector
                 lineToRelative(-2.113f, -0.769f)
                 close()
             }
+        }
+        group(name = "leg-r4", translationY = crawl4.value) {
             path(fill = SolidColor(Color(0xFF352826))) {
                 moveTo(17.625f, 25.228f)
                 lineToRelative(-0.644f, 0.181f)
@@ -170,6 +293,8 @@ val Caterpillar: ImageVector
                 lineToRelative(-2.802f, -0.136f)
                 close()
             }
+        }
+        group(name = "leg-r5", translationY = crawl5.value) {
             path(fill = SolidColor(Color(0xFF352826))) {
                 moveToRelative(16.522f, 30.925f)
                 lineToRelative(0.965f, 0.316f)
@@ -213,6 +338,8 @@ val Caterpillar: ImageVector
                 lineToRelative(2.756f, -0.226f)
                 close()
             }
+        }
+        group(name = "leg-r6", translationY = crawl6.value) {
             path(fill = SolidColor(Color(0xFF352826))) {
                 moveTo(18.177f, 36.802f)
                 lineToRelative(-0.229f, 0.452f)
@@ -253,6 +380,8 @@ val Caterpillar: ImageVector
                 lineToRelative(2.481f, 0.497f)
                 close()
             }
+        }
+        group(name = "leg-r7", translationY = crawl7.value) {
             path(fill = SolidColor(Color(0xFF352826))) {
                 moveTo(17.978f, 42.604f)
                 lineToRelative(-0.276f, 0.452f)
@@ -293,6 +422,8 @@ val Caterpillar: ImageVector
                 lineToRelative(-2.297f, -0.136f)
                 close()
             }
+        }
+        group(name = "leg-r8", translationY = crawl8.value) {
             path(fill = SolidColor(Color(0xFF352826))) {
                 moveTo(17.503f, 49.868f)
                 lineToRelative(-0.735f, 0.316f)
@@ -334,6 +465,8 @@ val Caterpillar: ImageVector
                 lineToRelative(1.859f, 0.045f)
                 close()
             }
+        }
+        group(name = "leg-l1", translationY = crawl1.value) {
             path(fill = SolidColor(Color(0xFF352826))) {
                 moveTo(6.278f, 6.691f)
                 lineToRelative(0.735f, 0.181f)
@@ -372,6 +505,8 @@ val Caterpillar: ImageVector
                 lineToRelative(2.113f, -0.769f)
                 close()
             }
+        }
+        group(name = "leg-l2", translationY = crawl2.value) {
             path(fill = SolidColor(Color(0xFF352826))) {
                 moveTo(6.14f, 14.468f)
                 lineToRelative(0.643f, 0.181f)
@@ -412,6 +547,8 @@ val Caterpillar: ImageVector
                 lineToRelative(2.802f, -0.136f)
                 close()
             }
+        }
+        group(name = "leg-l3", translationY = crawl3.value) {
             path(fill = SolidColor(Color(0xFF352826))) {
                 moveTo(6.011f, 20.089f)
                 lineToRelative(0.364f, 0.276f)
@@ -451,6 +588,8 @@ val Caterpillar: ImageVector
                 lineToRelative(1.432f, -0.157f)
                 close()
             }
+        }
+        group(name = "leg-l4", translationY = crawl4.value) {
             path(fill = SolidColor(Color(0xFF352826))) {
                 moveTo(6.416f, 26.177f)
                 lineToRelative(-0.138f, -0.452f)
@@ -486,6 +625,8 @@ val Caterpillar: ImageVector
                 lineToRelative(2.159f, -1.401f)
                 close()
             }
+        }
+        group(name = "leg-l5", translationY = crawl5.value) {
             path(fill = SolidColor(Color(0xFF352826))) {
                 moveTo(5.727f, 31.693f)
                 lineToRelative(0.277f, 0.452f)
@@ -526,6 +667,8 @@ val Caterpillar: ImageVector
                 lineToRelative(2.297f, -0.136f)
                 close()
             }
+        }
+        group(name = "leg-l6", translationY = crawl6.value) {
             path(fill = SolidColor(Color(0xFF352826))) {
                 moveTo(5.864f, 37.751f)
                 lineToRelative(0.736f, 0.317f)
@@ -567,6 +710,8 @@ val Caterpillar: ImageVector
                 lineToRelative(-2.068f, 0.046f)
                 close()
             }
+        }
+        group(name = "leg-l7", translationY = crawl7.value) {
             path(fill = SolidColor(Color(0xFF352826))) {
                 moveToRelative(6.845f, 42.981f)
                 lineToRelative(-0.964f, 0.316f)
@@ -610,6 +755,8 @@ val Caterpillar: ImageVector
                 lineToRelative(-2.758f, -0.226f)
                 close()
             }
+        }
+        group(name = "leg-l8", translationY = crawl8.value) {
             path(fill = SolidColor(Color(0xFF352826))) {
                 moveTo(6.247f, 50.426f)
                 lineToRelative(0.231f, 0.451f)
@@ -650,6 +797,8 @@ val Caterpillar: ImageVector
                 lineToRelative(-2.48f, 0.497f)
                 close()
             }
+        }
+        group(name = "face") {
             path(fill = SolidColor(Color(0xFF352826))) {
                 moveTo(14.364f, 2.442f)
                 lineToRelative(-0.368f, 0.904f)
@@ -682,6 +831,8 @@ val Caterpillar: ImageVector
                 curveToRelative(0f, 0f, 0.366f, -0.09f, 0.734f, -0.09f)
                 close()
             }
+        }
+        group(name = "body", scaleY = crawl10.value) {
             path(fill = SolidColor(Color(0xFF352826))) {
                 moveToRelative(13.721f, 2.532f)
                 lineToRelative(-2.297f, -0.723f)
@@ -773,154 +924,8 @@ val Caterpillar: ImageVector
                 lineToRelative(-1.01f, -0.723f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFF050303))) {
-                moveToRelative(12.157f, 8.952f)
-                lineToRelative(2.207f, -0.271f)
-                lineToRelative(0.916f, -0.343f)
-                curveToRelative(0.129f, -0.256f, 0.278f, -0.587f, 0.278f, -0.742f)
-                curveToRelative(0f, -0.141f, 0.075f, -0.503f, 0.146f, -0.868f)
-                lineToRelative(-1.432f, 0.597f)
-                lineToRelative(-2.757f, 0.091f)
-                lineToRelative(-2.94f, -0.362f)
-                lineToRelative(-1.719f, -1.619f)
-                lineToRelative(0.158f, 1.709f)
-                lineToRelative(0.828f, 1.356f)
-                lineToRelative(0f, 0.066f)
-                lineToRelative(1.561f, 0.205f)
-                close()
-            }
-            path(fill = SolidColor(Color(0xFF050303))) {
-                moveTo(15.999f, 13.943f)
-                lineToRelative(-2.278f, 0.796f)
-                lineToRelative(-2.297f, 0.181f)
-                lineToRelative(-3.124f, -0.09f)
-                lineToRelative(-1.442f, -0.887f)
-                lineToRelative(0.064f, 1.067f)
-                lineToRelative(0.592f, 0.841f)
-                lineToRelative(1.245f, 0.335f)
-                lineToRelative(2.297f, 0.453f)
-                lineToRelative(2.206f, -0.362f)
-                lineToRelative(1.929f, -0.542f)
-                lineToRelative(0.442f, -0.27f)
-                lineToRelative(-0.074f, -0.363f)
-                close()
-            }
-            path(fill = SolidColor(Color(0xFF050303))) {
-                moveToRelative(14.18f, 21.882f)
-                lineToRelative(1.297f, -0.153f)
-                lineToRelative(-0.01f, -0.028f)
-                lineToRelative(0.551f, -0.723f)
-                curveToRelative(0f, 0f, 0.573f, -1.19f, 0.764f, -1.745f)
-                lineToRelative(-2.235f, 0.841f)
-                lineToRelative(-2.939f, 0.09f)
-                lineToRelative(-2.941f, -0.09f)
-                lineToRelative(-1.909f, -0.671f)
-                lineToRelative(-0.02f, 0.309f)
-                lineToRelative(0.368f, 1.266f)
-                lineToRelative(0.809f, 0.619f)
-                lineToRelative(2.223f, 0.375f)
-                close()
-            }
-            path(fill = SolidColor(Color(0xFF050303))) {
-                moveTo(12.068f, 26.313f)
-                lineToRelative(-3.217f, -0.271f)
-                lineToRelative(-1.841f, -0.873f)
-                lineToRelative(-0.087f, 0.782f)
-                lineToRelative(0.459f, 1.085f)
-                lineToRelative(0.389f, 0.469f)
-                lineToRelative(3.286f, 0.526f)
-                lineToRelative(3.308f, -0.181f)
-                lineToRelative(1.806f, -0.474f)
-                lineToRelative(0.675f, -1.244f)
-                lineToRelative(0f, -1.189f)
-                lineToRelative(-2.298f, 0.918f)
-                close()
-            }
-            path(fill = SolidColor(Color(0xFF050303))) {
-                moveTo(7.105f, 31.793f)
-                lineToRelative(0f, 0.488f)
-                lineToRelative(0.367f, 0.995f)
-                lineToRelative(0.528f, 0.445f)
-                lineToRelative(1.218f, 0.369f)
-                lineToRelative(2.113f, 0.362f)
-                lineToRelative(3.307f, -0.362f)
-                lineToRelative(1.287f, -0.533f)
-                lineToRelative(0f, -0.281f)
-                lineToRelative(0.735f, -1.266f)
-                lineToRelative(0.077f, -0.588f)
-                lineToRelative(-2.374f, 1.131f)
-                lineToRelative(-3.401f, 0.723f)
-                lineToRelative(-2.572f, -0.723f)
-                close()
-            }
-            path(fill = SolidColor(Color(0xFF050303))) {
-                moveToRelative(11.332f, 37.706f)
-                lineToRelative(-3.124f, -0.09f)
-                lineToRelative(-1.275f, -0.816f)
-                lineToRelative(-0.103f, 0.544f)
-                lineToRelative(0.459f, 1.266f)
-                lineToRelative(0.305f, 0.385f)
-                lineToRelative(0.981f, 0.338f)
-                lineToRelative(1.745f, 0.091f)
-                lineToRelative(2.298f, 0f)
-                lineToRelative(2.48f, -0.181f)
-                lineToRelative(1.355f, -0.555f)
-                curveToRelative(0.187f, -0.262f, 0.354f, -0.512f, 0.391f, -0.62f)
-                curveToRelative(0.092f, -0.272f, 0.367f, -1.809f, 0.367f, -1.809f)
-                lineToRelative(-0.054f, -0.146f)
-                lineToRelative(-2.702f, 1.14f)
-                close()
-            }
-            path(fill = SolidColor(Color(0xFF050303))) {
-                moveTo(11.332f, 44.488f)
-                lineToRelative(-3.124f, -0.633f)
-                lineToRelative(-1.563f, -0.984f)
-                lineToRelative(0f, 0.441f)
-                lineToRelative(0.46f, 1.266f)
-                lineToRelative(0.589f, 0.709f)
-                lineToRelative(1.065f, 0.285f)
-                lineToRelative(2.022f, 0.452f)
-                lineToRelative(2.389f, 0.271f)
-                lineToRelative(2.572f, -0.181f)
-                lineToRelative(0.848f, -0.493f)
-                lineToRelative(0.255f, -1.587f)
-                lineToRelative(0f, -0.712f)
-                lineToRelative(-0.552f, 0.351f)
-                lineToRelative(-2.02f, 0.452f)
-                close()
-            }
-            path(fill = SolidColor(Color(0xFF050303))) {
-                moveTo(7.472f, 51.541f)
-                lineToRelative(0.711f, 0.873f)
-                lineToRelative(1.495f, 0.393f)
-                lineToRelative(2.204f, 0.091f)
-                lineToRelative(2.664f, -0.271f)
-                lineToRelative(1.48f, -0.38f)
-                lineToRelative(0.726f, -1.429f)
-                lineToRelative(-0.105f, -0.93f)
-                lineToRelative(-2.284f, 0.75f)
-                lineToRelative(-3.216f, 0.271f)
-                lineToRelative(-2.573f, -0.362f)
-                lineToRelative(-1.828f, -1.116f)
-                lineToRelative(-0.01f, 0.031f)
-                close()
-            }
-            path(fill = SolidColor(Color(0xFF050303))) {
-                moveToRelative(13.078f, 55.791f)
-                curveToRelative(-0.276f, 0f, -2.481f, 0.361f, -2.481f, 0.361f)
-                lineToRelative(-2.163f, -0.731f)
-                lineToRelative(-0.043f, 0.46f)
-                curveToRelative(0f, 0f, 0.827f, 0.905f, 1.102f, 0.995f)
-                curveToRelative(0.191f, 0.063f, 0.554f, 0.467f, 0.762f, 0.714f)
-                lineToRelative(0.984f, 0.1f)
-                lineToRelative(2.757f, -0.452f)
-                lineToRelative(0.888f, -0.38f)
-                lineToRelative(0.031f, -0.525f)
-                lineToRelative(0.827f, -0.633f)
-                lineToRelative(0.091f, -0.27f)
-                curveToRelative(-0.929f, 0.133f, -2.559f, 0.36f, -2.755f, 0.36f)
-                close()
-            }
+        }
+        group(name = "yellow-stripe", scaleY = crawl10.value) {
             path(fill = SolidColor(Color(0xFFDCAF22))) {
                 moveToRelative(13.813f, 10.851f)
                 lineToRelative(-0.728f, -8.519f)
@@ -948,6 +953,190 @@ val Caterpillar: ImageVector
                 lineToRelative(-0.093f, -9.223f)
                 close()
             }
+        }
+        group(name = "thorax1", translationY = crawl1.value) {
+            path(fill = SolidColor(Color(0x80664400))) {
+                moveToRelative(12.157f, 8.952f)
+                lineToRelative(2.207f, -0.271f)
+                lineToRelative(0.916f, -0.343f)
+                curveToRelative(0.129f, -0.256f, 0.278f, -0.587f, 0.278f, -0.742f)
+                curveToRelative(0f, -0.141f, 0.075f, -0.503f, 0.146f, -0.868f)
+                lineToRelative(-1.432f, 0.597f)
+                lineToRelative(-2.757f, 0.091f)
+                lineToRelative(-2.94f, -0.362f)
+                lineToRelative(-1.719f, -1.619f)
+                lineToRelative(0.158f, 1.709f)
+                lineToRelative(0.828f, 1.356f)
+                lineToRelative(0f, 0.066f)
+                lineToRelative(1.561f, 0.205f)
+                close()
+            }
+        }
+        group(name = "thorax2", translationY = crawl2.value) {
+            path(fill = SolidColor(Color(0x80664400))) {
+                moveTo(15.999f, 13.943f)
+                lineToRelative(-2.278f, 0.796f)
+                lineToRelative(-2.297f, 0.181f)
+                lineToRelative(-3.124f, -0.09f)
+                lineToRelative(-1.442f, -0.887f)
+                lineToRelative(0.064f, 1.067f)
+                lineToRelative(0.592f, 0.841f)
+                lineToRelative(1.245f, 0.335f)
+                lineToRelative(2.297f, 0.453f)
+                lineToRelative(2.206f, -0.362f)
+                lineToRelative(1.929f, -0.542f)
+                lineToRelative(0.442f, -0.27f)
+                lineToRelative(-0.074f, -0.363f)
+                close()
+            }
+        }
+        group(name = "abdomen3", translationY = crawl3.value) {
+            path(fill = SolidColor(Color(0x80664400))) {
+                moveToRelative(14.18f, 21.882f)
+                lineToRelative(1.297f, -0.153f)
+                lineToRelative(-0.01f, -0.028f)
+                lineToRelative(0.551f, -0.723f)
+                curveToRelative(0f, 0f, 0.573f, -1.19f, 0.764f, -1.745f)
+                lineToRelative(-2.235f, 0.841f)
+                lineToRelative(-2.939f, 0.09f)
+                lineToRelative(-2.941f, -0.09f)
+                lineToRelative(-1.909f, -0.671f)
+                lineToRelative(-0.02f, 0.309f)
+                lineToRelative(0.368f, 1.266f)
+                lineToRelative(0.809f, 0.619f)
+                lineToRelative(2.223f, 0.375f)
+                close()
+            }
+        }
+        group(name = "abdomen4", translationY = crawl4.value) {
+            path(fill = SolidColor(Color(0x80664400))) {
+                moveTo(12.068f, 26.313f)
+                lineToRelative(-3.217f, -0.271f)
+                lineToRelative(-1.841f, -0.873f)
+                lineToRelative(-0.087f, 0.782f)
+                lineToRelative(0.459f, 1.085f)
+                lineToRelative(0.389f, 0.469f)
+                lineToRelative(3.286f, 0.526f)
+                lineToRelative(3.308f, -0.181f)
+                lineToRelative(1.806f, -0.474f)
+                lineToRelative(0.675f, -1.244f)
+                lineToRelative(0f, -1.189f)
+                lineToRelative(-2.298f, 0.918f)
+                close()
+            }
+        }
+        group(name = "abdomen5", translationY = crawl5.value) {
+            path(fill = SolidColor(Color(0x80664400))) {
+                moveTo(7.105f, 31.793f)
+                lineToRelative(0f, 0.488f)
+                lineToRelative(0.367f, 0.995f)
+                lineToRelative(0.528f, 0.445f)
+                lineToRelative(1.218f, 0.369f)
+                lineToRelative(2.113f, 0.362f)
+                lineToRelative(3.307f, -0.362f)
+                lineToRelative(1.287f, -0.533f)
+                lineToRelative(0f, -0.281f)
+                lineToRelative(0.735f, -1.266f)
+                lineToRelative(0.077f, -0.588f)
+                lineToRelative(-2.374f, 1.131f)
+                lineToRelative(-3.401f, 0.723f)
+                lineToRelative(-2.572f, -0.723f)
+                close()
+            }
+        }
+        group(name = "abdomen6", translationY = crawl6.value) {
+            path(fill = SolidColor(Color(0x80664400))) {
+                moveToRelative(11.332f, 37.706f)
+                lineToRelative(-3.124f, -0.09f)
+                lineToRelative(-1.275f, -0.816f)
+                lineToRelative(-0.103f, 0.544f)
+                lineToRelative(0.459f, 1.266f)
+                lineToRelative(0.305f, 0.385f)
+                lineToRelative(0.981f, 0.338f)
+                lineToRelative(1.745f, 0.091f)
+                lineToRelative(2.298f, 0f)
+                lineToRelative(2.48f, -0.181f)
+                lineToRelative(1.355f, -0.555f)
+                curveToRelative(0.187f, -0.262f, 0.354f, -0.512f, 0.391f, -0.62f)
+                curveToRelative(0.092f, -0.272f, 0.367f, -1.809f, 0.367f, -1.809f)
+                lineToRelative(-0.054f, -0.146f)
+                lineToRelative(-2.702f, 1.14f)
+                close()
+            }
+        }
+        group(name = "abdomen7", translationY = crawl7.value) {
+            path(fill = SolidColor(Color(0x80664400))) {
+                moveTo(11.332f, 44.488f)
+                lineToRelative(-3.124f, -0.633f)
+                lineToRelative(-1.563f, -0.984f)
+                lineToRelative(0f, 0.441f)
+                lineToRelative(0.46f, 1.266f)
+                lineToRelative(0.589f, 0.709f)
+                lineToRelative(1.065f, 0.285f)
+                lineToRelative(2.022f, 0.452f)
+                lineToRelative(2.389f, 0.271f)
+                lineToRelative(2.572f, -0.181f)
+                lineToRelative(0.848f, -0.493f)
+                lineToRelative(0.255f, -1.587f)
+                lineToRelative(0f, -0.712f)
+                lineToRelative(-0.552f, 0.351f)
+                lineToRelative(-2.02f, 0.452f)
+                close()
+            }
+        }
+        group(name = "abdomen8", translationY = crawl8.value) {
+            path(fill = SolidColor(Color(0x80664400))) {
+                moveTo(7.472f, 51.541f)
+                lineToRelative(0.711f, 0.873f)
+                lineToRelative(1.495f, 0.393f)
+                lineToRelative(2.204f, 0.091f)
+                lineToRelative(2.664f, -0.271f)
+                lineToRelative(1.48f, -0.38f)
+                lineToRelative(0.726f, -1.429f)
+                lineToRelative(-0.105f, -0.93f)
+                lineToRelative(-2.284f, 0.75f)
+                lineToRelative(-3.216f, 0.271f)
+                lineToRelative(-2.573f, -0.362f)
+                lineToRelative(-1.828f, -1.116f)
+                lineToRelative(-0.01f, 0.031f)
+                close()
+            }
+        }
+        group(name = "abdomen9", translationY = crawl9.value) {
+            path(fill = SolidColor(Color(0x80664400))) {
+                moveToRelative(13.078f, 55.791f)
+                curveToRelative(-0.276f, 0f, -2.481f, 0.361f, -2.481f, 0.361f)
+                lineToRelative(-2.163f, -0.731f)
+                lineToRelative(-0.043f, 0.46f)
+                curveToRelative(0f, 0f, 0.827f, 0.905f, 1.102f, 0.995f)
+                curveToRelative(0.191f, 0.063f, 0.554f, 0.467f, 0.762f, 0.714f)
+                lineToRelative(0.984f, 0.1f)
+                lineToRelative(2.757f, -0.452f)
+                lineToRelative(0.888f, -0.38f)
+                lineToRelative(0.031f, -0.525f)
+                lineToRelative(0.827f, -0.633f)
+                lineToRelative(0.091f, -0.27f)
+                curveToRelative(-0.929f, 0.133f, -2.559f, 0.36f, -2.755f, 0.36f)
+                close()
+            }
+        }
+        group(name = "spiracle1", translationY = crawl1.value) {
+            path(fill = SolidColor(Color(0xFFFF8122))) {
+                moveTo(9.126f, 6.149f)
+                lineToRelative(-0.275f, -0.633f)
+                lineToRelative(-0.184f, 0.542f)
+                close()
+            }
+            path(fill = SolidColor(Color(0xFFFF8122))) {
+                moveToRelative(14.18f, 5.335f)
+                lineToRelative(-0.276f, 0.995f)
+                lineToRelative(0.552f, 0f)
+                curveToRelative(0f, 0f, 0.46f, 0.091f, 0.46f, -0.181f)
+                curveToRelative(-0.001f, -0.271f, -0.736f, -0.814f, -0.736f, -0.814f)
+                close()
+            }
+        }
+        group(name = "spiracle2", translationY = crawl2.value) {
             path(fill = SolidColor(Color(0xFFFF8122))) {
                 moveTo(8.85f, 14.106f)
                 lineToRelative(-0.827f, -0.633f)
@@ -964,20 +1153,8 @@ val Caterpillar: ImageVector
                 lineToRelative(-0.46f, 0.905f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFFF8122))) {
-                moveTo(9.126f, 6.149f)
-                lineToRelative(-0.275f, -0.633f)
-                lineToRelative(-0.184f, 0.542f)
-                close()
-            }
-            path(fill = SolidColor(Color(0xFFFF8122))) {
-                moveToRelative(14.18f, 5.335f)
-                lineToRelative(-0.276f, 0.995f)
-                lineToRelative(0.552f, 0f)
-                curveToRelative(0f, 0f, 0.46f, 0.091f, 0.46f, -0.181f)
-                curveToRelative(-0.001f, -0.271f, -0.736f, -0.814f, -0.736f, -0.814f)
-                close()
-            }
+        }
+        group(name = "spiracle3", translationY = crawl3.value) {
             path(fill = SolidColor(Color(0xFFFF8122))) {
                 moveTo(9.218f, 19.17f)
                 lineToRelative(0.643f, -0.182f)
@@ -994,6 +1171,8 @@ val Caterpillar: ImageVector
                 curveToRelative(0f, -0.271f, -0.184f, -1.356f, -0.184f, -1.356f)
                 close()
             }
+        }
+        group(name = "spiracle4", translationY = crawl4.value) {
             path(fill = SolidColor(Color(0xFFFF8122))) {
                 moveToRelative(9.218f, 23.148f)
                 lineToRelative(-0.919f, 1.085f)
@@ -1009,6 +1188,8 @@ val Caterpillar: ImageVector
                 curveToRelative(0.368f, -0.452f, -0.46f, -0.995f, -0.46f, -0.995f)
                 close()
             }
+        }
+        group(name = "spiracle5", translationY = crawl5.value) {
             path(fill = SolidColor(Color(0xFFFF8122))) {
                 moveTo(9.953f, 30.201f)
                 lineToRelative(-0.643f, -0.181f)
@@ -1026,6 +1207,8 @@ val Caterpillar: ImageVector
                 lineToRelative(-0.184f, 1.085f)
                 close()
             }
+        }
+        group(name = "spiracle6", translationY = crawl6.value) {
             path(fill = SolidColor(Color(0xFFFF8122))) {
                 moveTo(9.586f, 35.084f)
                 lineToRelative(-0.643f, -0.091f)
@@ -1043,6 +1226,8 @@ val Caterpillar: ImageVector
                 lineToRelative(-0.184f, 0.995f)
                 close()
             }
+        }
+        group(name = "spiracle7", translationY = crawl7.value) {
             path(fill = SolidColor(Color(0xFFFF8122))) {
                 moveToRelative(9.035f, 41.323f)
                 lineToRelative(-0.735f, 0.995f)
@@ -1060,6 +1245,8 @@ val Caterpillar: ImageVector
                 curveToRelative(0.092f, -0.271f, -0.276f, -1.175f, -0.276f, -1.175f)
                 close()
             }
+        }
+        group(name = "spiracle8", translationY = crawl8.value) {
             path(fill = SolidColor(Color(0xFFFF8122))) {
                 moveTo(9.77f, 47.472f)
                 lineToRelative(-0.551f, 0.09f)
@@ -1077,6 +1264,8 @@ val Caterpillar: ImageVector
                 lineToRelative(-0.184f, 0.994f)
                 close()
             }
+        }
+        group(name = "spiracle9", translationY = crawl9.value) {
             path(fill = SolidColor(Color(0xFFFF8122))) {
                 moveToRelative(9.679f, 53.711f)
                 lineToRelative(-0.368f, 0.814f)
@@ -1091,100 +1280,6 @@ val Caterpillar: ImageVector
                 curveToRelative(0.367f, -0.633f, 0.183f, -1.447f, 0.183f, -1.447f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFC99000))) {
-                moveToRelative(13.635f, 8.771f)
-                lineToRelative(-0.121f, -1.421f)
-                lineToRelative(-1.998f, 0.065f)
-                lineToRelative(-1.757f, -0.217f)
-                curveToRelative(0.051f, 0.632f, 0.103f, 1.242f, 0.145f, 1.606f)
-                lineToRelative(2.255f, 0.148f)
-                close()
-            }
-            path(fill = SolidColor(Color(0xFFC99000))) {
-                moveToRelative(13.262f, 16.276f)
-                lineToRelative(0.948f, -0.266f)
-                lineToRelative(-0.108f, -1.404f)
-                lineToRelative(-0.38f, 0.132f)
-                lineToRelative(-2.297f, 0.181f)
-                lineToRelative(-1.078f, -0.031f)
-                curveToRelative(0.03f, 0.5f, 0.063f, 1.057f, 0.097f, 1.629f)
-                lineToRelative(0.613f, 0.121f)
-                close()
-            }
-            path(fill = SolidColor(Color(0xFFC99000))) {
-                moveToRelative(14.642f, 21.828f)
-                lineToRelative(-0.003f, -0.217f)
-                lineToRelative(-0.118f, -1.536f)
-                lineToRelative(-2.913f, 0.09f)
-                lineToRelative(-0.958f, -0.029f)
-                curveToRelative(0.024f, 0.452f, 0.039f, 0.763f, 0.039f, 0.843f)
-                curveToRelative(0f, 0.113f, 0.006f, 0.486f, 0.014f, 0.982f)
-                lineToRelative(3.477f, -0.078f)
-                close()
-            }
-            path(fill = SolidColor(Color(0xFFC99000))) {
-                moveTo(14.364f, 27.85f)
-                lineToRelative(0.337f, -0.088f)
-                lineToRelative(-0.021f, -1.955f)
-                lineToRelative(-0.133f, 0.053f)
-                lineToRelative(-2.479f, 0.452f)
-                lineToRelative(-1.295f, -0.109f)
-                lineToRelative(-0.076f, 1.77f)
-                lineToRelative(0.36f, 0.057f)
-                close()
-            }
-            path(fill = SolidColor(Color(0xFFC99000))) {
-                moveTo(14.364f, 32.552f)
-                lineToRelative(-3.401f, 0.723f)
-                lineToRelative(-0.489f, -0.138f)
-                lineToRelative(-0.051f, 1.158f)
-                lineToRelative(0.908f, 0.156f)
-                lineToRelative(3.114f, -0.341f)
-                lineToRelative(0.145f, -1.666f)
-                close()
-            }
-            path(fill = SolidColor(Color(0xFFC99000))) {
-                moveTo(12.618f, 39.425f)
-                lineToRelative(1.373f, -0.101f)
-                lineToRelative(0.178f, -2.028f)
-                lineToRelative(-2.837f, 0.41f)
-                lineToRelative(-0.973f, -0.028f)
-                lineToRelative(-0.031f, 1.747f)
-                close()
-            }
-            path(fill = SolidColor(Color(0xFFC99000))) {
-                moveToRelative(10.78f, 46.025f)
-                lineToRelative(2.389f, 0.272f)
-                lineToRelative(0.734f, -0.052f)
-                curveToRelative(0f, -0.687f, 0f, -1.395f, 0f, -2.074f)
-                lineToRelative(-2.572f, 0.316f)
-                lineToRelative(-0.749f, -0.151f)
-                lineToRelative(0.096f, 1.666f)
-                close()
-            }
-            path(fill = SolidColor(Color(0xFFC99000))) {
-                moveToRelative(11.148f, 50.908f)
-                lineToRelative(-0.325f, -0.045f)
-                lineToRelative(0.027f, 1.992f)
-                lineToRelative(1.033f, 0.042f)
-                lineToRelative(1.905f, -0.194f)
-                curveToRelative(0.046f, -0.864f, 0.084f, -1.62f, 0.103f, -2.027f)
-                close()
-            }
-            path(fill = SolidColor(Color(0xFFC99000))) {
-                moveToRelative(13.078f, 55.791f)
-                curveToRelative(-0.184f, 0f, -1.211f, 0.159f, -1.886f, 0.266f)
-                lineToRelative(0.322f, 1.543f)
-                lineToRelative(0.005f, 0.044f)
-                lineToRelative(2.018f, -0.331f)
-                curveToRelative(0.005f, -0.095f, 0.04f, -0.728f, 0.086f, -1.58f)
-                curveToRelative(-0.28f, 0.035f, -0.485f, 0.058f, -0.546f, 0.058f)
-                close()
-            }
-        }.build()
-
-        return _Caterpillar!!
-    }
-
-@Suppress("ObjectPropertyName")
-private var _Caterpillar: ImageVector? = null
+        }
+    }.build()
+}

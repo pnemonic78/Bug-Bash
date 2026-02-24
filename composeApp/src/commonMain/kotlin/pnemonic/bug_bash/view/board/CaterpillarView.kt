@@ -6,13 +6,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
+import pnemonic.bug_bash.drawable.caterpillar
 import pnemonic.bug_bash.model.bug.Caterpillar
 import pnemonic.bug_bash.view.previewColor
-import pnemonic.bug_bash.drawable.Caterpillar as CaterpillarImage
 
 @Composable
 fun CaterpillarView(bug: Caterpillar, boardSize: Size, onSize: BugCallback, onTap: BugCallback) {
-    ImageBug(bug, boardSize, CaterpillarImage, 3f, onSize, onTap)
+    ImageBug(bug, boardSize, caterpillar(bug), 3f, onSize, onTap)
 }
 
 @Preview(showBackground = true, backgroundColor = previewColor)

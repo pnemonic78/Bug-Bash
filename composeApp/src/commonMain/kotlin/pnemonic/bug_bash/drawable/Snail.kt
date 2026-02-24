@@ -1,23 +1,69 @@
 package pnemonic.bug_bash.drawable
 
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.vector.group
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
+import pnemonic.bug_bash.model.bug.Snail
+import pnemonic.stateOf
 
-val Snail: ImageVector
-    get() {
-        if (_Snail != null) {
-            return _Snail!!
-        }
-        _Snail = ImageVector.Builder(
-            name = "Snail",
-            defaultWidth = 49.dp,
-            defaultHeight = 106.dp,
-            viewportWidth = 49f,
-            viewportHeight = 106f
-        ).apply {
+private const val durationCrawl = 1000
+
+@Composable
+fun snail(bug: Snail): ImageVector = snail(bug.isSquashed)
+
+@Composable
+fun snail(squashed: Boolean = false): ImageVector {
+    val crawl1: State<Float>
+    val crawl2: State<Float>
+
+    if (squashed) {
+        crawl1 = stateOf(1f)
+        crawl2 = crawl1
+    } else {
+        val transition = rememberInfiniteTransition()
+        crawl1 = transition.animateFloat(
+            initialValue = 0f,
+            targetValue = -5f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(
+                    durationMillis = durationCrawl,
+                    easing = LinearEasing
+                ),
+                repeatMode = RepeatMode.Restart
+            )
+        )
+        crawl2 = transition.animateFloat(
+            initialValue = 1f,
+            targetValue = 0.85f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(
+                    durationMillis = durationCrawl,
+                    easing = LinearEasing
+                ),
+                repeatMode = RepeatMode.Restart
+            )
+        )
+    }
+
+    return ImageVector.Builder(
+        name = "Snail",
+        defaultWidth = 49.dp,
+        defaultHeight = 106.dp,
+        viewportWidth = 49f,
+        viewportHeight = 106f
+    ).apply {
+        group("body-1", scaleY = crawl2.value) {
             path(fill = SolidColor(Color(0xFFE9CEA9))) {
                 moveToRelative(38.02f, 28.32f)
                 curveToRelative(-1.36f, -1.74f, -2.96f, -3.26f, -4.32f, -5f)
@@ -102,42 +148,30 @@ val Snail: ImageVector
                 curveToRelative(0.84f, 0.36f, 1.71f, 0.64f, 2.63f, 0.81f)
                 close()
             }
-            path(fill = SolidColor(Color(0xFFE9CEA9))) {
-                moveToRelative(27.09f, 11.34f)
-                curveToRelative(0f, 0f, 9.95f, -7.65f, 12f, -10.11f)
-                curveToRelative(0f, 0f, 0.16f, -0.24f, 0.37f, -0.85f)
-                curveToRelative(0.21f, -0.62f, 1.88f, -0.54f, 1.25f, 0.81f)
-                curveToRelative(0f, 0f, -0.44f, 0.28f, -1.1f, 0.52f)
-                curveToRelative(-0.66f, 0.24f, -11.1f, 11.91f, -11.1f, 11.91f)
-                curveToRelative(0f, 0f, -2.36f, -0.55f, -1.41f, -2.28f)
-                close()
-            }
-            path(fill = SolidColor(Color(0xFF14120F))) {
-                moveToRelative(40.44f, 0.54f)
-                curveToRelative(0f, 0.08f, -0.06f, 0.14f, -0.14f, 0.14f)
-                curveToRelative(-0.08f, 0f, -0.14f, -0.06f, -0.14f, -0.14f)
-                curveToRelative(-0f, -0.08f, 0.06f, -0.14f, 0.14f, -0.14f)
-                curveToRelative(0.08f, -0f, 0.14f, 0.06f, 0.14f, 0.14f)
-                close()
-            }
-            path(fill = SolidColor(Color(0xFFE9CEA9))) {
-                moveToRelative(18.43f, 11.58f)
-                curveToRelative(0f, 0f, -10.36f, -7.08f, -12.55f, -9.42f)
-                curveToRelative(0f, 0f, -0.17f, -0.23f, -0.41f, -0.83f)
-                curveToRelative(-0.24f, -0.61f, -1.91f, -0.43f, -1.2f, 0.88f)
-                curveToRelative(0f, 0f, 0.45f, 0.26f, 1.13f, 0.46f)
-                curveToRelative(0.68f, 0.2f, 11.75f, 11.27f, 11.75f, 11.27f)
-                curveToRelative(0f, 0f, 2.32f, -0.68f, 1.28f, -2.36f)
-                close()
-            }
-            path(fill = SolidColor(Color(0xFF14120F))) {
-                moveToRelative(4.5f, 1.55f)
-                curveToRelative(0f, 0.08f, 0.07f, 0.14f, 0.14f, 0.14f)
-                curveToRelative(0.08f, -0f, 0.14f, -0.07f, 0.14f, -0.14f)
-                curveToRelative(-0f, -0.08f, -0.07f, -0.14f, -0.14f, -0.13f)
-                curveToRelative(-0.08f, 0f, -0.14f, 0.07f, -0.14f, 0.14f)
-                close()
-            }
+        }
+        // right antenna
+        path(fill = SolidColor(Color(0xFFE9CEA9))) {
+            moveToRelative(27.09f, 11.34f)
+            curveToRelative(0f, 0f, 9.95f, -7.65f, 12f, -10.11f)
+            curveToRelative(0f, 0f, 0.16f, -0.24f, 0.37f, -0.85f)
+            curveToRelative(0.21f, -0.62f, 1.88f, -0.54f, 1.25f, 0.81f)
+            curveToRelative(0f, 0f, -0.44f, 0.28f, -1.1f, 0.52f)
+            curveToRelative(-0.66f, 0.24f, -11.1f, 11.91f, -11.1f, 11.91f)
+            curveToRelative(0f, 0f, -2.36f, -0.55f, -1.41f, -2.28f)
+            close()
+        }
+        // left antenna
+        path(fill = SolidColor(Color(0xFFE9CEA9))) {
+            moveToRelative(18.43f, 11.58f)
+            curveToRelative(0f, 0f, -10.36f, -7.08f, -12.55f, -9.42f)
+            curveToRelative(0f, 0f, -0.17f, -0.23f, -0.41f, -0.83f)
+            curveToRelative(-0.24f, -0.61f, -1.91f, -0.43f, -1.2f, 0.88f)
+            curveToRelative(0f, 0f, 0.45f, 0.26f, 1.13f, 0.46f)
+            curveToRelative(0.68f, 0.2f, 11.75f, 11.27f, 11.75f, 11.27f)
+            curveToRelative(0f, 0f, 2.32f, -0.68f, 1.28f, -2.36f)
+            close()
+        }
+        group("shell", translationY = crawl1.value) {
             path(fill = SolidColor(Color(0xFFA25D1C))) {
                 moveToRelative(43.26f, 44.84f)
                 curveToRelative(0f, 0f, -5.22f, -13.21f, -21.75f, -11.21f)
@@ -265,10 +299,6 @@ val Snail: ImageVector
                 curveToRelative(0.12f, 0.17f, 0.19f, 0.39f, 0.17f, 0.6f)
                 close()
             }
-        }.build()
-
-        return _Snail!!
-    }
-
-@Suppress("ObjectPropertyName")
-private var _Snail: ImageVector? = null
+        }
+    }.build()
+}

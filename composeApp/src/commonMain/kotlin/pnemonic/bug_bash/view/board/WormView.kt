@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
-import pnemonic.bug_bash.drawable.Earthworm
+import pnemonic.bug_bash.drawable.earthworm
 import pnemonic.bug_bash.model.bug.Worm
 import pnemonic.bug_bash.view.previewColor
 
@@ -17,7 +17,7 @@ fun WormView(
     onSize: BugCallback,
     onTap: BugCallback
 ) {
-    ImageBug(bug, boardSize, Earthworm, 3f, onSize, onTap)
+    ImageBug(bug, boardSize, earthworm(bug), 3f, onSize, onTap)
 }
 
 @Preview(showBackground = true, backgroundColor = previewColor)
