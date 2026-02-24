@@ -47,6 +47,7 @@ import pnemonic.bug_bash.drawable.Bonus as BonusImage
 
 private val sizeIcon = 30.dp
 private val sizeBonus = 48.dp
+private val thicknessProgress = 6.dp
 private val colorProgressBar = Color(0xFFBFC654)
 private val colorProgressTrack = Color(0xFF005703)
 private val spacing = 8.dp
@@ -128,10 +129,11 @@ fun BonusView(bonus: Bonus, size: Dp, onClick: BonusCallback) {
         }
         if (progress < total) {
             CircularProgressIndicator(
-                modifier = Modifier.fillMaxSize().alpha(0.7f),
+                modifier = Modifier.fillMaxSize().alpha(0.9f),
                 progress = { progress.toFloat() / total.toFloat() },
                 color = colorProgressBar,
                 trackColor = colorProgressTrack,
+                strokeWidth = thicknessProgress,
             )
         }
     }
