@@ -121,7 +121,9 @@ class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallback {
             bug.move()
             if (bug.didEscape(boardSize)) {
                 removed.add(bug)
-                lives--
+                if (bug.score > 0) {
+                    lives--
+                }
             }
         }
 
@@ -295,6 +297,7 @@ class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallback {
     private suspend fun finished() {
         println("No more lives")
         _state.update { GameState.FINISHED }
+        _boards.update { it.copy(swarm = Swarm()) }
         playSound(SoundType.GameFinish)
     }
 

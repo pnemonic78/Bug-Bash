@@ -3,7 +3,7 @@ package pnemonic.bug_bash.model.bug
 import pnemonic.bug_bash.sound.SoundType
 
 class Mosquito : BugThatFlies(
-    speed = 1f,
+    speed = 0.5f,
     score = 20,
     hits = 1,
     noise = SoundType.Mosquito,
