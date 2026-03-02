@@ -60,12 +60,10 @@ class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallback {
 
     fun pause() {
         _state.update { GameState.PAUSED }
-        //TODO sounds = platform.sound.pauseAll()
     }
 
     fun resume() {
         _state.update { GameState.RESUMED }
-        //TODO platform.sound.resumeAll(sounds)
     }
 
     fun stop() {
@@ -174,42 +172,37 @@ class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallback {
             }
         }
 
-        if (touches.isNotEmpty()) {
-            val offsets = touches.copy()
-            touches.clear()
-            for (offset in offsets) {
-                bonusEngine.onTap(board, offset)
-            }
+        while (touches.isNotEmpty()) {
+            val offset = touches.removeAt(0)
+            bonusEngine.onTap(board, offset)
         }
 
         var swarm = board.swarm
         var lives = board.lives
         var score = board.score
 
-        if (touchedBugs.isNotEmpty()) {
-            val bugs = touchedBugs.copy()
-            touchedBugs.clear()
+        while (touchedBugs.isNotEmpty()) {
+            val bug = touchedBugs.removeAt(0)
 
-            for (bug in bugs) {
-                if (bug.isSquashed) {
-                    continue
+            if (bug.isSquashed) {
+                continue
+            }
+            bug.hit()
+            if (bug.isSquashed) {
+                score += bug.score
+                if (score < 0) {
+                    lives--
                 }
-                bug.hit()
-                if (bug.isSquashed) {
-                    score += bug.score
-                    if (score < 0) {
-                        lives--
-                    }
-                    score = max(0, score)
-                    bash(bug)
-                }
+                score = max(0, score)
+                bash(bug)
             }
         }
 
         if (squashed.isNotEmpty()) {
-            val bugs = swarm.bugs.removeAll(squashed)
-            swarm = Swarm(bugs)
+            val bugs = swarm.bugs.toMutableList()
+            bugs.removeAll(squashed)
             squashed.clear()
+            swarm = Swarm(bugs)
         }
 
         return board.copy(swarm = swarm, score = score, lives = lives)
