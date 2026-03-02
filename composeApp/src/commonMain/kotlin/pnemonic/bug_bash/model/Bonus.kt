@@ -1,5 +1,6 @@
 package pnemonic.bug_bash.model
 
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.setValue
@@ -16,7 +17,7 @@ sealed class Bonus(
 ) {
     var progress by mutableLongStateOf(progress)
 
-    val isActive: Boolean get() = progress >= score
+    val isActive by derivedStateOf { progress >= score }
 
     object None : Bonus(score = 0, hits = 0, description = "", sound = SoundType.None)
 
@@ -57,7 +58,7 @@ sealed class Bonus(
     )
 
     // Add to main score.
-    class Score(hits: Long = 2000, progress: Long = 0) : Bonus(
+    class Score(progress: Long = 0, hits: Long = 2000) : Bonus(
         score = 1000,
         hits = hits,
         description = "🏆",

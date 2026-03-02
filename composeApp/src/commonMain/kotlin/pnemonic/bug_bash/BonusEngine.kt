@@ -23,6 +23,7 @@ import pnemonic.bug_bash.model.tool.Tool
 import pnemonic.bug_bash.model.tool.Zapper
 import pnemonic.bug_bash.sound.SoundType
 import pnemonic.half
+import pnemonic.remove
 import kotlin.math.max
 import kotlin.math.min
 
@@ -87,15 +88,15 @@ class BonusEngine(
         var bonuses = board.bonuses
         if (bonuses.isEmpty()) {
             bonuses = listOf(
-                Bonus.Cupcake(),
-                Bonus.Flower(),
                 Bonus.GluePaper(),
-                Bonus.Life(),
-                Bonus.Score(),
                 Bonus.Shoe(),
                 Bonus.Spray(),
                 Bonus.Swatter(),
                 Bonus.Zapper(),
+                Bonus.Life(),
+                Bonus.Cupcake(),
+                Bonus.Flower(),
+                Bonus.Score(),
             )
             modified = true
         }
@@ -103,26 +104,32 @@ class BonusEngine(
         if (bonus == null) {
             bonus = bonuses.firstOrNull { b -> b.progress < b.score }
             if (bonus == null) {
-                bonus = next(bonuses, bonus) ?: return board
-                bonuses = bonuses.add(bonus)
-                modified = true
+                bonus = next(bonuses, bonus)
+                if (bonus != null) {
+                    bonuses = bonuses.add(bonus)
+                    modified = true
+                }
             }
             selected = bonus
         }
 
-        val progressDelta = min(scoreDelta, max(0, bonus.score - bonus.progress))
-        bonus.progress += progressDelta
-        val progressNext = scoreDelta - progressDelta
-        if (bonus.isActive) {
-            // Start progressing the next candidate bonus.
-            bonus = bonuses.firstOrNull { b -> b.progress < b.score }
-            if (bonus == null) {
-                bonus = next(bonuses, bonus) ?: return board
-                bonuses = bonuses.add(bonus)
-                modified = true
-                bonus.progress += progressNext
+        if (bonus != null) {
+            val progressDelta = min(scoreDelta, max(0, bonus.score - bonus.progress))
+            bonus.progress += progressDelta
+            val progressNext = scoreDelta - progressDelta
+            if (bonus.isActive) {
+                // Start progressing the next candidate bonus.
+                bonus = bonuses.firstOrNull { b -> b.progress < b.score }
+                if (bonus == null) {
+                    bonus = next(bonuses, bonus)
+                    if (bonus != null) {
+                        bonuses = bonuses.add(bonus)
+                        modified = true
+                        bonus.progress += progressNext
+                    }
+                }
+                selected = bonus
             }
-            selected = bonus
         }
 
         return if (modified) {
@@ -165,62 +172,69 @@ class BonusEngine(
     }
 
     private fun add(board: Board, bonus: Bonus.Cupcake): Board {
-        bonus.progress = 0  // Re-use the bonus.
+        val bonuses = reuse(board.bonuses, bonus)
         val tool = Cupcake(bonus)
-        return board.copy(tool = tool)
+        return board.copy(bonuses = bonuses, tool = tool)
     }
 
     private fun add(board: Board, bonus: Bonus.Flower): Board {
-        bonus.progress = 0  // Re-use the bonus.
+        val bonuses = reuse(board.bonuses, bonus)
         val tool = Flower(bonus)
-        return board.copy(tool = tool)
+        return board.copy(bonuses = bonuses, tool = tool)
     }
 
     private fun add(board: Board, bonus: Bonus.GluePaper): Board {
-        bonus.progress = 0  // Re-use the bonus.
+        val bonuses = reuse(board.bonuses, bonus)
         val tool = GluePaper(bonus)
-        return board.copy(tool = tool)
+        return board.copy(bonuses = bonuses, tool = tool)
     }
 
     private suspend fun add(board: Board, bonus: Bonus.Life): Board {
         val lives = board.lives + bonus.hits.toInt()
         if (lives >= Board.MAX_LIVES) return board
 
-        bonus.progress = 0  // Re-use the bonus.
+        val bonuses = reuse(board.bonuses, bonus)
         val tool = ExtraLife(bonus)
         playSound(tool.sound)
-        return board.copy(tool = tool)
+        return board.copy(bonuses = bonuses, tool = tool)
     }
 
     private suspend fun add(board: Board, bonus: Bonus.Score): Board {
-        bonus.progress = 0  // Re-use the bonus.
+        val bonuses = reuse(board.bonuses, bonus)
         val tool = Score(bonus)
         playSound(tool.sound)
-        return board.copy(tool = tool)
+        return board.copy(bonuses = bonuses, tool = tool)
     }
 
     private fun add(board: Board, bonus: Bonus.Shoe): Board {
-        bonus.progress = 0  // Re-use the bonus.
+        val bonuses = reuse(board.bonuses, bonus)
         val tool = Shoe(bonus)
-        return board.copy(tool = tool)
+        return board.copy(bonuses = bonuses, tool = tool)
     }
 
     private fun add(board: Board, bonus: Bonus.Spray): Board {
-        bonus.progress = 0  // Re-use the bonus.
+        val bonuses = reuse(board.bonuses, bonus)
         val tool = Spray(bonus)
-        return board.copy(tool = tool)
+        return board.copy(bonuses = bonuses, tool = tool)
     }
 
     private fun add(board: Board, bonus: Bonus.Swatter): Board {
-        bonus.progress = 0  // Re-use the bonus.
+        val bonuses = reuse(board.bonuses, bonus)
         val tool = Swatter(bonus)
-        return board.copy(tool = tool)
+        return board.copy(bonuses = bonuses, tool = tool)
     }
 
     private fun add(board: Board, bonus: Bonus.Zapper): Board {
-        bonus.progress = 0  // Re-use the bonus.
+        val bonuses = reuse(board.bonuses, bonus)
         val tool = Zapper(bonus)
-        return board.copy(tool = tool)
+        return board.copy(bonuses = bonuses, tool = tool)
+    }
+
+    private fun reuse(bonuses: List<Bonus>, bonus: Bonus): List<Bonus> {
+        // Re-use the same bonus.
+        bonus.progress = 0
+        // Move the bonus to the end.
+        return bonuses.remove(bonus) + bonus
     }
 
     private fun apply(board: Board, tool: ExtraLife): Board {
@@ -413,7 +427,7 @@ class BonusEngine(
 
         if (jobHide == null) {
             jobHide = coroutineScope.launch {
-                delay(1000)
+                delay(DURATION_BASH * board.difficulty.value)
                 // Hide the tool to bash again.
                 tool.hide()
                 if (tool.hits <= 0) {
@@ -430,5 +444,9 @@ class BonusEngine(
     private fun freeze(board: Board, tool: FreezeTool): Board {
         tool.freeze(board.swarm)
         return board
+    }
+
+    companion object {
+        private const val DURATION_BASH = 2000L
     }
 }

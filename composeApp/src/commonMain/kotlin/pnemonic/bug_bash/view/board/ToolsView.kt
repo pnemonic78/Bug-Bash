@@ -14,5 +14,5 @@ fun ToolsAbove(board: Board, onToolUse: ToolCallback) {
 fun ToolsBelow(board: Board, onToolUse: ToolCallback) {
     // Only use 1 tool.
     val tool = board.tool ?: return
-    ToolBelow(tool, onToolUse, board.size)
+    ToolBelow(tool, onToolUse, board.size, board.difficulty)
 }

@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import pnemonic.bug_bash.model.Bonus
+import pnemonic.bug_bash.model.Difficulty
 import pnemonic.bug_bash.model.tool.Cupcake
 import pnemonic.bug_bash.model.tool.ExtraLife
 import pnemonic.bug_bash.model.tool.Flower
@@ -60,12 +61,13 @@ fun ToolAbove(
 fun ToolBelow(
     tool: Tool,
     onToolUse: ToolCallback,
-    boardSize: Size
+    boardSize: Size,
+    difficulty: Difficulty
 ) {
     when (tool) {
-        is Cupcake -> CupcakeView(tool, onToolUse, boardSize)
-        is Flower -> FlowerView(tool, onToolUse, boardSize)
-        is GluePaper -> GluePaperView(tool, onToolUse, boardSize)
+        is Cupcake -> CupcakeView(tool, onToolUse, boardSize, difficulty)
+        is Flower -> FlowerView(tool, onToolUse, boardSize, difficulty)
+        is GluePaper -> GluePaperView(tool, onToolUse, boardSize, difficulty)
     }
 }
 
@@ -149,7 +151,7 @@ private fun Preview() {
 
     MaterialTheme {
         Box(modifier = Modifier.fillMaxSize()) {
-            ToolBelow(toolBelow, onToolUse = {}, boardSize)
+            ToolBelow(toolBelow, onToolUse = {}, boardSize, Difficulty.Easy)
             ToolAbove(toolAbove, onToolUse = {}, boardSize)
         }
     }
