@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -12,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -33,32 +35,57 @@ fun StateView(state: GameState) {
     }
 }
 
-@Composable
-@Preview(showBackground = true, backgroundColor = previewColor)
-private fun Preview() {
-    StateView(GameState.FINISHED)
-}
-
 private val sizeText = 60.sp
-private val colorText = Color(0xCCCC0088)
-private val colorShadow = Color.Magenta
+private val colorText = Color(0xFFCC0088)
 private val colorPanel = Color.Black.copy(alpha = 0.25f)
 
 @Composable
-private fun GameOver() {
-    val style = MaterialTheme.typography.bodyLarge.copy(
-        color = colorText,
-        fontSize = sizeText,
-        fontWeight = FontWeight.Bold,
-        shadow = Shadow(color = colorShadow, blurRadius = 4f)
+private fun GameOver(modifier: Modifier = Modifier) {
+    val text = stringResource(Res.string.game_state_finished)
+    GameOver(modifier = modifier, text = text)
+}
+
+@Composable
+private fun GameOver(modifier: Modifier = Modifier, text: String) {
+    val style = LocalTextStyle.current.copy(
+        lineHeight = sizeText,
+        shadow = Shadow(blurRadius = 5f)
     )
 
     Text(
-        modifier = Modifier.background(
+        modifier = modifier.background(
             color = colorPanel,
             shape = MaterialTheme.shapes.medium
         ).padding(8.dp),
-        text = stringResource(Res.string.game_state_finished),
-        style = style
+        text = text,
+        fontSize = sizeText,
+        fontWeight = FontWeight.Bold,
+        color = colorText,
+        textAlign = TextAlign.Center,
+        style = style,
     )
+}
+
+@Composable
+@Preview(showBackground = true, backgroundColor = previewColor, widthDp = 400)
+private fun Preview() {
+    MaterialTheme {
+        GameOver()
+    }
+}
+
+@Composable
+@Preview(showBackground = true, backgroundColor = previewColor, widthDp = 300)
+private fun Preview2() {
+    MaterialTheme {
+        GameOver(text = "Game Over! Go Home!!")
+    }
+}
+
+@Composable
+@Preview(showBackground = true, backgroundColor = previewColor, widthDp = 350, locale = "af")
+private fun Preview3() {
+    MaterialTheme {
+        GameOver()
+    }
 }
