@@ -22,6 +22,7 @@ import bug_bash.composeapp.generated.resources.game_state_finished
 import org.jetbrains.compose.resources.stringResource
 import pnemonic.bug_bash.model.GameState
 import pnemonic.bug_bash.view.previewColor
+import pnemonic.bug_bash.view.theme.colorButtonBackground
 
 @Composable
 fun StateView(state: GameState) {
@@ -37,7 +38,8 @@ fun StateView(state: GameState) {
 
 private val sizeText = 60.sp
 private val colorText = Color(0xFFCC0088)
-private val colorPanel = Color.Black.copy(alpha = 0.25f)
+private val colorShadow = Color(0xFF008800)
+private val colorPanel = colorButtonBackground
 
 @Composable
 private fun GameOver(modifier: Modifier = Modifier) {
@@ -49,7 +51,7 @@ private fun GameOver(modifier: Modifier = Modifier) {
 private fun GameOver(modifier: Modifier = Modifier, text: String) {
     val style = LocalTextStyle.current.copy(
         lineHeight = sizeText,
-        shadow = Shadow(blurRadius = 5f)
+        shadow = Shadow(color = colorShadow, blurRadius = 5f)
     )
 
     Text(
