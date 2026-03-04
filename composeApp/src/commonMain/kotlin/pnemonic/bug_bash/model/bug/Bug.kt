@@ -38,7 +38,7 @@ abstract class Bug(
     internal var destinationY: Float = Float.NaN
         private set
     private var destinationAngle: Float = Float.NaN
-    protected var velocity: Float = speed / 20
+    protected var velocity: Float = speed * 0.05f
         private set
     var rotation by mutableFloatStateOf(0f)
         private set

@@ -228,27 +228,27 @@ class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallback {
         when (side) {
             SIDE_TOP -> {
                 x1 = widthPad + (rand.nextFloat() * widthPadded)
-                y1 = -(bugHeight * 1.1f)
+                y1 = -(bugHeight * 2)
                 x2 = widthPad + (rand.nextFloat() * widthPadded)
                 y2 = height + bugHeight
             }
 
             SIDE_BOTTOM -> {
                 x1 = widthPad + (rand.nextFloat() * widthPadded)
-                y1 = height + (bugHeight * 1.1f)
+                y1 = height + (bugHeight * 2)
                 x2 = widthPad + (rand.nextFloat() * widthPadded)
                 y2 = -bugHeight
             }
 
             SIDE_LEFT -> {
-                x1 = -(bugWidth * 1.1f)
+                x1 = -(bugWidth * 2)
                 y1 = heightPad + (rand.nextFloat() * heightPadded)
                 x2 = width + bugWidth
                 y2 = heightPad + (rand.nextFloat() * heightPadded)
             }
 
             SIDE_RIGHT -> {
-                x1 = width + (bugWidth * 1.1f)
+                x1 = width + (bugWidth * 2)
                 y1 = heightPad + (rand.nextFloat() * heightPadded)
                 x2 = -bugWidth
                 y2 = heightPad + (rand.nextFloat() * heightPadded)
