@@ -36,8 +36,9 @@ fun MusicButton(
         onCheckedChange = { checked ->
             haptic.toggle(checked)
             enabledState = checked
-            onChange(enabledState)
-        }, modifier = Modifier.modifierButton(size = size)
+            onChange(checked)
+        },
+        modifier = Modifier.modifierButton(size = size)
     ) {
         val icon = if (enabledState) Icons.Default.MusicNote else Icons.Default.MusicOff
         Icon(

@@ -64,7 +64,7 @@ private fun HomeScreen(
     ) {
         Box(modifier = Modifier.fillMaxSize().background(color = colorMask))
         Title(
-            modifier = Modifier.align(BiasAlignment(0f, -0.5f))
+            modifier = Modifier.align(BiasAlignment(0f, -0.75f))
                 .padding(24.dp)
         )
         StartButton(

@@ -36,7 +36,7 @@ fun SoundButton(
         onCheckedChange = { checked ->
             haptic.toggle(checked)
             enabledState = checked
-            onChange(enabledState)
+            onChange(checked)
         },
         modifier = Modifier.modifierButton(size = size)
     ) {

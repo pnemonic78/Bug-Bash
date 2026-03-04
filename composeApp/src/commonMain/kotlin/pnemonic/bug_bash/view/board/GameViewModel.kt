@@ -92,7 +92,7 @@ class GameViewModel : LifecycleViewModel() {
     }
 
     private suspend fun playSound(soundType: SoundType) {
-        if ((soundType.repeat && isMusicEnabled) || isSoundEnabled) {
+        if ((soundType.repeat && isMusicEnabled) || (!soundType.repeat && isSoundEnabled)) {
             withContext(Dispatchers.Main) {
                 platform.sound.play(soundType)
             }
