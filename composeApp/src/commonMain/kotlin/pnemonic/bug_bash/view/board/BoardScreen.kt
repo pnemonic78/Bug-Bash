@@ -111,18 +111,20 @@ fun BoardView(
                 Spacer(modifier = Modifier.height(8.dp))
                 BonusesView(bonuses = board.bonuses, onClick = onBonusClick)
             }
-            SettingsPanel(
-                modifier = Modifier.align(Alignment.TopEnd).padding(8.dp),
-                onHomeClick = onHomeClick,
-                isPaused = isPaused,
-                onPauseChange = onPauseChange,
-                isSoundEnabled = isSoundEnabled,
-                onSoundChange = onSoundChange,
-                isMusicEnabled = isMusicEnabled,
-                onMusicChange = onMusicChange
-            )
+            if (state !== GameState.FINISHED) {
+                SettingsPanel(
+                    modifier = Modifier.align(Alignment.TopEnd).padding(8.dp),
+                    onHomeClick = onHomeClick,
+                    isPaused = isPaused,
+                    onPauseChange = onPauseChange,
+                    isSoundEnabled = isSoundEnabled,
+                    onSoundChange = onSoundChange,
+                    isMusicEnabled = isMusicEnabled,
+                    onMusicChange = onMusicChange
+                )
+            }
         }
-        StateView(state)
+        StateScreen(state, onHomeClick)
     }
 }
 

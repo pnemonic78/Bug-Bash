@@ -11,7 +11,6 @@ import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -22,6 +21,7 @@ import pnemonic.bug_bash.model.Scene
 import pnemonic.bug_bash.view.board.SceneView
 import pnemonic.bug_bash.view.previewHeightDp
 import pnemonic.bug_bash.view.previewWidthDp
+import pnemonic.bug_bash.view.theme.paddingScreen
 
 @Composable
 fun HomeScreen(navController: NavHostController) {
@@ -65,11 +65,11 @@ private fun HomeScreen(
         Box(modifier = Modifier.fillMaxSize().background(color = colorMask))
         Title(
             modifier = Modifier.align(BiasAlignment(0f, -0.75f))
-                .padding(24.dp)
+                .padding(paddingScreen)
         )
         StartButton(
             modifier = Modifier.align(BiasAlignment(0f, 0f))
-                .padding(24.dp),
+                .padding(paddingScreen),
             onClick = onPlayClick
         )
         SettingsPanel(

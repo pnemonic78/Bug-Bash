@@ -5,6 +5,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.unit.IntSize
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -23,21 +24,41 @@ import pnemonic.bug_bash.view.settings.SettingsManager
 
 class GameViewModel : LifecycleViewModel() {
 
-    private val engine = GameEngine(viewModelScope)
+    private var engine = GameEngine(viewModelScope)
     private val platform: Platform = getPlatform()
     private val settings = SettingsManager
 
-    val board: StateFlow<Board> = engine.boards
-    val state: StateFlow<GameState> = engine.state
+    private val _board = MutableStateFlow(engine.boards.value)
+    val board: StateFlow<Board> = _board
+    private val _state = MutableStateFlow(engine.state.value)
+    val state: StateFlow<GameState> get() = engine.state
     val isPaused get() = engine.isPaused
     val isMusicEnabled get() = settings.isMusicEnabled
     val isSoundEnabled get() = settings.isSoundEnabled
 
     init {
+        collectAll(engine)
+    }
+
+    private fun collectAll(engine: GameEngine) {
         viewModelScope.launch {
-            engine.feedback.collect { feedback ->
-                notifyFeedback(feedback)
+            engine.boards.collect {
+                _board.emit(it)
             }
+        }
+        viewModelScope.launch {
+            engine.state.collect {
+                _state.emit(it)
+            }
+        }
+        viewModelScope.launch {
+            engine.feedback.collect {
+                notifyFeedback(it)
+            }
+        }
+        viewModelScope.launch {
+            _board.emit(engine.boards.value)
+            _state.emit(engine.state.value)
         }
     }
 

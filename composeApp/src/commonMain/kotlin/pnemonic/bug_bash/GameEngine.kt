@@ -1,7 +1,9 @@
 package pnemonic.bug_bash
 
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.unit.IntSize
+import androidx.compose.ui.unit.toSize
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -134,10 +136,14 @@ class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallback {
     }
 
     fun onSize(size: IntSize) {
+        onSize(size.toSize())
+    }
+
+    fun onSize(size: Size) {
         if (!isRunning) return
         //TODO set each bug's new destination relative to old destination
         _boards.update { board ->
-            board.setSize(width = size.width.toFloat(), height = size.height.toFloat())
+            board.setSize(width = size.width, height = size.height)
         }
     }
 
