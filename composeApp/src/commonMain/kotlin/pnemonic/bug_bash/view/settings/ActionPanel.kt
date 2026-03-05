@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import pnemonic.bug_bash.view.theme.panel
 import pnemonic.bug_bash.view.theme.panelScrollable
 
 @Composable

@@ -18,12 +18,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.dropShadow
-import androidx.compose.ui.graphics.Color.Companion.Green
 import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.graphics.Color.Companion.Yellow
 import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import bug_bash.composeapp.generated.resources.Res
@@ -37,6 +36,7 @@ import pnemonic.bug_bash.view.theme.Gold
 
 private val colorContainer = Gold
 private val colorContent = White
+private val colorShadow = Yellow
 private val sizeShadow = 20.dp
 
 @Composable
@@ -58,9 +58,8 @@ fun StartButton(modifier: Modifier = Modifier, onClick: VoidCallback) {
         modifier = modifier.dropShadow(
             shape = ButtonDefaults.shape,
             shadow = Shadow(
-                color = Green,
-                radius = radius,
-                offset = DpOffset.Zero
+                color = colorShadow,
+                radius = radius
             )
         ),
         onClick = onClick,

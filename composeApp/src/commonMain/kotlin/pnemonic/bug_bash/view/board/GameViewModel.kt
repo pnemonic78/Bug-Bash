@@ -35,6 +35,7 @@ class GameViewModel : LifecycleViewModel() {
     val isPaused get() = engine.isPaused
     val isMusicEnabled get() = settings.isMusicEnabled
     val isSoundEnabled get() = settings.isSoundEnabled
+    val difficulty get() = settings.difficulty
 
     init {
         collectAll(engine)
@@ -63,7 +64,7 @@ class GameViewModel : LifecycleViewModel() {
     }
 
     override fun onStart() {
-        engine.start()
+        engine.start(difficulty)
         platform.sound.onStart()
     }
 

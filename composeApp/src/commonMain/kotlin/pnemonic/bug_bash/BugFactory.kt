@@ -1,5 +1,7 @@
 package pnemonic.bug_bash
 
+import pnemonic.bug_bash.model.Difficulty
+import pnemonic.bug_bash.model.Difficulty.Companion.times
 import pnemonic.bug_bash.model.bug.Ant
 import pnemonic.bug_bash.model.bug.Bee
 import pnemonic.bug_bash.model.bug.Beetle
@@ -9,8 +11,6 @@ import pnemonic.bug_bash.model.bug.Caterpillar
 import pnemonic.bug_bash.model.bug.Centipede
 import pnemonic.bug_bash.model.bug.Cockroach
 import pnemonic.bug_bash.model.bug.Cricket
-import pnemonic.bug_bash.model.Difficulty
-import pnemonic.bug_bash.model.Difficulty.Companion.times
 import pnemonic.bug_bash.model.bug.Dragonfly
 import pnemonic.bug_bash.model.bug.Fly
 import pnemonic.bug_bash.model.bug.Ladybug

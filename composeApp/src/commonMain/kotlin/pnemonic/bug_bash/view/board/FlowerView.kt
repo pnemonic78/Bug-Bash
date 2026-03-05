@@ -11,6 +11,7 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.model.Difficulty
+import pnemonic.bug_bash.model.Difficulty.Companion.times
 import pnemonic.bug_bash.model.tool.Flower
 import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.previewHeightDp
@@ -23,7 +24,7 @@ fun FlowerView(tool: Flower, onUse: ToolCallback, boardSize: Size, difficulty: D
     ImageTool(tool, FlowerImage, 5f, boardSize)
 
     LaunchedEffect(tool) {
-        delay(5_000L * difficulty.value)
+        delay(5_000L * difficulty)
         onUse(tool)
     }
 }

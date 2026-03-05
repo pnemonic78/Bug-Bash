@@ -9,5 +9,9 @@ enum class Difficulty(val value: Int) {
         operator fun Int.times(other: Difficulty): Int {
             return this * other.value
         }
+
+        operator fun Long.times(other: Difficulty): Long {
+            return this * other.value
+        }
     }
 }

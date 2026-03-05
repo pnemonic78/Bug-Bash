@@ -8,6 +8,7 @@ import kotlinx.coroutines.launch
 import pnemonic.add
 import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.Bonus
+import pnemonic.bug_bash.model.Difficulty.Companion.times
 import pnemonic.bug_bash.model.tool.AttractionTool
 import pnemonic.bug_bash.model.tool.BashTool
 import pnemonic.bug_bash.model.tool.Cupcake
@@ -427,7 +428,7 @@ class BonusEngine(
 
         if (jobHide == null) {
             jobHide = coroutineScope.launch {
-                delay(DURATION_BASH * board.difficulty.value)
+                delay(DURATION_BASH * board.difficulty)
                 // Hide the tool to bash again.
                 tool.hide()
                 if (tool.hits <= 0) {

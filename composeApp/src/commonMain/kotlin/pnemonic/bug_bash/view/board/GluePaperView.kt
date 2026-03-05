@@ -11,6 +11,7 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.model.Difficulty
+import pnemonic.bug_bash.model.Difficulty.Companion.times
 import pnemonic.bug_bash.model.tool.GluePaper
 import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.previewHeightDp
@@ -24,7 +25,7 @@ fun GluePaperView(tool: GluePaper, onUse: ToolCallback, boardSize: Size, difficu
 
     if (tool.isVisible) {
         LaunchedEffect(tool) {
-            delay(10_000L * difficulty.value)
+            delay(10_000L * difficulty)
             onUse(tool)
         }
     }

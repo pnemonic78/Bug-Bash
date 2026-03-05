@@ -17,6 +17,7 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.Bonus
+import pnemonic.bug_bash.model.Difficulty
 import pnemonic.bug_bash.model.GameState
 import pnemonic.bug_bash.model.Scene
 import pnemonic.bug_bash.model.bug.Bug
@@ -49,8 +50,9 @@ class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallback {
     private val _feedback = MutableSharedFlow<Feedback>(extraBufferCapacity = 10)
     val feedback: Flow<Feedback> = _feedback
 
-    fun start() {
+    fun start(difficulty: Difficulty = Difficulty.Easy) {
         ticker = coroutineScope.launch(Dispatchers.Default) {
+            _boards.update { it.copy(difficulty = difficulty) }
             _state.update { GameState.STARTED }
             playSound(SoundType.GameStart)
             while (isActive) {
@@ -216,10 +218,52 @@ class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallback {
 
     fun onBugSize(bug: Bug) {
         val board = boards.value
-        val width = board.width
-        val height = board.height
-        val widthPad = width * 0.125f
-        val heightPad = height * 0.125f
+        when (board.difficulty) {
+            Difficulty.Easy -> applyVerticalPath(bug, board.size)
+            Difficulty.Medium -> applyCentralPath(bug, board.size)
+            else -> applyRandomPath(bug, board.size)
+        }
+    }
+
+    // Vertical paths.
+    private fun applyVerticalPath(bug: Bug, boardSize: Size) {
+        val width = boardSize.width
+        val height = boardSize.height
+        val widthPad = width * PADDING
+        val widthPadded = width - widthPad - widthPad
+        val bugHeight = bug.height
+
+        //TODO try to avoid overlap bugs with each other.
+        val side = if (rand.nextBoolean()) SIDE_TOP else SIDE_BOTTOM
+        var x1 = 0f
+        var y1 = 0f
+        var x2 = width
+        var y2 = height
+        when (side) {
+            SIDE_TOP -> {
+                x1 = widthPad + (rand.nextFloat() * widthPadded)
+                y1 = -(bugHeight * 1.25f)
+                x2 = x1
+                y2 = height + bugHeight
+            }
+
+            SIDE_BOTTOM -> {
+                x1 = widthPad + (rand.nextFloat() * widthPadded)
+                y1 = height + (bugHeight * 0.25f)
+                x2 = x1
+                y2 = -bugHeight
+            }
+        }
+        bug.moveTo(x1, y1)
+        bug.setDestination(x2, y2)
+    }
+
+    // Random paths that go through the centre.
+    private fun applyCentralPath(bug: Bug, boardSize: Size) {
+        val width = boardSize.width
+        val height = boardSize.height
+        val widthPad = width * PADDING
+        val heightPad = height * PADDING
         val widthPadded = width - widthPad - widthPad
         val heightPadded = height - heightPad - heightPad
         val bugWidth = bug.width
@@ -229,19 +273,69 @@ class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallback {
         val side = rand.nextInt(SIDE_MIN, SIDE_MAX)
         var x1 = 0f
         var y1 = 0f
-        var x2 = 0f
-        var y2 = 0f
+        var x2 = width
+        var y2 = height
         when (side) {
             SIDE_TOP -> {
                 x1 = widthPad + (rand.nextFloat() * widthPadded)
-                y1 = -(bugHeight * 2)
+                y1 = -(bugHeight * 1.25f)
+                x2 = width - x1
+                y2 = height + bugHeight
+            }
+
+            SIDE_BOTTOM -> {
+                x1 = widthPad + (rand.nextFloat() * widthPadded)
+                y1 = height + (bugHeight * 0.25f)
+                x2 = width - x1
+                y2 = -bugHeight
+            }
+
+            SIDE_LEFT -> {
+                x1 = -(bugWidth * 2)
+                y1 = heightPad + (rand.nextFloat() * heightPadded)
+                x2 = width + bugWidth
+                y2 = height - y1
+            }
+
+            SIDE_RIGHT -> {
+                x1 = width + (bugWidth * 2)
+                y1 = heightPad + (rand.nextFloat() * heightPadded)
+                x2 = -bugWidth
+                y2 = height - y1
+            }
+        }
+        bug.moveTo(x1, y1)
+        bug.setDestination(x2, y2)
+    }
+
+    // Random paths .
+    private fun applyRandomPath(bug: Bug, boardSize: Size) {
+        val width = boardSize.width
+        val height = boardSize.height
+        val widthPad = width * PADDING
+        val heightPad = height * PADDING
+        val widthPadded = width - widthPad - widthPad
+        val heightPadded = height - heightPad - heightPad
+        val bugWidth = bug.width
+        val bugHeight = bug.height
+
+        //TODO try to avoid overlap bugs with each other.
+        val side = rand.nextInt(SIDE_MIN, SIDE_MAX)
+        var x1 = 0f
+        var y1 = 0f
+        var x2 = width
+        var y2 = height
+        when (side) {
+            SIDE_TOP -> {
+                x1 = widthPad + (rand.nextFloat() * widthPadded)
+                y1 = -(bugHeight * 1.25f)
                 x2 = widthPad + (rand.nextFloat() * widthPadded)
                 y2 = height + bugHeight
             }
 
             SIDE_BOTTOM -> {
                 x1 = widthPad + (rand.nextFloat() * widthPadded)
-                y1 = height + (bugHeight * 2)
+                y1 = height + (bugHeight * 0.25f)
                 x2 = widthPad + (rand.nextFloat() * widthPadded)
                 y2 = -bugHeight
             }
@@ -363,5 +457,7 @@ class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallback {
         private const val SIDE_RIGHT = 3
         private const val SIDE_MIN = SIDE_TOP
         private const val SIDE_MAX = SIDE_RIGHT + 1
+
+        private const val PADDING = 0.125f
     }
 }
