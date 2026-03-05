@@ -90,62 +90,76 @@ class BonusTest {
 
         board = board.copy(score = board.score + 1)
         board = engine.process(board)
-        var bonus = board.bonuses.lastOrNull()
+
+        assertEquals(9, board.bonuses.size)
+        assertTrue(board.bonuses[0] is Bonus.GluePaper)
+        assertTrue(board.bonuses[1] is Bonus.Shoe)
+        assertTrue(board.bonuses[2] is Bonus.Spray)
+        assertTrue(board.bonuses[3] is Bonus.Swatter)
+        assertTrue(board.bonuses[4] is Bonus.Zapper)
+        assertTrue(board.bonuses[5] is Bonus.Life)
+        assertTrue(board.bonuses[6] is Bonus.Cupcake)
+        assertTrue(board.bonuses[7] is Bonus.Flower)
+        assertTrue(board.bonuses[8] is Bonus.Score)
+
+        var bonus = board.bonuses.first { !it.isActive }
+        println("bonus=$bonus")
         assertTrue(bonus is Bonus.GluePaper)
         assertEquals(1L, bonus.progress)
 
         board = board.copy(score = board.score + bonus.score)
         board = engine.process(board)
         assertEquals(bonus.score, bonus.progress)
-        bonus = board.bonuses.lastOrNull()
+        bonus = board.bonuses.first { !it.isActive }
+        println("bonus=$bonus")
         assertTrue(bonus is Bonus.Shoe)
 
         board = board.copy(score = board.score + bonus.score)
         board = engine.process(board)
         assertEquals(bonus.score, bonus.progress)
-        bonus = board.bonuses.lastOrNull()
-        assertTrue(bonus is Bonus.Cupcake)
-
-        board = board.copy(score = board.score + bonus.score)
-        board = engine.process(board)
-        assertEquals(bonus.score, bonus.progress)
-        bonus = board.bonuses.lastOrNull()
-        assertTrue(bonus is Bonus.Flower)
-
-        board = board.copy(score = board.score + bonus.score)
-        board = engine.process(board)
-        bonus = board.bonuses.lastOrNull()
-        assertTrue(bonus is Bonus.Life)
-
-        board = board.copy(score = board.score + bonus.score)
-        board = engine.process(board)
-        assertEquals(bonus.score, bonus.progress)
-        bonus = board.bonuses.lastOrNull()
+        bonus = board.bonuses.first { !it.isActive }
         assertTrue(bonus is Bonus.Spray)
 
         board = board.copy(score = board.score + bonus.score)
         board = engine.process(board)
         assertEquals(bonus.score, bonus.progress)
-        bonus = board.bonuses.lastOrNull()
-        assertTrue(bonus is Bonus.Score)
-
-        board = board.copy(score = board.score + bonus.score)
-        board = engine.process(board)
-        assertEquals(bonus.score, bonus.progress)
-        bonus = board.bonuses.lastOrNull()
+        bonus = board.bonuses.first { !it.isActive }
+        println("bonus=$bonus")
         assertTrue(bonus is Bonus.Swatter)
 
         board = board.copy(score = board.score + bonus.score)
         board = engine.process(board)
-        assertEquals(bonus.score, bonus.progress)
-        bonus = board.bonuses.lastOrNull()
+        bonus = board.bonuses.first { !it.isActive }
+        println("bonus=$bonus")
         assertTrue(bonus is Bonus.Zapper)
 
         board = board.copy(score = board.score + bonus.score)
         board = engine.process(board)
         assertEquals(bonus.score, bonus.progress)
-        bonus = board.bonuses.lastOrNull()
-        assertTrue(bonus is Bonus.Zapper)
+        bonus = board.bonuses.first { !it.isActive }
+        println("bonus=$bonus")
+        assertTrue(bonus is Bonus.Life)
+
+        board = board.copy(score = board.score + bonus.score)
+        board = engine.process(board)
+        assertEquals(bonus.score, bonus.progress)
+        bonus = board.bonuses.first { !it.isActive }
+        println("bonus=$bonus")
+        assertTrue(bonus is Bonus.Cupcake)
+
+        board = board.copy(score = board.score + bonus.score)
+        board = engine.process(board)
+        assertEquals(bonus.score, bonus.progress)
+        bonus = board.bonuses.first { !it.isActive }
+        println("bonus=$bonus")
+        assertTrue(bonus is Bonus.Flower)
+
+        board = board.copy(score = board.score + bonus.score)
+        board = engine.process(board)
+        assertEquals(bonus.score, bonus.progress)
+        bonus = board.bonuses.first { !it.isActive }
+        println("bonus=$bonus")
+        assertTrue(bonus is Bonus.Score)
     }
 
     @Test

@@ -20,8 +20,12 @@ class BugTest {
         bug.moveTo(0f, 0f)
         assertTrue(board.contains(bug))
 
+        // bottom-left out of board
+        bug.moveTo(0f, 1001f)
+        assertFalse(board.contains(bug))
+
         // bottom-right out of board
-        bug.moveTo(1000f, 1000f)
+        bug.moveTo(1000f, 1001f)
         assertFalse(board.contains(bug))
 
         // top-left corner of board
