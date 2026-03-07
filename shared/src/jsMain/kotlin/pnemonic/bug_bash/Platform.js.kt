@@ -11,9 +11,13 @@ class JsPlatform : Platform {
     override val sound: SoundManager = SoundManager
     override val settings: Settings by lazy { Settings() }
 
+    private val formatters = mutableMapOf<String, Intl.NumberFormat>()
+
+    @OptIn(ExperimentalWasmJsInterop::class)
     override fun formatInteger(locale: Locale, number: Long): String {
-        val formatter = Intl.NumberFormat(locale.platformLocale.toString())
-        return formatter.format(number)
+        val languageTag = locale.platformLocale.toString()
+        val formatter = formatters.getOrPut(languageTag) { Intl.NumberFormat(languageTag) }
+        return formatter.format(number.toJsBigInt())
     }
 }
 
