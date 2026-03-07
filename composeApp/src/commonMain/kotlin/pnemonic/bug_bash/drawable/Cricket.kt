@@ -20,10 +20,10 @@ import pnemonic.stateOf
 private const val durationLeg = 500
 
 @Composable
-fun cricket(bug: Cricket): ImageVector = cricket(bug.isSquashed)
+fun cricket(bug: Cricket): ImageVector = cricket(bug.isStopped)
 
 @Composable
-fun cricket(squashed: Boolean = false): ImageVector {
+fun cricket(stopped: Boolean = false): ImageVector {
     val rotateL1: State<Float>
     val rotateL2: State<Float>
     val crawlL3: State<Float>
@@ -31,7 +31,7 @@ fun cricket(squashed: Boolean = false): ImageVector {
     val rotateR2: State<Float>
     val crawlR3: State<Float>
 
-    if (squashed) {
+    if (stopped) {
         rotateL1 = stateOf(0f)
         rotateL2 = rotateL1
         rotateR1 = stateOf(0f)

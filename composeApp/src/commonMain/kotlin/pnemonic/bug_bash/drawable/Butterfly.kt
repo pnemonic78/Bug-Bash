@@ -19,16 +19,16 @@ import pnemonic.stateOf
 private const val durationWing = 1000
 
 @Composable
-fun butterfly(bug: Butterfly): ImageVector = butterfly(bug.isSquashed)
+fun butterfly(bug: Butterfly): ImageVector = butterfly(bug.isStopped)
 
 @Composable
-fun butterfly(squashed: Boolean = false): ImageVector {
+fun butterfly(stopped: Boolean = false): ImageVector {
     val rotateL1: State<Float>
     val rotateL2: State<Float>
     val rotateR1: State<Float>
     val rotateR2: State<Float>
 
-    if (squashed) {
+    if (stopped) {
         rotateL1 = stateOf(0f)
         rotateL2 = rotateL1
         rotateR1 = rotateL1

@@ -22,10 +22,10 @@ private const val durationCrawl = 1000
 private const val offsetCrawl = 200
 
 @Composable
-fun caterpillar(bug: Caterpillar): ImageVector = caterpillar(bug.isSquashed)
+fun caterpillar(bug: Caterpillar): ImageVector = caterpillar(bug.isStopped)
 
 @Composable
-fun caterpillar(squashed: Boolean = false): ImageVector {
+fun caterpillar(stopped: Boolean = false): ImageVector {
     val crawl1: State<Float>
     val crawl2: State<Float>
     val crawl3: State<Float>
@@ -37,7 +37,7 @@ fun caterpillar(squashed: Boolean = false): ImageVector {
     val crawl9: State<Float>
     val crawl10: State<Float>
 
-    if (squashed) {
+    if (stopped) {
         crawl1 = stateOf(0f)
         crawl2 = crawl1
         crawl3 = crawl1

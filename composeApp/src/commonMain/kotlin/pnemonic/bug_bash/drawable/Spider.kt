@@ -19,10 +19,10 @@ import pnemonic.stateOf
 private const val durationCrawl = 1000
 
 @Composable
-fun spider(bug: Spider): ImageVector = spider(bug.isSquashed)
+fun spider(bug: Spider): ImageVector = spider(bug.isStopped)
 
 @Composable
-fun spider(squashed: Boolean = false): ImageVector {
+fun spider(stopped: Boolean = false): ImageVector {
     val crawlL1: State<Float>
     val crawlL2: State<Float>
     val crawlL3: State<Float>
@@ -36,7 +36,7 @@ fun spider(squashed: Boolean = false): ImageVector {
     val rotateR2: State<Float>
     val rotateR3: State<Float>
 
-    if (squashed) {
+    if (stopped) {
         crawlL1 = stateOf(1f)
         crawlL2 = crawlL1
         crawlL3 = crawlL1

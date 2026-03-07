@@ -26,13 +26,13 @@ private const val angleSegment = ((2.0 * PI) / 22).toFloat()
 private const val widthCrawl = 20f * 0.25f
 
 @Composable
-fun earthworm(bug: Worm): ImageVector = earthworm(bug.isSquashed)
+fun earthworm(bug: Worm): ImageVector = earthworm(bug.isStopped)
 
 @Composable
-fun earthworm(squashed: Boolean = false): ImageVector {
+fun earthworm(stopped: Boolean = false): ImageVector {
     val crawl: State<Float>
 
-    if (squashed) {
+    if (stopped) {
         crawl = stateOf(0f)
     } else {
         val transition = rememberInfiniteTransition()

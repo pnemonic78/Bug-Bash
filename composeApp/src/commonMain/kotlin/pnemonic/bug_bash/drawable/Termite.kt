@@ -20,10 +20,10 @@ import pnemonic.stateOf
 private const val durationLeg = 500
 
 @Composable
-fun termite(bug: Termite): ImageVector = termite(bug.isSquashed)
+fun termite(bug: Termite): ImageVector = termite(bug.isStopped)
 
 @Composable
-fun termite(squashed: Boolean = false): ImageVector {
+fun termite(stopped: Boolean = false): ImageVector {
     val rotateL1: State<Float>
     val rotateL2: State<Float>
     val rotateL3: State<Float>
@@ -31,7 +31,7 @@ fun termite(squashed: Boolean = false): ImageVector {
     val rotateR2: State<Float>
     val rotateR3: State<Float>
 
-    if (squashed) {
+    if (stopped) {
         rotateL1 = stateOf(0f)
         rotateL2 = rotateL1
         rotateL3 = rotateL2

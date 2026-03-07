@@ -24,10 +24,10 @@ private const val offsetLeg = 200
 private const val durationTail = 1500
 
 @Composable
-fun scorpion(bug: Scorpion): ImageVector = scorpion(bug.isSquashed)
+fun scorpion(bug: Scorpion): ImageVector = scorpion(bug.isStopped)
 
 @Composable
-fun scorpion(squashed: Boolean = false): ImageVector {
+fun scorpion(stopped: Boolean = false): ImageVector {
     val rotateCL: State<Float>
     val rotateCR: State<Float>
     val rotateT: State<Float>
@@ -40,7 +40,7 @@ fun scorpion(squashed: Boolean = false): ImageVector {
     val rotateR3: State<Float>
     val rotateR4: State<Float>
 
-    if (squashed) {
+    if (stopped) {
         rotateCL = stateOf(0f)
         rotateCR = rotateCL
         rotateT = rotateCL

@@ -106,7 +106,7 @@ object BugFactory {
         return Swarm(bugs)
     }
 
-    val allBugs get() = listOf(
+    val allBugs: List<Bug> get() = listOf(
         Ant(),
         Bee(),
         Beetle(),

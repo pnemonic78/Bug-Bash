@@ -53,6 +53,9 @@ abstract class Bug(
     private var delay: Long = 0L
     abstract val description: String
 
+    val isFrozen: Boolean get() = delay > 0L
+    val isStopped: Boolean get() = isSquashed || isFrozen
+
     override fun toString(): String {
         return "${this::class.simpleName}@${hashCode()}($description, l:$left, t:$top, w:$width, h:$height, r:$rotation, d:$delay, h:$hits, o:$opacity)"
     }

@@ -22,10 +22,10 @@ private const val durationLeg = 500
 private const val offsetLeg = 100
 
 @Composable
-fun centipede(bug: Centipede): ImageVector = centipede(bug.isSquashed)
+fun centipede(bug: Centipede): ImageVector = centipede(bug.isStopped)
 
 @Composable
-fun centipede(squashed: Boolean = false): ImageVector {
+fun centipede(stopped: Boolean = false): ImageVector {
     val rotateL1: State<Float>
     val rotateL2: State<Float>
     val rotateL3: State<Float>
@@ -43,7 +43,7 @@ fun centipede(squashed: Boolean = false): ImageVector {
     val rotateR7: State<Float>
     val rotateR8: State<Float>
 
-    if (squashed) {
+    if (stopped) {
         rotateL1 = stateOf(-45f)
         rotateL2 = stateOf(-15f)
         rotateL3 = stateOf(0f)

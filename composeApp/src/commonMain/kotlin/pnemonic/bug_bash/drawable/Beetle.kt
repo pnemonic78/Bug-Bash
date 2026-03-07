@@ -20,10 +20,10 @@ import pnemonic.stateOf
 private const val durationLeg = 1000
 
 @Composable
-fun beetle(bug: Beetle): ImageVector = beetle(bug.isSquashed)
+fun beetle(bug: Beetle): ImageVector = beetle(bug.isStopped)
 
 @Composable
-fun beetle(squashed: Boolean = false): ImageVector {
+fun beetle(stopped: Boolean = false): ImageVector {
     val rotateL1: State<Float>
     val rotateL2: State<Float>
     val rotateL3: State<Float>
@@ -33,7 +33,7 @@ fun beetle(squashed: Boolean = false): ImageVector {
     val rotateR3: State<Float>
     val rotateR4: State<Float>
 
-    if (squashed) {
+    if (stopped) {
         rotateL1 = stateOf(0f)
         rotateL2 = rotateL1
         rotateL3 = rotateL2

@@ -19,14 +19,14 @@ import pnemonic.stateOf
 private const val durationWing = 300
 
 @Composable
-fun wasp(bug: Wasp): ImageVector = wasp(bug.isSquashed)
+fun wasp(bug: Wasp): ImageVector = wasp(bug.isStopped)
 
 @Composable
-fun wasp(squashed: Boolean = false): ImageVector {
+fun wasp(stopped: Boolean = false): ImageVector {
     val rotateL1: State<Float>
     val rotateR1: State<Float>
 
-    if (squashed) {
+    if (stopped) {
         rotateL1 = stateOf(0f)
         rotateR1 = stateOf(0f)
     } else {

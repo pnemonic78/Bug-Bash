@@ -20,14 +20,14 @@ import pnemonic.stateOf
 private const val durationCrawl = 1000
 
 @Composable
-fun snail(bug: Snail): ImageVector = snail(bug.isSquashed)
+fun snail(bug: Snail): ImageVector = snail(bug.isStopped)
 
 @Composable
-fun snail(squashed: Boolean = false): ImageVector {
+fun snail(stopped: Boolean = false): ImageVector {
     val crawl1: State<Float>
     val crawl2: State<Float>
 
-    if (squashed) {
+    if (stopped) {
         crawl1 = stateOf(1f)
         crawl2 = crawl1
     } else {
