@@ -51,7 +51,7 @@ class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallback {
     val feedback: Flow<Feedback> = _feedback
 
     fun start(difficulty: Difficulty = Difficulty.Easy) {
-        ticker = coroutineScope.launch(Dispatchers.Default) {
+        ticker = coroutineScope.launch(Dispatchers.Unconfined) {
             _boards.update { it.copy(difficulty = difficulty) }
             _state.update { GameState.STARTED }
             playSound(SoundType.GameStart)
@@ -445,8 +445,8 @@ class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallback {
 
     companion object {
         private const val TICK = 20L
-        private const val DELAY_PER_BUG = TICK * 30
-        private const val NEXT_SCENE = 3
+        private const val DELAY_PER_BUG = TICK * 50
+        private const val NEXT_SCENE = 2
 
         // Time to show the score after bug squashed.
         private const val DELAY_DEAD_REMOVE = 1000L
