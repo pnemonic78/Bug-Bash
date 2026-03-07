@@ -118,7 +118,7 @@ private fun Preview() {
 }
 
 @Composable
-@Preview(widthDp = 450, heightDp = 700)
+@Preview(widthDp = previewWidthDp * 2, heightDp = previewHeightDp * 2)
 private fun PreviewBig() {
     MaterialTheme {
         HomeScreen(

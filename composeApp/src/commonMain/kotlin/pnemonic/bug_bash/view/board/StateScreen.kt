@@ -96,7 +96,7 @@ private fun Preview() {
 @Preview(
     showBackground = true,
     backgroundColor = previewColor,
-    widthDp = 450,
+    widthDp = previewWidthDp * 2,
     heightDp = previewHeightDp
 )
 private fun PreviewWide() {
@@ -109,7 +109,7 @@ private fun PreviewWide() {
 @Preview(
     showBackground = true,
     backgroundColor = previewColor,
-    widthDp = 350,
+    widthDp = previewWidthDp,
     heightDp = previewHeightDp,
     locale = "af"
 )

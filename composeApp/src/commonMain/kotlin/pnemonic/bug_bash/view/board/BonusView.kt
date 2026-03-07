@@ -142,7 +142,7 @@ fun BonusView(bonus: Bonus, size: Dp, onClick: BonusCallback) {
 @Composable
 private fun BonusCupcake(bonus: Bonus.Cupcake) {
     Image(
-        modifier = Modifier.size(sizeBonus),
+        modifier = Modifier.fillMaxSize(),
         imageVector = Cupcake,
         contentDescription = bonus.description,
         contentScale = ContentScale.Fit
@@ -152,7 +152,7 @@ private fun BonusCupcake(bonus: Bonus.Cupcake) {
 @Composable
 private fun BonusFlower(bonus: Bonus.Flower) {
     Image(
-        modifier = Modifier.size(sizeBonus),
+        modifier = Modifier.fillMaxSize(),
         imageVector = Flower,
         contentDescription = bonus.description,
         contentScale = ContentScale.Fit
@@ -162,7 +162,7 @@ private fun BonusFlower(bonus: Bonus.Flower) {
 @Composable
 private fun BonusGluePaper(bonus: Bonus.GluePaper) {
     Image(
-        modifier = Modifier.size(sizeBonus),
+        modifier = Modifier.fillMaxSize(),
         imageVector = GluePaper,
         contentDescription = bonus.description,
         contentScale = ContentScale.Fit
@@ -172,7 +172,7 @@ private fun BonusGluePaper(bonus: Bonus.GluePaper) {
 @Composable
 private fun BonusSpray(bonus: Bonus.Spray) {
     Image(
-        modifier = Modifier.size(sizeBonus),
+        modifier = Modifier.fillMaxSize(),
         imageVector = insecticide(false),
         contentDescription = bonus.description,
         contentScale = ContentScale.Fit
@@ -182,7 +182,7 @@ private fun BonusSpray(bonus: Bonus.Spray) {
 @Composable
 private fun BonusLife(bonus: Bonus.Life) {
     Image(
-        modifier = Modifier.size(sizeBonus),
+        modifier = Modifier.fillMaxSize(),
         imageVector = LifeHas,
         contentDescription = bonus.description,
         contentScale = ContentScale.Fit
@@ -192,7 +192,7 @@ private fun BonusLife(bonus: Bonus.Life) {
 @Composable
 private fun BonusScore(bonus: Bonus.Score) {
     Image(
-        modifier = Modifier.size(sizeBonus),
+        modifier = Modifier.fillMaxSize(),
         imageVector = Trophy,
         contentDescription = bonus.description,
         contentScale = ContentScale.Fit
@@ -202,7 +202,7 @@ private fun BonusScore(bonus: Bonus.Score) {
 @Composable
 private fun BonusShoe(bonus: Bonus.Shoe) {
     Image(
-        modifier = Modifier.size(sizeBonus),
+        modifier = Modifier.fillMaxSize(),
         imageVector = Shoe,
         contentDescription = bonus.description,
         contentScale = ContentScale.Fit
@@ -212,7 +212,7 @@ private fun BonusShoe(bonus: Bonus.Shoe) {
 @Composable
 private fun BonusSwatter(bonus: Bonus.Swatter) {
     Image(
-        modifier = Modifier.size(sizeBonus),
+        modifier = Modifier.fillMaxSize(),
         imageVector = Swatter,
         contentDescription = bonus.description,
         contentScale = ContentScale.Fit
@@ -222,7 +222,7 @@ private fun BonusSwatter(bonus: Bonus.Swatter) {
 @Composable
 private fun BonusZapper(bonus: Bonus.Zapper) {
     Image(
-        modifier = Modifier.size(sizeBonus),
+        modifier = Modifier.fillMaxSize(),
         imageVector = Zapper,
         contentDescription = bonus.description,
         contentScale = ContentScale.Fit

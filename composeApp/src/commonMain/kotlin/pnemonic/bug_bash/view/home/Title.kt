@@ -21,6 +21,7 @@ import bug_bash.composeapp.generated.resources.Res
 import bug_bash.composeapp.generated.resources.title
 import org.jetbrains.compose.resources.stringResource
 import pnemonic.bug_bash.view.previewColor
+import pnemonic.bug_bash.view.previewWidthDp
 import pnemonic.bug_bash.view.theme.Brown
 import pnemonic.bug_bash.view.theme.DarkRed
 import pnemonic.bug_bash.view.theme.Gold
@@ -61,23 +62,23 @@ fun Title(modifier: Modifier = Modifier, title: String) {
 }
 
 @Composable
-@Preview(showBackground = true, backgroundColor = previewColor, widthDp = 400)
-private fun Preview() {
+@Preview(showBackground = true, backgroundColor = previewColor, widthDp = previewWidthDp * 2)
+private fun PreviewWide() {
     MaterialTheme {
         Title()
     }
 }
 
 @Composable
-@Preview(showBackground = true, backgroundColor = previewColor, widthDp = 300)
-private fun Preview2() {
+@Preview(showBackground = true, backgroundColor = previewColor, widthDp = previewWidthDp)
+private fun PreviewLong() {
     MaterialTheme {
         Title(title = "Bug Bash 123")
     }
 }
 
 @Composable
-@Preview(showBackground = true, backgroundColor = previewColor, widthDp = 350, locale = "af")
+@Preview(showBackground = true, backgroundColor = previewColor, widthDp = previewWidthDp, locale = "af")
 private fun Preview3() {
     MaterialTheme {
         Title()

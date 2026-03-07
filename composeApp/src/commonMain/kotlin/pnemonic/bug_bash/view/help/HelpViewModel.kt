@@ -28,6 +28,7 @@ class HelpViewModel : LifecycleViewModel() {
                 if (c != 0) return@sortedWith c
                 b1.score.compareTo(b2.score)
             }
+            bugs.forEach { it.freeze(1L) }
             _catalog.update { bugs }
         }
         viewModelScope.launch {

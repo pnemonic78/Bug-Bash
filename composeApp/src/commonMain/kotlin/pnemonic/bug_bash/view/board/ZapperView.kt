@@ -17,7 +17,7 @@ import pnemonic.bug_bash.drawable.Zapper as ZapperImage
 
 @Composable
 fun ZapperView(tool: Zapper, onUse: ToolCallback, boardSize: Size) {
-    ImageTool(tool, ZapperImage, 10f, boardSize)
+    ImageTool(tool, ZapperImage, 12f, boardSize)
 }
 
 @Composable

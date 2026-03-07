@@ -17,7 +17,7 @@ import pnemonic.bug_bash.view.toPx
 
 @Composable
 fun SprayView(tool: Spray, onUse: ToolCallback, boardSize: Size) {
-    ImageTool(tool, insecticide(tool.bonus), 10f, boardSize)
+    ImageTool(tool, insecticide(tool.bonus), 12f, boardSize)
 }
 
 @Composable
