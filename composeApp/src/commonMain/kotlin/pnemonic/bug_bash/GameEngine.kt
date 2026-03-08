@@ -30,10 +30,10 @@ import pnemonic.removeAll
 import kotlin.math.max
 import kotlin.random.Random
 
-class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallback {
+open class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallback {
     private var ticker: Job? = null
 
-    private val _boards = MutableStateFlow(Board())
+    protected val _boards = MutableStateFlow(Board())
     val boards: StateFlow<Board> = _boards
 
     private val _state = MutableStateFlow(GameState.NOT_STARTED)
@@ -41,7 +41,7 @@ class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallback {
     val isRunning get() = (state.value === GameState.STARTED) || (state.value === GameState.RESUMED)
     val isPaused get() = state.value === GameState.PAUSED
 
-    private val rand = Random.Default
+    protected val rand = Random.Default
     private val touches = mutableListOf<Offset>()
     private val touchedBugs = mutableListOf<Bug>()
     private val squashed = mutableListOf<Bug>()
@@ -359,9 +359,7 @@ class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallback {
     }
 
     private fun generateBugs(board: Board): Board {
-        val level = board.level
-        val difficulty = board.difficulty
-        val swarm = BugFactory.createSwarm(level, difficulty)
+        val swarm = generateSwarm(board)
         var delay = 0L
 
         for (bug in swarm) {
@@ -370,6 +368,12 @@ class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallback {
         }
 
         return board.copy(swarm = swarm)
+    }
+
+    protected open fun generateSwarm(board: Board): Swarm {
+        val level = board.level
+        val difficulty = board.difficulty
+        return BugFactory.createSwarm(level, difficulty)
     }
 
     private suspend fun nextLevel(board: Board): Board {
@@ -387,7 +391,7 @@ class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallback {
         return board
     }
 
-    private suspend fun finished() {
+    protected open suspend fun finished() {
         println("No more lives")
         _state.update { GameState.FINISHED }
         _boards.update { it.copy(swarm = Swarm()) }

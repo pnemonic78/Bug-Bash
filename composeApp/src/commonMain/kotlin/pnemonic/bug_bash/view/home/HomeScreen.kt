@@ -10,9 +10,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LifecycleOwner
@@ -21,9 +23,13 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import pnemonic.BooleanCallback
 import pnemonic.VoidCallback
+import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.Difficulty
 import pnemonic.bug_bash.model.Scene
+import pnemonic.bug_bash.view.OnSizeCallback
+import pnemonic.bug_bash.view.board.BugCallback
 import pnemonic.bug_bash.view.board.SceneView
+import pnemonic.bug_bash.view.board.SwarmView
 import pnemonic.bug_bash.view.difficulty.DifficultyCallback
 import pnemonic.bug_bash.view.difficulty.DifficultyPanel
 import pnemonic.bug_bash.view.previewHeightDp
@@ -35,6 +41,7 @@ fun HomeScreen(navController: NavHostController) {
     val lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current
     //FIXME for JVM val viewModel = viewModel<HomeViewModel>()
     val viewModel = viewModel { HomeViewModel() }
+    val board = viewModel.board.collectAsState()
 
     HomeScreen(
         onPlayClick = { viewModel.onPlayClick(navController) },
@@ -44,7 +51,10 @@ fun HomeScreen(navController: NavHostController) {
         onMusicChange = viewModel::onMusicChange,
         onHelpClick = { viewModel.onHelpClick(navController) },
         difficulty = viewModel.difficulty,
-        onDifficultyChange = viewModel::onDifficultyChange
+        onDifficultyChange = viewModel::onDifficultyChange,
+        board = board.value,
+        onBoardSize = viewModel::onBoardSize,
+        onBugSize = viewModel::onBugSize,
     )
 
     DisposableEffect(lifecycleOwner) {
@@ -68,11 +78,16 @@ private fun HomeScreen(
     onHelpClick: VoidCallback,
     difficulty: Difficulty,
     onDifficultyChange: DifficultyCallback,
+    board: Board,
+    onBoardSize: OnSizeCallback,
+    onBugSize: BugCallback,
 ) {
     SceneView(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize()
+            .onSizeChanged { onBoardSize(it) },
         scene = Scene.Grass,
     ) {
+        SwarmView(board, onBugSize, onTap = {})
         Box(modifier = Modifier.fillMaxSize().background(color = colorMask))
         Column(
             modifier = Modifier.fillMaxSize().padding(paddingScreen),
@@ -113,6 +128,9 @@ private fun Preview() {
             onHelpClick = {},
             difficulty = Difficulty.Medium,
             onDifficultyChange = {},
+            board = Board(),
+            onBoardSize = {},
+            onBugSize = {},
         )
     }
 }
@@ -128,6 +146,9 @@ private fun PreviewBig() {
             onHelpClick = {},
             difficulty = Difficulty.Hard,
             onDifficultyChange = {},
+            board = Board(),
+            onBoardSize = {},
+            onBugSize = {},
         )
     }
 }

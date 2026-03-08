@@ -82,7 +82,7 @@ class GameViewModel : LifecycleViewModel() {
         platform.sound.onDestroy()
     }
 
-    fun onSize(size: IntSize) {
+    fun onBoardSize(size: IntSize) {
         engine.onSize(size)
     }
 

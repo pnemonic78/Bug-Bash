@@ -46,7 +46,7 @@ fun BoardScreen(navController: NavController) {
     BoardView(
         board = board.value,
         state = state.value,
-        onSize = viewModel::onSize,
+        onSize = viewModel::onBoardSize,
         onTap = viewModel::onTap,
         onBugSize = viewModel::onBugSize,
         onBugTap = viewModel::onBugTap,
