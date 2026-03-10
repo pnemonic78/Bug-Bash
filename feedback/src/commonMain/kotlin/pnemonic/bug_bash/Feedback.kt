@@ -13,6 +13,10 @@ sealed class Feedback {
 
     data class Sound(val soundType: SoundType) : Feedback()
 
+    data class Silence(val soundType: SoundType) : Feedback() {
+        constructor(sound: Sound) : this(sound.soundType)
+    }
+
     data class Bash(val soundType: SoundType) : Feedback()
 }
 

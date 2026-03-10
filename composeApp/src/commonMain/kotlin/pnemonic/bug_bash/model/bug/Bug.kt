@@ -38,7 +38,7 @@ abstract class Bug(
     internal var destinationY: Float = Float.NaN
         private set
     private var destinationAngle: Float = Float.NaN
-    protected var velocity: Float = speed * 0.05f
+    protected var velocity: Float = speed
         private set
     var rotation by mutableFloatStateOf(0f)
         private set
@@ -74,6 +74,10 @@ abstract class Bug(
         destinationX = x
         destinationY = y
         destinationAngle = calculateHeading()
+    }
+
+    fun setTick(tick: Long) {
+        velocity = speed * 0.0025f * tick
     }
 
     fun move(): Boolean {
@@ -117,8 +121,8 @@ abstract class Bug(
         val y1 = top
         val dx = velocity * width
         val dy = 0f
-        val x2 = x1 + ((dx * c) - (dy * s))
-        val y2 = y1 + ((dx * s) + (dy * c))
+        val x2 = x1 + (dx * c) - (dy * s)
+        val y2 = y1 + (dx * s) + (dy * c)
         moveTo(x2, y2)
         return angle == rotationMovement
     }

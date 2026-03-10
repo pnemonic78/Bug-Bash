@@ -103,6 +103,7 @@ class GameViewModel : LifecycleViewModel() {
             Feedback.None -> return
             is Feedback.Vibrate -> vibrate(feedback.duration, feedback.amplitude)
             is Feedback.Bash -> bash(feedback)
+            is Feedback.Silence -> stopSound(feedback.soundType)
             is Feedback.Sound -> playSound(feedback.soundType)
         }
         engine.feedbackDone()

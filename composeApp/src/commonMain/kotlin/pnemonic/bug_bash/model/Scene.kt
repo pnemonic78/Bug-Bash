@@ -1,5 +1,6 @@
 package pnemonic.bug_bash.model
 
+import androidx.annotation.IntRange
 import bug_bash.composeapp.generated.resources.Res
 import bug_bash.composeapp.generated.resources.bg_daisies
 import bug_bash.composeapp.generated.resources.bg_grass
@@ -11,6 +12,7 @@ import bug_bash.composeapp.generated.resources.bg_wood_rustic
 import org.jetbrains.compose.resources.DrawableResource
 import pnemonic.bug_bash.Feedback
 import pnemonic.bug_bash.sound.SoundType
+import kotlin.math.max
 
 enum class Scene(val music: Feedback.Sound, val image: DrawableResource) {
     Grass(SoundType.Garden, Res.drawable.bg_grass),
@@ -27,12 +29,22 @@ enum class Scene(val music: Feedback.Sound, val image: DrawableResource) {
     )
 
     operator fun plus(other: Int): Scene {
-        val values = values()
+        val values = _values
         val index = (ordinal + other) % values.size
         return values[index]
     }
 
     fun next(): Scene {
         return this + 1
+    }
+
+    companion object {
+        private val _values = values()
+
+        fun forLevel(@IntRange(from = 1L) level: Int): Scene {
+            val values = _values
+            val index = max(0, level - 1) % values.size
+            return values[index]
+        }
     }
 }

@@ -31,11 +31,10 @@ import kotlin.math.max
 import kotlin.random.Random
 
 open class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallback {
-    private var ticker: Job? = null
-
     protected val _boards = MutableStateFlow(Board())
     val boards: StateFlow<Board> = _boards
 
+    private var ticker: Job? = null
     private val _state = MutableStateFlow(GameState.NOT_STARTED)
     val state: StateFlow<GameState> = _state
     val isRunning get() = (state.value === GameState.STARTED) || (state.value === GameState.RESUMED)
@@ -363,6 +362,7 @@ open class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallba
         var delay = 0L
 
         for (bug in swarm) {
+            bug.setTick(TICK)
             bug.freeze(delay)
             delay += DELAY_PER_BUG
         }
@@ -377,18 +377,18 @@ open class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallba
     }
 
     private suspend fun nextLevel(board: Board): Board {
-        var board = board
+        stopSounds(board)
+
         val level = board.level + 1
-        var scene = board.scene
-        if (level % NEXT_SCENE == 0) {
-            scene = scene.next()
-        }
-        board = generateBugs(board.copy(level = level, scene = scene, tool = null))
+        val scene = Scene.forLevel(level)
+        val boardNext = generateBugs(board.copy(level = level, scene = scene, tool = null))
+
         if (level > 1) {
             playSound(SoundType.Level)
         }
-        playSounds(board)
-        return board
+        playSounds(boardNext)
+
+        return boardNext
     }
 
     protected open suspend fun finished() {
@@ -430,6 +430,22 @@ open class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallba
         notifyFeedback(Feedback.Sound(sound))
     }
 
+    private suspend fun stopSounds(board: Board) {
+        stopMusic(board.scene)
+        for (bug in board.swarm) {
+            stopSound(bug.noise)
+        }
+    }
+
+    private suspend fun stopMusic(scene: Scene) {
+        notifyFeedback(Feedback.Silence(scene.music))
+    }
+
+    private suspend fun stopSound(sound: SoundType) {
+        if (sound === SoundType.None) return
+        notifyFeedback(Feedback.Silence(sound))
+    }
+
     // Apply any bonuses
     private suspend fun bonus(board: Board): Board {
         return bonusEngine.process(board)
@@ -448,9 +464,8 @@ open class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallba
     }
 
     companion object {
-        private const val TICK = 20L
-        private const val DELAY_PER_BUG = TICK * 50
-        private const val NEXT_SCENE = 2
+        private const val TICK = 5L
+        private const val DELAY_PER_BUG = TICK * 250
 
         // Time to show the score after bug squashed.
         private const val DELAY_DEAD_REMOVE = 1000L
@@ -462,6 +477,6 @@ open class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallba
         private const val SIDE_MIN = SIDE_TOP
         private const val SIDE_MAX = SIDE_RIGHT + 1
 
-        private const val PADDING = 0.125f
+        private const val PADDING = 0.2f
     }
 }
