@@ -10,6 +10,7 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -42,6 +43,7 @@ import pnemonic.bug_bash.drawable.Trophy
 import pnemonic.bug_bash.drawable.Zapper
 import pnemonic.bug_bash.drawable.insecticide
 import pnemonic.bug_bash.model.Bonus
+import pnemonic.bug_bash.view.Left
 import pnemonic.bug_bash.view.theme.panel
 import pnemonic.bug_bash.drawable.Bonus as BonusImage
 
@@ -63,7 +65,11 @@ fun BonusesView(modifier: Modifier = Modifier, bonuses: List<Bonus>, onClick: Bo
         expanded = false
     }
 
-    Row(modifier = modifier.panel(), verticalAlignment = Alignment.CenterVertically) {
+    Row(
+        modifier = modifier.panel(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Left
+    ) {
         Image(
             imageVector = BonusImage,
             contentDescription = "🎁",
@@ -87,7 +93,8 @@ fun BonusesView(modifier: Modifier = Modifier, bonuses: List<Bonus>, onClick: Bo
         ) {
             Row(
                 modifier = Modifier.horizontalScroll(rememberScrollState()),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Left
             ) {
                 for (bonus in bonuses) {
                     if (bonus.score <= 0) continue

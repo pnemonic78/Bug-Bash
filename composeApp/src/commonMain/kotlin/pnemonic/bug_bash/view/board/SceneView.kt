@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.AbsoluteAlignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Canvas
 import androidx.compose.ui.graphics.ImageBitmap
@@ -43,7 +44,10 @@ fun SceneView(
 ) {
     var size by remember { mutableStateOf(IntSize.Zero) }
 
-    Box(modifier = modifier.onSizeChanged { size = it }) {
+    Box(
+        modifier = modifier.onSizeChanged { size = it },
+        contentAlignment = AbsoluteAlignment.TopLeft
+    ) {
         SceneBackground(scene = scene, size = size)
         content()
     }

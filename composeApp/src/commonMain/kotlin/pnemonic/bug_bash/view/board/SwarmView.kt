@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.AbsoluteAlignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
@@ -43,7 +44,13 @@ fun SwarmView(
 }
 
 @Composable
-@Preview(showBackground = true, backgroundColor = previewColor, widthDp = 700, heightDp = 900)
+@Preview(
+    showBackground = true,
+    backgroundColor = previewColor,
+    widthDp = 700,
+    heightDp = 900,
+    locale = "he"
+)
 private fun Preview() {
     val bugs = BugFactory.allBugs
     val dx = 20.dp.toPx()
@@ -60,7 +67,7 @@ private fun Preview() {
     val onTap: BugCallback = {}
 
     MaterialTheme {
-        Box(modifier = Modifier.fillMaxSize()) {
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = AbsoluteAlignment.TopLeft) {
             SwarmView(Swarm(bugs), Size.Zero, onSize, onTap)
         }
     }

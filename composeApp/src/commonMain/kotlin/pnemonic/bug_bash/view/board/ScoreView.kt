@@ -4,6 +4,7 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.EaseOutElastic
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
@@ -44,6 +45,7 @@ import pnemonic.bug_bash.Platform
 import pnemonic.bug_bash.drawable.Trophy
 import pnemonic.bug_bash.getPlatform
 import pnemonic.bug_bash.model.bug.Bug
+import pnemonic.bug_bash.view.Left
 import pnemonic.bug_bash.view.theme.DarkRed
 import pnemonic.bug_bash.view.theme.Gold
 import pnemonic.bug_bash.view.theme.panel
@@ -51,7 +53,7 @@ import pnemonic.half
 import kotlin.math.max
 import kotlin.math.min
 
-private val colorText = Gold
+private val colorText = Yellow
 private val sizeIcon = 30.dp
 private val sizeText = 20.sp
 
@@ -60,10 +62,19 @@ fun ScoreView(modifier: Modifier = Modifier, score: Long) {
     val locale = Locale.current
     val platform: Platform = getPlatform()
 
-    Row(modifier = modifier.panel(), verticalAlignment = Alignment.CenterVertically) {
+    Row(
+        modifier = modifier.panel(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Left
+    ) {
         Image(imageVector = Trophy, contentDescription = "🏆", modifier = Modifier.size(sizeIcon))
         Spacer(modifier = Modifier.width(4.dp))
-        Text(text = platform.formatInteger(locale, score), fontSize = sizeText, color = colorText)
+        Text(
+            text = platform.formatInteger(locale, score),
+            fontSize = sizeText,
+            color = colorText,
+            fontWeight = FontWeight.Bold
+        )
     }
 }
 
@@ -148,6 +159,14 @@ private fun Preview_DE() {
 @Composable
 @Preview(locale = "en")
 private fun Preview_EN() {
+    MaterialTheme {
+        ScoreView(score = 10000)
+    }
+}
+
+@Composable
+@Preview(locale = "he")
+private fun Preview_RTL() {
     MaterialTheme {
         ScoreView(score = 10000)
     }

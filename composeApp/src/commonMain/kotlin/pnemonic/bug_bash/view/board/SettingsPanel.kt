@@ -7,6 +7,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
@@ -22,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pnemonic.BooleanCallback
 import pnemonic.VoidCallback
+import pnemonic.bug_bash.view.Left
 import pnemonic.bug_bash.view.home.HomeButton
 import pnemonic.bug_bash.view.settings.ActionPanel
 import pnemonic.bug_bash.view.settings.MenuButton
@@ -62,7 +64,7 @@ fun SettingsPanel(
                 shrinkTowards = Alignment.End // Shrink towards the end
             ) + fadeOut()
         ) {
-            Row {
+            Row(horizontalArrangement = Arrangement.Left) {
                 SoundButton(isSoundEnabled, onChange = onSoundChange)
                 Spacer(modifier = Modifier.width(spacing))
                 MusicButton(isMusicEnabled, onChange = onMusicChange)

@@ -46,3 +46,17 @@ private fun Preview() {
         )
     }
 }
+
+@Preview(locale = "he")
+@Composable
+private fun Preview_RTL() {
+    MaterialTheme {
+        SettingsPanel(
+            isSoundEnabled = true,
+            onSoundChange = {},
+            isMusicEnabled = false,
+            onMusicChange = {},
+            onHelpClick = {},
+        )
+    }
+}

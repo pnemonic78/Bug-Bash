@@ -1,6 +1,7 @@
 package pnemonic.bug_bash.view
 
 import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.geometry.Offset
@@ -9,9 +10,11 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.hapticfeedback.HapticFeedback
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.IntSize
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.toSize
 
 typealias OnSizeCallback = (IntSize) -> Unit
@@ -58,3 +61,30 @@ fun HapticFeedback.click() = performHapticFeedback(HapticFeedbackType.ContextCli
 internal const val previewWidthDp = 300
 internal const val previewHeightDp = 500
 internal const val previewColor = 0xFF0000FF
+
+private var arrangementLeft: Arrangement.Horizontal? = null
+val Arrangement.Left: Arrangement.Horizontal
+    get() {
+        if (arrangementLeft != null) {
+            return arrangementLeft!!
+        }
+        arrangementLeft = object : Arrangement.Horizontal {
+            override fun Density.arrange(
+                totalSize: Int,
+                sizes: IntArray,
+                layoutDirection: LayoutDirection,
+                outPositions: IntArray,
+            ) = placeLeftOrTop(sizes, outPositions)
+
+            override fun toString() = "Arrangement#Left"
+
+            private fun placeLeftOrTop(size: IntArray, outPosition: IntArray) {
+                var current = 0
+                size.forEachIndexed { index, item ->
+                    outPosition[index] = current
+                    current += item
+                }
+            }
+        }
+        return arrangementLeft!!
+    }

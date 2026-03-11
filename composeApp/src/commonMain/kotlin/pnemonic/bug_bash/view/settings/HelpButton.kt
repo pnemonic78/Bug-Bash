@@ -2,7 +2,7 @@ package pnemonic.bug_bash.view.settings
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.Help
+import androidx.compose.material.icons.filled.Help
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -19,6 +19,7 @@ import pnemonic.bug_bash.view.theme.modifierIcon
 import pnemonic.bug_bash.view.theme.sizeButton
 
 @Composable
+@Suppress("DEPRECATION")
 fun HelpButton(size: Dp = sizeButton, onClick: VoidCallback) {
     val haptic = LocalHapticFeedback.current
 
@@ -30,7 +31,7 @@ fun HelpButton(size: Dp = sizeButton, onClick: VoidCallback) {
         modifier = Modifier.modifierButton(size = size)
     ) {
         Icon(
-            imageVector = Icons.AutoMirrored.Filled.Help,
+            imageVector = Icons.Filled.Help,
             contentDescription = "?",
             tint = colorButton,
             modifier = Modifier.modifierIcon(size = size)
@@ -41,6 +42,16 @@ fun HelpButton(size: Dp = sizeButton, onClick: VoidCallback) {
 @Composable
 @Preview
 private fun Preview() {
+    MaterialTheme {
+        Column {
+            HelpButton {}
+        }
+    }
+}
+
+@Composable
+@Preview(locale = "he")
+private fun Preview_RTL() {
     MaterialTheme {
         Column {
             HelpButton {}

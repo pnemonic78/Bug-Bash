@@ -13,7 +13,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.Alignment
+import androidx.compose.ui.AbsoluteAlignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onSizeChanged
@@ -102,7 +102,11 @@ fun BoardView(
         ToolsAbove(board, onToolUse)
         BugScores(board)
         Box(modifier = Modifier.fillMaxWidth().systemBarsPadding()) {
-            Column(modifier = Modifier.align(Alignment.TopStart).padding(8.dp)) {
+            Column(
+                modifier = Modifier.align(AbsoluteAlignment.TopLeft)
+                    .padding(8.dp),
+                horizontalAlignment = AbsoluteAlignment.Left
+            ) {
                 LivesView(lives = board.lives)
                 Spacer(modifier = Modifier.height(8.dp))
                 ScoreView(score = board.score)
@@ -113,7 +117,8 @@ fun BoardView(
             }
             if (state !== GameState.FINISHED) {
                 SettingsPanel(
-                    modifier = Modifier.align(Alignment.TopEnd).padding(8.dp),
+                    modifier = Modifier.align(AbsoluteAlignment.TopRight)
+                        .padding(8.dp),
                     onHomeClick = onHomeClick,
                     isPaused = isPaused,
                     onPauseChange = onPauseChange,
@@ -129,7 +134,13 @@ fun BoardView(
 }
 
 @Composable
-@Preview(showBackground = true, backgroundColor = previewColor, widthDp = 400, heightDp = 600)
+@Preview(
+    showBackground = true,
+    backgroundColor = previewColor,
+    widthDp = 400,
+    heightDp = 600,
+    locale = "he"
+)
 private fun Preview() {
     val bugs = BugFactory.allBugs
     val bonuses = listOf(Bonus.None, Bonus.Flower(1), Bonus.Life(2), Bonus.Score(3), Bonus.Shoe(4))
