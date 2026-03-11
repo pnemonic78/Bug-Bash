@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import pnemonic.bug_bash.model.bug.Centipede
 import pnemonic.stateOf
 
+private const val durationAntenna = 1500
 private const val durationLeg = 500
 private const val offsetLeg = 100
 
@@ -26,6 +27,8 @@ fun centipede(bug: Centipede): ImageVector = centipede(bug.isStopped)
 
 @Composable
 fun centipede(stopped: Boolean = false): ImageVector {
+    val rotateLA: State<Float>
+    val rotateRA: State<Float>
     val rotateL1: State<Float>
     val rotateL2: State<Float>
     val rotateL3: State<Float>
@@ -44,6 +47,8 @@ fun centipede(stopped: Boolean = false): ImageVector {
     val rotateR8: State<Float>
 
     if (stopped) {
+        rotateLA = stateOf(0f)
+        rotateRA = rotateLA
         rotateL1 = stateOf(-45f)
         rotateL2 = stateOf(-15f)
         rotateL3 = stateOf(0f)
@@ -62,6 +67,26 @@ fun centipede(stopped: Boolean = false): ImageVector {
         rotateR8 = rotateR3
     } else {
         val transition = rememberInfiniteTransition()
+        rotateLA = transition.animateFloat(
+            initialValue = -10f,
+            targetValue = 15f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(
+                    durationMillis = durationAntenna
+                ),
+                repeatMode = RepeatMode.Reverse
+            )
+        )
+        rotateRA = transition.animateFloat(
+            initialValue = 10f,
+            targetValue = -15f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(
+                    durationMillis = durationAntenna
+                ),
+                repeatMode = RepeatMode.Reverse
+            )
+        )
         rotateL1 = transition.animateFloat(
             initialValue = 0f,
             targetValue = -45f,
@@ -405,25 +430,29 @@ fun centipede(stopped: Boolean = false): ImageVector {
             curveToRelative(-0.699f, -0.489f, -0.753f, -1.024f, -0.753f, -1.024f)
             close()
         }
-        path(fill = SolidColor(Color(0xEEC83812))) {
-            moveToRelative(3.455f, 5.288f)
-            curveToRelative(0f, 0f, -0.774f, -0.682f, -1.447f, -1.807f)
-            curveToRelative(-0.284f, -0.476f, -0.3f, -1.171f, -0.323f, -1.815f)
-            curveToRelative(-0.031f, -0.88f, 0f, -1.665f, 0f, -1.665f)
-            curveToRelative(0f, 0f, 0.223f, 0.39f, 0.323f, 1.115f)
-            curveToRelative(0.099f, 0.725f, -0.069f, 1.433f, 0.386f, 2.349f)
-            curveToRelative(0.365f, 0.735f, 1.225f, 1.527f, 1.225f, 1.527f)
-            close()
+        group("antenna-l", rotate = rotateLA.value, pivotX = 3.55f, pivotY = 5.14f) {
+            path(fill = SolidColor(Color(0xEEC83812))) {
+                moveToRelative(3.455f, 5.288f)
+                curveToRelative(0f, 0f, -0.774f, -0.682f, -1.447f, -1.807f)
+                curveToRelative(-0.284f, -0.476f, -0.3f, -1.171f, -0.323f, -1.815f)
+                curveToRelative(-0.031f, -0.88f, 0f, -1.665f, 0f, -1.665f)
+                curveToRelative(0f, 0f, 0.223f, 0.39f, 0.323f, 1.115f)
+                curveToRelative(0.099f, 0.725f, -0.069f, 1.433f, 0.386f, 2.349f)
+                curveToRelative(0.365f, 0.735f, 1.225f, 1.527f, 1.225f, 1.527f)
+                close()
+            }
         }
-        path(fill = SolidColor(Color(0xEEC83812))) {
-            moveToRelative(4.408f, 5.288f)
-            curveToRelative(0f, 0f, 0.774f, -0.682f, 1.447f, -1.807f)
-            curveToRelative(0.284f, -0.476f, 0.3f, -1.171f, 0.323f, -1.815f)
-            curveToRelative(0.031f, -0.88f, 0f, -1.665f, 0f, -1.665f)
-            curveToRelative(0f, 0f, -0.223f, 0.39f, -0.323f, 1.115f)
-            curveToRelative(-0.099f, 0.725f, 0.069f, 1.433f, -0.386f, 2.349f)
-            curveToRelative(-0.365f, 0.735f, -1.225f, 1.527f, -1.225f, 1.527f)
-            close()
+        group("antenna-r", rotate = rotateRA.value, pivotX = 4.30f, pivotY = 5.14f) {
+            path(fill = SolidColor(Color(0xEEC83812))) {
+                moveToRelative(4.408f, 5.288f)
+                curveToRelative(0f, 0f, 0.774f, -0.682f, 1.447f, -1.807f)
+                curveToRelative(0.284f, -0.476f, 0.3f, -1.171f, 0.323f, -1.815f)
+                curveToRelative(0.031f, -0.88f, 0f, -1.665f, 0f, -1.665f)
+                curveToRelative(0f, 0f, -0.223f, 0.39f, -0.323f, 1.115f)
+                curveToRelative(-0.099f, 0.725f, 0.069f, 1.433f, -0.386f, 2.349f)
+                curveToRelative(-0.365f, 0.735f, -1.225f, 1.527f, -1.225f, 1.527f)
+                close()
+            }
         }
         path(fill = SolidColor(Color(0xFF80300F))) {
             moveToRelative(4.692f, 25.193f)

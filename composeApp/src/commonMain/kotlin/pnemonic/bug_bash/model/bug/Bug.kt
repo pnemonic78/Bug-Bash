@@ -19,10 +19,16 @@ import kotlin.math.sin
 abstract class Bug(
     val speed: Float,
     val score: Long,
-    var hits: Int,
+    hits: Int,
     val noise: SoundType = SoundType.None,
     val soundBash: SoundType = SoundType.Squirt,
 ) {
+    var hits: Int = hits
+        private set(value) {
+            field = value
+            isSquashed = (value <= 0)
+            isStopped = isSquashed || (delay > 0L)
+        }
     var left by mutableFloatStateOf(0f)
         private set
     var top by mutableFloatStateOf(0f)
@@ -51,10 +57,14 @@ abstract class Bug(
     var opacity by mutableFloatStateOf(1f)
         private set
     private var delay: Long = 0L
-    abstract val description: String
+        set(value) {
+            field = value
+            isStopped = isSquashed || (value > 0L)
+        }
+    var isStopped by mutableStateOf(false)
+        private set
 
-    val isFrozen: Boolean get() = delay > 0L
-    val isStopped: Boolean get() = isSquashed || isFrozen
+    abstract val description: String
 
     override fun toString(): String {
         return "${this::class.simpleName}@${hashCode()}($description, l:$left, t:$top, w:$width, h:$height, r:$rotation, d:$delay, h:$hits, o:$opacity)"
@@ -148,11 +158,10 @@ abstract class Bug(
         hits = max(0, hits - 1)
         this.hits = hits
 
-        if (hits == 0) {
-            isSquashed = true
-            opacity = 0.75f
+        opacity = if (hits == 0) {
+            0.75f
         } else {
-            opacity = max(1f - (damage * 0.1f), 0.2f)
+            max(1f - (damage * 0.1f), 0.2f)
         }
     }
 

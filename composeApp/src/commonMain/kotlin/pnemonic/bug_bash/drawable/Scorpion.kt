@@ -69,8 +69,7 @@ fun scorpion(stopped: Boolean = false): ImageVector {
             targetValue = -30f,
             animationSpec = infiniteRepeatable(
                 animation = tween(
-                    durationMillis = durationClaw,
-                    easing = LinearEasing
+                    durationMillis = durationClaw
                 ),
                 repeatMode = RepeatMode.Reverse
             )

@@ -50,7 +50,7 @@ open class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallba
     val feedback: Flow<Feedback> = _feedback
 
     fun start(difficulty: Difficulty = Difficulty.Easy) {
-        ticker = coroutineScope.launch(Dispatchers.Unconfined) {
+        ticker = coroutineScope.launch(Dispatchers.Default) {
             _boards.update { it.copy(difficulty = difficulty) }
             _state.update { GameState.STARTED }
             playSound(SoundType.GameStart)

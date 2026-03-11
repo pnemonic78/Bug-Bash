@@ -23,7 +23,7 @@ abstract class BugThatFlies(
         val x1 = left
         val y1 = top
         val dx = velocity * size
-        val dy = size * 0.025f * sin(angleZigZag)
+        val dy = size * 0.01f * sin(angleZigZag)
         val x2 = x1 + ((dx * c) - (dy * s))
         val y2 = y1 + ((dx * s) + (dy * c))
         moveTo(x2, y2)
