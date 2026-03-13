@@ -14,7 +14,7 @@ import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.model.tool.Score
 import pnemonic.bug_bash.view.previewHeightDp
 import pnemonic.bug_bash.view.previewWidthDp
-import pnemonic.bug_bash.view.toPx
+import pnemonic.compose.toPx
 import pnemonic.bug_bash.drawable.Trophy as ScoreImage
 import pnemonic.bug_bash.view.board.Score as ScoreView
 

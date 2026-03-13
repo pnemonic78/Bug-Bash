@@ -36,7 +36,7 @@ import pnemonic.bug_bash.model.tool.Zapper
 import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.previewHeightDp
 import pnemonic.bug_bash.view.previewWidthDp
-import pnemonic.bug_bash.view.toPx
+import pnemonic.compose.toPx
 import kotlin.math.roundToInt
 
 typealias ToolCallback = (Tool) -> Unit

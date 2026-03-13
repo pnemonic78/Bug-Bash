@@ -16,7 +16,7 @@ import pnemonic.bug_bash.model.tool.Cupcake
 import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.previewHeightDp
 import pnemonic.bug_bash.view.previewWidthDp
-import pnemonic.bug_bash.view.toPx
+import pnemonic.compose.toPx
 import pnemonic.bug_bash.drawable.Cupcake as CupcakeImage
 
 @Composable

@@ -15,9 +15,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import pnemonic.bug_bash.drawable.Level
-import pnemonic.bug_bash.view.Left
 import pnemonic.bug_bash.view.theme.Gold
 import pnemonic.bug_bash.view.theme.panel
+import pnemonic.compose.Left
 
 private val colorText = Gold
 private val sizeIcon = 30.dp

@@ -26,7 +26,6 @@ import pnemonic.VoidCallback
 import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.Difficulty
 import pnemonic.bug_bash.model.Scene
-import pnemonic.bug_bash.view.OnSizeCallback
 import pnemonic.bug_bash.view.board.BugCallback
 import pnemonic.bug_bash.view.board.SceneView
 import pnemonic.bug_bash.view.board.SwarmView
@@ -35,6 +34,7 @@ import pnemonic.bug_bash.view.difficulty.DifficultyPanel
 import pnemonic.bug_bash.view.previewHeightDp
 import pnemonic.bug_bash.view.previewWidthDp
 import pnemonic.bug_bash.view.theme.paddingScreen
+import pnemonic.compose.OnSizeCallback
 
 @Composable
 fun HomeScreen(navController: NavHostController) {

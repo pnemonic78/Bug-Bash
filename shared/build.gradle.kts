@@ -4,6 +4,8 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.composeMultiplatform)
+    alias(libs.plugins.composeCompiler)
 }
 
 kotlin {
@@ -32,8 +34,7 @@ kotlin {
         commonMain.dependencies {
             api(projects.feedback)
             api(libs.settings)
-            implementation(libs.compose.resources)
-            implementation(libs.compose.ui)
+            implementation(libs.bundles.compose)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

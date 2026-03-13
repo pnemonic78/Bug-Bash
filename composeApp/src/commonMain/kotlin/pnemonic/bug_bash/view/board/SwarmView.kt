@@ -14,7 +14,7 @@ import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.bug.Bug
 import pnemonic.bug_bash.model.bug.Swarm
 import pnemonic.bug_bash.view.previewColor
-import pnemonic.bug_bash.view.toPx
+import pnemonic.compose.toPx
 
 @Composable
 fun SwarmView(board: Board, onSize: BugCallback, onTap: BugCallback) {

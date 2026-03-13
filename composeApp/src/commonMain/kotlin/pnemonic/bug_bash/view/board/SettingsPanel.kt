@@ -23,7 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pnemonic.BooleanCallback
 import pnemonic.VoidCallback
-import pnemonic.bug_bash.view.Left
+import pnemonic.compose.Left
 import pnemonic.bug_bash.view.home.HomeButton
 import pnemonic.bug_bash.view.settings.ActionPanel
 import pnemonic.bug_bash.view.settings.MenuButton

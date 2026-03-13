@@ -30,10 +30,10 @@ import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.model.GameState
 import pnemonic.bug_bash.model.bug.Swarm
-import pnemonic.bug_bash.view.OnSizeCallback
-import pnemonic.bug_bash.view.OnTapCallback
 import pnemonic.bug_bash.view.previewColor
-import pnemonic.bug_bash.view.toPx
+import pnemonic.compose.OnSizeCallback
+import pnemonic.compose.OnTapCallback
+import pnemonic.compose.toPx
 
 @Composable
 fun BoardScreen(navController: NavController) {

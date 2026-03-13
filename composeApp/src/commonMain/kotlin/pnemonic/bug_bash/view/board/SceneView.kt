@@ -25,14 +25,14 @@ import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.toIntSize
 import org.jetbrains.compose.resources.imageResource
 import pnemonic.bug_bash.model.Scene
-import pnemonic.bug_bash.view.isZero
-import pnemonic.bug_bash.view.orientation
 import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.previewHeightDp
 import pnemonic.bug_bash.view.previewWidthDp
-import pnemonic.bug_bash.view.times
-import pnemonic.bug_bash.view.toDp
-import pnemonic.bug_bash.view.toOrientation
+import pnemonic.compose.isZero
+import pnemonic.compose.orientation
+import pnemonic.compose.times
+import pnemonic.compose.toDp
+import pnemonic.compose.toOrientation
 import pnemonic.half
 import kotlin.math.max
 

@@ -45,10 +45,10 @@ import pnemonic.bug_bash.Platform
 import pnemonic.bug_bash.drawable.Trophy
 import pnemonic.bug_bash.getPlatform
 import pnemonic.bug_bash.model.bug.Bug
-import pnemonic.bug_bash.view.Left
 import pnemonic.bug_bash.view.theme.DarkRed
 import pnemonic.bug_bash.view.theme.Gold
 import pnemonic.bug_bash.view.theme.panel
+import pnemonic.compose.Left
 import pnemonic.half
 import kotlin.math.max
 import kotlin.math.min

@@ -12,7 +12,7 @@ import pnemonic.bug_bash.model.bug.Cockroach
 import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.previewHeightDp
 import pnemonic.bug_bash.view.previewWidthDp
-import pnemonic.bug_bash.view.toPx
+import pnemonic.compose.toPx
 
 @Composable
 fun CockroachView(

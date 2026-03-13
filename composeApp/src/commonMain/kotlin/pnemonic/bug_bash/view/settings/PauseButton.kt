@@ -20,7 +20,7 @@ import pnemonic.bug_bash.view.theme.colorButton
 import pnemonic.bug_bash.view.theme.modifierButton
 import pnemonic.bug_bash.view.theme.modifierIcon
 import pnemonic.bug_bash.view.theme.sizeButton
-import pnemonic.bug_bash.view.toggle
+import pnemonic.compose.toggle
 
 @Composable
 fun PauseButton(
