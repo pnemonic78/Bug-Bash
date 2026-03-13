@@ -10,9 +10,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import pnemonic.bug_bash.Feedback
-import pnemonic.bug_bash.GameEngine
 import pnemonic.bug_bash.Platform
 import pnemonic.bug_bash.control.LifecycleViewModel
+import pnemonic.bug_bash.engine.GameEngine
 import pnemonic.bug_bash.getPlatform
 import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.Bonus

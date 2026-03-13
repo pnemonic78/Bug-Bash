@@ -3,6 +3,8 @@ package pnemonic.bug_bash
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import kotlinx.coroutines.test.runTest
+import pnemonic.bug_bash.engine.BonusEngine
+import pnemonic.bug_bash.engine.EngineCallback
 import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.model.bug.Bug

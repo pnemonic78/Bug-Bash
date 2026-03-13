@@ -2,8 +2,8 @@ package pnemonic.bug_bash.view.home
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.update
-import pnemonic.bug_bash.BugFactory
-import pnemonic.bug_bash.GameEngine
+import pnemonic.bug_bash.engine.BugFactory
+import pnemonic.bug_bash.engine.GameEngine
 import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.bug.Caterpillar
 import pnemonic.bug_bash.model.bug.Swarm

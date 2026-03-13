@@ -1,5 +1,6 @@
-package pnemonic.bug_bash
+package pnemonic.bug_bash.engine
 
+import pnemonic.bug_bash.Feedback
 import pnemonic.bug_bash.model.bug.Bug
 
 interface EngineCallback {

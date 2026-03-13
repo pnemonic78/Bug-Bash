@@ -5,9 +5,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import pnemonic.bug_bash.BugFactory
 import pnemonic.bug_bash.Platform
 import pnemonic.bug_bash.control.LifecycleViewModel
+import pnemonic.bug_bash.engine.BugFactory
 import pnemonic.bug_bash.getPlatform
 import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.model.bug.Bug

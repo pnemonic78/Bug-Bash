@@ -25,7 +25,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import pnemonic.BooleanCallback
 import pnemonic.VoidCallback
-import pnemonic.bug_bash.BugFactory
+import pnemonic.bug_bash.engine.BugFactory
 import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.model.GameState

@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.os.VibratorManager
+import androidx.annotation.FloatRange
 import androidx.annotation.IntRange
 import kotlin.math.roundToInt
 
@@ -23,7 +24,7 @@ actual object HapticManager {
         return this
     }
 
-    actual fun vibrate(duration: Long, amplitude: Float) {
+    actual fun vibrate(duration: Long, @FloatRange(from = 0.0, to = 1.0) amplitude: Float) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             @IntRange(1, 255)
             val amplitudeInt: Int = 1 + (amplitude * 254).roundToInt()

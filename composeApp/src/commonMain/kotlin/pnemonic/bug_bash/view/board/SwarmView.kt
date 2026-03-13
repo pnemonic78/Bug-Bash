@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import pnemonic.bug_bash.BugFactory
+import pnemonic.bug_bash.engine.BugFactory
 import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.bug.Bug
 import pnemonic.bug_bash.model.bug.Swarm

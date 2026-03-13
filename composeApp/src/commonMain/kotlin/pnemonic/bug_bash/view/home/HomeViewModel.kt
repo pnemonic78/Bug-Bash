@@ -6,8 +6,8 @@ import androidx.navigation.NavHostController
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import pnemonic.bug_bash.GameEngine
 import pnemonic.bug_bash.control.LifecycleViewModel
+import pnemonic.bug_bash.engine.GameEngine
 import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.Difficulty
 import pnemonic.bug_bash.model.bug.Bug

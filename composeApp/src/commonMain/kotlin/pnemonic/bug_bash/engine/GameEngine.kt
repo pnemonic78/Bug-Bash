@@ -1,4 +1,4 @@
-package pnemonic.bug_bash
+package pnemonic.bug_bash.engine
 
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import pnemonic.bug_bash.Feedback
 import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.model.Difficulty
@@ -380,7 +381,7 @@ open class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallba
         stopSounds(board)
 
         val level = board.level + 1
-        val scene = Scene.forLevel(level)
+        val scene = Scene.Companion.forLevel(level)
         val boardNext = generateBugs(board.copy(level = level, scene = scene, tool = null))
 
         if (level > 1) {

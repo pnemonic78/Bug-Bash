@@ -1,4 +1,4 @@
-package pnemonic.bug_bash
+package pnemonic.bug_bash.engine
 
 import pnemonic.bug_bash.model.Difficulty
 import pnemonic.bug_bash.model.Difficulty.Companion.times
