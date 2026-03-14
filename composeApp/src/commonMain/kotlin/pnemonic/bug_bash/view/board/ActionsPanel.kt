@@ -34,7 +34,7 @@ import pnemonic.bug_bash.view.settings.SoundButton
 private val spacing = 8.dp
 
 @Composable
-fun SettingsPanel(
+fun ActionsPanel(
     modifier: Modifier = Modifier,
     onHomeClick: VoidCallback,
     isPaused: Boolean = false,
@@ -81,7 +81,7 @@ fun SettingsPanel(
 @Composable
 private fun Preview() {
     MaterialTheme {
-        SettingsPanel(
+        ActionsPanel(
             onHomeClick = {},
             isPaused = false,
             onPauseChange = {},

@@ -1,14 +1,13 @@
 package pnemonic.bug_bash.view.board
 
 import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -31,6 +30,8 @@ import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.model.GameState
 import pnemonic.bug_bash.model.bug.Swarm
 import pnemonic.bug_bash.view.previewColor
+import pnemonic.bug_bash.view.previewHeightDp
+import pnemonic.bug_bash.view.previewWidthDp
 import pnemonic.compose.OnSizeCallback
 import pnemonic.compose.OnTapCallback
 import pnemonic.compose.toPx
@@ -101,24 +102,15 @@ fun BoardView(
         SwarmView(board, onBugSize, onBugTap)
         ToolsAbove(board, onToolUse)
         BugScores(board)
-        Box(modifier = Modifier.fillMaxWidth().systemBarsPadding()) {
-            Column(
-                modifier = Modifier.align(AbsoluteAlignment.TopLeft)
-                    .padding(8.dp),
-                horizontalAlignment = AbsoluteAlignment.Left
-            ) {
-                LivesView(lives = board.lives)
-                Spacer(modifier = Modifier.height(8.dp))
-                ScoreView(score = board.score)
-                Spacer(modifier = Modifier.height(8.dp))
-                LevelView(level = board.level)
-                Spacer(modifier = Modifier.height(8.dp))
-                BonusesView(bonuses = board.bonuses, onClick = onBonusClick)
-            }
+        Column(
+            modifier = Modifier.fillMaxWidth()
+                .safeContentPadding()
+                .padding(8.dp),
+            horizontalAlignment = AbsoluteAlignment.Left
+        ) {
             if (state !== GameState.FINISHED) {
-                SettingsPanel(
-                    modifier = Modifier.align(AbsoluteAlignment.TopRight)
-                        .padding(8.dp),
+                ActionsPanel(
+                    modifier = Modifier.align(AbsoluteAlignment.Right),
                     onHomeClick = onHomeClick,
                     isPaused = isPaused,
                     onPauseChange = onPauseChange,
@@ -127,7 +119,15 @@ fun BoardView(
                     isMusicEnabled = isMusicEnabled,
                     onMusicChange = onMusicChange
                 )
+                Spacer(modifier = Modifier.height(8.dp))
             }
+            LivesView(lives = board.lives)
+            Spacer(modifier = Modifier.height(8.dp))
+            LevelView(level = board.level)
+            Spacer(modifier = Modifier.height(8.dp))
+            ScoreView(score = board.score)
+            Spacer(modifier = Modifier.height(8.dp))
+            BonusesView(bonuses = board.bonuses, onClick = onBonusClick)
         }
         StateScreen(state, onHomeClick)
     }
@@ -137,8 +137,8 @@ fun BoardView(
 @Preview(
     showBackground = true,
     backgroundColor = previewColor,
-    widthDp = 400,
-    heightDp = 600,
+    widthDp = previewWidthDp,
+    heightDp = previewHeightDp,
     locale = "he"
 )
 private fun Preview() {

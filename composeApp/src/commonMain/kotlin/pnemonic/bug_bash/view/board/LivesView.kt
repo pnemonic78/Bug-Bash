@@ -12,13 +12,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pnemonic.bug_bash.drawable.LifeHad
 import pnemonic.bug_bash.drawable.LifeHas
-import pnemonic.bug_bash.view.theme.panel
+import pnemonic.bug_bash.view.theme.panelScrollable
 
 private val sizeIcon = 32.dp
 
 @Composable
 fun LivesView(modifier: Modifier = Modifier, lives: Int, liveTotal: Int = lives) {
-    Row(modifier = modifier.panel()) {
+    Row(modifier = modifier.panelScrollable()) {
         (1..lives).forEach { _ ->
             LifeAlive()
         }
