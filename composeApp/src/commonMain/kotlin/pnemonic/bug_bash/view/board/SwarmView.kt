@@ -13,6 +13,7 @@ import pnemonic.bug_bash.engine.BugFactory
 import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.bug.Bug
 import pnemonic.bug_bash.model.bug.Swarm
+import pnemonic.bug_bash.model.bug.contains
 import pnemonic.bug_bash.view.previewColor
 import pnemonic.compose.toPx
 
@@ -39,7 +40,9 @@ fun SwarmView(
     onTap: BugCallback
 ) {
     for (bug in bugs) {
-        BugView(bug, boardSize, onSize, onTap)
+        if (boardSize.contains(bug)) {
+            BugView(bug, boardSize, onSize, onTap)
+        }
     }
 }
 

@@ -209,3 +209,7 @@ abstract class Bug(
 fun Rect.contains(bug: Bug): Boolean {
     return (left <= bug.right) && (bug.left <= right) && (bug.top <= bottom) && (bug.bottom >= top)
 }
+
+fun Size.contains(bug: Bug): Boolean {
+    return (0 <= bug.right) && (bug.left <= width) && (bug.top <= height) && (bug.bottom >= 0)
+}
