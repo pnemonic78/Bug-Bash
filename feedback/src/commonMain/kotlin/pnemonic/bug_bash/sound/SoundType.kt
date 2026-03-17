@@ -3,7 +3,7 @@ package pnemonic.bug_bash.sound
 enum class SoundType(val fileName: String, val repeat: Boolean = false, val volume: Float = 1f) {
     None("", false),
     Beach("PLYGND01.WAV", false),
-    Bee("BEE01.WAV", false, 0.25f),
+    Bee("BEE01.WAV", true, 0.25f),
     Blip("CRIP006.WAV", false),
     Chips("Eat Chips.wav", false),
     Clang("CLANG001.WAV", false),
@@ -16,8 +16,8 @@ enum class SoundType(val fileName: String, val repeat: Boolean = false, val volu
     Kitchen("kitchen.wav", true, 0.15f),
     Laser("LASER02.WAV", false),
     Level("BOING001.WAV", false),
-    Locust("LOCUST01.WAV", false, 0.25f),
-    Mosquito("MOSQUITO.WAV", false, 0.25f),
+    Locust("LOCUST01.WAV", true, 0.25f),
+    Mosquito("MOSQUITO.WAV", true, 0.25f),
     Pop("POP002.WAV", false),
     SlimeSplash("Slime Splash.wav", false), // heavy
     SpitSplat("Spit_Splat.wav", false), // splat

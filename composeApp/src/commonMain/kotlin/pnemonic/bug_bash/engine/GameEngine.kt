@@ -47,7 +47,7 @@ open class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallba
     private val squashed = mutableListOf<Bug>()
     private val bonusEngine = BonusEngine(this, coroutineScope)
 
-    private val _feedback = MutableSharedFlow<Feedback>(extraBufferCapacity = 10)
+    private val _feedback = MutableSharedFlow<Feedback>(extraBufferCapacity = 100)
     val feedback: Flow<Feedback> = _feedback
 
     fun start(difficulty: Difficulty = Difficulty.Easy) {
@@ -105,7 +105,7 @@ open class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallba
         _boards.update { board }
     }
 
-    private fun move(board: Board): Board {
+    private suspend fun move(board: Board): Board {
         if (board.swarm.isEmpty()) return board
         val boardSize = board.size
         if ((boardSize.width <= 0) || (boardSize.height <= 0)) return board
@@ -126,6 +126,9 @@ open class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallba
                 if (bug.score > 0) {
                     lives--
                 }
+            } else if (bug.didEnter(boardSize)) {
+                // only play the sound when bug becomes visible.
+                playSound(bug.noise)
             }
         }
 
@@ -133,6 +136,16 @@ open class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallba
             board
         } else {
             val bugs = bugs.removeAll(removed)
+
+            // What about other visible bugs with same noise?
+            for (bug in removed) {
+                if (!bug.noise.repeat) continue
+                val silence = bugs.all { it.noise !== bug.noise }
+                if (silence) {
+                    stopSound(bug.noise)
+                }
+            }
+
             board.copy(swarm = Swarm(bugs), lives = lives)
         }
     }
@@ -417,9 +430,6 @@ open class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallba
 
     private suspend fun playSounds(board: Board) {
         playMusic(board.scene)
-        for (bug in board.swarm) {
-            playSound(bug.noise)
-        }
     }
 
     private suspend fun playMusic(scene: Scene) {

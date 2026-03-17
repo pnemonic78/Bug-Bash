@@ -63,6 +63,8 @@ abstract class Bug(
         }
     var isStopped by mutableStateOf(false)
         private set
+    var isInBoardBounds = false
+        private set
 
     abstract val description: String
 
@@ -165,6 +167,29 @@ abstract class Bug(
         }
     }
 
+    fun didEnter(boardSize: Size): Boolean {
+        if (isInBoardBounds) return false
+
+        val x1 = left
+        val y1 = top
+        val x2 = x1 + width
+        val y2 = y1 + height
+        val x3 = boardSize.width
+        val y3 = boardSize.height
+        val angle = destinationAngle
+        isInBoardBounds = when {
+            // heading to Top-Right
+            (angle <= 90f) -> (x2 > 0) && (y1 < y3)
+            // heading to Bottom-Right
+            (angle <= 180f) -> (x2 > 0) && (y2 > 0)
+            // heading to Bottom-Left
+            (angle <= 270f) -> (x1 < x3) && (y2 > 0)
+            // heading to Top-Left
+            else -> (x1 < x3) && (y2 < y3)
+        }
+        return isInBoardBounds
+    }
+
     fun didEscape(boardSize: Size): Boolean {
         val x1 = left
         val y1 = top
@@ -173,20 +198,17 @@ abstract class Bug(
         val x3 = boardSize.width
         val y3 = boardSize.height
         val angle = destinationAngle
-        // heading to Top-Right
-        if (angle <= 90f) {
-            return (x1 + EPSILON_ESCAPE >= x3) || (y2 - EPSILON_ESCAPE < 0f)
+
+        return when {
+            // heading to Top-Right
+            (angle <= 90f) -> (x1 + EPSILON_ESCAPE >= x3) || (y2 - EPSILON_ESCAPE < 0f)
+            // heading to Bottom-Right
+            (angle <= 180f) -> (x1 + EPSILON_ESCAPE >= x3) || (y1 + EPSILON_ESCAPE >= y3)
+            // heading to Bottom-Left
+            (angle <= 270f) -> (x2 - EPSILON_ESCAPE < 0f) || (y1 + EPSILON_ESCAPE >= y3)
+            // heading to Top-Left
+            else -> (x2 - EPSILON_ESCAPE < 0f) || (y2 - EPSILON_ESCAPE < 0f)
         }
-        // heading to Bottom-Right
-        if (angle <= 180f) {
-            return (x1 + EPSILON_ESCAPE >= x3) || (y1 + EPSILON_ESCAPE >= y3)
-        }
-        // heading to Bottom-Left
-        if (angle <= 270f) {
-            return (x2 - EPSILON_ESCAPE < 0f) || (y1 + EPSILON_ESCAPE >= y3)
-        }
-        // heading to Top-Left
-        return (x2 - EPSILON_ESCAPE < 0f) || (y2 - EPSILON_ESCAPE < 0f)
     }
 
     // delay
