@@ -17,7 +17,7 @@ fun ScorpionView(
     onSize: BugCallback,
     onTap: BugCallback
 ) {
-    ImageBug(bug, boardSize, scorpion(bug), 3f, onSize, onTap)
+    ImageBug(bug, boardSize, scorpion(bug), 4f, onSize, onTap)
 }
 
 @Preview(showBackground = true, backgroundColor = previewColor)

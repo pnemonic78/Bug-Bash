@@ -24,10 +24,10 @@ abstract class BugThatFlies(
         val y1 = top
         val dx = velocity * size
         val dy = size * 0.01f * sin(angleZigZag)
-        val x2 = x1 + ((dx * c) - (dy * s))
-        val y2 = y1 + ((dx * s) + (dy * c))
+        val x2 = x1 + (dx * c) - (dy * s)
+        val y2 = y1 + (dx * s) + (dy * c)
         moveTo(x2, y2)
-        angleZigZag += 0.1f
+        angleZigZag += 0.02f
         return true
     }
 }

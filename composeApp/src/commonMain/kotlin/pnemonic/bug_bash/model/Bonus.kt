@@ -1,8 +1,8 @@
 package pnemonic.bug_bash.model
 
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import pnemonic.bug_bash.sound.SoundType
 
@@ -16,8 +16,22 @@ sealed class Bonus(
     progress: Long = 0
 ) {
     var progress by mutableLongStateOf(progress)
+        private set
+    var isActive by mutableStateOf(progress >= score)
+        private set
 
-    val isActive by derivedStateOf { this.progress >= score }
+    private fun setProgressImpl(value: Long) {
+        progress = value
+        isActive = value >= score
+    }
+
+    fun incrementProgress(delta: Long) {
+        setProgressImpl(progress + delta)
+    }
+
+    fun clear() {
+        setProgressImpl(0)
+    }
 
     object None : Bonus(score = 0, hits = 0, description = "", sound = SoundType.None)
 

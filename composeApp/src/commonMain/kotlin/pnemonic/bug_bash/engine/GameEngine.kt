@@ -381,7 +381,7 @@ open class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallba
         stopSounds(board)
 
         val level = board.level + 1
-        val scene = Scene.Companion.forLevel(level)
+        val scene = Scene.forLevel(level)
         val boardNext = generateBugs(board.copy(level = level, scene = scene, tool = null))
 
         if (level > 1) {

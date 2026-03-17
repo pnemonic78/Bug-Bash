@@ -1,7 +1,8 @@
 package pnemonic
 
-import kotlin.math.PI
+import androidx.compose.runtime.LongState
 import androidx.compose.runtime.State
+import kotlin.math.PI
 
 fun <T> List<T>.copy(): List<T> {
     return ArrayList(this)
@@ -47,4 +48,20 @@ fun <T> stateOf(value: T): State<T> {
     return SingleState(value)
 }
 
-private class SingleState<T>(override val value: T): State<T>
+private class SingleState<T>(override val value: T) : State<T>
+
+operator fun LongState.compareTo(other: Long): Int {
+    return this.value.compareTo(other)
+}
+
+operator fun LongState.minus(other: Long): Long {
+    return this.value - other
+}
+
+operator fun Long.minus(other: LongState): Long {
+    return this - other.value
+}
+
+fun LongState.toFloat(): Float = this.value.toFloat()
+
+fun LongState.toLong(): Long = this.value

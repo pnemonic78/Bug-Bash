@@ -44,7 +44,9 @@ import pnemonic.bug_bash.drawable.Zapper
 import pnemonic.bug_bash.drawable.insecticide
 import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.view.theme.panel
+import pnemonic.compareTo
 import pnemonic.compose.Left
+import pnemonic.toFloat
 import pnemonic.bug_bash.drawable.Bonus as BonusImage
 
 private val sizeIcon = 30.dp

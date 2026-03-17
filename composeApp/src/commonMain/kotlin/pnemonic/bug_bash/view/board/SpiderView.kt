@@ -17,7 +17,7 @@ fun SpiderView(
     onSize: BugCallback,
     onTap: BugCallback
 ) {
-    ImageBug(bug, boardSize, spider(bug), 4f, onSize, onTap)
+    ImageBug(bug, boardSize, spider(bug), 5f, onSize, onTap)
 }
 
 @Preview(showBackground = true, backgroundColor = previewColor)

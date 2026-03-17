@@ -117,7 +117,7 @@ class BonusEngine(
 
         if (bonus != null) {
             val progressDelta = min(scoreDelta, max(0, bonus.score - bonus.progress))
-            bonus.progress += progressDelta
+            bonus.incrementProgress(progressDelta)
             val progressNext = scoreDelta - progressDelta
             if (bonus.isActive) {
                 // Start progressing the next candidate bonus.
@@ -127,7 +127,7 @@ class BonusEngine(
                     if (bonus != null) {
                         bonuses = bonuses.add(bonus)
                         modified = true
-                        bonus.progress += progressNext
+                        bonus.incrementProgress(progressNext)
                     }
                 }
                 selected = bonus
@@ -193,7 +193,7 @@ class BonusEngine(
 
     private suspend fun add(board: Board, bonus: Bonus.Life): Board {
         val lives = board.lives + bonus.hits.toInt()
-        if (lives >= Board.Companion.MAX_LIVES) return board
+        if (lives >= Board.MAX_LIVES) return board
 
         val bonuses = reuse(board.bonuses, bonus)
         val tool = ExtraLife(bonus)
@@ -234,14 +234,14 @@ class BonusEngine(
 
     private fun reuse(bonuses: List<Bonus>, bonus: Bonus): List<Bonus> {
         // Re-use the same bonus.
-        bonus.progress = 0
+        bonus.clear()
         // Move the bonus to the end.
         return bonuses.remove(bonus) + bonus
     }
 
     private fun apply(board: Board, tool: ExtraLife): Board {
         val lives = board.lives + tool.hits.toInt()
-        if (lives >= Board.Companion.MAX_LIVES) return board
+        if (lives >= Board.MAX_LIVES) return board
 
         return board.copy(tool = null, lives = lives)
     }
