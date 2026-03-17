@@ -160,7 +160,7 @@ private fun Preview_DE() {
 @Preview(locale = "en")
 private fun Preview_EN() {
     MaterialTheme {
-        ScoreView(score = 10000)
+        ScoreView(score = 10_000)
     }
 }
 
@@ -168,7 +168,7 @@ private fun Preview_EN() {
 @Preview(locale = "he")
 private fun Preview_RTL() {
     MaterialTheme {
-        ScoreView(score = 10000)
+        ScoreView(score = 20_000)
     }
 }
 

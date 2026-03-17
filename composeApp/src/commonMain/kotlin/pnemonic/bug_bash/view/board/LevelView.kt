@@ -11,20 +11,24 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import pnemonic.bug_bash.drawable.Level
+import pnemonic.bug_bash.drawable.bee
 import pnemonic.bug_bash.view.theme.Gold
+import pnemonic.bug_bash.view.theme.LightBrown
 import pnemonic.bug_bash.view.theme.panel
 import pnemonic.compose.Left
 
 private val colorText = Gold
+private val colorCount= Color(0xFFCCAA88)
 private val sizeIcon = 30.dp
 private val sizeText = 20.sp
 
 @Composable
-fun LevelView(modifier: Modifier = Modifier, level: Int) {
+fun LevelView(modifier: Modifier = Modifier, level: Int, count: Int) {
     Row(
         modifier = modifier.panel(),
         verticalAlignment = Alignment.CenterVertically,
@@ -33,6 +37,14 @@ fun LevelView(modifier: Modifier = Modifier, level: Int) {
         Image(imageVector = Level, contentDescription = "🏁", modifier = Modifier.size(sizeIcon))
         Spacer(modifier = Modifier.width(4.dp))
         Text("$level", color = colorText, fontSize = sizeText)
+        Spacer(modifier = Modifier.width(8.dp))
+        Image(
+            imageVector = bee(stopped = true),
+            contentDescription = "⏳",
+            modifier = Modifier.size(sizeIcon)
+        )
+        Spacer(modifier = Modifier.width(4.dp))
+        Text("$count", color = colorCount, fontSize = sizeText)
     }
 }
 
@@ -40,7 +52,7 @@ fun LevelView(modifier: Modifier = Modifier, level: Int) {
 @Preview
 private fun Preview() {
     MaterialTheme {
-        LevelView(level = 123)
+        LevelView(level = 123, count = 10)
     }
 }
 
@@ -48,6 +60,6 @@ private fun Preview() {
 @Preview(locale = "he")
 private fun Preview_RTL() {
     MaterialTheme {
-        LevelView(level = 123)
+        LevelView(level = 456, count = 20)
     }
 }

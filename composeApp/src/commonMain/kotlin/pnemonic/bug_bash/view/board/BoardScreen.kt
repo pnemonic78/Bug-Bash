@@ -36,6 +36,9 @@ import pnemonic.compose.OnSizeCallback
 import pnemonic.compose.OnTapCallback
 import pnemonic.compose.toPx
 
+
+private val spacingV = 8.dp
+
 @Composable
 fun BoardScreen(navController: NavController) {
     val lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current
@@ -119,14 +122,14 @@ fun BoardView(
                     isMusicEnabled = isMusicEnabled,
                     onMusicChange = onMusicChange
                 )
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(spacingV))
             }
             LivesView(lives = board.lives)
-            Spacer(modifier = Modifier.height(8.dp))
-            LevelView(level = board.level)
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(spacingV))
+            LevelView(level = board.level, count = board.swarm.size)
+            Spacer(modifier = Modifier.height(spacingV))
             ScoreView(score = board.score)
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(spacingV))
             BonusesView(bonuses = board.bonuses, onClick = onBonusClick)
         }
         StateScreen(state, onHomeClick)
