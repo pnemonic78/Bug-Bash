@@ -101,17 +101,18 @@ class GameViewModel : LifecycleViewModel() {
     suspend fun notifyFeedback(feedback: Feedback) {
         when (feedback) {
             Feedback.None -> return
-            is Feedback.Vibrate -> vibrate(feedback.duration, feedback.amplitude)
             is Feedback.Bash -> bash(feedback)
+            is Feedback.Hit -> vibrate(feedback.duration, feedback.amplitude)
             is Feedback.Silence -> stopSound(feedback.soundType)
             is Feedback.Sound -> playSound(feedback.soundType)
+            is Feedback.Vibrate -> vibrate(feedback.duration, feedback.amplitude)
         }
         engine.feedbackDone()
     }
 
     private suspend fun bash(feedback: Feedback.Bash) {
-        vibrate(VIBRATE_BASH_DURATION, VIBRATE_BASH_AMPLITUDE)
         playSound(feedback.soundType)
+        vibrate(feedback.duration, feedback.amplitude)
     }
 
     private suspend fun playSound(soundType: SoundType) {
@@ -133,7 +134,7 @@ class GameViewModel : LifecycleViewModel() {
     }
 
     private fun vibrate(
-        duration: Long = 300,
+        duration: Long,
         @FloatRange(from = 0.0, to = 1.0) amplitude: Float = 1f
     ) {
         platform.haptic.vibrate(duration, amplitude)
@@ -169,10 +170,5 @@ class GameViewModel : LifecycleViewModel() {
 
     fun onToolUse(tool: Tool) {
         engine.onToolUse(tool)
-    }
-
-    companion object {
-        private const val VIBRATE_BASH_DURATION = 50L
-        private const val VIBRATE_BASH_AMPLITUDE = 0.35f
     }
 }

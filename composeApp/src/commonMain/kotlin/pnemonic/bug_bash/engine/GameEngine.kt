@@ -216,6 +216,8 @@ open class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallba
                 }
                 score = max(0, score)
                 bash(bug)
+            } else {
+                notifyFeedback(Feedback.Hit())
             }
         }
 
