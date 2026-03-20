@@ -12,6 +12,7 @@ import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.model.Difficulty.Companion.times
 import pnemonic.bug_bash.model.tool.AttractionTool
 import pnemonic.bug_bash.model.tool.BashTool
+import pnemonic.bug_bash.model.tool.BonusTool
 import pnemonic.bug_bash.model.tool.Cupcake
 import pnemonic.bug_bash.model.tool.ExtraLife
 import pnemonic.bug_bash.model.tool.Flower
@@ -90,11 +91,11 @@ class BonusEngine(
         var bonuses = board.bonuses
         if (bonuses.isEmpty()) {
             bonuses = listOf(
-                Bonus.GluePaper(),
                 Bonus.Shoe(),
                 Bonus.Spray(),
                 Bonus.Swatter(),
                 Bonus.Zapper(),
+                Bonus.GluePaper(),
                 Bonus.Life(),
                 Bonus.Cupcake(),
                 Bonus.Flower(),
@@ -165,71 +166,62 @@ class BonusEngine(
             is GluePaper -> used(board, tool)
             is ExtraLife -> apply(board, tool)
             is Score -> apply(board, tool)
-            is Shoe -> usedTool(board)
-            is Spray -> usedTool(board)
-            is Swatter -> usedTool(board)
-            is Zapper -> usedTool(board)
+            is Shoe -> usedTool(board, tool)
+            is Spray -> usedTool(board, tool)
+            is Swatter -> usedTool(board, tool)
+            is Zapper -> usedTool(board, tool)
             else -> board
         }
     }
 
     private fun add(board: Board, bonus: Bonus.Cupcake): Board {
-        val bonuses = reuse(board.bonuses, bonus)
         val tool = Cupcake(bonus)
-        return board.copy(bonuses = bonuses, tool = tool)
+        return board.copy(tool = tool)
     }
 
     private fun add(board: Board, bonus: Bonus.Flower): Board {
-        val bonuses = reuse(board.bonuses, bonus)
         val tool = Flower(bonus)
-        return board.copy(bonuses = bonuses, tool = tool)
+        return board.copy(tool = tool)
     }
 
     private fun add(board: Board, bonus: Bonus.GluePaper): Board {
-        val bonuses = reuse(board.bonuses, bonus)
         val tool = GluePaper(bonus)
-        return board.copy(bonuses = bonuses, tool = tool)
+        return board.copy(tool = tool)
     }
 
     private suspend fun add(board: Board, bonus: Bonus.Life): Board {
         val lives = board.lives + bonus.hits.toInt()
         if (lives >= Board.MAX_LIVES) return board
 
-        val bonuses = reuse(board.bonuses, bonus)
         val tool = ExtraLife(bonus)
         playSound(tool.sound)
-        return board.copy(bonuses = bonuses, tool = tool)
+        return board.copy(tool = tool)
     }
 
     private suspend fun add(board: Board, bonus: Bonus.Score): Board {
-        val bonuses = reuse(board.bonuses, bonus)
         val tool = Score(bonus)
         playSound(tool.sound)
-        return board.copy(bonuses = bonuses, tool = tool)
+        return board.copy(tool = tool)
     }
 
     private fun add(board: Board, bonus: Bonus.Shoe): Board {
-        val bonuses = reuse(board.bonuses, bonus)
         val tool = Shoe(bonus)
-        return board.copy(bonuses = bonuses, tool = tool)
+        return board.copy(tool = tool)
     }
 
     private fun add(board: Board, bonus: Bonus.Spray): Board {
-        val bonuses = reuse(board.bonuses, bonus)
         val tool = Spray(bonus)
-        return board.copy(bonuses = bonuses, tool = tool)
+        return board.copy(tool = tool)
     }
 
     private fun add(board: Board, bonus: Bonus.Swatter): Board {
-        val bonuses = reuse(board.bonuses, bonus)
         val tool = Swatter(bonus)
-        return board.copy(bonuses = bonuses, tool = tool)
+        return board.copy(tool = tool)
     }
 
     private fun add(board: Board, bonus: Bonus.Zapper): Board {
-        val bonuses = reuse(board.bonuses, bonus)
         val tool = Zapper(bonus)
-        return board.copy(bonuses = bonuses, tool = tool)
+        return board.copy(tool = tool)
     }
 
     private fun reuse(bonuses: List<Bonus>, bonus: Bonus): List<Bonus> {
@@ -243,33 +235,40 @@ class BonusEngine(
         val lives = board.lives + tool.hits.toInt()
         if (lives >= Board.MAX_LIVES) return board
 
-        return board.copy(tool = null, lives = lives)
+        val board = usedTool(board, tool)
+        return board.copy(lives = lives)
     }
 
     private fun used(board: Board, tool: Cupcake): Board {
         tool.thaw()
-        return usedTool(board)
+        return usedTool(board, tool)
     }
 
     private fun used(board: Board, tool: Flower): Board {
         tool.thaw()
-        return usedTool(board)
+        return usedTool(board, tool)
     }
 
     private fun used(board: Board, tool: GluePaper): Board {
         tool.thaw()
-        return usedTool(board)
+        return usedTool(board, tool)
     }
 
     private fun apply(board: Board, tool: Score): Board {
         val score = board.score + tool.hits
         boardScore = score
 
-        return board.copy(tool = null, score = score)
+        val board = usedTool(board, tool)
+        return board.copy(score = score)
     }
 
-    private fun usedTool(board: Board): Board {
-        return board.copy(tool = null)
+    private fun usedTool(board: Board, tool: Tool): Board {
+        var bonuses = board.bonuses
+        val bonus = (tool as? BonusTool)?.bonus
+        if (bonus != null) {
+            bonuses = reuse(board.bonuses, tool.bonus)
+        }
+        return board.copy(bonuses = bonuses, tool = null)
     }
 
     /**
