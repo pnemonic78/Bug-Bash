@@ -31,15 +31,15 @@ object BugFactory {
     private const val BUGS_PER_LEVEL = 10
 
     private val level1 = listOf(Centipede::class)
-    private val level2 = level1 + listOf(Caterpillar::class)
-    private val level3 = level2 + listOf(Ant::class, Snail::class)
-    private val level4 = level3 + listOf(Termite::class, Worm::class)
-    private val level5 = level4 + listOf(Cockroach::class, Cricket::class)
-    private val level6 = level5 + listOf(Beetle::class, Spider::class)
-    private val level7 = level6 + listOf(Scorpion::class)
-    private val level8 = level7 + listOf(Butterfly::class, Moth::class)
+    private val level2 = level1 + listOf(Caterpillar::class, Snail::class)
+    private val level3 = level2 + listOf(Ant::class, Termite::class)
+    private val level4 = level3 + listOf(Cockroach::class, Worm::class)
+    private val level5 = level4 + listOf(Cricket::class, Ladybug::class)
+    private val level6 = level5 + listOf(Beetle::class)
+    private val level7 = level6 + listOf(Butterfly::class, Scorpion::class)
+    private val level8 = level7 + listOf(Fly::class, Moth::class)
     private val level9 = level8 + listOf(Dragonfly::class, Mosquito::class)
-    private val level10 = level9 + listOf(Fly::class, Ladybug::class)
+    private val level10 = level9 + listOf(Spider::class)
     private val level11 = level10 + listOf(Bee::class)
     private val level12 = level11 + listOf(Wasp::class)
 
