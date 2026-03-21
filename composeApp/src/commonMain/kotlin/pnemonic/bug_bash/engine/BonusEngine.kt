@@ -9,7 +9,6 @@ import pnemonic.add
 import pnemonic.bug_bash.Feedback
 import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.Bonus
-import pnemonic.bug_bash.model.Difficulty.Companion.times
 import pnemonic.bug_bash.model.tool.AttractionTool
 import pnemonic.bug_bash.model.tool.BashTool
 import pnemonic.bug_bash.model.tool.BonusTool
@@ -428,7 +427,7 @@ class BonusEngine(
 
         if (jobHide == null) {
             jobHide = coroutineScope.launch {
-                delay(DURATION_BASH * board.difficulty)
+                delay(DURATION_BASH)
                 // Hide the tool to bash again.
                 tool.hide()
                 if (tool.hits <= 0) {
@@ -445,6 +444,13 @@ class BonusEngine(
     private fun freeze(board: Board, tool: FreezeTool): Board {
         tool.freeze(board.swarm)
         return board
+    }
+
+    fun clear() {
+        activated.clear()
+        used.clear()
+        boardScore = 0L
+        selected = null
     }
 
     companion object {

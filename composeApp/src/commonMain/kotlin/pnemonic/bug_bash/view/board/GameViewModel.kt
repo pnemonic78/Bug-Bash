@@ -32,7 +32,6 @@ class GameViewModel : LifecycleViewModel() {
     val board: StateFlow<Board> = _board
     private val _state = MutableStateFlow(engine.state.value)
     val state: StateFlow<GameState> get() = engine.state
-    val isPaused get() = engine.isPaused
     val isMusicEnabled get() = settings.isMusicEnabled
     val isSoundEnabled get() = settings.isSoundEnabled
     val difficulty get() = settings.difficulty
@@ -63,6 +62,11 @@ class GameViewModel : LifecycleViewModel() {
         }
     }
 
+    override fun onCreate() {
+        super.onCreate()
+        engine.clear()
+    }
+
     override fun onStart() {
         engine.start(difficulty)
         platform.sound.onStart()
@@ -70,6 +74,10 @@ class GameViewModel : LifecycleViewModel() {
 
     override fun onPause() {
         engine.pause()
+    }
+
+    override fun onResume() {
+        engine.resume()
     }
 
     override fun onStop() {

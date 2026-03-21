@@ -6,5 +6,8 @@ enum class GameState {
     STOPPED,
     PAUSED,
     RESUMED,
-    FINISHED
+    FINISHED;
+
+    val isRunning get() = (this === STARTED) || (this === RESUMED)
+    val isPaused get() = (this === PAUSED) || (this === STOPPED)
 }

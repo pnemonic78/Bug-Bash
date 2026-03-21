@@ -38,8 +38,7 @@ open class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallba
     private var ticker: Job? = null
     private val _state = MutableStateFlow(GameState.NOT_STARTED)
     val state: StateFlow<GameState> = _state
-    val isRunning get() = (state.value === GameState.STARTED) || (state.value === GameState.RESUMED)
-    val isPaused get() = state.value === GameState.PAUSED
+    val isRunning get() = state.value.isRunning
 
     protected val rand = Random.Default
     private val touches = mutableListOf<Offset>()
@@ -54,7 +53,6 @@ open class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallba
         ticker = coroutineScope.launch(Dispatchers.Default) {
             _boards.update { it.copy(difficulty = difficulty) }
             _state.update { GameState.STARTED }
-            playSound(SoundType.GameStart)
             while (isActive) {
                 run()
                 delay(TICK)
@@ -71,7 +69,7 @@ open class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallba
     }
 
     fun stop() {
-        _state.value = GameState.STOPPED
+        _state.update { GameState.STOPPED }
         ticker?.cancel()
         ticker = null
     }
@@ -401,6 +399,8 @@ open class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallba
 
         if (level > 1) {
             playSound(SoundType.Level)
+        } else {
+            playSound(SoundType.GameStart)
         }
         playSounds(boardNext)
 
@@ -474,6 +474,14 @@ open class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallba
         if (isRunning) {
             bonusEngine.onUse(tool)
         }
+    }
+
+    fun clear() {
+        _boards.update { Board() }
+        touches.clear()
+        touchedBugs.clear()
+        squashed.clear()
+        bonusEngine.clear()
     }
 
     companion object {

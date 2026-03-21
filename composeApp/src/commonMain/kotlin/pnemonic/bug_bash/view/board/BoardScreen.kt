@@ -55,7 +55,7 @@ fun BoardScreen(navController: NavController) {
         onBugSize = viewModel::onBugSize,
         onBugTap = viewModel::onBugTap,
         onHomeClick = { navController.navigateUp() },
-        isPaused = viewModel.isPaused,
+        isPaused = state.value.isPaused,
         onPauseChange = viewModel::onPauseChange,
         isSoundEnabled = viewModel.isSoundEnabled,
         onSoundChange = viewModel::onSoundChange,

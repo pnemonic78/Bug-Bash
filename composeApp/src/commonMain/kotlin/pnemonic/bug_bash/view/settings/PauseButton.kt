@@ -7,10 +7,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,19 +25,16 @@ fun PauseButton(
     onChange: BooleanCallback
 ) {
     val haptic = LocalHapticFeedback.current
-    var pausedState by remember { mutableStateOf(paused) }
 
     IconToggleButton(
-        checked = pausedState,
+        checked = paused,
         onCheckedChange = { checked ->
             haptic.toggle(checked)
-            pausedState = checked
-            onChange(pausedState)
+            onChange(checked)
         },
         modifier = Modifier.modifierButton(size = size)
     ) {
-        val icon =
-            if (pausedState) Icons.Default.PlayArrow else Icons.Default.Pause
+        val icon = if (paused) Icons.Default.PlayArrow else Icons.Default.Pause
         Icon(
             imageVector = icon,
             contentDescription = "⏯",
