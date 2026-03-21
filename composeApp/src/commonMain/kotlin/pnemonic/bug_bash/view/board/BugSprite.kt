@@ -41,37 +41,37 @@ import kotlin.math.roundToInt
 typealias BugCallback = (Bug) -> Unit
 
 @Composable
-fun BugView(
+fun BugSprite(
     bug: Bug,
     boardSize: Size,
     onSize: BugCallback,
     onTap: BugCallback
 ) {
     when (bug) {
-        is Ant -> AntView(bug, boardSize, onSize, onTap)
-        is Bee -> BeeView(bug, boardSize, onSize, onTap)
-        is Beetle -> BeetleView(bug, boardSize, onSize, onTap)
-        is Butterfly -> ButterflyView(bug, boardSize, onSize, onTap)
-        is Caterpillar -> CaterpillarView(bug, boardSize, onSize, onTap)
-        is Centipede -> CentipedeView(bug, boardSize, onSize, onTap)
-        is Cockroach -> CockroachView(bug, boardSize, onSize, onTap)
-        is Cricket -> CricketView(bug, boardSize, onSize, onTap)
-        is Dragonfly -> DragonflyView(bug, boardSize, onSize, onTap)
-        is Fly -> FlyView(bug, boardSize, onSize, onTap)
-        is Ladybug -> LadybugView(bug, boardSize, onSize, onTap)
-        is Mosquito -> MosquitoView(bug, boardSize, onSize, onTap)
-        is Moth -> MothView(bug, boardSize, onSize, onTap)
-        is Scorpion -> ScorpionView(bug, boardSize, onSize, onTap)
-        is Snail -> SnailView(bug, boardSize, onSize, onTap)
-        is Spider -> SpiderView(bug, boardSize, onSize, onTap)
-        is Termite -> TermiteView(bug, boardSize, onSize, onTap)
-        is Wasp -> WaspView(bug, boardSize, onSize, onTap)
-        is Worm -> WormView(bug, boardSize, onSize, onTap)
+        is Ant -> AntSprite(bug, boardSize, onSize, onTap)
+        is Bee -> BeeSprite(bug, boardSize, onSize, onTap)
+        is Beetle -> BeetleSprite(bug, boardSize, onSize, onTap)
+        is Butterfly -> ButterflySprite(bug, boardSize, onSize, onTap)
+        is Caterpillar -> CaterpillarSprite(bug, boardSize, onSize, onTap)
+        is Centipede -> CentipedeSprite(bug, boardSize, onSize, onTap)
+        is Cockroach -> CockroachSprite(bug, boardSize, onSize, onTap)
+        is Cricket -> CricketSprite(bug, boardSize, onSize, onTap)
+        is Dragonfly -> DragonflySprite(bug, boardSize, onSize, onTap)
+        is Fly -> FlySprite(bug, boardSize, onSize, onTap)
+        is Ladybug -> LadybugSprite(bug, boardSize, onSize, onTap)
+        is Mosquito -> MosquitoSprite(bug, boardSize, onSize, onTap)
+        is Moth -> MothSprite(bug, boardSize, onSize, onTap)
+        is Scorpion -> ScorpionSprite(bug, boardSize, onSize, onTap)
+        is Snail -> SnailSprite(bug, boardSize, onSize, onTap)
+        is Spider -> SpiderSprite(bug, boardSize, onSize, onTap)
+        is Termite -> TermiteSprite(bug, boardSize, onSize, onTap)
+        is Wasp -> WaspSprite(bug, boardSize, onSize, onTap)
+        is Worm -> WormSprite(bug, boardSize, onSize, onTap)
     }
 }
 
 @Composable
-fun ImageBug(
+fun BugSprite(
     bug: Bug,
     boardSize: Size,
     image: ImageVector,

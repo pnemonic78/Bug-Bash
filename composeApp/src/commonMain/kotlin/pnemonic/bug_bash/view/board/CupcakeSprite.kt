@@ -3,21 +3,30 @@ package pnemonic.bug_bash.view.board
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.delay
 import pnemonic.bug_bash.model.Bonus
-import pnemonic.bug_bash.model.tool.Shoe
+import pnemonic.bug_bash.model.Difficulty
+import pnemonic.bug_bash.model.Difficulty.Companion.times
+import pnemonic.bug_bash.model.tool.Cupcake
 import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.previewHeightDp
 import pnemonic.bug_bash.view.previewWidthDp
 import pnemonic.compose.toPx
-import pnemonic.bug_bash.drawable.Shoe as ShoeImage
+import pnemonic.bug_bash.drawable.Cupcake as CupcakeImage
 
 @Composable
-fun ShoeView(tool: Shoe, onUse: ToolCallback, boardSize: Size) {
-    ImageTool(tool, ShoeImage, 2f, boardSize)
+fun CupcakeSprite(tool: Cupcake, onUse: ToolCallback, boardSize: Size, difficulty: Difficulty = Difficulty.Easy) {
+    ToolSprite(tool, CupcakeImage, 3f, boardSize)
+
+    LaunchedEffect(tool) {
+        delay(10_000L * difficulty)
+        onUse(tool)
+    }
 }
 
 @Composable
@@ -29,10 +38,10 @@ fun ShoeView(tool: Shoe, onUse: ToolCallback, boardSize: Size) {
 )
 private fun Preview() {
     val boardSize = Size(previewWidthDp.dp.toPx(), previewHeightDp.dp.toPx())
-    val tool = Shoe(Bonus.Shoe())
+    val tool = Cupcake(Bonus.Cupcake())
     tool.show()
 
     Box(modifier = Modifier.fillMaxSize()) {
-        ShoeView(tool, onUse = {}, boardSize)
+        CupcakeSprite(tool, onUse = {}, boardSize)
     }
 }

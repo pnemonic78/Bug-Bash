@@ -18,12 +18,11 @@ import androidx.compose.ui.unit.sp
 import pnemonic.bug_bash.drawable.Level
 import pnemonic.bug_bash.drawable.bee
 import pnemonic.bug_bash.view.theme.Gold
-import pnemonic.bug_bash.view.theme.LightBrown
 import pnemonic.bug_bash.view.theme.panel
 import pnemonic.compose.Left
 
 private val colorText = Gold
-private val colorCount= Color(0xFFCCAA88)
+private val colorCount = Color(0xFFFFDDBB)
 private val sizeIcon = 30.dp
 private val sizeText = 20.sp
 

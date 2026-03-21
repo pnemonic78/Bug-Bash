@@ -6,28 +6,28 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
-import pnemonic.bug_bash.drawable.earthworm
-import pnemonic.bug_bash.model.bug.Worm
+import pnemonic.bug_bash.drawable.scorpion
+import pnemonic.bug_bash.model.bug.Scorpion
 import pnemonic.bug_bash.view.previewColor
 
 @Composable
-fun WormView(
-    bug: Worm,
+fun ScorpionSprite(
+    bug: Scorpion,
     boardSize: Size,
     onSize: BugCallback,
     onTap: BugCallback
 ) {
-    ImageBug(bug, boardSize, earthworm(bug), 3f, onSize, onTap)
+    BugSprite(bug, boardSize, scorpion(bug), 4f, onSize, onTap)
 }
 
 @Preview(showBackground = true, backgroundColor = previewColor)
 @Composable
 private fun Preview() {
-    val bug = Worm()
+    val bug = Scorpion()
     val onSize: BugCallback = {}
     val onTap: BugCallback = {}
 
     Box(modifier = Modifier.fillMaxSize()) {
-        WormView(bug, Size.Zero, onSize, onTap)
+        ScorpionSprite(bug, Size.Zero, onSize, onTap)
     }
 }

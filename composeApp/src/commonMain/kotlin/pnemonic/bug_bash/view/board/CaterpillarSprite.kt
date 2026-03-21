@@ -6,28 +6,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
-import pnemonic.bug_bash.drawable.mosquito
-import pnemonic.bug_bash.model.bug.Mosquito
+import pnemonic.bug_bash.drawable.caterpillar
+import pnemonic.bug_bash.model.bug.Caterpillar
 import pnemonic.bug_bash.view.previewColor
 
 @Composable
-fun MosquitoView(
-    bug: Mosquito,
-    boardSize: Size,
-    onSize: BugCallback,
-    onTap: BugCallback
-) {
-    ImageBug(bug, boardSize, mosquito(bug), 2f, onSize, onTap)
+fun CaterpillarSprite(bug: Caterpillar, boardSize: Size, onSize: BugCallback, onTap: BugCallback) {
+    BugSprite(bug, boardSize, caterpillar(bug), 3f, onSize, onTap)
 }
 
 @Preview(showBackground = true, backgroundColor = previewColor)
 @Composable
 private fun Preview() {
-    val bug = Mosquito()
+    val bug = Caterpillar()
     val onSize: BugCallback = {}
     val onTap: BugCallback = {}
 
     Box(modifier = Modifier.fillMaxSize()) {
-        MosquitoView(bug, Size.Zero, onSize, onTap)
+        CaterpillarSprite(bug, Size.Zero, onSize, onTap)
     }
 }

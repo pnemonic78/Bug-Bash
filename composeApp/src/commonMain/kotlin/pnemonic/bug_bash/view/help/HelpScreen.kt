@@ -38,9 +38,9 @@ import pnemonic.bug_bash.drawable.Trophy
 import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.model.bug.Bug
 import pnemonic.bug_bash.view.board.BonusCallback
-import pnemonic.bug_bash.view.board.BonusView
+import pnemonic.bug_bash.view.board.BonusSprite
 import pnemonic.bug_bash.view.board.BugCallback
-import pnemonic.bug_bash.view.board.BugView
+import pnemonic.bug_bash.view.board.BugSprite
 import pnemonic.bug_bash.view.home.HomeButton
 import pnemonic.bug_bash.view.previewHeightDp
 import pnemonic.bug_bash.view.previewWidthDp
@@ -141,7 +141,7 @@ private fun BugCell(bug: Bug, onClick: BugCallback) {
             modifier = Modifier.size(sizeBugWidth, sizeBugHeight),
             contentAlignment = Alignment.Center
         ) {
-            BugView(
+            BugSprite(
                 bug = bug,
                 boardSize = Size.Zero,
                 onSize = {},
@@ -195,7 +195,7 @@ private fun BonusCell(bonus: Bonus, onClick: BonusCallback) {
             modifier = Modifier.size(sizeBonusWidth, sizeBonusHeight),
             contentAlignment = Alignment.Center
         ) {
-            BonusView(bonus, sizeBonus, onClick)
+            BonusSprite(bonus, sizeBonus, onClick)
         }
         Spacer(modifier = Modifier.width(4.dp))
         Column(modifier = Modifier.weight(1f)) {

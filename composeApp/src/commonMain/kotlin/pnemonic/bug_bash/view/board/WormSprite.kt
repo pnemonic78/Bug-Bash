@@ -6,28 +6,28 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
-import pnemonic.bug_bash.drawable.beetle
-import pnemonic.bug_bash.model.bug.Beetle
+import pnemonic.bug_bash.drawable.earthworm
+import pnemonic.bug_bash.model.bug.Worm
 import pnemonic.bug_bash.view.previewColor
 
 @Composable
-fun BeetleView(
-    bug: Beetle,
+fun WormSprite(
+    bug: Worm,
     boardSize: Size,
     onSize: BugCallback,
     onTap: BugCallback
 ) {
-    ImageBug(bug, boardSize, beetle(bug), 3f, onSize, onTap)
+    BugSprite(bug, boardSize, earthworm(bug), 3f, onSize, onTap)
 }
 
 @Preview(showBackground = true, backgroundColor = previewColor)
 @Composable
 private fun Preview() {
-    val bug = Beetle()
+    val bug = Worm()
     val onSize: BugCallback = {}
     val onTap: BugCallback = {}
 
     Box(modifier = Modifier.fillMaxSize()) {
-        BeetleView(bug, Size.Zero, onSize, onTap)
+        WormSprite(bug, Size.Zero, onSize, onTap)
     }
 }

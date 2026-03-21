@@ -16,8 +16,8 @@ import pnemonic.compose.toPx
 import pnemonic.bug_bash.drawable.Zapper as ZapperImage
 
 @Composable
-fun ZapperView(tool: Zapper, onUse: ToolCallback, boardSize: Size) {
-    ImageTool(tool, ZapperImage, 12f, boardSize)
+fun ZapperSprite(tool: Zapper, onUse: ToolCallback, boardSize: Size) {
+    ToolSprite(tool, ZapperImage, 12f, boardSize)
 }
 
 @Composable
@@ -33,6 +33,6 @@ private fun Preview() {
     tool.show()
 
     Box(modifier = Modifier.fillMaxSize()) {
-        ZapperView(tool, onUse = {}, boardSize)
+        ZapperSprite(tool, onUse = {}, boardSize)
     }
 }

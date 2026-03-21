@@ -7,17 +7,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import pnemonic.bug_bash.drawable.insecticide
 import pnemonic.bug_bash.model.Bonus
-import pnemonic.bug_bash.model.tool.Swatter
+import pnemonic.bug_bash.model.tool.Spray
 import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.previewHeightDp
 import pnemonic.bug_bash.view.previewWidthDp
 import pnemonic.compose.toPx
-import pnemonic.bug_bash.drawable.Swatter as SwatterImage
 
 @Composable
-fun SwatterView(tool: Swatter, onUse: ToolCallback, boardSize: Size) {
-    ImageTool(tool, SwatterImage, 1.1f, boardSize)
+fun SpraySprite(tool: Spray, onUse: ToolCallback, boardSize: Size) {
+    ToolSprite(tool, insecticide(tool.bonus), 12f, boardSize)
 }
 
 @Composable
@@ -29,10 +29,10 @@ fun SwatterView(tool: Swatter, onUse: ToolCallback, boardSize: Size) {
 )
 private fun Preview() {
     val boardSize = Size(previewWidthDp.dp.toPx(), previewHeightDp.dp.toPx())
-    val tool = Swatter(Bonus.Swatter())
+    val tool = Spray(Bonus.Spray(Long.MAX_VALUE))
     tool.show()
 
     Box(modifier = Modifier.fillMaxSize()) {
-        SwatterView(tool, onUse = {}, boardSize)
+        SpraySprite(tool, onUse = {}, boardSize)
     }
 }

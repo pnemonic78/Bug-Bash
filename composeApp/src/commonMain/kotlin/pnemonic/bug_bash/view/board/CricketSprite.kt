@@ -11,13 +11,13 @@ import pnemonic.bug_bash.model.bug.Cricket
 import pnemonic.bug_bash.view.previewColor
 
 @Composable
-fun CricketView(
+fun CricketSprite(
     bug: Cricket,
     boardSize: Size,
     onSize: BugCallback,
     onTap: BugCallback
 ) {
-    ImageBug(bug, boardSize, cricket(bug), 3f, onSize, onTap)
+    BugSprite(bug, boardSize, cricket(bug), 3f, onSize, onTap)
 }
 
 @Preview(showBackground = true, backgroundColor = previewColor)
@@ -28,6 +28,6 @@ private fun Preview() {
     val onTap: BugCallback = {}
 
     Box(modifier = Modifier.fillMaxSize()) {
-        CricketView(bug, Size.Zero, onSize, onTap)
+        CricketSprite(bug, Size.Zero, onSize, onTap)
     }
 }

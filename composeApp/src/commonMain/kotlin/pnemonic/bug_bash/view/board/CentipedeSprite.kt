@@ -6,28 +6,28 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
-import pnemonic.bug_bash.drawable.scorpion
-import pnemonic.bug_bash.model.bug.Scorpion
+import pnemonic.bug_bash.drawable.centipede
+import pnemonic.bug_bash.model.bug.Centipede
 import pnemonic.bug_bash.view.previewColor
 
 @Composable
-fun ScorpionView(
-    bug: Scorpion,
+fun CentipedeSprite(
+    bug: Centipede,
     boardSize: Size,
     onSize: BugCallback,
     onTap: BugCallback
 ) {
-    ImageBug(bug, boardSize, scorpion(bug), 4f, onSize, onTap)
+    BugSprite(bug, boardSize, centipede(bug), 7f, onSize, onTap)
 }
 
 @Preview(showBackground = true, backgroundColor = previewColor)
 @Composable
 private fun Preview() {
-    val bug = Scorpion()
+    val bug = Centipede()
     val onSize: BugCallback = {}
     val onTap: BugCallback = {}
 
     Box(modifier = Modifier.fillMaxSize()) {
-        ScorpionView(bug, Size.Zero, onSize, onTap)
+        CentipedeSprite(bug, Size.Zero, onSize, onTap)
     }
 }

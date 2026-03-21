@@ -7,37 +7,32 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import pnemonic.bug_bash.drawable.cockroach
-import pnemonic.bug_bash.model.bug.Cockroach
+import pnemonic.bug_bash.model.Bonus
+import pnemonic.bug_bash.model.tool.Shoe
 import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.previewHeightDp
 import pnemonic.bug_bash.view.previewWidthDp
 import pnemonic.compose.toPx
+import pnemonic.bug_bash.drawable.Shoe as ShoeImage
 
 @Composable
-fun CockroachView(
-    bug: Cockroach,
-    boardSize: Size,
-    onSize: BugCallback,
-    onTap: BugCallback
-) {
-    ImageBug(bug, boardSize, cockroach(bug), 3f, onSize, onTap)
+fun ShoeSprite(tool: Shoe, onUse: ToolCallback, boardSize: Size) {
+    ToolSprite(tool, ShoeImage, 2f, boardSize)
 }
 
+@Composable
 @Preview(
     showBackground = true,
     backgroundColor = previewColor,
     widthDp = previewWidthDp,
     heightDp = previewHeightDp
 )
-@Composable
 private fun Preview() {
     val boardSize = Size(previewWidthDp.dp.toPx(), previewHeightDp.dp.toPx())
-    val bug = Cockroach()
-    val onSize: BugCallback = {}
-    val onTap: BugCallback = {}
+    val tool = Shoe(Bonus.Shoe())
+    tool.show()
 
     Box(modifier = Modifier.fillMaxSize()) {
-        CockroachView(bug, boardSize, onSize, onTap)
+        ShoeSprite(tool, onUse = {}, boardSize)
     }
 }

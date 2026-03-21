@@ -8,44 +8,38 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 import pnemonic.bug_bash.model.Bonus
-import pnemonic.bug_bash.model.tool.Score
+import pnemonic.bug_bash.model.tool.ExtraLife
+import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.previewHeightDp
 import pnemonic.bug_bash.view.previewWidthDp
 import pnemonic.compose.toPx
-import pnemonic.bug_bash.drawable.Trophy as ScoreImage
-import pnemonic.bug_bash.view.board.Score as ScoreView
-
-private val sizeScore = 50.sp
+import pnemonic.bug_bash.drawable.LifeHas as LifeImage
 
 @Composable
-fun ScoreView(tool: Score, onUse: ToolCallback, boardSize: Size) {
-    ImageTool(tool, ScoreImage, 1f, 0.85f, null, boardSize) {
-        ScoreView(score = tool.bonus.hits, boardSize, 0f, 0f, sizeScore)
-    }
+fun LifeSprite(tool: ExtraLife, onUse: ToolCallback, boardSize: Size) {
+    ToolSprite(tool, LifeImage, 20f, boardSize)
 
     LaunchedEffect(tool) {
         tool.show()
-        delay(1500)
+        delay(1000)
         onUse(tool)
     }
 }
 
-
 @Composable
 @Preview(
     showBackground = true,
-    backgroundColor = 0xFF008800,
+    backgroundColor = previewColor,
     widthDp = previewWidthDp,
     heightDp = previewHeightDp
 )
 private fun Preview() {
     val boardSize = Size(previewWidthDp.dp.toPx(), previewHeightDp.dp.toPx())
-    val tool = Score(Bonus.Score(hits = 5000))
+    val tool = ExtraLife(Bonus.Life())
 
     Box(modifier = Modifier.fillMaxSize()) {
-        ScoreView(tool, onUse = {}, boardSize)
+        LifeSprite(tool, onUse = {}, boardSize)
     }
 }

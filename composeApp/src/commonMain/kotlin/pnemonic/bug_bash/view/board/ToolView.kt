@@ -48,12 +48,12 @@ fun ToolAbove(
     boardSize: Size
 ) {
     when (tool) {
-        is ExtraLife -> LifeView(tool, onToolUse, boardSize)
-        is Score -> ScoreView(tool, onToolUse, boardSize)
-        is Shoe -> ShoeView(tool, onToolUse, boardSize)
-        is Spray -> SprayView(tool, onToolUse, boardSize)
-        is Swatter -> SwatterView(tool, onToolUse, boardSize)
-        is Zapper -> ZapperView(tool, onToolUse, boardSize)
+        is ExtraLife -> LifeSprite(tool, onToolUse, boardSize)
+        is Score -> ScoreSprite(tool, onToolUse, boardSize)
+        is Shoe -> ShoeSprite(tool, onToolUse, boardSize)
+        is Spray -> SpraySprite(tool, onToolUse, boardSize)
+        is Swatter -> SwatterSprite(tool, onToolUse, boardSize)
+        is Zapper -> ZapperSprite(tool, onToolUse, boardSize)
     }
 }
 
@@ -65,14 +65,14 @@ fun ToolBelow(
     difficulty: Difficulty
 ) {
     when (tool) {
-        is Cupcake -> CupcakeView(tool, onToolUse, boardSize, difficulty)
-        is Flower -> FlowerView(tool, onToolUse, boardSize, difficulty)
-        is GluePaper -> GluePaperView(tool, onToolUse, boardSize, difficulty)
+        is Cupcake -> CupcakeSprite(tool, onToolUse, boardSize, difficulty)
+        is Flower -> FlowerSprite(tool, onToolUse, boardSize, difficulty)
+        is GluePaper -> GluePaperSprite(tool, onToolUse, boardSize, difficulty)
     }
 }
 
 @Composable
-fun ImageTool(
+fun ToolSprite(
     tool: Tool,
     image: ImageVector,
     scale: Float,
@@ -116,14 +116,14 @@ fun ImageTool(
 }
 
 @Composable
-fun ImageTool(
+fun ToolSprite(
     tool: Tool,
     image: ImageVector,
     scale: Float,
     boardSize: Size,
     modifier: Modifier = Modifier,
     overlay: @Composable BoxScope.() -> Unit = {}
-) = ImageTool(
+) = ToolSprite(
     tool = tool,
     image = image,
     scale = scale,

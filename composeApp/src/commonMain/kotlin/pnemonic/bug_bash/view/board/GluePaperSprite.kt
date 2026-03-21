@@ -10,21 +10,24 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import pnemonic.bug_bash.model.Bonus
-import pnemonic.bug_bash.model.tool.ExtraLife
+import pnemonic.bug_bash.model.Difficulty
+import pnemonic.bug_bash.model.Difficulty.Companion.times
+import pnemonic.bug_bash.model.tool.GluePaper
 import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.previewHeightDp
 import pnemonic.bug_bash.view.previewWidthDp
 import pnemonic.compose.toPx
-import pnemonic.bug_bash.drawable.LifeHas as LifeImage
+import pnemonic.bug_bash.drawable.GluePaper as GluePaperImage
 
 @Composable
-fun LifeView(tool: ExtraLife, onUse: ToolCallback, boardSize: Size) {
-    ImageTool(tool, LifeImage, 20f, boardSize)
+fun GluePaperSprite(tool: GluePaper, onUse: ToolCallback, boardSize: Size, difficulty: Difficulty = Difficulty.Easy) {
+    ToolSprite(tool, GluePaperImage, 20f, boardSize)
 
-    LaunchedEffect(tool) {
-        tool.show()
-        delay(1000)
-        onUse(tool)
+    if (tool.isVisible) {
+        LaunchedEffect(tool) {
+            delay(10_000L * difficulty)
+            onUse(tool)
+        }
     }
 }
 
@@ -37,9 +40,10 @@ fun LifeView(tool: ExtraLife, onUse: ToolCallback, boardSize: Size) {
 )
 private fun Preview() {
     val boardSize = Size(previewWidthDp.dp.toPx(), previewHeightDp.dp.toPx())
-    val tool = ExtraLife(Bonus.Life())
+    val tool = GluePaper(Bonus.GluePaper())
+    tool.show()
 
     Box(modifier = Modifier.fillMaxSize()) {
-        LifeView(tool, onUse = {}, boardSize)
+        GluePaperSprite(tool, onUse = {}, boardSize)
     }
 }

@@ -44,9 +44,7 @@ import pnemonic.bug_bash.drawable.Zapper
 import pnemonic.bug_bash.drawable.insecticide
 import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.view.theme.panel
-import pnemonic.compareTo
 import pnemonic.compose.Left
-import pnemonic.toFloat
 import pnemonic.bug_bash.drawable.Bonus as BonusImage
 
 private val sizeIcon = 30.dp
@@ -101,7 +99,7 @@ fun BonusesView(modifier: Modifier = Modifier, bonuses: List<Bonus>, onClick: Bo
                 for (bonus in bonuses) {
                     if (bonus.score <= 0) continue
                     Spacer(modifier = Modifier.width(spacing))
-                    BonusView(bonus, onBonusClick)
+                    BonusSprite(bonus, onBonusClick)
                 }
             }
         }
@@ -109,12 +107,12 @@ fun BonusesView(modifier: Modifier = Modifier, bonuses: List<Bonus>, onClick: Bo
 }
 
 @Composable
-fun BonusView(bonus: Bonus, onClick: BonusCallback) {
-    BonusView(bonus, sizeBonus, onClick)
+fun BonusSprite(bonus: Bonus, onClick: BonusCallback) {
+    BonusSprite(bonus, sizeBonus, onClick)
 }
 
 @Composable
-fun BonusView(bonus: Bonus, size: Dp, onClick: BonusCallback) {
+fun BonusSprite(bonus: Bonus, size: Dp, onClick: BonusCallback) {
     val progress = bonus.progress
     val total = bonus.score
 
@@ -246,10 +244,10 @@ private fun Preview() {
         Bonus.Cupcake(progress = 10),
         Bonus.Flower(progress = 20),
         Bonus.GluePaper(progress = 30),
-        Bonus.Spray(progress = 40),
-        Bonus.Life(progress = 50),
-        Bonus.Score(progress = 60),
-        Bonus.Shoe(progress = 70),
+        Bonus.Life(progress = 40),
+        Bonus.Score(progress = 50),
+        Bonus.Shoe(progress = 60),
+        Bonus.Spray(progress = 70),
         Bonus.Swatter(progress = 80),
         Bonus.Zapper(progress = 90),
     )

@@ -6,28 +6,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
-import pnemonic.bug_bash.drawable.dragonfly
-import pnemonic.bug_bash.model.bug.Dragonfly
+import pnemonic.bug_bash.drawable.ant
+import pnemonic.bug_bash.model.bug.Ant
 import pnemonic.bug_bash.view.previewColor
 
 @Composable
-fun DragonflyView(
-    bug: Dragonfly,
-    boardSize: Size,
-    onSize: BugCallback,
-    onTap: BugCallback
-) {
-    ImageBug(bug, boardSize, dragonfly(bug), 2f, onSize, onTap)
+fun AntSprite(bug: Ant, boardSize: Size, onSize: BugCallback, onTap: BugCallback) {
+    BugSprite(bug, boardSize, ant(bug), 2f, onSize, onTap)
 }
 
 @Preview(showBackground = true, backgroundColor = previewColor)
 @Composable
 private fun Preview() {
-    val bug = Dragonfly()
+    val bug = Ant()
     val onSize: BugCallback = {}
     val onTap: BugCallback = {}
 
     Box(modifier = Modifier.fillMaxSize()) {
-        DragonflyView(bug, Size.Zero, onSize, onTap)
+        AntSprite(bug, Size.Zero, onSize, onTap)
     }
 }

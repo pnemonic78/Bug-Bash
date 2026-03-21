@@ -11,13 +11,13 @@ import pnemonic.bug_bash.model.bug.Spider
 import pnemonic.bug_bash.view.previewColor
 
 @Composable
-fun SpiderView(
+fun SpiderSprite(
     bug: Spider,
     boardSize: Size,
     onSize: BugCallback,
     onTap: BugCallback
 ) {
-    ImageBug(bug, boardSize, spider(bug), 5f, onSize, onTap)
+    BugSprite(bug, boardSize, spider(bug), 5f, onSize, onTap)
 }
 
 @Preview(showBackground = true, backgroundColor = previewColor)
@@ -28,6 +28,6 @@ private fun Preview() {
     val onTap: BugCallback = {}
 
     Box(modifier = Modifier.fillMaxSize()) {
-        SpiderView(bug, Size.Zero, onSize, onTap)
+        SpiderSprite(bug, Size.Zero, onSize, onTap)
     }
 }

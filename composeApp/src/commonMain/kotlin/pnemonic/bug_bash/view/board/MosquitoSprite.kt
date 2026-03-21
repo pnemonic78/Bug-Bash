@@ -6,28 +6,28 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
-import pnemonic.bug_bash.drawable.wasp
-import pnemonic.bug_bash.model.bug.Wasp
+import pnemonic.bug_bash.drawable.mosquito
+import pnemonic.bug_bash.model.bug.Mosquito
 import pnemonic.bug_bash.view.previewColor
 
 @Composable
-fun WaspView(
-    bug: Wasp,
+fun MosquitoSprite(
+    bug: Mosquito,
     boardSize: Size,
     onSize: BugCallback,
     onTap: BugCallback
 ) {
-    ImageBug(bug, boardSize, wasp(bug), 3f, onSize, onTap)
+    BugSprite(bug, boardSize, mosquito(bug), 2f, onSize, onTap)
 }
 
 @Preview(showBackground = true, backgroundColor = previewColor)
 @Composable
 private fun Preview() {
-    val bug = Wasp()
+    val bug = Mosquito()
     val onSize: BugCallback = {}
     val onTap: BugCallback = {}
 
     Box(modifier = Modifier.fillMaxSize()) {
-        WaspView(bug, Size.Zero, onSize, onTap)
+        MosquitoSprite(bug, Size.Zero, onSize, onTap)
     }
 }

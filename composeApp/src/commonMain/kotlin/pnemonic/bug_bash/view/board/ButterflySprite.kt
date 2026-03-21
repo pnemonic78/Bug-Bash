@@ -11,13 +11,13 @@ import pnemonic.bug_bash.model.bug.Butterfly
 import pnemonic.bug_bash.view.previewColor
 
 @Composable
-fun ButterflyView(
+fun ButterflySprite(
     bug: Butterfly,
     boardSize: Size,
     onSize: BugCallback,
     onTap: BugCallback
 ) {
-    ImageBug(bug, boardSize, butterfly(bug), 2f, onSize, onTap)
+    BugSprite(bug, boardSize, butterfly(bug), 2f, onSize, onTap)
 }
 
 @Preview(showBackground = true, backgroundColor = previewColor)
@@ -28,6 +28,6 @@ private fun Preview() {
     val onTap: BugCallback = {}
 
     Box(modifier = Modifier.fillMaxSize()) {
-        ButterflyView(bug, Size.Zero, onSize, onTap)
+        ButterflySprite(bug, Size.Zero, onSize, onTap)
     }
 }

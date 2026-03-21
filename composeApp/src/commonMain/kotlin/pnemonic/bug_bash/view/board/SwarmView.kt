@@ -41,7 +41,7 @@ fun SwarmView(
 ) {
     for (bug in bugs) {
         if (boardSize.contains(bug)) {
-            BugView(bug, boardSize, onSize, onTap)
+            BugSprite(bug, boardSize, onSize, onTap)
         }
     }
 }
