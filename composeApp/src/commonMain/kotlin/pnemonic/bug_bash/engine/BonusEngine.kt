@@ -255,6 +255,7 @@ class BonusEngine(
 
     private fun apply(board: Board, tool: Score): Board {
         val score = board.score + tool.hits
+        // ignore points earned using bonus tool for other bonuses
         boardScore = score
 
         val board = usedTool(board, tool)
@@ -424,6 +425,8 @@ class BonusEngine(
 
     private suspend fun bash(board: Board, tool: BashTool): Board {
         val board = tool.bash(board, callback)
+        // ignore points earned using bonus tool for other bonuses
+        boardScore = board.score
 
         if (jobHide == null) {
             jobHide = coroutineScope.launch {

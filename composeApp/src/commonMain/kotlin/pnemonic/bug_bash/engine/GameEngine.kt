@@ -486,7 +486,7 @@ open class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallba
 
     companion object {
         private const val TICK = 5L
-        private const val DELAY_PER_BUG = TICK * 250
+        private const val DELAY_PER_BUG = TICK * 200
 
         // Time to show the score after bug squashed.
         private const val DELAY_DEAD_REMOVE = 1000L
