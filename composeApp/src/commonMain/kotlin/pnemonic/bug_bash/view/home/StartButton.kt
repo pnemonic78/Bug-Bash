@@ -33,11 +33,13 @@ import org.jetbrains.compose.resources.vectorResource
 import pnemonic.VoidCallback
 import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.theme.Gold
+import pnemonic.bug_bash.view.theme.LargeIconSpacing
 
 private val colorContainer = Gold
 private val colorContent = White
 private val colorShadow = Yellow
 private val sizeShadow = 20.dp
+private val sizeIconSpacing = LargeIconSpacing
 
 @Composable
 fun StartButton(modifier: Modifier = Modifier, onClick: VoidCallback) {
@@ -70,7 +72,7 @@ fun StartButton(modifier: Modifier = Modifier, onClick: VoidCallback) {
         )
     ) {
         Text(text = stringResource(Res.string.play), fontSize = 40.sp)
-        Spacer(modifier = Modifier.width(ButtonDefaults.IconSpacing))
+        Spacer(modifier = Modifier.width(sizeIconSpacing))
         Icon(
             imageVector = vectorResource(Res.drawable.ic_hammer),
             contentDescription = "\uD83D\uDD28",
