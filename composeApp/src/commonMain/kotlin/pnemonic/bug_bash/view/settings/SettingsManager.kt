@@ -28,7 +28,7 @@ object SettingsManager {
     var difficulty: Difficulty
         get() {
             val ordinal = settings.getInt(KEY_DIFFICULTY, 0)
-            return Difficulty.values()[ordinal]
+            return Difficulty.entries[ordinal]
         }
         set(value) {
             settings.putInt(KEY_DIFFICULTY, value.ordinal)

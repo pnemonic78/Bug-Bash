@@ -19,15 +19,14 @@ import androidx.compose.ui.graphics.Paint
 import androidx.compose.ui.graphics.rotate
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.toIntSize
 import org.jetbrains.compose.resources.imageResource
 import pnemonic.bug_bash.model.Scene
-import pnemonic.bug_bash.view.previewColor
-import pnemonic.bug_bash.view.previewHeightDp
-import pnemonic.bug_bash.view.previewWidthDp
+import pnemonic.bug_bash.view.OrientationPreviews
 import pnemonic.compose.isZero
 import pnemonic.compose.orientation
 import pnemonic.compose.times
@@ -69,15 +68,21 @@ private fun SceneBackground(modifier: Modifier = Modifier, scene: Scene, size: I
             contentDescription = scene.name
         )
     } else {
-        val scaleX = size.width.toFloat() / image.height.toFloat()
+        val sizeWidth = size.width.toFloat()
+        val scaleX = sizeWidth / image.height.toFloat()
         val scaleY = size.height.toFloat() / image.width.toFloat()
         val scale = max(scaleX, scaleY)
         val srcSize = IntSize(image.width, image.height)
         val dstSize = (srcSize * scale).toIntSize()
         val pivot = size.width.half.toFloat()
+        val flipHorizontal = scene.flipPortraitHorizontal
         val bitmap = ImageBitmap(size.width, size.height, ImageBitmapConfig.Rgb565)
         Canvas(bitmap).apply {
             rotate(90f, pivot, pivot)
+            if (flipHorizontal) {
+                scale(1f, -1f)
+                translate(0f, -sizeWidth)
+            }
             drawImageRect(
                 image = image,
                 srcOffset = IntOffset.Zero,
@@ -96,20 +101,17 @@ private fun SceneBackground(modifier: Modifier = Modifier, scene: Scene, size: I
     }
 }
 
-@Composable
-@Preview(widthDp = previewHeightDp, heightDp = previewWidthDp, backgroundColor = 0xFF00FF00)
-private fun SceneKitchen_Landscape() {
-    SceneView(
-        modifier = Modifier.fillMaxSize(),
-        scene = Scene.Garden
-    ) {}
+class ScenePreviewParameterProvider : PreviewParameterProvider<Scene> {
+    override val values: Sequence<Scene> = Scene.entries.asSequence()
 }
 
 @Composable
-@Preview(widthDp = previewWidthDp, heightDp = previewHeightDp, backgroundColor = previewColor)
-private fun SceneKitchen_Portrait() {
+@OrientationPreviews
+private fun Preview(
+    @PreviewParameter(ScenePreviewParameterProvider::class) scene: Scene
+) {
     SceneView(
         modifier = Modifier.fillMaxSize(),
-        scene = Scene.Garden
+        scene = scene
     ) {}
 }

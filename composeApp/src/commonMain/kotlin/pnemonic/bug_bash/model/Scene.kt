@@ -14,22 +14,32 @@ import pnemonic.bug_bash.Feedback
 import pnemonic.bug_bash.sound.SoundType
 import kotlin.math.max
 
-enum class Scene(val music: Feedback.Sound, val image: DrawableResource) {
+enum class Scene(
+    val music: Feedback.Sound,
+    val image: DrawableResource,
+    // Stats are in top-left corner.
+    val flipPortraitHorizontal: Boolean = false
+) {
     Grass(SoundType.Garden, Res.drawable.bg_grass),
     Garden(SoundType.Garden, Res.drawable.bg_daisies),
-    Kitchen(SoundType.Kitchen, Res.drawable.bg_marble),
-    TableCloth(SoundType.Table, Res.drawable.bg_wood_cloth),
+    Kitchen(SoundType.Kitchen, Res.drawable.bg_marble, true),
+    TableCloth(SoundType.Table, Res.drawable.bg_wood_cloth, true),
     TableDark(SoundType.Table, Res.drawable.bg_wood_dark),
     TableRustic(SoundType.Table, Res.drawable.bg_wood_rustic),
     Beach(SoundType.Beach, Res.drawable.bg_sand);
 
-    constructor(soundType: SoundType, image: DrawableResource) : this(
+    constructor(
+        soundType: SoundType,
+        image: DrawableResource,
+        flipPortraitHorizontal: Boolean = false
+    ) : this(
         Feedback.Sound(soundType),
-        image
+        image,
+        flipPortraitHorizontal
     )
 
     operator fun plus(other: Int): Scene {
-        val values = _values
+        val values = entries
         val index = (ordinal + other) % values.size
         return values[index]
     }
@@ -39,10 +49,8 @@ enum class Scene(val music: Feedback.Sound, val image: DrawableResource) {
     }
 
     companion object {
-        private val _values = values()
-
         fun forLevel(@IntRange(from = 1L) level: Int): Scene {
-            val values = _values
+            val values = entries
             val index = max(0, level - 1) % values.size
             return values[index]
         }
