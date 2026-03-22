@@ -3,7 +3,7 @@ package pnemonic.bug_bash.model.bug
 import pnemonic.bug_bash.sound.SoundType
 
 class Cricket : BugThatCrawls(
-    speed = 0.5f,
+    speed = 0.45f,
     score = 10,
     hits = 2,
     noise = SoundType.Locust,

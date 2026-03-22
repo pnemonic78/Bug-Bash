@@ -15,6 +15,7 @@ import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.max
 import kotlin.math.sin
+import kotlin.time.Clock
 
 abstract class Bug(
     val speed: Float,
@@ -126,12 +127,13 @@ abstract class Bug(
     }
 
     protected fun moveStraight(): Boolean {
+        val size = height
         val angle = rotationMovement
         val c = cos(angle)  //TODO cache this value
         val s = sin(angle)  //TODO cache this value
         val x1 = left
         val y1 = top
-        val dx = velocity * width
+        val dx = velocity * size
         val dy = 0f
         val x2 = x1 + (dx * c) - (dy * s)
         val y2 = y1 + (dx * s) + (dy * c)
@@ -167,6 +169,8 @@ abstract class Bug(
         }
     }
 
+    private var t0 = Clock.System.now()
+
     fun didEnter(boardSize: Size): Boolean {
         if (isInBoardBounds) return false
 
@@ -187,6 +191,9 @@ abstract class Bug(
             // heading to Top-Left
             else -> (x1 < x3) && (y2 < y3)
         }
+        if (isInBoardBounds) {
+            t0 = Clock.System.now()
+        }
         return isInBoardBounds
     }
 
@@ -199,7 +206,7 @@ abstract class Bug(
         val y3 = boardSize.height
         val angle = destinationAngle
 
-        return when {
+        val r = when {
             // heading to Top-Right
             (angle <= 90f) -> (x1 + EPSILON_ESCAPE >= x3) || (y2 - EPSILON_ESCAPE < 0f)
             // heading to Bottom-Right
@@ -209,6 +216,11 @@ abstract class Bug(
             // heading to Top-Left
             else -> (x2 - EPSILON_ESCAPE < 0f) || (y2 - EPSILON_ESCAPE < 0f)
         }
+        if (r) {
+            val t1 = Clock.System.now()
+            println("~!@ ${this::class.simpleName} ${(t1 - t0).inWholeMilliseconds}")
+        }
+        return r
     }
 
     // delay

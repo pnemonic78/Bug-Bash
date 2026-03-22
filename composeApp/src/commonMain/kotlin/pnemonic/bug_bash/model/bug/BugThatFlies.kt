@@ -16,7 +16,7 @@ abstract class BugThatFlies(
     private var angleZigZag = 0f
 
     protected fun moveZigZag(): Boolean {
-        val size = width
+        val size = height
         val angle = rotationMovement
         val c = cos(angle)
         val s = sin(angle)

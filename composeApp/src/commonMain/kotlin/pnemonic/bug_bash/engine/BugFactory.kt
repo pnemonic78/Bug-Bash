@@ -106,13 +106,17 @@ object BugFactory {
         return Swarm(bugs)
     }
 
+    // slowest crawlers start first.
     val allBugs: List<Bug> get() = listOf(
-        Ant(),
-        Bee(),
-        Beetle(),
-        Butterfly(),
+        Worm(),
+        Snail(),
         Caterpillar(),
         Centipede(),
+        Beetle(),
+
+        Ant(),
+        Bee(),
+        Butterfly(),
         Cockroach(),
         Cricket(),
         Dragonfly(),
@@ -121,10 +125,8 @@ object BugFactory {
         Mosquito(),
         Moth(),
         Scorpion(),
-        Snail(),
         Spider(),
         Termite(),
         Wasp(),
-        Worm()
     )
 }
