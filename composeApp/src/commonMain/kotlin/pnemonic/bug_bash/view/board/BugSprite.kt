@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
+import pnemonic.bug_bash.drawable.Splat
 import pnemonic.bug_bash.model.bug.Ant
 import pnemonic.bug_bash.model.bug.Bee
 import pnemonic.bug_bash.model.bug.Beetle
@@ -80,10 +81,11 @@ fun BugSprite(
     onTap: BugCallback,
     modifier: Modifier = Modifier
 ) {
+    val isSquashed = bug.isSquashed
     val width = image.defaultWidth * scale
     val height = image.defaultHeight * scale
-    val sx by animateFloatAsState(targetValue = if (bug.isSquashed) 1.25f else 1f)
-    val sy by animateFloatAsState(targetValue = if (bug.isSquashed) 1.15f else 1f)
+    val sx by animateFloatAsState(targetValue = if (isSquashed) 1.3f else 1f)
+    val sy by animateFloatAsState(targetValue = if (isSquashed) 1.15f else 1f)
     val animatedOpacity by animateFloatAsState(targetValue = bug.opacity)
 
     Box(
@@ -103,7 +105,6 @@ fun BugSprite(
                 rotationZ = bug.rotation
                 scaleX = sx
                 scaleY = sy
-                alpha = animatedOpacity
             }
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
@@ -112,11 +113,20 @@ fun BugSprite(
                 onTap(bug)
             }
     ) {
+        if (isSquashed) {
+            Image(
+                modifier = Modifier.fillMaxSize(),
+                imageVector = Splat,
+                contentDescription = "💦",
+                contentScale = ContentScale.FillBounds
+            )
+        }
         Image(
             modifier = Modifier.fillMaxSize(),
             imageVector = image,
             contentDescription = bug.description,
-            contentScale = ContentScale.Fit
+            contentScale = ContentScale.Fit,
+            alpha = animatedOpacity
         )
     }
     BugScore(bug, boardSize)

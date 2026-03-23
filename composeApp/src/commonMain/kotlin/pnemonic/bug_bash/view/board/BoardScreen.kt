@@ -104,7 +104,6 @@ fun BoardView(
         ToolsBelow(board, onToolUse)
         SwarmView(board, onBugSize, onBugTap)
         ToolsAbove(board, onToolUse)
-        BugScores(board)
         Column(
             modifier = Modifier.fillMaxWidth()
                 .safeContentPadding()

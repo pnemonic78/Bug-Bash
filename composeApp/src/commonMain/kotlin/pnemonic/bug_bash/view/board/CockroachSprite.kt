@@ -14,6 +14,8 @@ import pnemonic.bug_bash.view.previewHeightDp
 import pnemonic.bug_bash.view.previewWidthDp
 import pnemonic.compose.toPx
 
+private const val scaleSprite = 3f
+
 @Composable
 fun CockroachSprite(
     bug: Cockroach,
@@ -21,7 +23,7 @@ fun CockroachSprite(
     onSize: BugCallback,
     onTap: BugCallback
 ) {
-    BugSprite(bug, boardSize, cockroach(bug), 3f, onSize, onTap)
+    BugSprite(bug, boardSize, cockroach(bug), scaleSprite, onSize, onTap)
 }
 
 @Preview(
@@ -34,10 +36,31 @@ fun CockroachSprite(
 private fun Preview() {
     val boardSize = Size(previewWidthDp.dp.toPx(), previewHeightDp.dp.toPx())
     val bug = Cockroach()
-    val onSize: BugCallback = {}
-    val onTap: BugCallback = {}
 
     Box(modifier = Modifier.fillMaxSize()) {
-        CockroachSprite(bug, boardSize, onSize, onTap)
+        CockroachSprite(bug, boardSize, onSize = {}, onTap = {})
+    }
+}
+
+@Preview(
+    showBackground = true,
+    backgroundColor = previewColor,
+    widthDp = previewWidthDp,
+    heightDp = previewHeightDp
+)
+@Composable
+private fun PreviewSquashed() {
+    val boardSize = Size(previewWidthDp.dp.toPx(), previewHeightDp.dp.toPx())
+    val bug = Cockroach()
+    bug.hit()
+    bug.hit()
+    val sprite = cockroach(bug)
+    bug.setSize(
+        (sprite.defaultWidth * scaleSprite).toPx(),
+        (sprite.defaultHeight * scaleSprite).toPx()
+    )
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        CockroachSprite(bug, boardSize, onSize = {}, onTap = {})
     }
 }
