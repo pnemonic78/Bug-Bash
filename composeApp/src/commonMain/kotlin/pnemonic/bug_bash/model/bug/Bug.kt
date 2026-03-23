@@ -169,8 +169,6 @@ abstract class Bug(
         }
     }
 
-    private var t0 = Clock.System.now()
-
     fun didEnter(boardSize: Size): Boolean {
         if (isInBoardBounds) return false
 
@@ -191,9 +189,6 @@ abstract class Bug(
             // heading to Top-Left
             else -> (x1 < x3) && (y2 < y3)
         }
-        if (isInBoardBounds) {
-            t0 = Clock.System.now()
-        }
         return isInBoardBounds
     }
 
@@ -206,7 +201,7 @@ abstract class Bug(
         val y3 = boardSize.height
         val angle = destinationAngle
 
-        val r = when {
+        return when {
             // heading to Top-Right
             (angle <= 90f) -> (x1 + EPSILON_ESCAPE >= x3) || (y2 - EPSILON_ESCAPE < 0f)
             // heading to Bottom-Right
@@ -216,11 +211,6 @@ abstract class Bug(
             // heading to Top-Left
             else -> (x2 - EPSILON_ESCAPE < 0f) || (y2 - EPSILON_ESCAPE < 0f)
         }
-        if (r) {
-            val t1 = Clock.System.now()
-            println("~!@ ${this::class.simpleName} ${(t1 - t0).inWholeMilliseconds}")
-        }
-        return r
     }
 
     // delay
