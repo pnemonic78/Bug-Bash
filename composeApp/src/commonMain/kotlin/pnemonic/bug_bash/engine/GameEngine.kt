@@ -153,7 +153,6 @@ open class GameEngine(private val coroutineScope: CoroutineScope) : EngineCallba
     }
 
     fun onSize(size: Size) {
-        if (!isRunning) return
         //TODO set each bug's new destination relative to old destination
         _boards.update { board ->
             board.setSize(width = size.width, height = size.height)

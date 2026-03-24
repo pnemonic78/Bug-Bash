@@ -8,33 +8,37 @@ your dinner table.
 Most bugs are pests:\
 🐜 Ants\
 🐝 Bees\
-<img src="resources/images/beetle.svg" width="22" height="22" alt="𓆣" /> Beetles\
+<img src="./resources/images/beetle.svg" width="22" height="22" alt="𓆣" /> Beetles\
 🐛 Caterpillars\
-<img src="resources/images/centipede.svg" width="22" height="22" alt="🦐" /> Centipedes\
+<img src="./resources/images/centipede.svg" width="22" height="22" alt="🦐" /> Centipedes\
 🦗 Crickets\
-<img src="resources/images/cockroach.svg" width="22" height="22" alt="𓆣" /> Cockroaches\
-<img src="resources/images/fly.svg" width="22" height="22" alt="𓆦" /> Flies\
+<img src="./resources/images/cockroach.svg" width="22" height="22" alt="𓆣" /> Cockroaches\
+<img src="./resources/images/fly.svg" width="22" height="22" alt="𓆦" /> Flies\
 🦟 Mosquitoes\
-<img src="resources/images/moth.svg" width="22" height="22" alt="🦋" /> Moths\
+<img src="./resources/images/moth.svg" width="22" height="22" alt="🦋" /> Moths\
 🦂 Scorpions\
 🐌 Snails\
-<img src="resources/images/spider.svg" width="22" height="22" alt="🕷" /> Spiders\
-<img src="resources/images/termite.svg" width="22" height="22" alt="🐜" /> Termites\
-<img src="resources/images/wasp.svg" width="22" height="22" alt="🐝" /> Wasps\
-<img src="resources/images/earthworm.svg" width="22" height="22" alt="〰" /> Worms
+<img src="./resources/images/spider.svg" width="22" height="22" alt="🕷" /> Spiders\
+<img src="./resources/images/termite.svg" width="22" height="22" alt="🐜" /> Termites\
+<img src="./resources/images/wasp.svg" width="22" height="22" alt="🐝" /> Wasps\
+<img src="./resources/images/earthworm.svg" width="22" height="22" alt="〰" /> Worms
 
 Some bugs are friends:\
 🦋 Butterflies\
-<img src="resources/images/dragonfly.svg" width="22" height="22" alt="𓆣" /> Dragonflies\
+<img src="./resources/images/dragonfly.svg" width="22" height="22" alt="𓆣" /> Dragonflies\
 🐞 Ladybugs
+
+## Play Online
+
+[Bug Bash](./play-web/){:target="_blank"}
 
 ## Privacy
 
-[Privacy Policy](resources/docs/privacy-policy.html)
+[Privacy Policy](./resources/docs/privacy-policy.html)
 
 ## Licenses
 
-* [Apache 2.0](LICENSE)
+* [Apache 2.0](./LICENSE)
 
 Designed using Kotlin Compose Multiplatform.
 
