@@ -18,3 +18,6 @@ A legtöbb bogár kártevő:
 
 Néhány bogár a barátod:
 🦋 🐞
+
+Használj bónuszokat bogarak legyőzésére:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

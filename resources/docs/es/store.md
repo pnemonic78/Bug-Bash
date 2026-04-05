@@ -17,3 +17,6 @@ La mayoría de los bichos son plagas:
 
 Algunos bichos son amigos:
 🦋 🐞
+
+Usa bonificaciones para derrotar a los bichos:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

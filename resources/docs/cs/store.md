@@ -18,3 +18,6 @@ Většina hmyzu jsou škůdci:
 
 Někteří hmyz jsou přátelé:
 🦋 🐞
+
+Používejte bonusy k porážce hmyzu:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

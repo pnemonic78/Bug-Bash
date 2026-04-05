@@ -18,3 +18,6 @@ Lielākā daļa kukaiņu ir kaitēkļi:
 
 Daži kukaiņi ir draugi:
 🦋 🐞
+
+Izmantojiet bonusus, lai uzveiktu blaktis:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

@@ -18,3 +18,6 @@ A maioria dos insetos são pragas:
 
 Alguns insetos são amigos:
 🦋 🐞
+
+Use bónus para derrotar bichos:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

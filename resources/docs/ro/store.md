@@ -18,3 +18,6 @@ Majoritatea insectelor sunt dăunători:
 
 Unele insecte sunt prieteni:
 🦋 🐞
+
+Folosește bonusuri pentru a învinge insectele:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

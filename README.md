@@ -5,7 +5,7 @@ The game where you **bash**, **smash**, **squash**, and **squish** pesky bugs.
 There are infinite levels where bugs have come to annoy you in your garden, in your kitchen, and on
 your dinner table.
 
-Most bugs are pests:\
+### Most bugs are pests:
 🐜 Ants\
 🐝 Bees\
 <img src="./resources/images/beetle.svg" width="22" height="22" alt="𓆣" /> Beetles\
@@ -23,14 +23,27 @@ Most bugs are pests:\
 <img src="./resources/images/wasp.svg" width="22" height="22" alt="🐝" /> Wasps\
 <img src="./resources/images/earthworm.svg" width="22" height="22" alt="〰" /> Worms
 
-Some bugs are friends:\
+### Some bugs are friends:
 🦋 Butterflies\
 <img src="./resources/images/dragonfly.svg" width="22" height="22" alt="𓆣" /> Dragonflies\
 🐞 Ladybugs
 
+### Use bonuses to defeat bugs:
+🧁 Attract bugs to the cupcake.\
+🌼 Attract bugs to the flower.\
+📜 Freezes bugs when touching the paper.\
+💝 Extra life.\
+🏆 Extra score.\
+👞 Bash bugs with a shoe.\
+☠ Bash bugs with insecticide spray.\
+🏸 Bash bugs with a fly swatter.\
+⚡ Bash bugs with a zapper.
+
 ## Play Online
 
 [Bug Bash](./play-web/){:target="_blank"}
+
+[Google Play Store](https://play.google.com/store/apps/details?id=pnemonic.bug_bash)
 
 ## Privacy
 

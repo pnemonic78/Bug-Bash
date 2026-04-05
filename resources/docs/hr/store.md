@@ -18,3 +18,6 @@ Većina kukaca su štetočine:
 
 Neki kukci su prijatelji:
 🦋 🐞
+
+Koristite bonuse za pobjedu nad kukcima:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

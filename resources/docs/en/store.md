@@ -18,3 +18,6 @@ Most bugs are pests:
 
 Some bugs are friends:
 🦋 🐞
+
+Use bonuses to defeat bugs:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

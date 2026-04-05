@@ -18,3 +18,6 @@ La majoria dels insectes són plagues:
 
 Alguns insectes són amics:
 🦋 🐞
+
+Utilitza les bonificacions per derrotar els insectes:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

@@ -18,3 +18,6 @@ Izinambuzane eziningi ziyizinambuzane:
 
 Ezinye izinambuzane zingabangane:
 🦋 🐞
+
+Sebenzisa amabhonasi ukunqoba izinambuzane:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

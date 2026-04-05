@@ -14,9 +14,10 @@ phiền phức.
 Có vô số cấp độ, nơi côn trùng đến làm phiền bạn trong vườn, trong bếp và trên bàn ăn của bạn.
 
 Hầu hết côn trùng là loài gây hại:
-
 🐜 🐝 🐛 🦗 🦟 🦂 🐌
 
 Một số côn trùng là bạn:
-
 🦋 🐞
+
+Sử dụng phần thưởng để tiêu diệt côn trùng:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

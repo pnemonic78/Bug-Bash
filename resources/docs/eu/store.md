@@ -18,3 +18,6 @@ Intsektu gehienak izurriteak dira:
 
 Intsektu batzuk lagunak dira:
 🦋 🐞
+
+Erabili hobariak intsektuak garaitzeko:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

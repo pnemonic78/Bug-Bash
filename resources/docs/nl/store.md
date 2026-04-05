@@ -18,3 +18,6 @@ De meeste insecten zijn ongedierte:
 
 Sommige insecten zijn vrienden:
 🦋 🐞
+
+Gebruik bonussen om insecten te verslaan:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

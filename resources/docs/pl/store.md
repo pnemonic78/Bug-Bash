@@ -18,3 +18,6 @@ Większość robaków to szkodniki:
 
 Niektóre robaki są przyjaciółmi:
 🦋 🐞
+
+Użyj bonusów, aby pokonać owady:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

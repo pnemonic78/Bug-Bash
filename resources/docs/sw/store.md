@@ -18,3 +18,6 @@ Mende wengi ni wadudu:
 
 Baadhi ya mende ni marafiki:
 🦋 🐞
+
+Tumia bonasi kuwashinda wadudu:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

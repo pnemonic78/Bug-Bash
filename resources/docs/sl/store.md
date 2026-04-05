@@ -18,3 +18,6 @@ Večina žuželk je škodljivcev:
 
 Nekatere žuželke so prijatelji:
 🦋 🐞
+
+Uporabite bonuse za premagovanje žuželk:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

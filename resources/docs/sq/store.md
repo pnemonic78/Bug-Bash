@@ -18,3 +18,6 @@ Shumica e insekteve janë dëmtues:
 
 Disa insekte janë miq:
 🦋 🐞
+
+Përdorni bonuset për të mposhtur insektet:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

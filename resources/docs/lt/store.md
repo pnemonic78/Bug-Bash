@@ -17,3 +17,6 @@ Dauguma vabzdžių yra kenkėjai:
 
 Kai kurie vabzdžiai yra draugai:
 🦋 🐞
+
+Naudokite premijas vabalams nugalėti:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

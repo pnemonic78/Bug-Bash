@@ -17,3 +17,6 @@ Enamik putukaid on kahjurid:
 
 Mõned putukad on sõbrad:
 🦋 🐞
+
+Kasuta boonuseid putukate alistamiseks:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

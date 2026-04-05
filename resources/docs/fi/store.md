@@ -18,3 +18,6 @@ Useimmat ötökät ovat tuholaisia:
 
 Jotkut ötökät ovat ystäviä:
 🦋 🐞
+
+Käytä bonuksia ötököiden voittamiseen:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

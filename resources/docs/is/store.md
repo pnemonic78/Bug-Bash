@@ -18,3 +18,6 @@ Flest skordýr eru meindýr:
 
 Sum skordýr eru vinir:
 🦋 🐞
+
+Notaðu bónusa til að sigra skordýr:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

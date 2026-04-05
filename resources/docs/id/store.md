@@ -19,3 +19,6 @@ Sebagian besar serangga adalah hama:
 
 Beberapa serangga adalah teman:
 🦋 🐞
+
+Gunakan bonus untuk mengalahkan serangga:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

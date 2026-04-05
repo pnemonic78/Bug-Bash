@@ -18,3 +18,6 @@ De fleste insekter er skadedyr:
 
 Nogle insekter er venner:
 🦋 🐞
+
+Brug bonusser til at besejre insekter:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

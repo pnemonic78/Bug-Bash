@@ -17,3 +17,6 @@ Väčšina hmyzu sú škodcovia:
 
 Niektorý hmyz sú priatelia:
 🦋 🐞
+
+Použite bonusy na porazenie hmyzu:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

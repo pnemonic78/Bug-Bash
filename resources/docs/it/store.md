@@ -18,3 +18,6 @@ La maggior parte degli insetti sono parassiti:
 
 Alcuni insetti sono amici:
 🦋 🐞
+
+Usa i bonus per sconfiggere gli insetti:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

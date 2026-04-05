@@ -17,3 +17,6 @@ Meeste goggas is peste:
 
 Sommige goggas is vriende:
 🦋 🐞
+
+Gebruik bonusse om goggas te verslaan:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

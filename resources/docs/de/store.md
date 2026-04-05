@@ -18,3 +18,6 @@ Die meisten Insekten sind Schädlinge:
 
 Manche Insekten sind Freunde:
 🦋 🐞
+
+Nutze Boni, um Insekten zu besiegen:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

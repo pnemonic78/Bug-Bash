@@ -19,3 +19,6 @@ yemək süfrənizdə sizi narahat etməyə başladığı sonsuz səviyyələr va
 
 Bəzi həşəratlar dostdur:
 🦋 🐞
+
+Səhvləri məğlub etmək üçün bonuslardan istifadə edin:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

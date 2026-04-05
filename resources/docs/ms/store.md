@@ -18,5 +18,7 @@ Kebanyakan serangga adalah perosak:
 🐜 🐝 🐛 🦗 🦟 🦂 🐌
 
 Sesetengah serangga adalah kawan:
-
 🦋 🐞
+
+Gunakan bonus untuk mengalahkan serangga:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

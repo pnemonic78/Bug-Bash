@@ -19,3 +19,6 @@ seviye var.
 
 Bazı böcekler dosttur:
 🦋 🐞
+
+Böcekleri yenmek için bonuslardan yararlanın:
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡

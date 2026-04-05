@@ -14,9 +14,10 @@ Il existe une infinité de niveaux où les insectes sont venus vous importuner d
 votre cuisine et même sur votre table.
 
 La plupart des insectes sont nuisibles:
-
 🐜 🐝 🐛 🦗 🦟 🦂 🐌
 
 Certains insectes sont des amis:
-
 🦋 🐞
+
+Utilisez les bonus pour vaincre les insectes :
+🧁 🌼 📜 💝 🏆 👞 ☠ 🏸 ⚡
