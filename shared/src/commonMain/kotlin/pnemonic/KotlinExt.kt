@@ -3,6 +3,7 @@ package pnemonic
 import androidx.compose.runtime.LongState
 import androidx.compose.runtime.State
 import kotlin.math.PI
+import kotlin.math.pow
 
 fun <T> List<T>.copy(): List<T> {
     return ArrayList(this)
@@ -65,3 +66,5 @@ operator fun Long.minus(other: LongState): Long {
 fun LongState.toFloat(): Float = this.value.toFloat()
 
 fun LongState.toLong(): Long = this.value
+
+fun sqr(x: Float): Float = x.pow(2)
