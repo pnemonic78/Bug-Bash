@@ -18,7 +18,7 @@ val Splat: ImageVector
             viewportWidth = 1540.6f,
             viewportHeight = 1685.5f
         ).apply {
-            path(fill = SolidColor(Color(0xFFefeacd))) {
+            path(fill = SolidColor(Color(0xFFCCEECC))) {
                 moveTo(1459.9f, 683.3f)
                 curveTo(1411.2f, 696.2f, 1359.6f, 686.3f, 1309.4f, 690.2f)
                 curveTo(1259.2f, 694.2f, 1203.3f, 720f, 1193.2f, 769.4f)

@@ -117,7 +117,7 @@ fun BugSprite(
             Image(
                 modifier = Modifier.fillMaxSize(),
                 imageVector = Splat,
-                contentDescription = "💦",
+                contentDescription = "\uD83E\uDEDF",
                 contentScale = ContentScale.FillBounds
             )
         }
