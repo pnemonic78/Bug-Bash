@@ -2,7 +2,7 @@ package pnemonic.bug_bash.sound
 
 enum class SoundType(val fileName: String, val repeat: Boolean = false, val volume: Float = 1f) {
     None("", false),
-    Beach("PLYGND01.WAV", false),
+    Beach("PLYGND01.WAV", true, 0.15f),
     Bee("BEE01.WAV", true, 0.25f),
     Blip("CRIP006.WAV", false),
     Chips("Eat Chips.wav", false),
