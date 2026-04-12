@@ -26,7 +26,7 @@ import pnemonic.VoidCallback
 import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.Difficulty
 import pnemonic.bug_bash.model.Scene
-import pnemonic.bug_bash.view.board.BugCallback
+import pnemonic.bug_bash.model.bug.BugCallback
 import pnemonic.bug_bash.view.board.SceneView
 import pnemonic.bug_bash.view.board.SwarmView
 import pnemonic.bug_bash.view.difficulty.DifficultyCallback

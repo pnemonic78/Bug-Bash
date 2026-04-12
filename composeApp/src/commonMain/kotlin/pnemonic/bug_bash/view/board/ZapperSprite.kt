@@ -8,6 +8,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pnemonic.bug_bash.model.Bonus
+import pnemonic.bug_bash.model.tool.ToolCallback
 import pnemonic.bug_bash.model.tool.Zapper
 import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.previewHeightDp

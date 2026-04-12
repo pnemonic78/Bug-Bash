@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import pnemonic.bug_bash.engine.BugFactory
 import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.bug.Bug
+import pnemonic.bug_bash.model.bug.BugCallback
 import pnemonic.bug_bash.model.bug.Swarm
 import pnemonic.bug_bash.model.bug.contains
 import pnemonic.bug_bash.view.previewColor

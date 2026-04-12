@@ -8,6 +8,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
 import pnemonic.bug_bash.drawable.ant
 import pnemonic.bug_bash.model.bug.Ant
+import pnemonic.bug_bash.model.bug.BugCallback
 import pnemonic.bug_bash.view.previewColor
 
 @Composable

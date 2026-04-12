@@ -43,6 +43,7 @@ import pnemonic.bug_bash.drawable.Trophy
 import pnemonic.bug_bash.drawable.Zapper
 import pnemonic.bug_bash.drawable.insecticide
 import pnemonic.bug_bash.model.Bonus
+import pnemonic.bug_bash.model.BonusCallback
 import pnemonic.bug_bash.view.theme.panel
 import pnemonic.compose.Left
 import pnemonic.bug_bash.drawable.Bonus as BonusImage
@@ -53,8 +54,6 @@ private val thicknessProgress = 6.dp
 private val colorProgressBar = Color(0xFFBFC654)
 private val colorProgressTrack = Color(0xFF005703)
 private val spacing = 8.dp
-
-typealias BonusCallback = (Bonus) -> Unit
 
 @Composable
 fun BonusesView(modifier: Modifier = Modifier, bonuses: List<Bonus>, onClick: BonusCallback) {

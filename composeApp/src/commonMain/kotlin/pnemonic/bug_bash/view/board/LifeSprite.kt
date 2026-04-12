@@ -11,6 +11,7 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.model.tool.ExtraLife
+import pnemonic.bug_bash.model.tool.ToolCallback
 import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.previewHeightDp
 import pnemonic.bug_bash.view.previewWidthDp

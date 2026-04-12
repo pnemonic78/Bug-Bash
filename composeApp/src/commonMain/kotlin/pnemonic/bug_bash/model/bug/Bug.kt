@@ -15,7 +15,8 @@ import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.max
 import kotlin.math.sin
-import kotlin.time.Clock
+
+typealias BugCallback = (Bug) -> Unit
 
 abstract class Bug(
     val speed: Float,

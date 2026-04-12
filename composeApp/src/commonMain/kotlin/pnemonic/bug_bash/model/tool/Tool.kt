@@ -11,6 +11,8 @@ import pnemonic.bug_bash.sound.SoundType
 import pnemonic.half
 import kotlin.math.max
 
+typealias ToolCallback = (Tool) -> Unit
+
 // Visual bonus on the board.
 abstract class Tool {
     open val sound: SoundType = SoundType.None

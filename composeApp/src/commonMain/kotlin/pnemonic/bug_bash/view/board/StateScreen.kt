@@ -29,8 +29,6 @@ import pnemonic.bug_bash.view.previewWidthDp
 import pnemonic.bug_bash.view.settings.ActionPanel
 import pnemonic.bug_bash.view.theme.paddingScreen
 
-typealias StateCallback = (GameState) -> Unit
-
 private val colorMask = Color.Black.copy(alpha = 0.7f)
 private val colorText = Color(0xFFCC0088)
 private val colorShadow = Color(0xFF008800)

@@ -27,15 +27,17 @@ import pnemonic.VoidCallback
 import pnemonic.bug_bash.engine.BugFactory
 import pnemonic.bug_bash.model.Board
 import pnemonic.bug_bash.model.Bonus
+import pnemonic.bug_bash.model.BonusCallback
 import pnemonic.bug_bash.model.GameState
+import pnemonic.bug_bash.model.bug.BugCallback
 import pnemonic.bug_bash.model.bug.Swarm
+import pnemonic.bug_bash.model.tool.ToolCallback
 import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.previewHeightDp
 import pnemonic.bug_bash.view.previewWidthDp
 import pnemonic.compose.OnSizeCallback
 import pnemonic.compose.OnTapCallback
 import pnemonic.compose.toPx
-
 
 private val spacingV = 8.dp
 

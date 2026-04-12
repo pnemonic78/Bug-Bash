@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
 import pnemonic.bug_bash.drawable.centipede
+import pnemonic.bug_bash.model.bug.BugCallback
 import pnemonic.bug_bash.model.bug.Centipede
 import pnemonic.bug_bash.view.previewColor
 

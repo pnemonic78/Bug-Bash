@@ -8,6 +8,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pnemonic.bug_bash.drawable.cockroach
+import pnemonic.bug_bash.model.bug.BugCallback
 import pnemonic.bug_bash.model.bug.Cockroach
 import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.previewHeightDp

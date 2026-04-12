@@ -36,10 +36,10 @@ import pnemonic.VoidCallback
 import pnemonic.bug_bash.drawable.Touch
 import pnemonic.bug_bash.drawable.Trophy
 import pnemonic.bug_bash.model.Bonus
+import pnemonic.bug_bash.model.BonusCallback
 import pnemonic.bug_bash.model.bug.Bug
-import pnemonic.bug_bash.view.board.BonusCallback
+import pnemonic.bug_bash.model.bug.BugCallback
 import pnemonic.bug_bash.view.board.BonusSprite
-import pnemonic.bug_bash.view.board.BugCallback
 import pnemonic.bug_bash.view.board.BugSprite
 import pnemonic.bug_bash.view.home.HomeButton
 import pnemonic.bug_bash.view.previewHeightDp

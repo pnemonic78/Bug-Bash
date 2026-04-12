@@ -10,6 +10,7 @@ import androidx.compose.ui.unit.dp
 import pnemonic.bug_bash.drawable.insecticide
 import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.model.tool.Spray
+import pnemonic.bug_bash.model.tool.ToolCallback
 import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.previewHeightDp
 import pnemonic.bug_bash.view.previewWidthDp

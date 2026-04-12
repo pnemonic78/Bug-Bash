@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.model.tool.Score
+import pnemonic.bug_bash.model.tool.ToolCallback
 import pnemonic.bug_bash.view.previewHeightDp
 import pnemonic.bug_bash.view.previewWidthDp
 import pnemonic.compose.toPx

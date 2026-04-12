@@ -32,14 +32,13 @@ import pnemonic.bug_bash.model.tool.Shoe
 import pnemonic.bug_bash.model.tool.Spray
 import pnemonic.bug_bash.model.tool.Swatter
 import pnemonic.bug_bash.model.tool.Tool
+import pnemonic.bug_bash.model.tool.ToolCallback
 import pnemonic.bug_bash.model.tool.Zapper
 import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.previewHeightDp
 import pnemonic.bug_bash.view.previewWidthDp
 import pnemonic.compose.toPx
 import kotlin.math.roundToInt
-
-typealias ToolCallback = (Tool) -> Unit
 
 @Composable
 fun ToolAbove(

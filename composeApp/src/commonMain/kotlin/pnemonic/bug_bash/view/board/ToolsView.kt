@@ -2,6 +2,7 @@ package pnemonic.bug_bash.view.board
 
 import androidx.compose.runtime.Composable
 import pnemonic.bug_bash.model.Board
+import pnemonic.bug_bash.model.tool.ToolCallback
 
 @Composable
 fun ToolsAbove(board: Board, onToolUse: ToolCallback) {

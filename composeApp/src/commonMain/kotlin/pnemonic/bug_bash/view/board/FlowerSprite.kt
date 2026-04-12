@@ -13,6 +13,7 @@ import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.model.Difficulty
 import pnemonic.bug_bash.model.Difficulty.Companion.times
 import pnemonic.bug_bash.model.tool.Flower
+import pnemonic.bug_bash.model.tool.ToolCallback
 import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.previewHeightDp
 import pnemonic.bug_bash.view.previewWidthDp

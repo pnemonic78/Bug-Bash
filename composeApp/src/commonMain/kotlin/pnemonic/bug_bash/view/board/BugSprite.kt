@@ -21,6 +21,7 @@ import pnemonic.bug_bash.model.bug.Ant
 import pnemonic.bug_bash.model.bug.Bee
 import pnemonic.bug_bash.model.bug.Beetle
 import pnemonic.bug_bash.model.bug.Bug
+import pnemonic.bug_bash.model.bug.BugCallback
 import pnemonic.bug_bash.model.bug.Butterfly
 import pnemonic.bug_bash.model.bug.Caterpillar
 import pnemonic.bug_bash.model.bug.Centipede
@@ -38,8 +39,6 @@ import pnemonic.bug_bash.model.bug.Termite
 import pnemonic.bug_bash.model.bug.Wasp
 import pnemonic.bug_bash.model.bug.Worm
 import kotlin.math.roundToInt
-
-typealias BugCallback = (Bug) -> Unit
 
 @Composable
 fun BugSprite(
