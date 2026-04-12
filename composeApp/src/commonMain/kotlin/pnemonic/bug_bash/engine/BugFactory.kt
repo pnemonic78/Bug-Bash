@@ -23,25 +23,47 @@ import pnemonic.bug_bash.model.bug.Swarm
 import pnemonic.bug_bash.model.bug.Termite
 import pnemonic.bug_bash.model.bug.Wasp
 import pnemonic.bug_bash.model.bug.Worm
+import pnemonic.times
 import kotlin.random.Random
-import kotlin.reflect.KClass
+
+typealias KlassName = String
 
 object BugFactory {
 
     private const val BUGS_PER_LEVEL = 10
 
-    private val level1 = listOf(Centipede::class)
-    private val level2 = level1 + listOf(Caterpillar::class, Snail::class)
-    private val level3 = level2 + listOf(Ant::class, Termite::class)
-    private val level4 = level3 + listOf(Cockroach::class, Worm::class)
-    private val level5 = level4 + listOf(Cricket::class, Ladybug::class)
-    private val level6 = level5 + listOf(Beetle::class)
-    private val level7 = level6 + listOf(Butterfly::class, Scorpion::class)
-    private val level8 = level7 + listOf(Fly::class, Moth::class)
-    private val level9 = level8 + listOf(Dragonfly::class, Mosquito::class)
-    private val level10 = level9 + listOf(Spider::class)
-    private val level11 = level10 + listOf(Bee::class)
-    private val level12 = level11 + listOf(Wasp::class)
+    private const val CLASS_ANT = "Ant"
+    private const val CLASS_BEE = "Bee"
+    private const val CLASS_BEETLE = "Beetle"
+    private const val CLASS_BUTTERFLY = "Butterfly"
+    private const val CLASS_CATERPILLAR = "Caterpillar"
+    private const val CLASS_CENTIPEDE = "Centipede"
+    private const val CLASS_COCKROACH = "Cockroach"
+    private const val CLASS_CRICKET = "Cricket"
+    private const val CLASS_DRAGONFLY = "Dragonfly"
+    private const val CLASS_FLY = "Fly"
+    private const val CLASS_LADYBUG = "Ladybug"
+    private const val CLASS_MOSQUITO = "Mosquito"
+    private const val CLASS_MOTH = "Moth"
+    private const val CLASS_SCORPION = "Scorpion"
+    private const val CLASS_SNAIL = "Snail"
+    private const val CLASS_SPIDER = "Spider"
+    private const val CLASS_TERMITE = "Termite"
+    private const val CLASS_WASP = "Wasp"
+    private const val CLASS_WORM = "Worm"
+
+    private val level1 = listOf(CLASS_CENTIPEDE)
+    private val level2 = level1 + listOf(CLASS_CATERPILLAR, CLASS_SNAIL) * 2
+    private val level3 = level2 + listOf(CLASS_ANT, CLASS_TERMITE) * 3
+    private val level4 = level3 + listOf(CLASS_COCKROACH, CLASS_WORM) * 4
+    private val level5 = level4 + listOf(CLASS_CRICKET, CLASS_LADYBUG) * 5
+    private val level6 = level5 + listOf(CLASS_BEETLE) * 6
+    private val level7 = level6 + listOf(CLASS_BUTTERFLY, CLASS_SCORPION) * 7
+    private val level8 = level7 + listOf(CLASS_FLY, CLASS_MOTH) * 8
+    private val level9 = level8 + listOf(CLASS_DRAGONFLY, CLASS_MOSQUITO) * 9
+    private val level10 = level9 + listOf(CLASS_SPIDER) * 10
+    private val level11 = level10 + listOf(CLASS_BEE) * 11
+    private val level12 = level11 + listOf(CLASS_WASP) * 12
 
     private val levels = mapOf(
         1 to level1,
@@ -60,36 +82,34 @@ object BugFactory {
 
     private val rand = Random.Default
 
-    private fun createBug(candidates: List<KClass<out Bug>>): Bug {
+    private fun createBug(candidates: List<KlassName>): Bug {
         val i = rand.nextInt(candidates.size)
-        val klass = candidates[i]
         // klass.createInstance() does not work in JS
-        return when (klass) {
-            Ant::class -> Ant()
-            Bee::class -> Bee()
-            Beetle::class -> Beetle()
-            Butterfly::class -> Butterfly()
-            Caterpillar::class -> Caterpillar()
-            Centipede::class -> Centipede()
-            Cockroach::class -> Cockroach()
-            Cricket::class -> Cricket()
-            Dragonfly::class -> Dragonfly()
-            Fly::class -> Fly()
-            Ladybug::class -> Ladybug()
-            Mosquito::class -> Mosquito()
-            Moth::class -> Moth()
-            Scorpion::class -> Scorpion()
-            Snail::class -> Snail()
-            Spider::class -> Spider()
-            Swarm::class -> Swarm()
-            Termite::class -> Termite()
-            Wasp::class -> Wasp()
-            Worm::class -> Worm()
-            else -> throw IllegalArgumentException(klass.toString())
-        } as Bug
+        return when (val klass = candidates[i]) {
+            CLASS_ANT -> Ant()
+            CLASS_BEE -> Bee()
+            CLASS_BEETLE -> Beetle()
+            CLASS_BUTTERFLY -> Butterfly()
+            CLASS_CATERPILLAR -> Caterpillar()
+            CLASS_CENTIPEDE -> Centipede()
+            CLASS_COCKROACH -> Cockroach()
+            CLASS_CRICKET -> Cricket()
+            CLASS_DRAGONFLY -> Dragonfly()
+            CLASS_FLY -> Fly()
+            CLASS_LADYBUG -> Ladybug()
+            CLASS_MOSQUITO -> Mosquito()
+            CLASS_MOTH -> Moth()
+            CLASS_SCORPION -> Scorpion()
+            CLASS_SNAIL -> Snail()
+            CLASS_SPIDER -> Spider()
+            CLASS_TERMITE -> Termite()
+            CLASS_WASP -> Wasp()
+            CLASS_WORM -> Worm()
+            else -> throw IllegalArgumentException(klass)
+        }
     }
 
-    private fun createCandidates(level: Int): List<KClass<out Bug>> {
+    private fun createCandidates(level: Int): List<KlassName> {
         return levels[level] ?: level12
     }
 
@@ -107,26 +127,27 @@ object BugFactory {
     }
 
     // slowest crawlers start first.
-    val allBugs: List<Bug> get() = listOf(
-        Worm(),
-        Snail(),
-        Caterpillar(),
-        Centipede(),
-        Beetle(),
+    val allBugs: List<Bug>
+        get() = listOf(
+            Worm(),
+            Snail(),
+            Caterpillar(),
+            Centipede(),
+            Beetle(),
 
-        Ant(),
-        Bee(),
-        Butterfly(),
-        Cockroach(),
-        Cricket(),
-        Dragonfly(),
-        Fly(),
-        Ladybug(),
-        Mosquito(),
-        Moth(),
-        Scorpion(),
-        Spider(),
-        Termite(),
-        Wasp(),
-    )
+            Ant(),
+            Bee(),
+            Butterfly(),
+            Cockroach(),
+            Cricket(),
+            Dragonfly(),
+            Fly(),
+            Ladybug(),
+            Mosquito(),
+            Moth(),
+            Scorpion(),
+            Spider(),
+            Termite(),
+            Wasp(),
+        )
 }

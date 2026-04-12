@@ -4,7 +4,6 @@ import androidx.compose.ui.text.intl.Locale
 import com.russhwolf.settings.Settings
 import platform.Foundation.NSNumber
 import platform.Foundation.NSNumberFormatter
-import platform.Foundation.NSNumberFormatterDecimalStyle
 import platform.Foundation.NSNumberFormatterOrdinalStyle
 import platform.UIKit.UIDevice
 import pnemonic.bug_bash.haptic.HapticManager

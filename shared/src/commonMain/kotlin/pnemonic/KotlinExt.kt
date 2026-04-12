@@ -68,3 +68,11 @@ fun LongState.toFloat(): Float = this.value.toFloat()
 fun LongState.toLong(): Long = this.value
 
 fun sqr(x: Float): Float = x.pow(2)
+
+operator fun <T> List<T>.times(n: Int): List<T> {
+    val result = mutableListOf<T>()
+    (1..n).forEach { _ ->
+        result.addAll(this)
+    }
+    return result
+}
