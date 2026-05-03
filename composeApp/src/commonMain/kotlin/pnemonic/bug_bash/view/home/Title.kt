@@ -3,7 +3,6 @@ package pnemonic.bug_bash.view.home
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.LocalTextStyle
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
@@ -24,6 +23,7 @@ import bug_bash.composeapp.generated.resources.title
 import org.jetbrains.compose.resources.stringResource
 import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.previewWidthDp
+import pnemonic.bug_bash.view.theme.AppTheme
 import pnemonic.bug_bash.view.theme.Brown
 import pnemonic.bug_bash.view.theme.DarkRed
 import pnemonic.bug_bash.view.theme.Gold
@@ -73,7 +73,7 @@ fun Title(modifier: Modifier = Modifier, title: String) {
 @Composable
 @Preview(showBackground = true, backgroundColor = previewColor, widthDp = previewWidthDp * 2)
 private fun PreviewWide() {
-    MaterialTheme {
+    AppTheme {
         Title()
     }
 }
@@ -81,7 +81,7 @@ private fun PreviewWide() {
 @Composable
 @Preview(showBackground = true, backgroundColor = previewColor, widthDp = previewWidthDp)
 private fun PreviewLong() {
-    MaterialTheme {
+    AppTheme {
         Title(title = "Bug Bash 123")
     }
 }
@@ -89,7 +89,7 @@ private fun PreviewLong() {
 @Composable
 @Preview(showBackground = true, backgroundColor = previewColor, widthDp = previewWidthDp, locale = "ru")
 private fun Preview3() {
-    MaterialTheme {
+    AppTheme {
         Title()
     }
 }

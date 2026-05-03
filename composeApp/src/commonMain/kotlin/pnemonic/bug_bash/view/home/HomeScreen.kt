@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
@@ -33,6 +32,7 @@ import pnemonic.bug_bash.view.difficulty.DifficultyCallback
 import pnemonic.bug_bash.view.difficulty.DifficultyPanel
 import pnemonic.bug_bash.view.previewHeightDp
 import pnemonic.bug_bash.view.previewWidthDp
+import pnemonic.bug_bash.view.theme.AppTheme
 import pnemonic.bug_bash.view.theme.paddingScreen
 import pnemonic.compose.OnSizeCallback
 
@@ -120,7 +120,7 @@ private fun HomeScreen(
 @Composable
 @Preview(widthDp = previewWidthDp, heightDp = previewHeightDp)
 private fun Preview() {
-    MaterialTheme {
+    AppTheme {
         HomeScreen(
             onPlayClick = {},
             onSoundChange = {},
@@ -138,7 +138,7 @@ private fun Preview() {
 @Composable
 @Preview(widthDp = previewWidthDp * 2, heightDp = previewHeightDp * 2)
 private fun PreviewBig() {
-    MaterialTheme {
+    AppTheme {
         HomeScreen(
             onPlayClick = {},
             onSoundChange = {},

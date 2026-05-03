@@ -17,7 +17,6 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Card
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -45,6 +44,7 @@ import pnemonic.bug_bash.view.home.HomeButton
 import pnemonic.bug_bash.view.previewHeightDp
 import pnemonic.bug_bash.view.previewWidthDp
 import pnemonic.bug_bash.view.settings.ActionPanel
+import pnemonic.bug_bash.view.theme.AppTheme
 import pnemonic.bug_bash.drawable.Bonus as BonusImage
 
 @Composable
@@ -244,7 +244,7 @@ private fun BonusCell(bonus: Bonus, onClick: BonusCallback) {
 private fun Preview() {
     val nav = rememberNavController()
 
-    MaterialTheme {
+    AppTheme {
         HelpScreen(nav)
     }
 }
@@ -254,7 +254,7 @@ private fun Preview() {
 private fun PreviewWide() {
     val nav = rememberNavController()
 
-    MaterialTheme {
+    AppTheme {
         HelpScreen(nav)
     }
 }

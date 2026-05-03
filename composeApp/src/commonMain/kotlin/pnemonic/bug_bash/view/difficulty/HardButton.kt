@@ -4,7 +4,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.SentimentDissatisfied
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconToggleButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -12,6 +11,7 @@ import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import pnemonic.BooleanCallback
+import pnemonic.bug_bash.view.theme.AppTheme
 import pnemonic.bug_bash.view.theme.colorButton
 import pnemonic.bug_bash.view.theme.modifierButton
 import pnemonic.bug_bash.view.theme.modifierIcon
@@ -49,7 +49,7 @@ fun HardButton(
 @Composable
 @Preview
 private fun Preview0() {
-    MaterialTheme {
+    AppTheme {
         HardButton(false) {}
     }
 }
@@ -57,7 +57,7 @@ private fun Preview0() {
 @Composable
 @Preview
 private fun Preview1() {
-    MaterialTheme {
+    AppTheme {
         HardButton(true) {}
     }
 }

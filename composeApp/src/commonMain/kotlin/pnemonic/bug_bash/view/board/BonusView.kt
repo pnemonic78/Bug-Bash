@@ -19,7 +19,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -44,6 +43,7 @@ import pnemonic.bug_bash.drawable.Zapper
 import pnemonic.bug_bash.drawable.insecticide
 import pnemonic.bug_bash.model.Bonus
 import pnemonic.bug_bash.model.BonusCallback
+import pnemonic.bug_bash.view.theme.AppTheme
 import pnemonic.bug_bash.view.theme.panel
 import pnemonic.compose.Left
 import pnemonic.bug_bash.drawable.Bonus as BonusImage
@@ -251,7 +251,7 @@ private fun Preview() {
         Bonus.Zapper(progress = 90),
     )
 
-    MaterialTheme {
+    AppTheme {
         BonusesView(bonuses = items, onClick = {})
     }
 }

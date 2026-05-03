@@ -194,23 +194,23 @@ abstract class Bug(
     }
 
     fun didEscape(boardSize: Size): Boolean {
-        val x1 = left
-        val y1 = top
-        val x2 = x1 + width
-        val y2 = y1 + height
+        val x1 = left + EPSILON_ESCAPE
+        val y1 = top + EPSILON_ESCAPE
+        val x2 = x1 + width - EPSILON_ESCAPE
+        val y2 = y1 + height - EPSILON_ESCAPE
         val x3 = boardSize.width
         val y3 = boardSize.height
         val angle = destinationAngle
 
         return when {
             // heading to Top-Right
-            (angle <= 90f) -> (x1 + EPSILON_ESCAPE >= x3) || (y2 - EPSILON_ESCAPE < 0f)
+            (angle <= 90f) -> (x1 >= x3) || (y2 < 0f)
             // heading to Bottom-Right
-            (angle <= 180f) -> (x1 + EPSILON_ESCAPE >= x3) || (y1 + EPSILON_ESCAPE >= y3)
+            (angle <= 180f) -> (x1 >= x3) || (y1 >= y3)
             // heading to Bottom-Left
-            (angle <= 270f) -> (x2 - EPSILON_ESCAPE < 0f) || (y1 + EPSILON_ESCAPE >= y3)
+            (angle <= 270f) -> (x2 < 0f) || (y1 >= y3)
             // heading to Top-Left
-            else -> (x2 - EPSILON_ESCAPE < 0f) || (y2 - EPSILON_ESCAPE < 0f)
+            else -> (x2 < 0f) || (y2 < 0f)
         }
     }
 

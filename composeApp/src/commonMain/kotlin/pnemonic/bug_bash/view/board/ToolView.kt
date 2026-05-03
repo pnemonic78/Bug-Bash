@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -37,6 +36,7 @@ import pnemonic.bug_bash.model.tool.Zapper
 import pnemonic.bug_bash.view.previewColor
 import pnemonic.bug_bash.view.previewHeightDp
 import pnemonic.bug_bash.view.previewWidthDp
+import pnemonic.bug_bash.view.theme.AppTheme
 import pnemonic.compose.toPx
 import kotlin.math.roundToInt
 
@@ -148,7 +148,7 @@ private fun Preview() {
     toolBelow.show()
     toolAbove.show()
 
-    MaterialTheme {
+    AppTheme {
         Box(modifier = Modifier.fillMaxSize()) {
             ToolBelow(toolBelow, onToolUse = {}, boardSize, Difficulty.Easy)
             ToolAbove(toolAbove, onToolUse = {}, boardSize)

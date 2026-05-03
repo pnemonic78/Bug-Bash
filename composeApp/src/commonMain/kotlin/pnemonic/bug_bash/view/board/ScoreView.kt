@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.LocalTextStyle
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -45,6 +44,7 @@ import pnemonic.bug_bash.Platform
 import pnemonic.bug_bash.drawable.Trophy
 import pnemonic.bug_bash.getPlatform
 import pnemonic.bug_bash.model.bug.Bug
+import pnemonic.bug_bash.view.theme.AppTheme
 import pnemonic.bug_bash.view.theme.DarkRed
 import pnemonic.bug_bash.view.theme.Gold
 import pnemonic.bug_bash.view.theme.panel
@@ -151,7 +151,7 @@ fun Score(score: Long, boardSize: Size, x: Float, y: Float, fontSize: TextUnit =
 @Composable
 @Preview(locale = "de")
 private fun Preview_DE() {
-    MaterialTheme {
+    AppTheme {
         ScoreView(score = 10000)
     }
 }
@@ -159,7 +159,7 @@ private fun Preview_DE() {
 @Composable
 @Preview(locale = "en")
 private fun Preview_EN() {
-    MaterialTheme {
+    AppTheme {
         ScoreView(score = 10_000)
     }
 }
@@ -167,7 +167,7 @@ private fun Preview_EN() {
 @Composable
 @Preview(locale = "he")
 private fun Preview_RTL() {
-    MaterialTheme {
+    AppTheme {
         ScoreView(score = 20_000)
     }
 }
@@ -175,7 +175,7 @@ private fun Preview_RTL() {
 @Composable
 @Preview
 private fun Preview_num() {
-    MaterialTheme {
+    AppTheme {
         Score(score = 1000, Size.Zero, 0f, 0f)
     }
 }
@@ -183,7 +183,7 @@ private fun Preview_num() {
 @Composable
 @Preview
 private fun Preview_neg() {
-    MaterialTheme {
+    AppTheme {
         Score(score = -1000, Size.Zero, 0f, 0f)
     }
 }

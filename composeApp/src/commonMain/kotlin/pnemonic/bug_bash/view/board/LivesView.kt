@@ -4,7 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -12,6 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pnemonic.bug_bash.drawable.LifeHad
 import pnemonic.bug_bash.drawable.LifeHas
+import pnemonic.bug_bash.view.theme.AppTheme
 import pnemonic.bug_bash.view.theme.panelScrollable
 
 private val sizeIcon = 32.dp
@@ -51,7 +51,7 @@ private fun LifeDead() {
 @Composable
 @Preview(showBackground = true, backgroundColor = 0xFF008800)
 private fun Preview() {
-    MaterialTheme {
+    AppTheme {
         LivesView(lives = 2, liveTotal = 4)
     }
 }

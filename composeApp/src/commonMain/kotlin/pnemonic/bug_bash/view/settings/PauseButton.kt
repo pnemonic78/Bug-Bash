@@ -5,13 +5,13 @@ import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconToggleButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import pnemonic.BooleanCallback
+import pnemonic.bug_bash.view.theme.AppTheme
 import pnemonic.bug_bash.view.theme.colorButton
 import pnemonic.bug_bash.view.theme.modifierButton
 import pnemonic.bug_bash.view.theme.modifierIcon
@@ -47,7 +47,7 @@ fun PauseButton(
 @Composable
 @Preview
 private fun Preview0() {
-    MaterialTheme {
+    AppTheme {
         PauseButton(paused = false) {}
     }
 }
@@ -55,7 +55,7 @@ private fun Preview0() {
 @Composable
 @Preview
 private fun Preview1() {
-    MaterialTheme {
+    AppTheme {
         PauseButton(paused = true) {}
     }
 }

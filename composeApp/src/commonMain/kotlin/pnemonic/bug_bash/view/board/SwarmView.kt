@@ -2,7 +2,6 @@ package pnemonic.bug_bash.view.board
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.AbsoluteAlignment
 import androidx.compose.ui.Modifier
@@ -16,6 +15,7 @@ import pnemonic.bug_bash.model.bug.BugCallback
 import pnemonic.bug_bash.model.bug.Swarm
 import pnemonic.bug_bash.model.bug.contains
 import pnemonic.bug_bash.view.previewColor
+import pnemonic.bug_bash.view.theme.AppTheme
 import pnemonic.compose.toPx
 
 @Composable
@@ -67,12 +67,10 @@ private fun Preview() {
         x += dx
         y += dy
     }
-    val onSize: BugCallback = {}
-    val onTap: BugCallback = {}
 
-    MaterialTheme {
+    AppTheme {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = AbsoluteAlignment.TopLeft) {
-            SwarmView(Swarm(bugs), Size.Zero, onSize, onTap)
+            SwarmView(Swarm(bugs), Size.Zero, onSize = {}, onTap = {})
         }
     }
 }

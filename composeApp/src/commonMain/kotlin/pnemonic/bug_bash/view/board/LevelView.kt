@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import pnemonic.bug_bash.drawable.Level
 import pnemonic.bug_bash.drawable.bee
+import pnemonic.bug_bash.view.theme.AppTheme
 import pnemonic.bug_bash.view.theme.Gold
 import pnemonic.bug_bash.view.theme.panel
 import pnemonic.compose.Left
@@ -50,7 +50,7 @@ fun LevelView(modifier: Modifier = Modifier, level: Int, count: Int) {
 @Composable
 @Preview
 private fun Preview() {
-    MaterialTheme {
+    AppTheme {
         LevelView(level = 123, count = 10)
     }
 }
@@ -58,7 +58,7 @@ private fun Preview() {
 @Composable
 @Preview(locale = "he")
 private fun Preview_RTL() {
-    MaterialTheme {
+    AppTheme {
         LevelView(level = 456, count = 20)
     }
 }

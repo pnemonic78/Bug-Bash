@@ -4,11 +4,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.Yellow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -22,6 +20,7 @@ import pnemonic.VoidCallback
 import pnemonic.bug_bash.view.GlossyButton
 import pnemonic.bug_bash.view.GlowBox
 import pnemonic.bug_bash.view.previewColor
+import pnemonic.bug_bash.view.theme.AppTheme
 import pnemonic.bug_bash.view.theme.Gold
 import pnemonic.bug_bash.view.theme.LargeIconSpacing
 import pnemonic.compose.lighten
@@ -58,7 +57,7 @@ fun StartButton(modifier: Modifier = Modifier, onClick: VoidCallback) {
 @Composable
 @Preview(showBackground = true, backgroundColor = previewColor)
 private fun Preview() {
-    MaterialTheme {
+    AppTheme {
         StartButton {}
     }
 }

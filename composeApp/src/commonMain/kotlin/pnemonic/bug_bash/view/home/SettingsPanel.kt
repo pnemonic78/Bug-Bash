@@ -2,7 +2,6 @@ package pnemonic.bug_bash.view.home
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -13,6 +12,7 @@ import pnemonic.bug_bash.view.settings.ActionPanel
 import pnemonic.bug_bash.view.settings.HelpButton
 import pnemonic.bug_bash.view.settings.MusicButton
 import pnemonic.bug_bash.view.settings.SoundButton
+import pnemonic.bug_bash.view.theme.AppTheme
 import pnemonic.bug_bash.view.theme.sizeHomeButton
 
 @Composable
@@ -36,7 +36,7 @@ fun SettingsPanel(
 @Preview
 @Composable
 private fun Preview() {
-    MaterialTheme {
+    AppTheme {
         SettingsPanel(
             isSoundEnabled = true,
             onSoundChange = {},
@@ -50,7 +50,7 @@ private fun Preview() {
 @Preview(locale = "he")
 @Composable
 private fun Preview_RTL() {
-    MaterialTheme {
+    AppTheme {
         SettingsPanel(
             isSoundEnabled = true,
             onSoundChange = {},

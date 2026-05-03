@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -23,13 +22,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pnemonic.BooleanCallback
 import pnemonic.VoidCallback
-import pnemonic.compose.Left
 import pnemonic.bug_bash.view.home.HomeButton
 import pnemonic.bug_bash.view.settings.ActionPanel
 import pnemonic.bug_bash.view.settings.MenuButton
 import pnemonic.bug_bash.view.settings.MusicButton
 import pnemonic.bug_bash.view.settings.PauseButton
 import pnemonic.bug_bash.view.settings.SoundButton
+import pnemonic.bug_bash.view.theme.AppTheme
+import pnemonic.compose.Left
 
 private val spacing = 8.dp
 
@@ -80,7 +80,7 @@ fun ActionsPanel(
 @Preview
 @Composable
 private fun Preview() {
-    MaterialTheme {
+    AppTheme {
         ActionsPanel(
             onHomeClick = {},
             isPaused = false,

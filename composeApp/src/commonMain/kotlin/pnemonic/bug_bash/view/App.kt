@@ -1,12 +1,12 @@
 package pnemonic.bug_bash.view
 
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import pnemonic.bug_bash.view.theme.AppTheme
 
 @Composable
 fun App() {
-    MaterialTheme {
+    AppTheme {
         MainScreen()
     }
 }

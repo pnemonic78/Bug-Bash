@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -23,6 +22,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import pnemonic.bug_bash.view.theme.AppTheme
 
 @Composable
 fun GlowBox(
@@ -65,7 +65,7 @@ fun GlowBox(
 private fun Preview() {
     val shape: Shape = ButtonDefaults.shape
 
-    MaterialTheme {
+    AppTheme {
         GlowBox(
             sizeGlow = 20.dp,
             colorGlow = Color.Red,

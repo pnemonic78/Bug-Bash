@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -36,6 +35,7 @@ import bug_bash.composeapp.generated.resources.Res
 import bug_bash.composeapp.generated.resources.play
 import org.jetbrains.compose.resources.stringResource
 import pnemonic.VoidCallback
+import pnemonic.bug_bash.view.theme.AppTheme
 import pnemonic.compose.lighten
 import pnemonic.compose.toDp
 
@@ -94,7 +94,7 @@ fun GlossyButton(
 @Composable
 @Preview(showBackground = true, backgroundColor = previewColor)
 private fun Preview() {
-    MaterialTheme {
+    AppTheme {
         GlossyButton(
             modifier = Modifier.size(120.dp, 40.dp),
             onClick = {},
